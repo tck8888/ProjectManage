@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="140dp"
+             android:layout_height="wrap_content"
+             android:background="@android:color/transparent"
+    >
+
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_6dp_solid_ff657180"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_unplanned_interview"
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@mipmap/icon_unplanned_interview_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="44dp"
+                android:text="计划外访式"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#fff"/>
+
+        <FrameLayout
+            android:id="@+id/fl_research_end_visit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@mipmap/icon_research_end_visit_white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="44dp"
+                android:text="研究结束访视"
+                android:textColor="#fff"
+                android:textSize="14sp"/>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
