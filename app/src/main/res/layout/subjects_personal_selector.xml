@@ -5,9 +5,18 @@
              android:background="@android:color/transparent"
     >
 
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:layout_width="10dp"
+        android:layout_height="8dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_triangle_blue"/>
+
     <LinearLayout
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:background="@drawable/shape_corner_6dp_solid_ff657180"
         android:orientation="vertical">
 

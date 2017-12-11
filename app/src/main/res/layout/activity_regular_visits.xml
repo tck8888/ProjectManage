@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#f3f5f6"
+              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
     <FrameLayout
@@ -25,8 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="常规访视"
-            android:textColor="#000"
-            android:textSize="16sp"/>
+            android:textColor="@color/color_464c5b"
+            android:textSize="18sp"/>
 
 
         <ImageView
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="bottom"
-            android:background="#dedfe0"/>
+            android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
     <ScrollView
@@ -68,8 +68,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="访视的基本信息"
-                android:textColor="#434343"
-                android:textSize="16sp"/>
+                android:textColor="@color/color_657180"
+                android:textSize="14sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,19 +83,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="研究中心"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:ellipsize="end"
+                    android:gravity="right"
                     android:maxLines="1"
-                    android:text="研究中心"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:text="复旦大学附属肿瘤医院"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -116,15 +118,17 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:ellipsize="end"
+                    android:gravity="right"
                     android:maxLines="1"
-                    android:text="案例编号"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:text="079001"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -145,19 +149,22 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:ellipsize="end"
+                    android:gravity="right"
                     android:maxLines="1"
-                    android:text="姓名缩写"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:text="ABC"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -174,15 +181,16 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
                     android:ellipsize="end"
+                    android:gravity="right"
                     android:maxLines="1"
-                    android:text="计划访视日期"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:text="2017-11-12"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 

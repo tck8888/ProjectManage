@@ -26,24 +26,24 @@
             android:layout_marginRight="40dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#434343"
-            android:textSize="15sp"
+            android:textColor="@color/color_464c5b"
+            android:textSize="16sp"
             tools:text=" 伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="7dp"
+            android:layout_height="13dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
             android:src="@mipmap/icon_arrow_right"/>
 
         <View
             android:id="@+id/item_divider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="40dp"
-            android:background="#f3f5f6"
+            android:background="@color/color_e4e4e4"
             android:visibility="gone"/>
     </FrameLayout>
 </FrameLayout>

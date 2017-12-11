@@ -51,7 +51,10 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
     @Override
     protected void initView(@Nullable View view) {
         view.findViewById(R.id.iv_my_project_center).setOnClickListener(this);
+
+        View headView = View.inflate(getContext(), R.layout.head_view_layout, null);
         mListView = (ListView) view.findViewById(R.id.list_view);
+        mListView.addHeaderView(headView);
 
         mListView.setAdapter(new CommonItemAdapter(getContext(), mCommonItemBeanList));
     }
