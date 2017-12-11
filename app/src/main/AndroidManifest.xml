@@ -24,6 +24,13 @@
         <activity android:name=".subjects_home.one.ResearchEndVisitActivity"/>
         <activity android:name=".subjects_home.one.EntryGroupBasicInformationActivity"/>
         <activity android:name=".subjects_home.one.RegularVisitsActivity"/>
+        <activity android:name=".subjects_home.five.WorkTimeSubmissionActivtiy"/>
+        <activity android:name=".subjects_home.five.InstitutionEstablishmentActivity"/>
+        <activity android:name=".subjects_home.five.EthicalSubmissionActivity"/>
+        <activity android:name=".subjects_home.five.ContractFollowUpActivity"/>
+        <activity android:name=".subjects_home.five.ProjectStartMeetingActivity"/>
+        <activity android:name=".subjects_home.five.PresiftingActivity"/>
+        <activity android:name=".subjects_home.five.SaeReportActivity"/>
     </application>
 
 </manifest>

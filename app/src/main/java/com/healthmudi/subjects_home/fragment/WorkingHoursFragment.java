@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.subjects_home.adapter.WorkingHoursListAdapter;
+import com.healthmudi.subjects_home.five.WorkTimeSubmissionActivtiy;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -75,6 +77,8 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 getActivity().finish();
                 break;
             case R.id.iv_add_subjects:
+                Intent intent = new Intent(getContext(), WorkTimeSubmissionActivtiy.class);
+                startActivity(intent);
                 break;
         }
     }

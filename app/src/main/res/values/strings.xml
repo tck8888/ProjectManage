@@ -14,4 +14,27 @@
         <item>工时</item>
         <item>报表</item>
     </string-array>
+
+
+    <string-array name="worktime_submission_list">
+        <item>机构立项</item>
+        <item>伦理递交</item>
+        <item>合同跟进</item>
+        <item>项目启动会</item>
+        <item>SAE上报</item>
+        <item>受试者预筛</item>
+        <item>受试者访规</item>
+        <item>EDC填写</item>
+    </string-array>
+
+    <string-array name="worktime_submission_type">
+        <item>institution_establishment</item>
+        <item>ethical_submission</item>
+        <item>contract_follow_up</item>
+        <item>Project_start_meeting</item>
+        <item>sae_report</item>
+        <item>presifting</item>
+        <item>visitors_visit_to_the_rules</item>
+        <item>edc_fill_in</item>
+    </string-array>
 </resources>
