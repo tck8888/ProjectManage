@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:受试者筛选
+ * decription:受试者访规
  * Created by tck on 2017/12/11.
  */
 
-public class PresiftingActivity extends BaseActivity implements View.OnClickListener {
+public class VisitorsVisitToTheRulesActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_presifting;
+        return R.layout.activity_visitors_visit_to_the_rules;
     }
 
     @Override

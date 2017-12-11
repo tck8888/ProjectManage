@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:受试者筛选
+ * decription:EDC填写
  * Created by tck on 2017/12/11.
  */
 
-public class PresiftingActivity extends BaseActivity implements View.OnClickListener {
+public class EDCFillInActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public int getLayoutId() {
-        return R.layout.activity_presifting;
+        return R.layout.activity_edc_fill_in;
     }
 
     @Override

@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="受试者筛选"
+            android:text="受试者访规"
             android:textColor="@color/color_464c5b"
             android:textSize="18sp"/>
 
@@ -127,6 +127,10 @@
                     android:src="@mipmap/icon_arrow_right"/>
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_e4e4e4"/>
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -143,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="预筛日期"
+                    android:text="访视日期"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
 
@@ -166,76 +170,6 @@
                     android:layout_gravity="center_vertical"
                     android:padding="10dp"
                     android:src="@mipmap/icon_visit_date_black"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/color_e4e4e4"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="预筛患者数"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="right"
-                    android:hint="请输入患者数"
-                    android:inputType="number"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/color_e4e4e4"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="初步符合患者数"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="right"
-                    android:hint="请输入初步符合患者数"
-                    android:inputType="number"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
             </LinearLayout>
 
             <View
@@ -291,5 +225,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

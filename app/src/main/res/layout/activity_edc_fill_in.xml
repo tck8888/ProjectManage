@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="受试者筛选"
+            android:text="EDC填写"
             android:textColor="@color/color_464c5b"
             android:textSize="18sp"/>
 
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="预筛日期"
+                    android:text="填写日期"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
 
@@ -181,10 +181,11 @@
                 android:paddingRight="10dp">
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="预筛患者数"
+                    android:text="CRF页数"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
 
@@ -196,42 +197,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@null"
                     android:gravity="right"
-                    android:hint="请输入患者数"
-                    android:inputType="number"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/color_e4e4e4"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="初步符合患者数"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="right"
-                    android:hint="请输入初步符合患者数"
+                    android:hint="请输入CRF页数"
                     android:inputType="number"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>

@@ -31,6 +31,8 @@
         <activity android:name=".subjects_home.five.ProjectStartMeetingActivity"/>
         <activity android:name=".subjects_home.five.PresiftingActivity"/>
         <activity android:name=".subjects_home.five.SaeReportActivity"/>
+        <activity android:name=".subjects_home.five.VisitorsVisitToTheRulesActivity"/>
+        <activity android:name=".subjects_home.five.EDCFillInActivity"/>
     </application>
 
 </manifest>

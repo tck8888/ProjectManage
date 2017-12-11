@@ -87,10 +87,13 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
                 clazz = SaeReportActivity.class;
                 break;
             case "presifting":
+                clazz = PresiftingActivity.class;
                 break;
             case "visitors_visit_to_the_rules":
+                clazz = VisitorsVisitToTheRulesActivity.class;
                 break;
             case "edc_fill_in":
+                clazz = EDCFillInActivity.class;
                 break;
         }
         if (clazz != null) {
