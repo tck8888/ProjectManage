@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_fork_black"
             />
 
@@ -40,10 +40,10 @@
 
         <ImageView
             android:id="@+id/iv_check_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_check_mark"/>
 
         <View
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="案例编号"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="姓名缩写"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -164,9 +164,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="1dp"
                 android:background="#fff"
                 android:paddingLeft="10dp"
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="计划访视日期"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="时间窗"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -218,7 +218,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="时间窗"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -236,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="实际访视日期"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
@@ -248,7 +248,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="请选择日期"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_cccccc"
                     android:textSize="16sp"/>
 
                 <ImageView
@@ -262,7 +262,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="未完成"/>
+                    android:text="未完成"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
             </LinearLayout>
 
             <TextView
@@ -271,18 +273,24 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="访视任务"
-                android:textColor="#434343"
+                android:textColor="@color/color_464c5b"
                 android:textSize="16sp"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="20dp"
                 android:background="#fff"
                 android:gravity="top"
                 android:hint="请输入备注信息"
-                android:paddingLeft="10dp"
-                android:paddingTop="8dp"/>
+                android:padding="15dp"
+                android:textColor="@color/color_464c5b"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="15sp"
+                />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

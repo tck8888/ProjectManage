@@ -82,11 +82,13 @@
                     android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="筛选编号"
                     android:textColor="@color/color_464c5b"
@@ -113,12 +115,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="请选择研究中心"
-                    android:textColor="#CCCCCC "
+                    android:textColor="#cccccc"
                     android:textSize="15sp"/>
 
                 <ImageView
@@ -146,12 +149,15 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/textView4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="受试者编号"
                     android:textColor="@color/color_464c5b"
@@ -161,6 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
                     android:text="同筛选编号"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
@@ -183,11 +190,13 @@
                     android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="姓名缩写"
                     android:textColor="@color/color_464c5b"
@@ -212,11 +221,13 @@
                     android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="联系方式"
                     android:textColor="@color/color_464c5b"
@@ -241,11 +252,13 @@
                     android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="知情同意书签署日期"
                     android:textColor="@color/color_464c5b"
@@ -270,12 +283,12 @@
                     android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:text="请选择日期"
                     android:textColor="#cccccc"
                     android:textSize="15sp"/>
@@ -307,9 +320,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="请选择分组"
                     android:textColor="#cccccc"
@@ -333,10 +347,11 @@
                 android:background="#fff"
                 android:gravity="top"
                 android:hint="请输入备注信息"
-                android:paddingLeft="15dp"
-                android:paddingTop="15dp"
-                android:textColorHint="#cccccc"
-                android:textSize="15sp"/>
+                android:padding="15dp"
+                android:textColor="@color/color_464c5b"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="15sp"
+                />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

@@ -6,7 +6,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:
+ * decription:常规访视
  * Created by tck on 2017/12/10.
  */
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#f3f5f6"
+              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
     <FrameLayout
@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_fork_black"
             />
 
@@ -25,32 +25,32 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="研究结束信息"
-            android:textColor="#000"
-            android:textSize="16sp"/>
+            android:textColor="@color/color_464c5b"
+            android:textSize="18sp"/>
 
 
         <ImageView
             android:id="@+id/iv_circular_exclamation_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="40dp"
-            android:padding="10dp"
+            android:layout_marginRight="50dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_circular_exclamation_mark"/>
 
         <ImageView
             android:id="@+id/iv_check_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_check_mark"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="bottom"
-            android:background="#dedfe0"/>
+            android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
     <ScrollView
@@ -68,8 +68,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="受试者基本信息"
-                android:textColor="#434343"
-                android:textSize="16sp"/>
+                android:textColor="@color/color_464c5b"
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,18 +83,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="研究中心"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="研究中心"
-                    android:textColor="#434343"
+                    android:textColor="@color/color_464c5b"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -112,19 +114,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="案例编号"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="案例编号"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -141,19 +145,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="姓名缩写"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="姓名缩写"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -164,8 +170,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="受试者研究结束原因"
-                android:textColor="#434343"
-                android:textSize="16sp"/>
+                android:textColor="@color/color_464c5b"
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,56 +189,56 @@
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="撤回知情同意书"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="受试者由于搬迁,转院,繁忙等原因难以继续进行研究"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="失访"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="疾病进展"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="死亡"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="严重违反试验方案"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:paddingLeft="10dp"
                         android:text="其他原因"
-                        android:textColor="#434343"
-                        android:textSize="16sp"/>
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
                 </RadioGroup>
 
                 <EditText
@@ -251,8 +257,8 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="受试者研究结束日期"
-                android:textColor="#434343"
-                android:textSize="16sp"/>
+                android:textColor="@color/color_464c5b"
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -266,19 +272,21 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="结束日期"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:ellipsize="end"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="请选择日期"
-                    android:textColor="#434343"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="15sp"/>
 
                 <ImageView
                     android:id="@+id/iv_visit_date_black"
@@ -288,15 +296,21 @@
                     android:src="@mipmap/icon_visit_date_black"/>
             </LinearLayout>
 
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="20dp"
                 android:background="#fff"
                 android:gravity="top"
                 android:hint="请输入备注信息"
-                android:paddingLeft="10dp"
-                android:paddingTop="8dp"/>
+                android:padding="15dp"
+                android:textColor="@color/color_464c5b"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="15sp"
+                />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
