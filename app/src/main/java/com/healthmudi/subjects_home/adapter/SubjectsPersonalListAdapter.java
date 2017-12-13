@@ -43,7 +43,7 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
             if (subjectsPersonalListBean.status == 1) {
                 mTvItemName.setText(subjectsPersonalListBean.name);
                 mTvItemStatus.setText("已完成");
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_10dp_solid_2bc8a0));
+                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
             }
         } else {
             mIvTypeIcon.setImageResource(R.mipmap.icon_research_end);

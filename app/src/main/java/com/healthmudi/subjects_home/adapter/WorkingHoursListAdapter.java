@@ -32,9 +32,9 @@ public class WorkingHoursListAdapter extends BasicAdapter<WorkingHoursListBean> 
         TextView mTvWorkSatus = get(convertView, R.id.tv_work_satus);
         WorkingHoursListBean workingHoursListBean = mDataList.get(position);
         if (workingHoursListBean.status==0){
-            mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_10dp_solid_fffda746));
+            mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
         }else {
-            mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_10dp_solid_2bc8a0));
+            mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
         }
 
     }

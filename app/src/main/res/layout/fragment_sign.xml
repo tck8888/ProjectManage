@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
     <FrameLayout
@@ -11,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/arrow_left_black"
             />
 
@@ -29,16 +30,186 @@
 
         <ImageView
             android:id="@+id/iv_sign_history"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
-            android:src="@mipmap/icon_add_subjects"/>
+            android:padding="15dp"
+            android:src="@mipmap/icon_sign_footprint"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="bottom"
             android:background="#dedfe0"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_sign_head_bg"/>
+
+        <TextView
+            android:id="@+id/tv_sign_project_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="恒瑞G201项目"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_sign_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="62dp"
+            android:text="2017年12月6日"
+            android:textColor="#fff"
+            android:textSize="13sp"/>
+
+        <ImageView
+            android:id="@+id/iv_sign_head_portrait"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="23dp"
+            android:src="@mipmap/icon_sign_head_portrait"/>
+
+        <TextView
+            android:id="@+id/tv_sign_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="35.5dp"
+            android:layout_marginTop="78.5dp"
+            android:text="彭于晏"
+            android:textColor="#fff"
+            android:textSize="13sp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_select_location"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/tv_sign_hospital_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="14dp"
+            android:text="上海市中山医院"
+            android:textColor="@color/color_464c5b"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_sign_hospital_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="37dp"
+            android:text="100米范围内打卡"
+            android:textColor="#cccccc"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|right"
+            android:padding="15dp"
+            android:src="@mipmap/icon_arrow_right_sign"/>
+    </FrameLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingLeft="15dp"
+        android:paddingTop="18dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_reach_black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="34dp"
+            android:text="到达打卡"
+            android:textColor="@color/color_464c5b"
+            android:textSize="16sp"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+
+        <TextView
+            android:id="@+id/tv_punch_the_clock_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="今日您还未打卡"
+            android:textColor="@color/color_1abc9c"
+            android:textSize="15sp"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="181dp"
+            android:layout_gravity="bottom"
+            android:src="@mipmap/icon_sign_bottom_bg"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="30dp"
+            >
+
+            <ImageView
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/icon_sign_circular_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50.5dp"
+                android:text="打卡"
+                android:textColor="#fff"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_tv_punch_the_clock_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="81.5dp"
+                android:text="08:56:03"
+                android:textColor="#fff"
+                android:textSize="16sp"/>
+        </FrameLayout>
+
     </FrameLayout>
 </LinearLayout>

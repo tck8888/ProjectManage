@@ -10,25 +10,27 @@
     <ImageView
         android:id="@+id/iv_time"
         android:layout_width="20dp"
+        android:scaleType="fitXY"
         android:layout_height="20dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:src="@mipmap/icon_add_subjects"/>
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/icon_work_hour_time"/>
 
     <TextView
         android:id="@+id/tv_work_time"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/iv_time"
         android:gravity="center_vertical"
         android:text="2017/12/10"
+        android:textColor="@color/color_464c5b"
         android:textSize="16sp"/>
 
     <TextView
+        android:textColor="@color/color_464c5b"
         android:id="@+id/tv_work_content"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_work_time"
         android:gravity="center_vertical"
@@ -36,48 +38,50 @@
         android:textSize="16sp"/>
 
     <TextView
+        android:textColor="#999999"
         android:id="@+id/tv_subjects_cause"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_work_time"
         android:layout_below="@id/tv_work_time"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:gravity="center_vertical"
         android:text="机构立项"
-        android:textSize="15sp"/>
+        android:textSize="13sp"/>
 
     <TextView
+        android:textColor="#999999"
         android:id="@+id/tv_uesed_time"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_work_time"
         android:layout_below="@id/tv_subjects_cause"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:gravity="center_vertical"
         android:text="用时:2小时"
-        android:textSize="15sp"/>
+        android:textSize="13sp"/>
 
     <ImageView
         android:id="@+id/iv_arrow_right"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:padding="10dp"
+        android:padding="15dp"
         android:src="@mipmap/icon_arrow_right"/>
 
     <TextView
         android:id="@+id/tv_work_satus"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_centerVertical="true"
+        android:layout_height="22dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/shape_corner_10dp_solid_2bc8a0"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/shape_corner_11dp_solid_2bc8a0"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="已完成"
         android:textColor="#fff"
-        android:textSize="16sp"/>
+        android:textSize="11sp"/>
 </RelativeLayout>

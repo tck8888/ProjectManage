@@ -20,10 +20,10 @@
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/common_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="49dp"
         android:background="#ffffff"
-        app:tl_iconHeight="23dp"
-        app:tl_iconWidth="23dp"
+        app:tl_iconHeight="22dp"
+        app:tl_iconWidth="22.5dp"
         app:tl_textSelectColor="@color/color_1abc9c"
         app:tl_textUnselectColor="@color/color_657180"
         app:tl_textsize="10sp"

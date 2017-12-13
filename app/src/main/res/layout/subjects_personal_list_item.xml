@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="40dp"
-            android:background="@drawable/shape_corner_10dp_solid_2bc8a0"
+            android:background="@drawable/shape_corner_11dp_solid_2bc8a0"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="已完成"
