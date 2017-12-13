@@ -132,7 +132,7 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     }
 
     private void showPop(View view) {
-        mPopup.showAtAnchorView(view, VerticalGravity.BELOW, HorizontalGravity.LEFT, dp2px(35), dp2px(5));
+        mPopup.showAtAnchorView(view, VerticalGravity.BELOW, HorizontalGravity.LEFT, dp2px(40), dp2px(5));
     }
 
     public int dp2px(int dp) {

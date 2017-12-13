@@ -36,7 +36,7 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
             if (subjectsPersonalListBean.status == 1) {
                 mTvItemName.setText("入组");
                 mTvItemStatus.setText("已入组");
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_10dp_solid_ff3196d9));
+                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_3398db));
             }
         } else if (subjectsPersonalListBean.type.equals("center")) {
             mIvTypeIcon.setImageResource(R.mipmap.icon_cycle);
@@ -50,7 +50,7 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
             if (subjectsPersonalListBean.status == 0) {
                 mTvItemName.setText("研究结束");
                 mTvItemStatus.setText("已退出");
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_10dp_solid_ff0000));
+                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_f04844));
             }
         }
 
