@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/arrow_left_black"
             />
 
@@ -30,10 +30,10 @@
 
         <ImageView
             android:id="@+id/iv_check_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_check_mark"/>
 
         <View
@@ -107,6 +107,8 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:textColorHint="@color/color_cccccc"
+                    android:hint="请选择中心名称"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -115,15 +117,14 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:maxLines="1"
-                    android:text="请选择中心名称"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:src="@mipmap/icon_arrow_right"/>
             </LinearLayout>
 
@@ -148,6 +149,7 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:textColorHint="@color/color_cccccc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -156,15 +158,15 @@
                     android:ellipsize="end"
                     android:gravity="right"
                     android:maxLines="1"
-                    android:text="请选择日期"
+                    android:hint="请选择日期"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:src="@mipmap/icon_visit_date_black"/>
             </LinearLayout>
 
@@ -190,6 +192,7 @@
                     android:textSize="15sp"/>
 
                 <EditText
+                    android:textColorHint="@color/color_cccccc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -248,8 +251,11 @@
                 android:background="#fff"
                 android:gravity="top"
                 android:hint="请输入备注信息"
-                android:paddingLeft="10dp"
-                android:paddingTop="8dp"/>
+                android:padding="15dp"
+                android:textColor="@color/color_464c5b"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="15sp"
+                />
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"

@@ -25,8 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="工作签到"
-            android:textColor="#000"
-            android:textSize="16sp"/>
+            android:textColor="@color/color_464c5b"
+            android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/iv_sign_history"
