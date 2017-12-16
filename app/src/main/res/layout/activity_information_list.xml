@@ -10,21 +10,23 @@
         android:layout_height="50dp"
         android:background="#fff">
 
+        <ImageView
+            android:id="@+id/iv_arrow_left_black"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:src="@mipmap/arrow_left_black"
+            />
+
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="我的消息"
+            android:text="访视提醒"
             android:textColor="@color/color_464c5b"
-            android:textSize="@dimen/dimen_16sp"/>
-
-        <ImageView
-            android:id="@+id/iv_my_project_center"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
-            android:src="@mipmap/icon_my_project_center"/>
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
@@ -33,5 +35,14 @@
             android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
-    <include layout="@layout/common_refresh_layout"/>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ExpandableListView
+            android:id="@+id/expandable_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

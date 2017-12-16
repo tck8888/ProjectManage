@@ -33,6 +33,9 @@
         <activity android:name=".subjects_home.five.SaeReportActivity"/>
         <activity android:name=".subjects_home.five.VisitorsVisitToTheRulesActivity"/>
         <activity android:name=".subjects_home.five.EDCFillInActivity"/>
+        <activity android:name=".subjects_home.three.SignHistoryActivity"/>
+        <activity android:name=".subjects_home.three.PunchClockSelectLocationActivity"/>
+        <activity android:name=".home_fragment.InformationListActivity"/>
     </application>
 
 </manifest>

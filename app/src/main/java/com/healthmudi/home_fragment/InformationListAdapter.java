@@ -31,9 +31,20 @@ public class InformationListAdapter extends BasicAdapter<InformationListBean> {
 
         InformationListBean informationListBean = mDataList.get(position);
 
-        mTvTextType.setText(informationListBean.type);
+        mTvTextType.setText(informationListBean.name);
         mTvTextContent.setText(informationListBean.content);
         mTvTextDate.setText(informationListBean.date);
+        switch (informationListBean.type) {
+            case "0":
+                mIvImageType.setImageResource(R.mipmap.icon_system_infomation);
+                break;
+            case "1":
+                mIvImageType.setImageResource(R.mipmap.icon_pay_infomation);
+                break;
+            case "2":
+                mIvImageType.setImageResource(R.mipmap.icon_visit_infomation);
+                break;
+        }
     }
 
     @Override

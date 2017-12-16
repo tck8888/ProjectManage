@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+    >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="4.5dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_green_dot"/>
+
+    <TextView
+        android:id="@+id/tv_sign_hospital_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_657180"
+        android:textSize="@dimen/dimen_16sp"
+        tools:text="上海市肿瘤医院"/>
+
+    <TextView
+        android:id="@+id/tv_sign_hospital_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_sign_hospital_name"
+        android:layout_below="@id/tv_sign_hospital_name"
+        android:layout_marginTop="2.5dp"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/dimen_13sp"
+        tools:text="签到时间：2017/12/06  09:00~17:58"/>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="1dp"
+        android:layout_height="37dp"
+        android:layout_below="@id/image"
+        android:layout_marginLeft="8.5dp"
+        android:layout_marginTop="4.5dp"
+        android:background="@color/color_e4e4e4"/>
+</RelativeLayout>
