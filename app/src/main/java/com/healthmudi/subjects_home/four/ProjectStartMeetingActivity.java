@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:伦理递交
+ * decription:项目启动会
  * Created by tck on 2017/12/11.
  */
 
-public class EthicalSubmissionActivity extends BaseActivity implements View.OnClickListener {
+public class ProjectStartMeetingActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_ethical_submission;
+        return R.layout.activity_project_start_meeting;
     }
 
     @Override
@@ -33,5 +33,4 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                 break;
         }
     }
-
 }

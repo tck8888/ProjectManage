@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:受试者访规
+ * decription:伦理递交
  * Created by tck on 2017/12/11.
  */
 
-public class VisitorsVisitToTheRulesActivity extends BaseActivity implements View.OnClickListener {
+public class EthicalSubmissionActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_visitors_visit_to_the_rules;
+        return R.layout.activity_ethical_submission;
     }
 
     @Override
@@ -33,4 +33,5 @@ public class VisitorsVisitToTheRulesActivity extends BaseActivity implements Vie
                 break;
         }
     }
+
 }

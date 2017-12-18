@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:background="#fff"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+
+    <ImageView
+        android:id="@+id/iv_time"
+        android:layout_width="20dp"
+        android:scaleType="fitXY"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/icon_report_form_black"/>
+
+    <TextView
+        android:id="@+id/tv_report_form_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_time"
+        android:gravity="center_vertical"
+        tools:text="恒瑞G201项目报表"
+        android:textColor="@color/color_464c5b"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:textColor="#999999"
+        android:id="@+id/tv_report_form_project_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_report_form_name"
+        android:layout_below="@id/tv_report_form_name"
+        android:layout_marginTop="3dp"
+        android:text="恒瑞G201项目"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:textColor="#999999"
+        android:id="@+id/tv_report_form_create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_report_form_name"
+        android:layout_below="@id/tv_report_form_project_name"
+        android:layout_marginTop="3dp"
+        android:text="2017-10-30~2017-11-05"
+        android:textSize="13sp"/>
+
+    <ImageView
+        android:id="@+id/iv_arrow_right"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="15dp"
+        android:src="@mipmap/icon_arrow_right"/>
+
+    <TextView
+        android:id="@+id/tv_work_satus"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/shape_corner_11dp_solid_2bc8a0"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        tools:text="已完成"
+        android:textColor="#fff"
+        android:textSize="11sp"/>
+</RelativeLayout>

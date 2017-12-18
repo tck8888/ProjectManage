@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:EDC填写
+ * decription:受试者筛选
  * Created by tck on 2017/12/11.
  */
 
-public class EDCFillInActivity extends BaseActivity implements View.OnClickListener{
+public class PresiftingActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_edc_fill_in;
+        return R.layout.activity_presifting;
     }
 
     @Override

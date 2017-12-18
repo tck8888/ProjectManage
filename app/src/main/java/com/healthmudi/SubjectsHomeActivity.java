@@ -55,6 +55,8 @@ public class SubjectsHomeActivity extends BaseActivity {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
+
+
     }
 
     @Override

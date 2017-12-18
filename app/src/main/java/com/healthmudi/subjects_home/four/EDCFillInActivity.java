@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:合同跟进
+ * decription:EDC填写
  * Created by tck on 2017/12/11.
  */
 
-public class ContractFollowUpActivity extends BaseActivity implements View.OnClickListener {
+public class EDCFillInActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public int getLayoutId() {
-        return R.layout.activity_contract_follow_up;
+        return R.layout.activity_edc_fill_in;
     }
 
     @Override
@@ -33,5 +33,4 @@ public class ContractFollowUpActivity extends BaseActivity implements View.OnCli
                 break;
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:受试者筛选
+ * decription:合同跟进
  * Created by tck on 2017/12/11.
  */
 
-public class PresiftingActivity extends BaseActivity implements View.OnClickListener {
+public class ContractFollowUpActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_presifting;
+        return R.layout.activity_contract_follow_up;
     }
 
     @Override
@@ -33,4 +33,5 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
 }

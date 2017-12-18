@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.five;
+package com.healthmudi.subjects_home.four;
 
 import android.view.View;
 
@@ -6,14 +6,14 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 
 /**
- * decription:项目启动会
+ * decription:机构立项
  * Created by tck on 2017/12/11.
  */
 
-public class ProjectStartMeetingActivity extends BaseActivity implements View.OnClickListener {
+public class InstitutionEstablishmentActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public int getLayoutId() {
-        return R.layout.activity_project_start_meeting;
+        return R.layout.activity_institution_establishment;
     }
 
     @Override
