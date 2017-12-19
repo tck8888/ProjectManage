@@ -76,6 +76,8 @@ public class FileListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(R.layout.subjects_group_item, parent, false);
 
+        ImageView mIvImageType = (ImageView) convertView.findViewById(R.id.iv_image_type);
+        mIvImageType.setImageResource(R.mipmap.icon_file_folder);
         ImageView mIvAddSubjects = (ImageView) convertView.findViewById(R.id.iv_add_subjects);
         TextView mTvSubjectsGroupName = (TextView) convertView.findViewById(R.id.tv_subjects_group_name);
         FileListBean fileListBean = mDataList.get(groupPosition);
