@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CommonLibrary</string>
+    <string name="loading_msg">卖力加载中</string>
 </resources>
