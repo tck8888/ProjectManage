@@ -44,6 +44,7 @@
         <activity
             android:name=".subjects_home.five.ReportFormDetailActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".ExitProjectManagerActivity"/>
     </application>
 
 </manifest>

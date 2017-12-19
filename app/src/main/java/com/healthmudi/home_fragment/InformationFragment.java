@@ -61,7 +61,7 @@ public class InformationFragment extends BaseFragment1 implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), InformationListActivity.class);
-                intent.putExtra("InformationListBean",mInformationListBeen.get(position));
+                intent.putExtra("InformationListBean", mInformationListBeen.get(position));
                 startActivity(intent);
             }
         });
@@ -72,6 +72,7 @@ public class InformationFragment extends BaseFragment1 implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_my_project_center:
+
                 break;
         }
     }

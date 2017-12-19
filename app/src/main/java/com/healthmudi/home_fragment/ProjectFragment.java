@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.SubjectsHomeActivity;
 import com.healthmudi.base.BaseFragment1;
@@ -75,6 +76,7 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_my_project_center:
+                startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
                 break;
         }
     }

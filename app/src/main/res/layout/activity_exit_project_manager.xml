@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_exit_app"/>
+
+        <ImageView
+            android:id="@+id/iv_arrow_left_black"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:src="@mipmap/icon_arrow_whit"/>
+
+        <ImageView
+            android:id="@+id/iv_default_head_portrait"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@mipmap/icon_default_head_portrait"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_user_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12.5dp"
+        android:text="昵称"
+        android:textColor="@color/color_464c5b"
+        android:textSize="17sp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_exit_app"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_corner_25dp_solid_1abc9c"
+            android:gravity="center"
+            android:text="退出项目管理系统"
+            android:textColor="#fff"
+            android:textSize="@dimen/dimen_16sp"/>
+    </FrameLayout>
+</LinearLayout>

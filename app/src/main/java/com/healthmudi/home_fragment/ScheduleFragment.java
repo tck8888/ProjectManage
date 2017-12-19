@@ -1,10 +1,12 @@
 package com.healthmudi.home_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 
+import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 
@@ -48,6 +50,7 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_my_project_center:
+                startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
                 break;
         }
     }
