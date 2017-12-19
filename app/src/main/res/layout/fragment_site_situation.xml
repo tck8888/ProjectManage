@@ -9,8 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
         <com.healthmudi.commonlibrary.widget.AutoListView
             android:id="@+id/auto_list_view"
             android:layout_width="match_parent"

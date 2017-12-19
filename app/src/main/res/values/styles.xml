@@ -18,8 +18,4 @@
         <item name="android:button">@drawable/radiobutton_background</item>
     </style>
 
-    <style name="MainAppBar" parent="android:Widget">
-        <item name="elevation">0dip</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
 </resources>
