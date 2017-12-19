@@ -41,6 +41,9 @@
         <activity
             android:name=".subjects_home.five.AddReportFormActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.five.ReportFormDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

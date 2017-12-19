@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.bean.ReportFormListBean;
 import com.healthmudi.subjects_home.five.AddReportFormActivity;
+import com.healthmudi.subjects_home.five.ReportFormDetailActivity;
 import com.healthmudi.subjects_home.five.ReportFormListAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -70,6 +72,13 @@ public class ReportFormFragment extends BaseFragment1 implements View.OnClickLis
         super.setListener(view);
         view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
         view.findViewById(R.id.iv_add_report_form).setOnClickListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), ReportFormDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
