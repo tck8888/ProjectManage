@@ -1,4 +1,4 @@
-package com.healthmudi.home_fragment;
+package com.healthmudi.home.home_fragment.adapter;
 
 import android.content.Context;
 import android.view.View;

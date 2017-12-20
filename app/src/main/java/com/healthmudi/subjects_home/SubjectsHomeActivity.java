@@ -1,17 +1,18 @@
-package com.healthmudi;
+package com.healthmudi.subjects_home;
 
 import android.support.v4.app.Fragment;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
+import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.entity.TabEntity;
-import com.healthmudi.subjects_home.fragment.FileFragment;
-import com.healthmudi.subjects_home.fragment.ReportFormFragment;
-import com.healthmudi.subjects_home.fragment.SignFragment;
-import com.healthmudi.subjects_home.fragment.SubjectsFragment;
-import com.healthmudi.subjects_home.fragment.WorkingHoursFragment;
+import com.healthmudi.subjects_home.home_fragment.FileFragment;
+import com.healthmudi.subjects_home.home_fragment.ReportFormFragment;
+import com.healthmudi.subjects_home.home_fragment.SignFragment;
+import com.healthmudi.subjects_home.home_fragment.SubjectsFragment;
+import com.healthmudi.subjects_home.home_fragment.WorkingHoursFragment;
 
 import java.util.ArrayList;
 

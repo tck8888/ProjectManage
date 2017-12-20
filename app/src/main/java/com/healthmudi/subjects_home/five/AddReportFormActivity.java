@@ -9,6 +9,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.bean.CenterListBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
+import com.healthmudi.subjects_home.five.adapter.CenterListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

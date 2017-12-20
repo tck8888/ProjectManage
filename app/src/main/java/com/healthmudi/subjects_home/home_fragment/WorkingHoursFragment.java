@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.fragment;
+package com.healthmudi.subjects_home.home_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.bean.WorkingHoursListBean;
-import com.healthmudi.subjects_home.adapter.WorkingHoursListAdapter;
+import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 

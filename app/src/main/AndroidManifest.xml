@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProjectManageHomeActivity">
+        <activity android:name=".home.ProjectManageHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SubjectsHomeActivity"/>
+        <activity android:name=".subjects_home.SubjectsHomeActivity"/>
         <activity android:name=".subjects_home.one.SubjectsPersonalActivity"/>
         <activity android:name=".subjects_home.one.SubjectsPersonalSerachActivity"/>
         <activity android:name=".subjects_home.one.PlannedInterviewActivity"/>
@@ -39,7 +39,7 @@
         <activity android:name=".subjects_home.four.EDCFillInActivity"/>
         <activity android:name=".subjects_home.three.SignHistoryActivity"/>
         <activity android:name=".subjects_home.three.PunchClockSelectLocationActivity"/>
-        <activity android:name=".home_fragment.InformationListActivity"/>
+        <activity android:name=".home.InformationListActivity"/>
         <activity
             android:name=".subjects_home.five.AddReportFormActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>

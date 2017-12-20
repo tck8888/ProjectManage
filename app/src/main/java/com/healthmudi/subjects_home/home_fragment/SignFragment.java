@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.fragment;
+package com.healthmudi.subjects_home.home_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;

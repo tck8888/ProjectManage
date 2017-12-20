@@ -11,7 +11,7 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.bean.SubjectsPersonalListBean;
-import com.healthmudi.subjects_home.adapter.SubjectsPersonalListAdapter;
+import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsPersonalListAdapter;
 import com.healthmudi.view.custom_popupwindow.EasyPopup;
 import com.healthmudi.view.custom_popupwindow.HorizontalGravity;
 import com.healthmudi.view.custom_popupwindow.VerticalGravity;

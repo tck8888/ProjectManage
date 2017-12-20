@@ -8,7 +8,7 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
-import com.healthmudi.subjects_home.adapter.WorkTimeSubmissionItemListAdapter;
+import com.healthmudi.subjects_home.home_fragment.adapter.WorkTimeSubmissionItemListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

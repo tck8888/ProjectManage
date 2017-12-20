@@ -1,4 +1,4 @@
-package com.healthmudi.home_fragment;
+package com.healthmudi.home.home_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.bean.InformationListBean;
+import com.healthmudi.home.InformationListActivity;
+import com.healthmudi.home.home_fragment.adapter.InformationListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,6 +10,7 @@ import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.SignHistoryListBean;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.subjects_home.three.adapter.SignHistoryAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;

@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.fragment;
+package com.healthmudi.subjects_home.home_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.bean.ReportFormListBean;
 import com.healthmudi.subjects_home.five.AddReportFormActivity;
 import com.healthmudi.subjects_home.five.ReportFormDetailActivity;
-import com.healthmudi.subjects_home.five.ReportFormListAdapter;
+import com.healthmudi.subjects_home.five.adapter.ReportFormListAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.healthmudi.home_fragment;
+package com.healthmudi.home.home_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.widget.ListView;
 
 import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
-import com.healthmudi.SubjectsHomeActivity;
+import com.healthmudi.subjects_home.SubjectsHomeActivity;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
-import com.healthmudi.base.ProjectListAdapter;
+import com.healthmudi.home.home_fragment.adapter.ProjectListAdapter;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;

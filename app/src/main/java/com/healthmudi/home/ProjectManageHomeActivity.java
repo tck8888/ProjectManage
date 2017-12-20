@@ -1,14 +1,15 @@
-package com.healthmudi;
+package com.healthmudi.home;
 
 import android.support.v4.app.Fragment;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
+import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.entity.TabEntity;
-import com.healthmudi.home_fragment.InformationFragment;
-import com.healthmudi.home_fragment.ProjectFragment;
-import com.healthmudi.home_fragment.ScheduleFragment;
+import com.healthmudi.home.home_fragment.InformationFragment;
+import com.healthmudi.home.home_fragment.ProjectFragment;
+import com.healthmudi.home.home_fragment.ScheduleFragment;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,11 @@
-package com.healthmudi.base;
+package com.healthmudi.home.home_fragment.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
 import com.healthmudi.R;
+import com.healthmudi.base.BasicAdapter;
 import com.healthmudi.bean.ProjectListBean;
 
 import java.util.List;

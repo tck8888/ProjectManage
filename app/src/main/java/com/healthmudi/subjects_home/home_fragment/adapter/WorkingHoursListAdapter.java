@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.adapter;
+package com.healthmudi.subjects_home.home_fragment.adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
