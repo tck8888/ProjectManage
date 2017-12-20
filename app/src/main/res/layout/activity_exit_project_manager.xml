@@ -54,4 +54,5 @@
             android:textColor="#fff"
             android:textSize="@dimen/dimen_16sp"/>
     </FrameLayout>
+
 </LinearLayout>
