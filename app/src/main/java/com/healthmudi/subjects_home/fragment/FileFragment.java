@@ -1,16 +1,18 @@
 package com.healthmudi.subjects_home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
+import com.healthmudi.ProjectWebViewActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.FileListBean;
+import com.healthmudi.bean.WebViewBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -82,7 +84,11 @@ public class FileFragment extends BaseFragment1 implements View.OnClickListener,
         mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Toast.makeText(getContext(), "点击了", Toast.LENGTH_SHORT).show();
+                FileListBean.FilesBean filesBean = mFileListBeanList.get(groupPosition).getFiles().get(childPosition);
+                Intent intent = new Intent(getContext(), ProjectWebViewActivity.class);
+                WebViewBean webViewBean = new WebViewBean(filesBean.getFile_name(), filesBean.getFile_path());
+                intent.putExtra(Constant.KEY_WEBVIEW_BEAN, webViewBean);
+                startActivity(intent);
                 return false;
             }
         });

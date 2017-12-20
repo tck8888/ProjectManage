@@ -3,48 +3,44 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
+
     <FrameLayout
-        android:id="@+id/into_subjecs_personal_fl"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
-        >
+        android:background="#fff">
 
         <ImageView
+            android:id="@+id/iv_arrow_left_black"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="16dp"
-            android:src="@mipmap/icon_file_black"/>
+            android:padding="15dp"
+            android:src="@mipmap/arrow_left_black"
+            />
 
         <TextView
-            android:id="@+id/tv_subjects_people_name"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:ellipsize="end"
-            android:maxLines="1"
+            android:layout_gravity="center"
             android:textColor="@color/color_464c5b"
-            android:textSize="15sp"
-            tools:text=" 伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处"/>
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="18dp"
-            android:src="@mipmap/icon_arrow_right"/>
+            android:textSize="18sp"
+            tools:text="文件列表"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="40dp"
             android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"/>
 </LinearLayout>

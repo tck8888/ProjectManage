@@ -16,7 +16,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="18dp"
+            android:padding="16dp"
             android:src="@mipmap/icon_subjects_people"/>
 
         <TextView
