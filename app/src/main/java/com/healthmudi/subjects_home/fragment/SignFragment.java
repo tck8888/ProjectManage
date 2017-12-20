@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
+import com.healthmudi.base.Constant;
 import com.healthmudi.subjects_home.three.PunchClockSelectLocationActivity;
 import com.healthmudi.subjects_home.three.SignHistoryActivity;
 
@@ -17,9 +18,13 @@ import com.healthmudi.subjects_home.three.SignHistoryActivity;
 
 public class SignFragment extends BaseFragment1 implements View.OnClickListener {
 
-    public static SignFragment newInstance() {
-        SignFragment signFragment = new SignFragment();
+    private String mProject_id;
 
+    public static SignFragment newInstance(String project_id) {
+        SignFragment signFragment = new SignFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.KEY_PROJECT_ID, project_id);
+        signFragment.setArguments(bundle);
         return signFragment;
     }
 
@@ -30,7 +35,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-
+        mProject_id = arguments.getString(Constant.KEY_PROJECT_ID);
     }
 
     @Override
@@ -50,6 +55,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.iv_sign_history:
                 Intent intent = new Intent(getContext(), SignHistoryActivity.class);
+                intent.putExtra(Constant.KEY_PROJECT_ID,mProject_id);
                 startActivity(intent);
                 break;
             case R.id.fl_select_location:

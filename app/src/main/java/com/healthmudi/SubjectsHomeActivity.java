@@ -54,7 +54,7 @@ public class SubjectsHomeActivity extends BaseActivity {
         }
         mFragments.add(SubjectsFragment.newInstance(mProject_id));
         mFragments.add(FileFragment.newInstance(mProject_id));
-        mFragments.add(SignFragment.newInstance());
+        mFragments.add(SignFragment.newInstance(mProject_id));
         mFragments.add(WorkingHoursFragment.newInstance());
         mFragments.add(ReportFormFragment.newInstance());
 

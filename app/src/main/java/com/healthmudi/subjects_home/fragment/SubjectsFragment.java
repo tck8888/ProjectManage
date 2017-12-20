@@ -128,6 +128,12 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
 
             @Override
             public void onFailure(int code, String mesage) {
+                if (ListUtil.isEmpty(mSubjectsListBeanList)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();
             }
         });
