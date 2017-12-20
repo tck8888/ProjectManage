@@ -28,7 +28,9 @@ public abstract class BaseFragment1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         setListener(view);
+        setViewData();
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -47,6 +49,9 @@ public abstract class BaseFragment1 extends Fragment {
     protected abstract void initView(@Nullable View view);
 
     public void setListener(@Nullable View view) {
+
+    }
+    public void setViewData() {
 
     }
 }

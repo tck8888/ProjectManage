@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.Constant;
 import com.healthmudi.entity.TabEntity;
 import com.healthmudi.subjects_home.fragment.FileFragment;
 import com.healthmudi.subjects_home.fragment.ReportFormFragment;
@@ -36,6 +37,7 @@ public class SubjectsHomeActivity extends BaseActivity {
             R.mipmap.icon_report_form_selected};
 
     private String[] mTitles;
+    private String mProject_id;
 
     @Override
     public int getLayoutId() {
@@ -45,8 +47,13 @@ public class SubjectsHomeActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        mFragments.add(SubjectsFragment.newInstance());
-        mFragments.add(FileFragment.newInstance());
+        try {
+            mProject_id = getIntent().getStringExtra(Constant.KEY_PROJECT_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mFragments.add(SubjectsFragment.newInstance(mProject_id));
+        mFragments.add(FileFragment.newInstance(mProject_id));
         mFragments.add(SignFragment.newInstance());
         mFragments.add(WorkingHoursFragment.newInstance());
         mFragments.add(ReportFormFragment.newInstance());
@@ -55,8 +62,6 @@ public class SubjectsHomeActivity extends BaseActivity {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
-
-
     }
 
     @Override

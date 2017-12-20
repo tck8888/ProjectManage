@@ -9,25 +9,61 @@ import java.util.List;
 
 public class FileListBean {
 
-    public String fileGroupName;
-    public List<FileSubsBean> mFileSubsBeanList;
+    private String folder;
+    private List<FilesBean> files;
 
-    public FileListBean() {
+    public String getFolder() {
+        return folder;
     }
 
-    public FileListBean(String fileGroupName, List<FileSubsBean> fileSubsBeanList) {
-        this.fileGroupName = fileGroupName;
-        mFileSubsBeanList = fileSubsBeanList;
+    public void setFolder(String folder) {
+        this.folder = folder;
     }
 
-    public static class FileSubsBean {
-        public String fileChildName;
+    public List<FilesBean> getFiles() {
+        return files;
+    }
 
-        public FileSubsBean() {
+    public void setFiles(List<FilesBean> files) {
+        this.files = files;
+    }
+
+    public static class FilesBean {
+        private int project_id;
+        private String folder_name;
+        private String file_name;
+        private String file_path;
+
+        public int getProject_id() {
+            return project_id;
         }
 
-        public FileSubsBean(String fileChildName) {
-            this.fileChildName = fileChildName;
+        public void setProject_id(int project_id) {
+            this.project_id = project_id;
+        }
+
+        public String getFolder_name() {
+            return folder_name;
+        }
+
+        public void setFolder_name(String folder_name) {
+            this.folder_name = folder_name;
+        }
+
+        public String getFile_name() {
+            return file_name;
+        }
+
+        public void setFile_name(String file_name) {
+            this.file_name = file_name;
+        }
+
+        public String getFile_path() {
+            return file_path;
+        }
+
+        public void setFile_path(String file_path) {
+            this.file_path = file_path;
         }
     }
 }

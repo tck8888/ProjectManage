@@ -40,7 +40,7 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的子项数目
     @Override
     public int getChildrenCount(int groupPosition) {
-        return mDataList.get(groupPosition).mSubjectsListSubBeen == null ? 0 : mDataList.get(groupPosition).mSubjectsListSubBeen.size();
+        return mDataList.get(groupPosition).getSubjects() == null ? 0 : mDataList.get(groupPosition).getSubjects().size();
     }
 
     //  获得某个父项
@@ -52,7 +52,7 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的某个子项
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return mDataList.get(groupPosition).mSubjectsListSubBeen.get(childPosition);
+        return mDataList.get(groupPosition).getSubjects().get(childPosition);
     }
 
     //  获得某个父项的id
@@ -80,7 +80,7 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
         ImageView mIvAddSubjects = (ImageView) convertView.findViewById(R.id.iv_add_subjects);
         TextView mTvSubjectsGroupName = (TextView) convertView.findViewById(R.id.tv_subjects_group_name);
         SubjectsListBean subjectsListBean = mDataList.get(groupPosition);
-        mTvSubjectsGroupName.setText(subjectsListBean.name);
+        mTvSubjectsGroupName.setText(subjectsListBean.getSite_name());
         if (isExpanded) {
             mIvAddSubjects.setImageResource(R.mipmap.icon_circular_down);
         } else {
@@ -97,8 +97,8 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
 
         Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
-        SubjectsListBean.SubjectsListSubBean subjectsListSubBean = mDataList.get(groupPosition).mSubjectsListSubBeen.get(childPosition);
-        mTvSubjectsPeopleName.setText(subjectsListSubBean.subName);
+        SubjectsListBean.SubjectsBean subjectsBean = mDataList.get(groupPosition).getSubjects().get(childPosition);
+        mTvSubjectsPeopleName.setText(subjectsBean.getSubject_code() + "  (" + subjectsBean.getName_py() + ")");
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +122,7 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
     //  子项是否可选中，如果需要设置子项的点击事件，需要返回true
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
     public interface OnItemClick {

@@ -39,7 +39,7 @@ public class FileListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的子项数目
     @Override
     public int getChildrenCount(int groupPosition) {
-        return mDataList.get(groupPosition) == null ? 0 : mDataList.get(groupPosition).mFileSubsBeanList.size();
+        return mDataList.get(groupPosition) == null ? 0 : mDataList.get(groupPosition).getFiles().size();
     }
 
     //  获得某个父项
@@ -51,7 +51,7 @@ public class FileListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的某个子项
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return mDataList.get(groupPosition).mFileSubsBeanList.get(childPosition);
+        return mDataList.get(groupPosition).getFiles().get(childPosition);
     }
 
     //  获得某个父项的id
@@ -81,7 +81,7 @@ public class FileListAdapter extends BaseExpandableListAdapter {
         ImageView mIvAddSubjects = (ImageView) convertView.findViewById(R.id.iv_add_subjects);
         TextView mTvSubjectsGroupName = (TextView) convertView.findViewById(R.id.tv_subjects_group_name);
         FileListBean fileListBean = mDataList.get(groupPosition);
-        mTvSubjectsGroupName.setText(fileListBean.fileGroupName);
+        mTvSubjectsGroupName.setText(fileListBean.getFolder());
         if (isExpanded) {
             mIvAddSubjects.setImageResource(R.mipmap.icon_circular_down);
         } else {
@@ -96,8 +96,8 @@ public class FileListAdapter extends BaseExpandableListAdapter {
         convertView = mInflater.inflate(R.layout.file_child_item, parent, false);
 
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
-        FileListBean.FileSubsBean fileSubsBean = mDataList.get(groupPosition).mFileSubsBeanList.get(childPosition);
-        mTvSubjectsPeopleName.setText(fileSubsBean.fileChildName);
+        FileListBean.FilesBean filesBean = mDataList.get(groupPosition).getFiles().get(childPosition);
+        mTvSubjectsPeopleName.setText(filesBean.getFile_name());
         return convertView;
     }
 

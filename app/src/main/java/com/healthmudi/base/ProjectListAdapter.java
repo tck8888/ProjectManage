@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.healthmudi.R;
-import com.healthmudi.entity.CommonItemBean;
+import com.healthmudi.bean.ProjectListBean;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import java.util.List;
  * Date: 2017/11/29 13：06
  */
 
-public class CommonItemAdapter extends BasicAdapter<CommonItemBean> {
+public class ProjectListAdapter extends BasicAdapter<ProjectListBean> {
 
-    public CommonItemAdapter(Context context, List<CommonItemBean> dataList) {
+    public ProjectListAdapter(Context context, List<ProjectListBean> dataList) {
         super(context, dataList);
     }
 
@@ -24,8 +24,11 @@ public class CommonItemAdapter extends BasicAdapter<CommonItemBean> {
     protected void onInitView(View convertView, int position) {
         TextView mTvItemValue = get(convertView, R.id.tv_item_value);
         View mItemDivider = get(convertView, R.id.item_divider);
-        CommonItemBean commonItemBean = mDataList.get(position);
-        mTvItemValue.setText(commonItemBean.data.toString());
+        ProjectListBean projectListBean = mDataList.get(position);
+        if (projectListBean != null) {
+            String project_name = projectListBean.getProject_name();
+            mTvItemValue.setText(projectListBean.getProject_name());
+        }
         if (position % 2 == 0) {
             mItemDivider.setVisibility(View.VISIBLE);
         } else {
@@ -35,7 +38,7 @@ public class CommonItemAdapter extends BasicAdapter<CommonItemBean> {
 
     @Override
     protected int getContentView() {
-        return R.layout.common_list_item;
+        return R.layout.project_list_item;
     }
 
 }

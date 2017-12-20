@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#f3f5f6"
+              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
     <FrameLayout
@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/arrow_left_black"
             />
 
@@ -25,41 +25,32 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="项目名称"
-            android:textColor="#000"
-            android:textSize="16sp"/>
+            android:textColor="@color/color_464c5b"
+            android:textSize="18sp"/>
 
         <ImageView
             android:id="@+id/iv_subjects_search"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="40dp"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_subjects_search"/>
 
         <ImageView
             android:id="@+id/iv_add_subjects"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_add_subjects"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_gravity="bottom"
-            android:background="#dedfe0"/>
+            android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ExpandableListView
-            android:id="@+id/expandable_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@null"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <include layout="@layout/common_refresh_expand_list_layout"/>
 </LinearLayout>

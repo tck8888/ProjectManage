@@ -56,6 +56,7 @@ public class AddReportFormActivity extends BaseActivity implements View.OnClickL
         findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
         findViewById(R.id.fl_select_start_time).setOnClickListener(this);
         findViewById(R.id.fl_select_end_time).setOnClickListener(this);
+        findViewById(R.id.tv_create_form).setOnClickListener(this);
         mAutoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -80,6 +81,9 @@ public class AddReportFormActivity extends BaseActivity implements View.OnClickL
 
                 break;
             case R.id.fl_select_end_time:
+
+                break;
+            case R.id.tv_create_form:
 
                 break;
         }

@@ -1,11 +1,14 @@
 package com.healthmudi.net;
 
+import com.google.gson.Gson;
+import com.healthmudi.base.HttpUrlList;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * decription:
@@ -14,12 +17,38 @@ import java.util.Map;
 
 public class HttpRequest {
 
+    private static Gson mGson;
 
-    public void get(String url, Map<String, String> parameter, String tag, final CallBack callBack) {
+    private static volatile HttpRequest instance;
 
-        OkGo.<String>get(url)
+    private HttpRequest() {
+    }
+
+    public static HttpRequest getInstance() {
+        if (instance == null) {
+            synchronized (HttpRequest.class) {
+                if (instance == null) {
+                    instance = new HttpRequest();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void get(String url, Map<String, String> parameter, String tag, final OnServerCallBack callBack) {
+        if (callBack == null) {
+            callBack.onFailed(-102, "没有初始化回调接口");
+            return;
+        }
+        if (mGson == null) {
+            mGson = new Gson();
+        }
+
+        TreeMap<String, String> map = operateParameter(parameter);
+
+        OkGo.<String>get(HttpUrlList.BASE_URL + url)
                 .tag(tag)
-                .params(parameter)
+                .params(map)
                 .execute(new StringCallback() {
                     @Override
                     public void onStart(Request<String, ? extends Request> request) {
@@ -27,21 +56,42 @@ public class HttpRequest {
                     }
 
                     @Override
-                    public void onError(Response<String> response) {
-                        super.onError(response);
-                        callBack.onError(response.code());
+                    public void onFinish() {
+                        super.onFinish();
                     }
 
                     @Override
-                    public void onFinish() {
-                        super.onFinish();
-
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        callBack.onFailed(response.code(), response.message());
                     }
 
                     @Override
                     public void onSuccess(Response<String> response) {
-                        callBack.onSuccess(response.body());
+                        try {
+                            callBack.onResolve(mGson.fromJson(response.body(), callBack.getType()));
+                        } catch (Exception e) {
+                            callBack.onFailed(-101, e.getMessage());
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
+
+    /**
+     * 操作参数
+     *
+     * @param parameter
+     * @return
+     */
+    private TreeMap<String, String> operateParameter(Map<String, String> parameter) {
+        TreeMap<String, String> treeMap = new TreeMap<>();
+        treeMap.put("token", "3");
+        if (parameter != null) {
+            treeMap.putAll(parameter);
+        }
+        return treeMap;
+    }
+
+
 }

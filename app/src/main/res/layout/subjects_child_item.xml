@@ -13,10 +13,10 @@
         >
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="18dp"
             android:src="@mipmap/icon_subjects_people"/>
 
         <TextView
@@ -24,19 +24,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="#434343"
+            android:textColor="@color/color_464c5b"
             android:textSize="15sp"
             tools:text=" 伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="18dp"
             android:src="@mipmap/icon_arrow_right"/>
 
         <View

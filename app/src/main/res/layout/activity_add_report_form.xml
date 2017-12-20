@@ -184,6 +184,23 @@
                 android:layout_height="wrap_content"
                 android:divider="@color/color_e4e4e4"
                 android:dividerHeight="0.5dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_create_form"
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="61dp"
+                android:background="@drawable/shape_corner_5dp_solid_1abc9c"
+                android:gravity="center"
+                android:text="生成报表"
+                android:textColor="#fff"
+                android:textSize="17sp"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="45dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
