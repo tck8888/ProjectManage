@@ -10,7 +10,7 @@ import java.util.List;
  * Date: 2017/12/20 10：37
  */
 
-public class ProjectListBean implements Serializable{
+public class ProjectListBean implements Serializable {
 
 
     private int project_id;
@@ -19,6 +19,7 @@ public class ProjectListBean implements Serializable{
     private String arrive_site_name;
     private String leave_time;
     private String leave_site_name;
+    private List<SiteBean> site;
     private List<ArmBean> arm;
 
     public int getProject_id() {
@@ -69,6 +70,14 @@ public class ProjectListBean implements Serializable{
         this.leave_site_name = leave_site_name;
     }
 
+    public List<SiteBean> getSite() {
+        return site;
+    }
+
+    public void setSite(List<SiteBean> site) {
+        this.site = site;
+    }
+
     public List<ArmBean> getArm() {
         return arm;
     }
@@ -77,7 +86,8 @@ public class ProjectListBean implements Serializable{
         this.arm = arm;
     }
 
-    public static class ArmBean  implements Serializable,IPickerViewData {
+
+    public static class ArmBean implements Serializable, IPickerViewData {
         private String arm_code;
         private String arm_name;
 
@@ -100,6 +110,32 @@ public class ProjectListBean implements Serializable{
         @Override
         public String getPickerViewText() {
             return arm_name;
+        }
+    }
+
+    public static class SiteBean implements Serializable , IPickerViewData{
+        private int site_id;
+        private String site_name;
+
+        public int getSite_id() {
+            return site_id;
+        }
+
+        public void setSite_id(int site_id) {
+            this.site_id = site_id;
+        }
+
+        public String getSite_name() {
+            return site_name;
+        }
+
+        public void setSite_name(String site_name) {
+            this.site_name = site_name;
+        }
+
+        @Override
+        public String getPickerViewText() {
+            return site_name;
         }
     }
 }

@@ -34,5 +34,8 @@ public abstract class OnServerCallBack<T, V> extends HttpCallBack<T> {
 
     public abstract void onFailure(int code, String mesage);
 
+    public void onSuccess(V result, int code) {
+
+    }
 
 }

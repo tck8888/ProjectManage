@@ -116,11 +116,13 @@ public class HttpRequest {
                     @Override
                     public void onStart(Request<String, ? extends Request> request) {
                         super.onStart(request);
+
                     }
 
                     @Override
                     public void onFinish() {
                         super.onFinish();
+
                     }
 
                     @Override

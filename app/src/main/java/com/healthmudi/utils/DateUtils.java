@@ -20,13 +20,19 @@ public class DateUtils {
             time = time * 1000;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
         Date date = new Date(time);
-
         String formatTime = format.format(date);
-
         return formatTime;
+    }
 
+    /**
+     *
+     * @param date
+     * @return yyyy-MM-dd
+     */
+    public static String getTime(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
     }
 
 }

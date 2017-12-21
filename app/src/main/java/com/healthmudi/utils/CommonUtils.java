@@ -17,9 +17,16 @@ public class CommonUtils {
      * 验证手机格式
      */
     public static boolean checkMobile(@Nullable String mobile) {
-
-        Pattern p = Pattern.compile("^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}$");
+        if (mobile.length() != 11) {
+            return true;
+        }
+        Pattern p = Pattern.compile("^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\\\d{8}$");
         Matcher m = p.matcher(mobile);
-        return m.matches();
+        if (m.matches()) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }
