@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.base.BasicAdapter;
 import com.healthmudi.bean.SignHistoryListBean;
+import com.healthmudi.utils.DateUtils;
 
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class SignHistoryAdapter extends BasicAdapter<SignHistoryListBean> {
             line1.setVisibility(View.GONE);
         }
         SignHistoryListBean signHistoryListBean = mDataList.get(position);
-        tvSignHospitalName.setText(signHistoryListBean.getHospitalName());
-        tvSignHospitalTime.setText(signHistoryListBean.getHospitalTime());
+        tvSignHospitalName.setText(signHistoryListBean.getSite_name());
+        tvSignHospitalTime.setText("签到时间：" + DateUtils.getFormatTime(signHistoryListBean.getArrive_time()));
     }
 
     @Override

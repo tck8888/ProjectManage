@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_fork_black"
             />
 
@@ -30,10 +30,10 @@
 
         <ImageView
             android:id="@+id/iv_check_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="50dp"
             android:src="@mipmap/icon_check_mark"/>
 
         <View

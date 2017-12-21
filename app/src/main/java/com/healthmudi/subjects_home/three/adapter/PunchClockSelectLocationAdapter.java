@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.base.BasicAdapter;
 import com.healthmudi.bean.PunchClockSelectLocationListBean;
+import com.healthmudi.utils.DistanceUtils;
 
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class PunchClockSelectLocationAdapter extends BasicAdapter<PunchClockSele
         ImageView ivStateSelected = (ImageView) get(convertView, R.id.iv_state_selected);
 
         PunchClockSelectLocationListBean punchClockSelectLocationListBean = mDataList.get(position);
-        hospitalName.setText(punchClockSelectLocationListBean.getHospitalName());
-        hospitalDistance.setText(punchClockSelectLocationListBean.getDistance());
-        hospitalLocation.setText(punchClockSelectLocationListBean.getLocation());
+        hospitalName.setText(punchClockSelectLocationListBean.getSite_name());
+        hospitalLocation.setText(punchClockSelectLocationListBean.getSite_address());
+        hospitalDistance.setText(DistanceUtils.getDistance(punchClockSelectLocationListBean.getSite_distance()));
 
         if (punchClockSelectLocationListBean.isSelected()) {
             ivStateSelected.setVisibility(View.VISIBLE);

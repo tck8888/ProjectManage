@@ -8,6 +8,7 @@ import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.SignHistoryListBean;
+import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.three.adapter.SignHistoryAdapter;
@@ -37,7 +38,7 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
     private SignHistoryAdapter mAdapter;
 
     private List<SignHistoryListBean> mSignHistoryListBeen = new ArrayList<>();
-    private Map<String,String> map = new HashMap<>();
+    private Map<String, String> map = new HashMap<>();
     private String mProject_id;
     private String tag = "SignHistoryActivity";
 
@@ -87,9 +88,13 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_HISTORY_URL, map, tag, new OnServerCallBack() {
+        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_HISTORY_URL, map, tag, new OnServerCallBack<HttpResult<List<SignHistoryListBean>>, List<SignHistoryListBean>>() {
             @Override
-            public void onSuccess(Object result) {
+            public void onSuccess(List<SignHistoryListBean> result) {
+                if (!ListUtil.isEmpty(mSignHistoryListBeen)) {
+                    mSignHistoryListBeen.clear();
+                }
+                mSignHistoryListBeen.addAll(result);
                 if (ListUtil.isEmpty(mSignHistoryListBeen)) {
                     mEmptyLayout.showEmptyView();
                 } else {
@@ -107,7 +112,6 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
                 } else {
                     mEmptyLayout.showContentView();
                 }
-
                 mRefreshLayout.finishRefresh();
             }
         });

@@ -54,14 +54,19 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_sign_history:
-                Intent intent = new Intent(getContext(), SignHistoryActivity.class);
-                intent.putExtra(Constant.KEY_PROJECT_ID,mProject_id);
-                startActivity(intent);
+                openActivity(SignHistoryActivity.class);
                 break;
             case R.id.fl_select_location:
-                Intent intent1 = new Intent(getContext(), PunchClockSelectLocationActivity.class);
-                startActivity(intent1);
+                openActivity(PunchClockSelectLocationActivity.class);
                 break;
+        }
+    }
+
+    public void openActivity(Class clzz){
+        if (clzz!=null) {
+            Intent intent = new Intent(getContext(), clzz);
+            intent.putExtra(Constant.KEY_PROJECT_ID,mProject_id);
+            startActivity(intent);
         }
     }
 }

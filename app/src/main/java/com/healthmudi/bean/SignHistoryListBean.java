@@ -7,27 +7,22 @@ package com.healthmudi.bean;
 
 public class SignHistoryListBean {
 
-    private String hospitalName;
-    private String hospitalTime;
+    private String site_name;
+    private long arrive_time;
 
-    public SignHistoryListBean(String hospitalName, String hospitalTime) {
-        this.hospitalName = hospitalName;
-        this.hospitalTime = hospitalTime;
+    public String getSite_name() {
+        return site_name;
     }
 
-    public String getHospitalName() {
-        return hospitalName;
+    public void setSite_name(String site_name) {
+        this.site_name = site_name;
     }
 
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public long getArrive_time() {
+        return arrive_time;
     }
 
-    public String getHospitalTime() {
-        return hospitalTime;
-    }
-
-    public void setHospitalTime(String hospitalTime) {
-        this.hospitalTime = hospitalTime;
+    public void setArrive_time(long arrive_time) {
+        this.arrive_time = arrive_time;
     }
 }

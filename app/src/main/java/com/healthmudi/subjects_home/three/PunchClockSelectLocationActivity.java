@@ -6,30 +6,41 @@ import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.Constant;
+import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.PunchClockSelectLocationListBean;
+import com.healthmudi.entity.HttpResult;
+import com.healthmudi.net.HttpRequest;
+import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.three.adapter.PunchClockSelectLocationAdapter;
+import com.healthmudi.utils.ListUtil;
+import com.healthmudi.view.EmptyView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 选择打卡位置
  * Created by tck
  * Date: 2017/12/16 11：43
  */
-public class PunchClockSelectLocationActivity extends BaseActivity implements View.OnClickListener {
+public class PunchClockSelectLocationActivity extends BaseActivity implements View.OnClickListener, OnRefreshListener {
 
     private ListView listView;
+    private SmartRefreshLayout mRefreshLayout;
+    private EmptyView mEmptyLayout;
 
     private List<PunchClockSelectLocationListBean> mPunchClockSelectLocationLiatBeen = new ArrayList<>();
     private PunchClockSelectLocationAdapter mAdapter;
 
-    {
-        mPunchClockSelectLocationLiatBeen.add(new PunchClockSelectLocationListBean("上海市中山医院", "<100m", "上海市上海市徐汇区枫林路180号"));
-        mPunchClockSelectLocationLiatBeen.add(new PunchClockSelectLocationListBean("上海市肿瘤医院", "524m", "上海市徐汇区东安路270号"));
-        mPunchClockSelectLocationLiatBeen.add(new PunchClockSelectLocationListBean("上海市龙华医院", "1.2km", "上海市宛平南路725号"));
-        mPunchClockSelectLocationLiatBeen.add(new PunchClockSelectLocationListBean("复旦大学附属中山医院", "2.3km", "上海市徐汇区枫林路180号"));
-    }
+    private Map<String, String> map = new HashMap<>();
+    private String mProject_id;
+    private String tag = "PunchClockSelectLocationActivity";
 
     @Override
     public int getLayoutId() {
@@ -39,11 +50,21 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
     @Override
     public void initData() {
         super.initData();
+
+        try {
+            mProject_id = getIntent().getStringExtra(Constant.KEY_PROJECT_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        map.put("project_id", mProject_id);
     }
 
     @Override
     public void initView() {
         super.initView();
+        mRefreshLayout = (SmartRefreshLayout) findViewById(R.id.refreshLayout);
+        mEmptyLayout = (EmptyView) findViewById(R.id.empty_layout);
+
         listView = (ListView) findViewById(R.id.list_view);
         View headView = View.inflate(this, R.layout.head_view_layout, null);
         listView.addHeaderView(headView);
@@ -69,6 +90,42 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
                 }
             }
         });
+        mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onRefresh(RefreshLayout refreshlayout) {
+        getData();
+    }
+
+    private void getData() {
+        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_NEARBY_SITE_URL, map, tag, new OnServerCallBack<HttpResult<List<PunchClockSelectLocationListBean>>, List<PunchClockSelectLocationListBean>>() {
+            @Override
+            public void onSuccess(List<PunchClockSelectLocationListBean> result) {
+                if (!ListUtil.isEmpty(mPunchClockSelectLocationLiatBeen)) {
+                    mPunchClockSelectLocationLiatBeen.clear();
+                }
+                mPunchClockSelectLocationLiatBeen.addAll(result);
+                if (ListUtil.isEmpty(mPunchClockSelectLocationLiatBeen)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mAdapter.notifyDataSetChanged();
+                mRefreshLayout.finishRefresh();
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+                if (ListUtil.isEmpty(mPunchClockSelectLocationLiatBeen)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mRefreshLayout.finishRefresh();
+            }
+        });
     }
 
     @Override
@@ -81,4 +138,5 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
                 break;
         }
     }
+
 }

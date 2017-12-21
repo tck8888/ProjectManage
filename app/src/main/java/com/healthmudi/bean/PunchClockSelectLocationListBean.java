@@ -7,41 +7,13 @@ package com.healthmudi.bean;
 
 public class PunchClockSelectLocationListBean {
 
-    private String hospitalName;
-    private String distance;
-    private String location;
+    private int site_id;
+    private String site_name;
+    private String site_address;
+    private double site_distance;
+    private int site_affectiveDistance;
 
     private boolean isSelected = false;
-
-    public PunchClockSelectLocationListBean(String hospitalName, String distance, String location) {
-        this.hospitalName = hospitalName;
-        this.distance = distance;
-        this.location = location;
-    }
-
-    public String getHospitalName() {
-        return hospitalName;
-    }
-
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
-    }
-
-    public String getDistance() {
-        return distance;
-    }
-
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public boolean isSelected() {
         return isSelected;
@@ -49,5 +21,45 @@ public class PunchClockSelectLocationListBean {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public int getSite_id() {
+        return site_id;
+    }
+
+    public void setSite_id(int site_id) {
+        this.site_id = site_id;
+    }
+
+    public String getSite_name() {
+        return site_name;
+    }
+
+    public void setSite_name(String site_name) {
+        this.site_name = site_name;
+    }
+
+    public String getSite_address() {
+        return site_address;
+    }
+
+    public void setSite_address(String site_address) {
+        this.site_address = site_address;
+    }
+
+    public double getSite_distance() {
+        return site_distance;
+    }
+
+    public void setSite_distance(double site_distance) {
+        this.site_distance = site_distance;
+    }
+
+    public int getSite_affectiveDistance() {
+        return site_affectiveDistance;
+    }
+
+    public void setSite_affectiveDistance(int site_affectiveDistance) {
+        this.site_affectiveDistance = site_affectiveDistance;
     }
 }
