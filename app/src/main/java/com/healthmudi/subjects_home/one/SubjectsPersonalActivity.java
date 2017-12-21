@@ -12,6 +12,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.bean.SubjectsPersonalListBean;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsPersonalListAdapter;
+import com.healthmudi.view.EmptyView;
 import com.healthmudi.view.custom_popupwindow.EasyPopup;
 import com.healthmudi.view.custom_popupwindow.HorizontalGravity;
 import com.healthmudi.view.custom_popupwindow.VerticalGravity;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * decription:
+ * decription:受试者入组列表
  * Created by tck on 2017/12/9.
  */
 
@@ -29,19 +30,13 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
 
     private EasyPopup mPopup;
     private ImageView mIvaddSubjects;
-    private SmartRefreshLayout mSmartRefresh;
+    private SmartRefreshLayout mRefreshLayout;
     private ListView mListView;
+    private EmptyView mEmptyLayout;
 
     private List<SubjectsPersonalListBean> mSubjectsPersonalListBeanList = new ArrayList<>();
+    private SubjectsPersonalListAdapter mAdapter;
 
-    {
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("", "2017-12-10", "top", 1));
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("第1周期", "2017-12-10", "center", 1));
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("第2周期", "2017-12-10", "center", 1));
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("第3周期", "2017-12-10", "center", 1));
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("第4周期", "2017-12-10", "center", 1));
-        mSubjectsPersonalListBeanList.add(new SubjectsPersonalListBean("", "2017-12-10", "bottom", 0));
-    }
 
     @Override
     public int getLayoutId() {
@@ -57,11 +52,12 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     public void initView() {
         super.initView();
         initPop();
-
         mIvaddSubjects = (ImageView) findViewById(R.id.iv_add_subjects);
-        mSmartRefresh = (SmartRefreshLayout) findViewById(R.id.smart_refresh);
+        mRefreshLayout = (SmartRefreshLayout) findViewById(R.id.refreshLayout);
+        mEmptyLayout = (EmptyView) findViewById(R.id.empty_layout);
         mListView = (ListView) findViewById(R.id.list_view);
-        mListView.setAdapter(new SubjectsPersonalListAdapter(this, mSubjectsPersonalListBeanList));
+        mAdapter = new SubjectsPersonalListAdapter(this, mSubjectsPersonalListBeanList);
+        mListView.setAdapter(mAdapter);
     }
 
     @Override
@@ -146,8 +142,9 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
             mPopup.dismiss();
             mPopup = null;
             mIvaddSubjects = null;
-            mSmartRefresh = null;
+            mRefreshLayout = null;
             mListView = null;
+            mEmptyLayout = null;
         } catch (Exception e) {
             e.printStackTrace();
         }

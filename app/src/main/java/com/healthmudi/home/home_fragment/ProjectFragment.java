@@ -9,15 +9,15 @@ import android.widget.ListView;
 
 import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
-import com.healthmudi.subjects_home.SubjectsHomeActivity;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
-import com.healthmudi.home.home_fragment.adapter.ProjectListAdapter;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.HttpResult;
+import com.healthmudi.home.home_fragment.adapter.ProjectListAdapter;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.subjects_home.SubjectsHomeActivity;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.lzy.okgo.OkGo;
@@ -86,7 +86,7 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), SubjectsHomeActivity.class);
-                intent.putExtra(Constant.KEY_PROJECT_ID, String.valueOf(mProjectListBeen.get(position - 1).getProject_id()));
+                intent.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBeen.get(position - 1));
                 startActivity(intent);
             }
         });

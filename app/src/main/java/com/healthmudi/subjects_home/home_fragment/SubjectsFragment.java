@@ -10,11 +10,13 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsListAdapter;
+import com.healthmudi.subjects_home.one.EntryGroupBasicInformationActivity;
 import com.healthmudi.subjects_home.one.SubjectsPersonalActivity;
 import com.healthmudi.subjects_home.one.SubjectsPersonalSerachActivity;
 import com.healthmudi.utils.ListUtil;
@@ -46,12 +48,13 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
     private SubjectsListAdapter mAdapter;
     private String tag = "SubjectsFragment";
     private String mProject_id;
+    private ProjectListBean mProjectListBean;
 
 
-    public static SubjectsFragment newInstance(String project_id) {
+    public static SubjectsFragment newInstance(ProjectListBean projectListBean) {
         SubjectsFragment subjectsFragment = new SubjectsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(Constant.KEY_PROJECT_ID, project_id);
+        bundle.putSerializable(Constant.KEY_PROJECT_LIST_BEAN, projectListBean);
         subjectsFragment.setArguments(bundle);
         return subjectsFragment;
     }
@@ -63,7 +66,8 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-        mProject_id = arguments.getString(Constant.KEY_PROJECT_ID);
+        mProjectListBean = (ProjectListBean) arguments.getSerializable(Constant.KEY_PROJECT_LIST_BEAN);
+        mProject_id = String.valueOf(mProjectListBean.getProject_id());
         map.put("project_id", mProject_id);
     }
 
@@ -93,6 +97,8 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                     mSubjectsListBeanList.get(groupPosition).getSubjects().remove(childPosition);
                     mAdapter.notifyDataSetChanged();
                 } else {
+                    SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().get(childPosition);
+
                     Intent intent = new Intent(getContext(), SubjectsPersonalActivity.class);
                     startActivity(intent);
                 }
@@ -151,6 +157,9 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.iv_add_subjects:
+                Intent intent1 = new Intent(getContext(), EntryGroupBasicInformationActivity.class);
+                intent1.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBean);
+                startActivity(intent1);
                 break;
         }
     }

@@ -37,4 +37,10 @@
         <item>visitors_visit_to_the_rules</item>
         <item>edc_fill_in</item>
     </string-array>
+    <string-array name="base_line_type">
+        <item>上次实际访视日期</item>
+        <item>知情同意书签署日期</item>
+        <item>随机分组日期</item>
+        <item>首次服药日期</item>
+    </string-array>
 </resources>

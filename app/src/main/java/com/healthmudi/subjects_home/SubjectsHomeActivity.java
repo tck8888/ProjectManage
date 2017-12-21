@@ -7,6 +7,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
+import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.TabEntity;
 import com.healthmudi.subjects_home.home_fragment.FileFragment;
 import com.healthmudi.subjects_home.home_fragment.ReportFormFragment;
@@ -38,7 +39,7 @@ public class SubjectsHomeActivity extends BaseActivity {
             R.mipmap.icon_report_form_selected};
 
     private String[] mTitles;
-    private String mProject_id;
+    private ProjectListBean mProjectListBean;
 
     @Override
     public int getLayoutId() {
@@ -49,13 +50,13 @@ public class SubjectsHomeActivity extends BaseActivity {
     public void initData() {
         super.initData();
         try {
-            mProject_id = getIntent().getStringExtra(Constant.KEY_PROJECT_ID);
+            mProjectListBean = (ProjectListBean) getIntent().getSerializableExtra(Constant.KEY_PROJECT_LIST_BEAN);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mFragments.add(SubjectsFragment.newInstance(mProject_id));
-        mFragments.add(FileFragment.newInstance(mProject_id));
-        mFragments.add(SignFragment.newInstance(mProject_id));
+        mFragments.add(SubjectsFragment.newInstance(mProjectListBean));
+        mFragments.add(FileFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
+        mFragments.add(SignFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
         mFragments.add(WorkingHoursFragment.newInstance());
         mFragments.add(ReportFormFragment.newInstance());
 

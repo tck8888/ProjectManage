@@ -14,5 +14,6 @@ public interface HttpUrlList {
     String PROJECT_SUBJECT_FILE_LIST_URL = "project/file/list";//文件列表
     String PROJECT_CLOCK_IN_HISTORY_URL = "project/clock_in/history";//打卡历史
     String PROJECT_CLOCK_IN_NEARBY_SITE_URL = "project/clock_in/nearby_site";//打卡机构
+    String PROJECT_CLOCK_ENROLL_URL = "project/subject/enroll";//受试者入组
 
 }

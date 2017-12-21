@@ -8,5 +8,6 @@ package com.healthmudi.base;
 public interface Constant {
 
     String KEY_PROJECT_ID ="project_id";
-    String KEY_WEBVIEW_BEAN ="webview_bean";
+    String KEY_WEBVIEW_BEAN ="WebViewBean";
+    String KEY_PROJECT_LIST_BEAN ="ProjectListBean";
 }

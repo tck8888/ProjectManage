@@ -7,6 +7,8 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -95,5 +97,48 @@ public class HttpRequest {
         return treeMap;
     }
 
+    public void post(String url, Map<String, String> parameter, String tag, final OnServerCallBack callBack) {
+        if (callBack == null) {
+            callBack.onFailed(-102, "没有初始化回调接口");
+            return;
+        }
+        if (mGson == null) {
+            mGson = new Gson();
+        }
+
+        TreeMap<String, String> map = operateParameter(parameter);
+
+        JSONObject jsonObject = new JSONObject(map);
+        OkGo.<String>post(HttpUrlList.BASE_URL + url)
+                .tag(tag)
+                .upJson(jsonObject)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onStart(Request<String, ? extends Request> request) {
+                        super.onStart(request);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        callBack.onFailed(response.code(), response.message());
+                    }
+
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        try {
+                            callBack.onResolve(mGson.fromJson(response.body(), callBack.getType()));
+                        } catch (Exception e) {
+                            callBack.onFailed(-101, e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
 
 }

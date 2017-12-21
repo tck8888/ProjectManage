@@ -1,6 +1,7 @@
 package com.healthmudi;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -18,12 +19,15 @@ import okhttp3.OkHttpClient;
  */
 
 public class ProjectApplication extends Application {
+
+    public static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         okgoInit();
-
+        mContext = this;
     }
 
     private void okgoInit() {

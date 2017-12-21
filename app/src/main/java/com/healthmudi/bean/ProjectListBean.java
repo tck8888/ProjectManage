@@ -1,20 +1,25 @@
 package com.healthmudi.bean;
 
+import com.bigkoo.pickerview.model.IPickerViewData;
+
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by tck
  * Date: 2017/12/20 10：37
  */
 
-public class ProjectListBean {
+public class ProjectListBean implements Serializable{
+
 
     private int project_id;
     private String project_name;
-    private int arrive_time;
+    private String arrive_time;
     private String arrive_site_name;
-    private int leave_time;
+    private String leave_time;
     private String leave_site_name;
-    private String arm_code;
-    private String arm_name;
+    private List<ArmBean> arm;
 
     public int getProject_id() {
         return project_id;
@@ -32,11 +37,11 @@ public class ProjectListBean {
         this.project_name = project_name;
     }
 
-    public int getArrive_time() {
+    public String getArrive_time() {
         return arrive_time;
     }
 
-    public void setArrive_time(int arrive_time) {
+    public void setArrive_time(String arrive_time) {
         this.arrive_time = arrive_time;
     }
 
@@ -48,11 +53,11 @@ public class ProjectListBean {
         this.arrive_site_name = arrive_site_name;
     }
 
-    public int getLeave_time() {
+    public String getLeave_time() {
         return leave_time;
     }
 
-    public void setLeave_time(int leave_time) {
+    public void setLeave_time(String leave_time) {
         this.leave_time = leave_time;
     }
 
@@ -64,19 +69,37 @@ public class ProjectListBean {
         this.leave_site_name = leave_site_name;
     }
 
-    public String getArm_code() {
-        return arm_code;
+    public List<ArmBean> getArm() {
+        return arm;
     }
 
-    public void setArm_code(String arm_code) {
-        this.arm_code = arm_code;
+    public void setArm(List<ArmBean> arm) {
+        this.arm = arm;
     }
 
-    public String getArm_name() {
-        return arm_name;
-    }
+    public static class ArmBean  implements Serializable,IPickerViewData {
+        private String arm_code;
+        private String arm_name;
 
-    public void setArm_name(String arm_name) {
-        this.arm_name = arm_name;
+        public String getArm_code() {
+            return arm_code;
+        }
+
+        public void setArm_code(String arm_code) {
+            this.arm_code = arm_code;
+        }
+
+        public String getArm_name() {
+            return arm_name;
+        }
+
+        public void setArm_name(String arm_name) {
+            this.arm_name = arm_name;
+        }
+
+        @Override
+        public String getPickerViewText() {
+            return arm_name;
+        }
     }
 }
