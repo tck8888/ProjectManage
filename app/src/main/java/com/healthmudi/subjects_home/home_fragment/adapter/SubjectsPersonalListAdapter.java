@@ -17,9 +17,9 @@ import java.util.List;
  * Created by tck on 2017/12/10.
  */
 
-public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalListBean> {
+public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalListBean.VisitBean> {
 
-    public SubjectsPersonalListAdapter(Context context, List<SubjectsPersonalListBean> dataList) {
+    public SubjectsPersonalListAdapter(Context context, List<SubjectsPersonalListBean.VisitBean> dataList) {
         super(context, dataList);
     }
 
@@ -30,24 +30,21 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
         TextView mTvItemValue = get(convertView, R.id.tv_item_value);
         TextView mTvItemStatus = get(convertView, R.id.tv_item_status);
 
-        SubjectsPersonalListBean subjectsPersonalListBean = mDataList.get(position);
-        if (subjectsPersonalListBean.type.equals("top")) {
+        SubjectsPersonalListBean.VisitBean visitBean = mDataList.get(position);
+        if (visitBean.getVisit_type() == 1) {
             mIvTypeIcon.setImageResource(R.mipmap.icon_in_the_group);
-            if (subjectsPersonalListBean.status == 1) {
-                mTvItemName.setText("入组");
-                mTvItemStatus.setText("已入组");
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_3398db));
-            }
-        } else if (subjectsPersonalListBean.type.equals("center")) {
+            mTvItemName.setText(visitBean.getVisit_name());
+            mTvItemStatus.setText("已入组");
+            mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_3398db));
+        } else if (visitBean.getVisit_type() == 2 || visitBean.getVisit_type() == 3) {//常规
             mIvTypeIcon.setImageResource(R.mipmap.icon_cycle);
-            if (subjectsPersonalListBean.status == 1) {
-                mTvItemName.setText(subjectsPersonalListBean.name);
-                mTvItemStatus.setText("已完成");
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
-            }
+            mTvItemName.setText(visitBean.getVisit_name());
+            mTvItemStatus.setText("已完成");
+            mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
+
         } else {
             mIvTypeIcon.setImageResource(R.mipmap.icon_research_end);
-            if (subjectsPersonalListBean.status == 0) {
+            if (visitBean.getVisit_type() == 4) {//访式结束
                 mTvItemName.setText("研究结束");
                 mTvItemStatus.setText("已退出");
                 mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_f04844));

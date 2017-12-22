@@ -1,5 +1,6 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class SubjectsListBean {
         this.subjects = subjects;
     }
 
-    public static class SubjectsBean {
+    public static class SubjectsBean implements Serializable{
         private int subject_id;
         private int project_id;
         private int site_id;

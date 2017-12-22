@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
@@ -73,8 +74,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="#fff"
+                android:minHeight="50dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
@@ -87,6 +89,7 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tv_select_research_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -95,17 +98,18 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="研究中心"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    tools:text="研究中心"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="#fff"
+                android:minHeight="50dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
@@ -118,6 +122,7 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/tv_input_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -126,17 +131,18 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="案例编号"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    tools:text="案例编号"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:background="#fff"
+                android:minHeight="50dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
@@ -149,6 +155,7 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/tv_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -157,9 +164,9 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="姓名缩写"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp"
+                    tools:text="姓名缩写"/>
 
             </LinearLayout>
 
@@ -176,75 +183,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                android:orientation="vertical"
-                android:paddingRight="10dp">
+                android:background="@color/color_ffffff"
+                android:orientation="vertical">
 
-                <RadioGroup
+                <com.healthmudi.commonlibrary.widget.AutoListView
+                    android:id="@+id/auto_list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="撤回知情同意书"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="受试者由于搬迁,转院,繁忙等原因难以继续进行研究"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="失访"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="疾病进展"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="死亡"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="严重违反试验方案"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:paddingLeft="10dp"
-                        android:text="其他原因"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-                </RadioGroup>
+                    android:layout_height="wrap_content"
+                    android:divider="@null"/>
 
                 <EditText
+                    android:id="@+id/et_other_reason"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
+                    android:layout_margin="15dp"
                     android:background="@drawable/shape_corner_2dp_solid_fff_border_dedfe0"
                     android:gravity="top"
                     android:paddingLeft="10dp"
@@ -261,11 +213,12 @@
                 android:textSize="15sp"/>
 
             <LinearLayout
+                android:id="@+id/ll_end_time"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:background="#fff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:minHeight="50dp"
+                android:paddingLeft="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -276,6 +229,7 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/tv_end_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -283,13 +237,13 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="end"
+                    android:hint="请选择日期"
                     android:maxLines="1"
-                    android:text="请选择日期"
-                    android:textColor="@color/color_cccccc"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"/>
 
                 <ImageView
-                    android:id="@+id/iv_visit_date_black"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="15dp"
@@ -301,11 +255,13 @@
                 android:layout_height="10dp"/>
 
             <EditText
+                android:id="@+id/et_remark"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:background="#fff"
                 android:gravity="top"
                 android:hint="请输入备注信息"
+                android:minHeight="80dp"
                 android:padding="15dp"
                 android:textColor="@color/color_464c5b"
                 android:textColorHint="@color/color_cccccc"
@@ -314,7 +270,7 @@
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="80dp"/>
         </LinearLayout>
     </ScrollView>
 

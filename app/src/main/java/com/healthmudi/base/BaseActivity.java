@@ -1,8 +1,10 @@
 package com.healthmudi.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * Created by tck
@@ -36,4 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void setViewData() {
     }
+
+    public void hideSoftKeyBord() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+        }
+    }
+
 }

@@ -1,13 +1,11 @@
 package com.healthmudi.subjects_home.one;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -60,8 +58,8 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
     private EditText mEtRemark;
 
     private TimePickerView mTimePickerView;
-    private OptionsPickerView mOptionsPickerView;
     private IosDialog mIosDialog;
+    private OptionsPickerView mOptionsPickerView;
 
     private ProjectListBean mProjectListBean;
     private Map<String, String> map = new HashMap<>();
@@ -259,13 +257,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                     mOptionsPickerView.show(mTvTestGroup);
                 }
                 break;
-        }
-    }
-
-    public void hideSoftKeyBord() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         }
     }
 

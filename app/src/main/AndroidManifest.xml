@@ -24,7 +24,9 @@
         <activity android:name=".subjects_home.SubjectsHomeActivity"/>
         <activity android:name=".subjects_home.one.SubjectsPersonalActivity"/>
         <activity android:name=".subjects_home.one.SubjectsPersonalSerachActivity"/>
-        <activity android:name=".subjects_home.one.PlannedInterviewActivity"/>
+        <activity
+            android:name=".subjects_home.one.PlannedInterviewActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".subjects_home.one.PlannedInterviewMattersNeedingAttentionActivity"/>
         <activity android:name=".subjects_home.one.ResearchEndVisitActivity"/>
         <activity

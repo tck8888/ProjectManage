@@ -103,8 +103,8 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                     mAdapter.notifyDataSetChanged();
                 } else {
                     SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().get(childPosition);
-
                     Intent intent = new Intent(getContext(), SubjectsPersonalActivity.class);
+                    intent.putExtra(Constant.KEY_SUBJECTS_BEAN,subjectsBean);
                     startActivity(intent);
                 }
 

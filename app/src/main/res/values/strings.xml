@@ -37,10 +37,21 @@
         <item>visitors_visit_to_the_rules</item>
         <item>edc_fill_in</item>
     </string-array>
+
     <string-array name="base_line_type">
         <item>上次实际访视日期</item>
         <item>知情同意书签署日期</item>
         <item>随机分组日期</item>
         <item>首次服药日期</item>
+    </string-array>
+
+    <string-array name="research_end_reason">
+        <item>撤回知情同意书</item>
+        <item>受试者由于搬迁、转院、繁忙等原因难以继续进行研究</item>
+        <item>失访</item>
+        <item>疾病进展</item>
+        <item>死亡</item>
+        <item>严重违反试验方案</item>
+        <item>其它原因</item>
     </string-array>
 </resources>

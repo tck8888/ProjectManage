@@ -1,7 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,23 +9,41 @@ import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.Constant;
+import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.MessageEvent;
+import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.entity.HttpResult;
+import com.healthmudi.net.HttpRequest;
+import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsPersonalListAdapter;
+import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.healthmudi.view.custom_popupwindow.EasyPopup;
 import com.healthmudi.view.custom_popupwindow.HorizontalGravity;
 import com.healthmudi.view.custom_popupwindow.VerticalGravity;
+import com.lzy.okgo.OkGo;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.util.DensityUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * decription:受试者入组列表
  * Created by tck on 2017/12/9.
  */
 
-public class SubjectsPersonalActivity extends BaseActivity implements View.OnClickListener {
+public class SubjectsPersonalActivity extends BaseActivity implements View.OnClickListener, OnRefreshListener {
 
     private EasyPopup mPopup;
     private ImageView mIvaddSubjects;
@@ -34,8 +51,12 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     private ListView mListView;
     private EmptyView mEmptyLayout;
 
-    private List<SubjectsPersonalListBean> mSubjectsPersonalListBeanList = new ArrayList<>();
+    private List<SubjectsPersonalListBean.VisitBean> mSubjectsPersonalListBeanList = new ArrayList<>();
     private SubjectsPersonalListAdapter mAdapter;
+    private SubjectsListBean.SubjectsBean mSubjectsBean;
+    private Map<String, String> map = new HashMap<>();
+
+    private String tag = "SubjectsPersonalActivity";
 
 
     @Override
@@ -46,6 +67,21 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     @Override
     public void initData() {
         super.initData();
+        try {
+            mSubjectsBean = (SubjectsListBean.SubjectsBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_BEAN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        map.put("project_id", String.valueOf(mSubjectsBean.getProject_id()));
+        map.put("subject_id", String.valueOf(mSubjectsBean.getSubject_id()));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -58,32 +94,6 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
         mListView = (ListView) findViewById(R.id.list_view);
         mAdapter = new SubjectsPersonalListAdapter(this, mSubjectsPersonalListBeanList);
         mListView.setAdapter(mAdapter);
-    }
-
-    @Override
-    public void setListener() {
-        super.setListener();
-        mIvaddSubjects.setOnClickListener(this);
-        findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SubjectsPersonalListBean subjectsPersonalListBean = mSubjectsPersonalListBeanList.get(position);
-                if (subjectsPersonalListBean.type.equals("top")) {
-                    openActivity(EntryGroupBasicInformationActivity.class);
-                } else if (subjectsPersonalListBean.type.equals("center")) {
-                    openActivity(RegularVisitsActivity.class);
-                }
-            }
-        });
-    }
-
-    public void openActivity(Class clazz) {
-        if (clazz != null) {
-            Intent intent = new Intent(this, clazz);
-            startActivity(intent);
-        }
     }
 
     private void initPop() {
@@ -106,6 +116,68 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     }
 
     @Override
+    public void setListener() {
+        super.setListener();
+        mIvaddSubjects.setOnClickListener(this);
+        findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SubjectsPersonalListBean.VisitBean visitBean = mSubjectsPersonalListBeanList.get(position);
+                switch (visitBean.getVisit_type()) {
+                    case 1:
+                        openActivity(EntryGroupBasicInformationActivity.class);
+                        break;
+                    case 2:
+                        openActivity(RegularVisitsActivity.class);
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                }
+            }
+        });
+        mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onRefresh(RefreshLayout refreshlayout) {
+        getData();
+    }
+
+    private void getData() {
+        HttpRequest.getInstance().get(HttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<SubjectsPersonalListBean>, SubjectsPersonalListBean>() {
+            @Override
+            public void onSuccess(SubjectsPersonalListBean result) {
+                if (!ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
+                    mSubjectsPersonalListBeanList.clear();
+                }
+                mSubjectsPersonalListBeanList.addAll(result.getVisit());
+                if (ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mAdapter.notifyDataSetChanged();
+                mRefreshLayout.finishRefresh();
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+                if (ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mRefreshLayout.finishRefresh();
+            }
+        });
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
@@ -116,29 +188,47 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
                 break;
             //计划外访式
             case R.id.fl_unplanned_interview:
-                Intent intent = new Intent(this, PlannedInterviewActivity.class);
-                startActivity(intent);
+                openActivity(PlannedInterviewActivity.class);
                 break;
             //研究结束访视
             case R.id.fl_research_end_visit:
-                Intent intent1 = new Intent(this, ResearchEndVisitActivity.class);
-                startActivity(intent1);
+                openActivity(ResearchEndVisitActivity.class);
                 break;
         }
     }
 
     private void showPop(View view) {
-        mPopup.showAtAnchorView(view, VerticalGravity.BELOW, HorizontalGravity.LEFT, dp2px(40), dp2px(5));
+        mPopup.showAtAnchorView(view, VerticalGravity.BELOW, HorizontalGravity.LEFT, DensityUtil.dp2px(40), DensityUtil.dp2px(5));
     }
 
-    public int dp2px(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+
+    public void openActivity(Class clazz) {
+        mPopup.dismiss();
+        if (clazz != null) {
+            Intent intent = new Intent(this, clazz);
+            intent.putExtra(Constant.KEY_SUBJECTS_BEAN, mSubjectsBean);
+            startActivity(intent);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackInfo(MessageEvent event) {
+        if (event != null) {
+            if (event.getTag().equals(MessageEvent.KEY_RESEARCH_END_VISIT_SUCCESS)
+                    || event.getTag().equals(MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS)) {
+                mRefreshLayout.autoRefresh();
+            }
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         try {
+            if (EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().unregister(this);
+            }
+            OkGo.getInstance().cancelTag(tag);
             mPopup.dismiss();
             mPopup = null;
             mIvaddSubjects = null;
@@ -149,5 +239,6 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
             e.printStackTrace();
         }
     }
+
 
 }

@@ -27,6 +27,6 @@ public class CommonUtils {
         } else {
             return true;
         }
-
     }
+
 }
