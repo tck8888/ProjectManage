@@ -28,7 +28,7 @@ public class ProjectListAdapter extends BasicAdapter<ProjectListBean> {
         ProjectListBean projectListBean = mDataList.get(position);
         if (projectListBean != null) {
             String project_name = projectListBean.getProject_name();
-            mTvItemValue.setText(projectListBean.getProject_name());
+            mTvItemValue.setText(project_name);
         }
         if (position % 2 == 0) {
             mItemDivider.setVisibility(View.VISIBLE);

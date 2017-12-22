@@ -304,8 +304,8 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
 
     private void submitData() {
         String subject_filter_id = mEtInputNumber.getText().toString().trim();
-        String name_py = mTvSelectResearchCenter.getText().toString().trim();
         String subject_code = mEtSubjectsNumber.getText().toString().trim();
+        String name_py = mEtInitials.getText().toString().trim();
         String mobile = mEtMobile.getText().toString().trim();
         String baseline_type = mTvBaselineType.getText().toString().trim();
         String baseline_date = mTvBaselineDate.getText().toString().trim();
