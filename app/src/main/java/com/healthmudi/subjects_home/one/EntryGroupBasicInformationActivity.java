@@ -120,11 +120,11 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                 if (!ListUtil.isEmpty(mProjectListBean.getSite())) {
                     mSiteBeanList.addAll(mProjectListBean.getSite());
                 }
+                map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
     }
 
     @Override
@@ -335,7 +335,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             @Override
             public void onFailure(int code, String mesage) {
                 LoadingDialog.getInstance(EntryGroupBasicInformationActivity.this).hidden();
-                if (!TextUtils.isEmpty(mesage)){
+                if (!TextUtils.isEmpty(mesage)) {
                     Toast.makeText(EntryGroupBasicInformationActivity.this, mesage, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -432,7 +432,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
     }
-
 
 
 }

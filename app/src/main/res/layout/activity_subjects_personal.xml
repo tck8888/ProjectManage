@@ -29,6 +29,7 @@
             android:textSize="18sp"/>
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/iv_add_subjects"
             android:layout_width="50dp"
             android:layout_height="50dp"

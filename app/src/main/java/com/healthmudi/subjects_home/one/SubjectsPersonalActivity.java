@@ -1,6 +1,7 @@
 package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -118,7 +119,7 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     @Override
     public void setListener() {
         super.setListener();
-        mIvaddSubjects.setOnClickListener(this);
+
         findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,18 +153,11 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
         HttpRequest.getInstance().get(HttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<SubjectsPersonalListBean>, SubjectsPersonalListBean>() {
             @Override
             public void onSuccess(SubjectsPersonalListBean result) {
-                if (!ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
-                    mSubjectsPersonalListBeanList.clear();
-                }
-                mSubjectsPersonalListBeanList.addAll(result.getVisit());
-                if (ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
-                    mEmptyLayout.showEmptyView();
-                } else {
-                    mEmptyLayout.showContentView();
-                }
+                updateUI(result);
                 mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();
             }
+
 
             @Override
             public void onFailure(int code, String mesage) {
@@ -175,6 +169,34 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
                 mRefreshLayout.finishRefresh();
             }
         });
+    }
+
+    /**
+     * decription:更新UI
+     */
+    private void updateUI(SubjectsPersonalListBean result) {
+        SubjectsPersonalListBean.SubjectBean subject = result.getSubject();
+
+        //判断是否结束
+        if (subject != null
+                && subject.getEnd_date() == null
+                || TextUtils.isEmpty(subject.getEnd_date())) {
+            mIvaddSubjects.setVisibility(View.VISIBLE);
+            mIvaddSubjects.setOnClickListener(this);
+        } else {
+            mIvaddSubjects.setVisibility(View.GONE);
+        }
+
+        if (!ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
+            mSubjectsPersonalListBeanList.clear();
+        }
+        mSubjectsPersonalListBeanList.addAll(result.getVisit());
+        //判断是都显示空界面
+        if (ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
+            mEmptyLayout.showEmptyView();
+        } else {
+            mEmptyLayout.showContentView();
+        }
     }
 
     @Override
