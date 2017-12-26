@@ -7,7 +7,7 @@ package com.healthmudi.base;
 
 public interface Constant {
 
-    boolean IS_DEBUG = false;
+    boolean IS_DEBUG = true;
 
     String KEY_PROJECT_ID = "project_id";
     String KEY_WEBVIEW_BEAN = "WebViewBean";

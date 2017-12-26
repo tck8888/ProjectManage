@@ -1,7 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,7 +51,7 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     private ListView mListView;
     private EmptyView mEmptyLayout;
 
-    private List<SubjectsPersonalListBean.VisitBean> mSubjectsPersonalListBeanList = new ArrayList<>();
+    private List<SubjectsPersonalListBean> mSubjectsPersonalListBeanList = new ArrayList<>();
     private SubjectsPersonalListAdapter mAdapter;
     private SubjectsListBean.SubjectsBean mSubjectsBean;
     private Map<String, String> map = new HashMap<>();
@@ -125,8 +124,8 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SubjectsPersonalListBean.VisitBean visitBean = mSubjectsPersonalListBeanList.get(position);
-                switch (visitBean.getVisit_type()) {
+                SubjectsPersonalListBean subjectsPersonalListBean = mSubjectsPersonalListBeanList.get(position);
+                switch (subjectsPersonalListBean.getVisit_type()) {
                     case 1:
                         openActivity(EntryGroupBasicInformationActivity.class);
                         break;
@@ -150,9 +149,9 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<SubjectsPersonalListBean>, SubjectsPersonalListBean>() {
+        HttpRequest.getInstance().get(HttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsPersonalListBean>>, List<SubjectsPersonalListBean>>() {
             @Override
-            public void onSuccess(SubjectsPersonalListBean result) {
+            public void onSuccess(List<SubjectsPersonalListBean> result) {
                 updateUI(result);
                 mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();
@@ -174,23 +173,13 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     /**
      * decription:更新UI
      */
-    private void updateUI(SubjectsPersonalListBean result) {
-        SubjectsPersonalListBean.SubjectBean subject = result.getSubject();
+    private void updateUI(List<SubjectsPersonalListBean> result) {
 
-        //判断是否结束
-        if (subject != null
-                && subject.getEnd_date() == null
-                || TextUtils.isEmpty(subject.getEnd_date())) {
-            mIvaddSubjects.setVisibility(View.VISIBLE);
-            mIvaddSubjects.setOnClickListener(this);
-        } else {
-            mIvaddSubjects.setVisibility(View.GONE);
-        }
 
         if (!ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
             mSubjectsPersonalListBeanList.clear();
         }
-        mSubjectsPersonalListBeanList.addAll(result.getVisit());
+        mSubjectsPersonalListBeanList.addAll(result);
         //判断是都显示空界面
         if (ListUtil.isEmpty(mSubjectsPersonalListBeanList)) {
             mEmptyLayout.showEmptyView();

@@ -17,9 +17,9 @@ import java.util.List;
  * Created by tck on 2017/12/10.
  */
 
-public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalListBean.VisitBean> {
+public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalListBean> {
 
-    public SubjectsPersonalListAdapter(Context context, List<SubjectsPersonalListBean.VisitBean> dataList) {
+    public SubjectsPersonalListAdapter(Context context, List<SubjectsPersonalListBean> dataList) {
         super(context, dataList);
     }
 
@@ -30,22 +30,20 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
         TextView mTvItemValue = get(convertView, R.id.tv_item_value);
         TextView mTvItemStatus = get(convertView, R.id.tv_item_status);
 
-        SubjectsPersonalListBean.VisitBean visitBean = mDataList.get(position);
-        if (visitBean.getVisit_type() == 1) {
+        SubjectsPersonalListBean subjectsPersonalListBean = mDataList.get(position);
+        mTvItemName.setText(subjectsPersonalListBean.getVisit_name());
+
+        if (subjectsPersonalListBean.getVisit_type() == 1) {
             mIvTypeIcon.setImageResource(R.mipmap.icon_in_the_group);
-            mTvItemName.setText(visitBean.getVisit_name());
             mTvItemStatus.setText("已入组");
             mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_3398db));
-        } else if (visitBean.getVisit_type() == 2 || visitBean.getVisit_type() == 3) {//常规
+        } else if (subjectsPersonalListBean.getVisit_type() == 2 || subjectsPersonalListBean.getVisit_type() == 3) {//常规
             mIvTypeIcon.setImageResource(R.mipmap.icon_cycle);
-            mTvItemName.setText(visitBean.getVisit_name());
             mTvItemStatus.setText("已完成");
             mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
-
         } else {
             mIvTypeIcon.setImageResource(R.mipmap.icon_research_end);
-            if (visitBean.getVisit_type() == 4) {//访式结束
-                mTvItemName.setText("研究结束");
+            if (subjectsPersonalListBean.getVisit_type() == 4) {//访式结束
                 mTvItemStatus.setText("已退出");
                 mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_f04844));
             }
