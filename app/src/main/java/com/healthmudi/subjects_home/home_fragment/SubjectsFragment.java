@@ -3,8 +3,10 @@ package com.healthmudi.subjects_home.home_fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
@@ -22,6 +24,8 @@ import com.healthmudi.subjects_home.one.SubjectsPersonalActivity;
 import com.healthmudi.subjects_home.one.SubjectsPersonalSerachActivity;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
+import com.healthmudi.view.IosDialog;
+import com.healthmudi.view.LoadingDialog;
 import com.lzy.okgo.OkGo;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -49,12 +53,14 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
 
     private List<SubjectsListBean> mSubjectsListBeanList = new ArrayList<>();
     private Map<String, String> map = new HashMap<>();
+    private Map<String, String> mapDelete = new HashMap<>();
 
     private SubjectsListAdapter mAdapter;
     private String tag = "SubjectsFragment";
     private String mProject_id;
     private ProjectListBean mProjectListBean;
 
+    private IosDialog mIosDialog;
 
     public static SubjectsFragment newInstance(ProjectListBean projectListBean) {
         SubjectsFragment subjectsFragment = new SubjectsFragment();
@@ -74,6 +80,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
         mProjectListBean = (ProjectListBean) arguments.getSerializable(Constant.KEY_PROJECT_LIST_BEAN);
         mProject_id = String.valueOf(mProjectListBean.getProject_id());
         map.put("project_id", mProject_id);
+        mapDelete.put("project_id", mProject_id);
     }
 
     @Override
@@ -85,6 +92,31 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
         mAdapter = new SubjectsListAdapter(getContext(), mSubjectsListBeanList);
         mExpandableListView.setAdapter(mAdapter);
 
+        initDialog();
+    }
+
+    public void initDialog() {
+        mIosDialog = new IosDialog.Builder(getContext())
+                .setTitle("提示")
+                .setTitleColor(getResources().getColor(R.color.color_464c5b))
+                .setMessage("是否确定删除")
+                .setPositiveButton("确认", new IosDialog.OnClickListener() {
+                    @Override
+                    public void onClick(IosDialog dialog, View v) {
+                        deleteData();
+                        mIosDialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new IosDialog.OnClickListener() {
+                    @Override
+                    public void onClick(IosDialog dialog, View v) {
+                        mIosDialog.dismiss();
+                    }
+                })
+                .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
+                .setNegativeButtonColor(getResources().getColor(R.color.color_464c5b))
+                .setDialogCanceledOnTouchOutside(true)
+                .build();
     }
 
     @Override
@@ -98,21 +130,47 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
         mAdapter.setOnItemClick(new SubjectsListAdapter.OnItemClick() {
             @Override
             public void click(int groupPosition, int childPosition, String type) {
+                SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().remove(childPosition);
                 if ("delete".equals(type)) {
-                    mSubjectsListBeanList.get(groupPosition).getSubjects().remove(childPosition);
-                    mAdapter.notifyDataSetChanged();
+                    showDialog(subjectsBean);
                 } else {
-                    SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().get(childPosition);
-                    Intent intent = new Intent(getContext(), SubjectsPersonalActivity.class);
-                    intent.putExtra(Constant.KEY_SUBJECTS_BEAN,subjectsBean);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+                    openActivity(SubjectsPersonalActivity.class, null, subjectsBean);
                 }
 
             }
         });
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.autoRefresh();
+    }
+
+    private void showDialog(@Nullable SubjectsListBean.SubjectsBean subjectsBean) {
+        mIosDialog.show();
+        mapDelete.put("site_id", String.valueOf(subjectsBean.getSite_id()));
+        mapDelete.put("subject_id", String.valueOf(subjectsBean.getSubject_id()));
+    }
+
+    /**
+     * 删除数据
+     */
+    private void deleteData() {
+        LoadingDialog.getInstance(getContext()).show();
+        HttpRequest.getInstance().post(HttpUrlList.PROJECT_SUBJECT_DEL_URL, mapDelete, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+            @Override
+            public void onSuccess(Object result) {
+                LoadingDialog.getInstance(getContext()).hidden();
+                Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
+                //删除成功自动刷新界面
+                mRefreshLayout.autoRefresh();
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+                LoadingDialog.getInstance(getContext()).hidden();
+                if (!TextUtils.isEmpty(mesage)) {
+                    Toast.makeText(getContext(), mesage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -159,14 +217,31 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                 getActivity().finish();
                 break;
             case R.id.iv_subjects_search:
-                Intent intent = new Intent(getContext(), SubjectsPersonalSerachActivity.class);
-                startActivity(intent);
+                openActivity(SubjectsPersonalSerachActivity.class, mProjectListBean, null);
                 break;
             case R.id.iv_add_subjects:
-                Intent intent1 = new Intent(getContext(), EntryGroupBasicInformationActivity.class);
-                intent1.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBean);
-                startActivity(intent1);
+                openActivity(EntryGroupBasicInformationActivity.class, mProjectListBean, null);
                 break;
+        }
+    }
+
+    /**
+     * description:跳转activity
+     *
+     * @param projectListBean 项目bean
+     * @param subjectsBean    受试者bean
+     */
+    public void openActivity(Class clazz, ProjectListBean projectListBean, SubjectsListBean.SubjectsBean subjectsBean) {
+        if (clazz != null) {
+            Intent intent = new Intent(getContext(), clazz);
+            if (projectListBean != null) {
+                intent.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBean);
+            }
+            if (subjectsBean != null) {
+                intent.putExtra(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
+            }
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
 
@@ -199,6 +274,8 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
             mExpandableListView = null;
             mRefreshLayout = null;
             mAdapter = null;
+            mapDelete.clear();
+            mapDelete = null;
             map.clear();
             map = null;
             mSubjectsListBeanList.clear();

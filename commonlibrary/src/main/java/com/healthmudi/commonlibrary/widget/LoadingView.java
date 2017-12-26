@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import com.healthmudi.commonlibrary.R;
 
@@ -16,7 +16,7 @@ import com.healthmudi.commonlibrary.R;
 /**
  * Created by tck on 17/2/16.
  */
-public class LoadingView extends RelativeLayout {
+public class LoadingView extends FrameLayout {
 
     private View mLoadingIndicator;
 
