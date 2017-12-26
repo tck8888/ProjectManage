@@ -3,4 +3,5 @@
     <dimen name="dimen_16sp">16sp</dimen>
     <dimen name="dimen_13sp">13sp</dimen>
     <dimen name="dimen_12sp">12sp</dimen>
+    <dimen name="dimen_15sp">15sp</dimen>
 </resources>

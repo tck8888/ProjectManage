@@ -19,6 +19,7 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsPersonalListAdapter;
+import com.healthmudi.subjects_home.one.dialog.GroupBasicInformationDialog;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.healthmudi.view.custom_popupwindow.EasyPopup;
@@ -143,22 +144,29 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 SubjectsPersonalListBean subjectsPersonalListBean = mSubjectsPersonalListBeanList.get(position);
-                switch (subjectsPersonalListBean.getVisit_type()) {
-                    case 1:
-                        openActivity(EntryGroupBasicInformationActivity.class);
-                        break;
-                    case 2:
-                        openActivity(RegularVisitsActivity.class);
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                }
+                openDialog(subjectsPersonalListBean);
             }
         });
         mRefreshLayout.setOnRefreshListener(this);
         mRefreshLayout.autoRefresh();
+    }
+
+    public void openDialog(SubjectsPersonalListBean subjectsPersonalListBean) {
+
+        switch (subjectsPersonalListBean.getVisit_type()) {
+            case 1:
+            GroupBasicInformationDialog.newInstance(subjectsPersonalListBean,mSubjectsBean)
+                    .show(getSupportFragmentManager(), "GroupBasicInformationDialog");
+                break;
+            case 2:
+                openActivity(RegularVisitsActivity.class);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+
     }
 
     @Override
@@ -211,6 +219,7 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
                 finish();
+                overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
                 break;
             case R.id.iv_add_subjects:
                 showPop(v);
@@ -246,6 +255,10 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
             if (event.getTag().equals(MessageEvent.KEY_RESEARCH_END_VISIT_SUCCESS)
                     || event.getTag().equals(MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS)) {
                 mRefreshLayout.autoRefresh();
+            }
+            //访试结束回调隐藏添加按钮
+            if (event.getTag().equals(MessageEvent.KEY_RESEARCH_END_VISIT_SUCCESS)) {
+                mIvaddSubjects.setVisibility(View.GONE);
             }
         }
     }

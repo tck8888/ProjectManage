@@ -106,6 +106,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                     Intent intent = new Intent(getContext(), SubjectsPersonalActivity.class);
                     intent.putExtra(Constant.KEY_SUBJECTS_BEAN,subjectsBean);
                     startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
                 }
 
             }

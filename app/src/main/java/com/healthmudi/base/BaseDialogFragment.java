@@ -37,6 +37,12 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.Dialog_FullScreen);
+    }
+
     /**
      * 3.Fargment创建本身的视图
      *
@@ -63,13 +69,17 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if (viewStub != null) {
             viewStub.inflate();
         }
+        initView(view);
         setViewData(view);
         setListener(view);
     }
 
+
     protected abstract void initData(@Nullable Bundle arguments);
 
     protected abstract int getLayoutId();
+
+    protected abstract void initView(View view);
 
     public void setViewData(View view) {
 
@@ -83,4 +93,5 @@ public abstract class BaseDialogFragment extends DialogFragment {
             }
         });
     }
+
 }

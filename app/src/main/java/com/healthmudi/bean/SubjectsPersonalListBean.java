@@ -1,5 +1,6 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by tck on 2017/12/10.
  */
 
-public class SubjectsPersonalListBean {
+public class SubjectsPersonalListBean implements Serializable{
 
 
     private int subject_visit_id;

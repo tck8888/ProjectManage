@@ -41,6 +41,7 @@ public class SubjectsListBean {
         private int baseline_type;
         private String baseline_date;
         private String arm_code;
+        private String arm_name;
         private String end_date;
         private String remark;
         private String end_reason;
@@ -125,6 +126,14 @@ public class SubjectsListBean {
 
         public void setArm_code(String arm_code) {
             this.arm_code = arm_code;
+        }
+
+        public void setArm_name(String arm_name) {
+            this.arm_name = arm_name;
+        }
+
+        public String getArm_name() {
+            return arm_name;
         }
 
         public String getEnd_date() {

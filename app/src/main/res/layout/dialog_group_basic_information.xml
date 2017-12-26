@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_f3f3f3"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="筛选编号"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_input_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="研究中心"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_select_research_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="受试者编号"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_subjects_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_is_equal"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="16dp"
+                    android:src="@drawable/icon_rectangle_unselected"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="同筛选编号"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="@dimen/dimen_15sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="姓名缩写"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_initials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="联系方式"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="基线类型"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_baseline_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="基线日期"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_baseline_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="试验分组"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tv_test_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:gravity="top"
+                android:minHeight="80dp"
+                android:padding="15dp"
+                android:textColor="@color/color_464c5b"
+                android:textColorHint="@color/color_cccccc"
+                android:textSize="15sp"
+                />
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
