@@ -4,7 +4,6 @@
     <string-array name="project_manage_home_titles">
         <item>项目</item>
         <item>日程</item>
-        <item>消息</item>
     </string-array>
 
     <string-array name="subject_home_titles">
@@ -12,7 +11,6 @@
         <item>文件</item>
         <item>签到</item>
         <item>工时</item>
-        <item>报表</item>
     </string-array>
 
 

@@ -10,7 +10,6 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.TabEntity;
 import com.healthmudi.subjects_home.home_fragment.FileFragment;
-import com.healthmudi.subjects_home.home_fragment.ReportFormFragment;
 import com.healthmudi.subjects_home.home_fragment.SignFragment;
 import com.healthmudi.subjects_home.home_fragment.SubjectsFragment;
 import com.healthmudi.subjects_home.home_fragment.WorkingHoursFragment;
@@ -31,12 +30,11 @@ public class SubjectsHomeActivity extends BaseActivity {
 
     private int[] mIconUnselectIds = {
             R.mipmap.icon_subject_unselected, R.mipmap.icon_file_unselected,
-            R.mipmap.icon_sign_unselected, R.mipmap.icon_working_hours_unselected,
-            R.mipmap.icon_report_form_unselected};
+            R.mipmap.icon_sign_unselected, R.mipmap.icon_working_hours_unselected};
     private int[] mIconSelectIds = {
             R.mipmap.icon_subject_selected, R.mipmap.icon_file_selected,
-            R.mipmap.icon_sign_selected, R.mipmap.icon_working_hours_selected,
-            R.mipmap.icon_report_form_selected};
+            R.mipmap.icon_sign_selected, R.mipmap.icon_working_hours_selected
+    };
 
     private String[] mTitles;
     private ProjectListBean mProjectListBean;
@@ -58,7 +56,6 @@ public class SubjectsHomeActivity extends BaseActivity {
         mFragments.add(FileFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
         mFragments.add(SignFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
         mFragments.add(WorkingHoursFragment.newInstance());
-        mFragments.add(ReportFormFragment.newInstance());
 
         mTitles = getResources().getStringArray(R.array.subject_home_titles);
         for (int i = 0; i < mTitles.length; i++) {

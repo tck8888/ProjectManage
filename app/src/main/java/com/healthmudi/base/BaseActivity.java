@@ -46,4 +46,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Constant.IS_DEBUG) {
+            System.out.println("=======" + getClass().getSimpleName());
+        }
+    }
 }
