@@ -106,27 +106,11 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="end"
-
                     android:maxLines="1"
                     android:textColor="@color/color_464c5b"
                     android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"/>
 
-                <ImageView
-                    android:id="@+id/iv_is_equal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="16dp"
-                    android:src="@drawable/icon_rectangle_unselected"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="同筛选编号"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="@dimen/dimen_15sp"/>
             </LinearLayout>
 
             <LinearLayout

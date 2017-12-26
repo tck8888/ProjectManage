@@ -3,7 +3,6 @@ package com.healthmudi.subjects_home.one.dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.healthmudi.R;
@@ -23,7 +22,6 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
     private TextView mTvInputNumber;
     private TextView mTvSelectResearchCenter;
     private TextView mTvSubjectsNumber;
-    private ImageView mIvIsEqual;
     private TextView mTvInitials;
     private TextView mTvMobile;
     private TextView mTvBaselineType;
@@ -58,7 +56,6 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
         mTvInputNumber = (TextView) view.findViewById(R.id.tv_input_number);
         mTvSelectResearchCenter = (TextView) view.findViewById(R.id.tv_select_research_center);
         mTvSubjectsNumber = (TextView) view.findViewById(R.id.tv_subjects_number);
-        mIvIsEqual = (ImageView) view.findViewById(R.id.iv_is_equal);
         mTvInitials = (TextView) view.findViewById(R.id.tv_initials);
         mTvMobile = (TextView) view.findViewById(R.id.tv_mobile);
         mTvBaselineType = (TextView) view.findViewById(R.id.tv_baseline_type);
@@ -74,11 +71,6 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
             mTvInputNumber.setText(mSubjectsBean.getSubject_filter_id());
             mTvSelectResearchCenter.setText(mSubjectsBean.getSite_name());
             mTvSubjectsNumber.setText(mSubjectsBean.getSubject_code());
-            if (mSubjectsBean.getSubject_code().equals(mSubjectsBean.getSubject_filter_id())) {
-                mIvIsEqual.setImageResource(R.drawable.icon_rectangle_selected);
-            } else {
-                mIvIsEqual.setImageResource(R.drawable.icon_rectangle_unselected);
-            }
             mTvInitials.setText(mSubjectsBean.getName_py());
             mTvMobile.setText(mSubjectsBean.getMobile());
             mTvBaselineType.setText(StringConvertCodeEachUtils.getString(mSubjectsBean.getBaseline_type()));

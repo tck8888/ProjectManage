@@ -155,11 +155,11 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
 
         switch (subjectsPersonalListBean.getVisit_type()) {
             case 1:
-            GroupBasicInformationDialog.newInstance(subjectsPersonalListBean,mSubjectsBean)
-                    .show(getSupportFragmentManager(), "GroupBasicInformationDialog");
+                GroupBasicInformationDialog.newInstance(subjectsPersonalListBean, mSubjectsBean)
+                        .show(getSupportFragmentManager(), "GroupBasicInformationDialog");
                 break;
             case 2:
-                openActivity(RegularVisitsActivity.class);
+                openActivity(RegularVisitsActivity.class,mSubjectsBean,subjectsPersonalListBean);
                 break;
             case 3:
                 break;
@@ -219,18 +219,18 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
                 finish();
-                overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
                 break;
             case R.id.iv_add_subjects:
                 showPop(v);
                 break;
             //计划外访式
             case R.id.fl_unplanned_interview:
-                openActivity(PlannedInterviewActivity.class);
+                openActivity(PlannedInterviewActivity.class,mSubjectsBean,null);
                 break;
             //研究结束访视
             case R.id.fl_research_end_visit:
-                openActivity(ResearchEndVisitActivity.class);
+                openActivity(ResearchEndVisitActivity.class,mSubjectsBean,null);
                 break;
         }
     }
@@ -240,12 +240,19 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     }
 
 
-    public void openActivity(Class clazz) {
+    public void openActivity(Class clazz, SubjectsListBean.SubjectsBean subjectsBean, SubjectsPersonalListBean subjectsPersonalListBean) {
         mPopup.dismiss();
         if (clazz != null) {
             Intent intent = new Intent(this, clazz);
-            intent.putExtra(Constant.KEY_SUBJECTS_BEAN, mSubjectsBean);
+            if (subjectsBean != null) {
+                intent.putExtra(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
+            }
+            if (subjectsPersonalListBean != null) {
+                intent.putExtra(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN, subjectsPersonalListBean);
+            }
             startActivity(intent);
+            // 进入动画
+            overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
 

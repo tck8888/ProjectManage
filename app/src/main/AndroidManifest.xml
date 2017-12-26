@@ -32,7 +32,9 @@
         <activity
             android:name=".subjects_home.one.EntryGroupBasicInformationActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity android:name=".subjects_home.one.RegularVisitsActivity"/>
+        <activity
+            android:name=".subjects_home.one.RegularVisitsActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".subjects_home.four.WorkTimeSubmissionActivtiy"/>
         <activity android:name=".subjects_home.four.InstitutionEstablishmentActivity"/>
         <activity android:name=".subjects_home.four.EthicalSubmissionActivity"/>

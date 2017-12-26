@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
@@ -78,7 +77,7 @@
                 android:background="#fff"
                 android:minHeight="50dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,48 +88,17 @@
                     android:textSize="15sp"/>
 
                 <TextView
+                    android:id="@+id/tv_select_research_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:gravity="right"
+                    android:hint="复旦大学附属肿瘤医院"
                     android:maxLines="1"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"
-                    tools:text="复旦大学附属肿瘤医院"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:background="#fff"
-                android:minHeight="50dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="案例编号"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:ellipsize="end"
-                    android:gravity="right"
-                    android:maxLines="1"
-                    android:text="079001"
-                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"/>
 
             </LinearLayout>
@@ -142,7 +110,40 @@
                 android:background="#fff"
                 android:minHeight="50dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="受试者编号"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_subjects_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:hint="请输入受试者编号"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,29 +154,28 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tv_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:gravity="right"
+                    android:hint="请输入姓名缩写"
                     android:maxLines="1"
-                    android:text="ABC"
                     android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"/>
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="1dp"
                 android:background="#fff"
                 android:minHeight="50dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -186,15 +186,17 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tv_planned_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:gravity="right"
+                    android:hint="请输入计划访视日期"
                     android:maxLines="1"
-                    android:text="2017-11-12"
                     android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"/>
 
             </LinearLayout>
@@ -206,7 +208,7 @@
                 android:background="#fff"
                 android:minHeight="50dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -217,14 +219,17 @@
                     android:textSize="16sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_window_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:ellipsize="end"
+                    android:gravity="end"
+                    android:hint="请输入时间窗"
                     android:maxLines="1"
-                    android:text="时间窗"
                     android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -236,7 +241,7 @@
                 android:background="#fff"
                 android:minHeight="50dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -247,16 +252,19 @@
                     android:textSize="16sp"/>
 
                 <TextView
+                    android:id="@+id/tv_actual_visit_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:gravity="end"
+                    android:hint="请选择日期"
                     android:maxLines="1"
-                    android:text="请选择日期"
-                    android:textColor="@color/color_cccccc"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
 
                 <ImageView
                     android:id="@+id/iv_visit_date_black"
@@ -266,9 +274,12 @@
                     android:src="@mipmap/icon_visit_date_black"/>
 
                 <CheckBox
+                    android:id="@+id/cb_is_same"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:button="@null"
+                    android:drawablePadding="6dp"
                     android:text="未完成"
                     android:textColor="@color/color_464c5b"
                     android:textSize="15sp"/>
@@ -283,11 +294,19 @@
                 android:textColor="@color/color_464c5b"
                 android:textSize="16sp"/>
 
+            <com.healthmudi.commonlibrary.widget.AutoListView
+                android:id="@+id/auto_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/color_e4e4e4"
+                android:dividerHeight="0.5dp"/>
+
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp"/>
 
             <EditText
+                android:id="@+id/et_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"

@@ -8,13 +8,13 @@ import java.util.List;
  * Created by tck on 2017/12/10.
  */
 
-public class SubjectsPersonalListBean implements Serializable{
+public class SubjectsPersonalListBean implements Serializable {
 
 
     private int subject_visit_id;
     private int visit_id;
     private String visit_name;
-    private int target_visit_time;
+    private long target_visit_time;
     private int window_neg;
     private int window_pos;
     private String actual_visit_time;
@@ -48,11 +48,11 @@ public class SubjectsPersonalListBean implements Serializable{
         this.visit_name = visit_name;
     }
 
-    public int getTarget_visit_time() {
+    public long getTarget_visit_time() {
         return target_visit_time;
     }
 
-    public void setTarget_visit_time(int target_visit_time) {
+    public void setTarget_visit_time(long target_visit_time) {
         this.target_visit_time = target_visit_time;
     }
 
@@ -120,7 +120,8 @@ public class SubjectsPersonalListBean implements Serializable{
         this.visit_content = visit_content;
     }
 
-    public static class VisitContentBean {
+    public static class VisitContentBean implements Serializable {
+        private boolean isSelected = false;
         private String category;
         private List<ItemsBean> items;
 
@@ -140,10 +141,28 @@ public class SubjectsPersonalListBean implements Serializable{
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
+
+        public static class ItemsBean implements Serializable {
             private String category;
             private String item_en;
             private String item_cn;
+
+            private boolean isSelected = false;
+
+            public boolean isSelected() {
+                return isSelected;
+            }
+
+            public void setSelected(boolean selected) {
+                isSelected = selected;
+            }
 
             public String getCategory() {
                 return category;
