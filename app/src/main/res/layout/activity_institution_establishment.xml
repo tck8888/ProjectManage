@@ -65,8 +65,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -79,6 +80,7 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_project_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -100,8 +102,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -114,6 +117,7 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_center_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -141,9 +145,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_submit_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -156,7 +162,7 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tv_submit_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -184,9 +190,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_approved_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -199,6 +207,7 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_approved_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -241,8 +250,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -273,11 +283,13 @@
                     android:layout_height="10dp"/>
 
                 <EditText
+                    android:id="@+id/et_remark"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:background="#fff"
                     android:gravity="top"
                     android:hint="请输入备注信息"
+                    android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"
                     android:textColorHint="@color/color_cccccc"
