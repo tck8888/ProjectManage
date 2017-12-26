@@ -39,12 +39,14 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
             mIvTypeIcon.setImageResource(R.mipmap.icon_in_the_group);
             mTvItemStatus.setText("已入组");
             mTvItemStatus.setVisibility(View.VISIBLE);
+            mTvItemValue.setText(DateUtils.getFormatTime(String.valueOf(subjectsPersonalListBean.getActual_visit_time())));
             mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_3398db));
         } else if (subjectsPersonalListBean.getVisit_type() == 4) {//常规
             mIvTypeIcon.setImageResource(R.mipmap.icon_research_end);
             mTvItemStatus.setText("已退出");
             mTvItemStatus.setVisibility(View.VISIBLE);
             mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_f04844));
+            mTvItemValue.setText(DateUtils.getFormatTime(String.valueOf(subjectsPersonalListBean.getActual_visit_time())));
         } else {
             mIvTypeIcon.setImageResource(R.mipmap.icon_cycle);
             if (subjectsPersonalListBean.getNot_finish_flag() == 1) {
@@ -59,8 +61,6 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
                 mTvItemStatus.setVisibility(View.INVISIBLE);
             }
         }
-        mTvItemValue.setText(DateUtils.getFormatTime(String.valueOf(subjectsPersonalListBean.getTarget_visit_time())));
-
 
     }
 
