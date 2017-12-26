@@ -2,6 +2,7 @@ package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.one.adapter.ResearchEndReasonListAdapter;
+import com.healthmudi.utils.CommonUtils;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
@@ -38,7 +40,7 @@ import java.util.Map;
  * Created by tck on 2017/12/10.
  */
 
-public class ResearchEndVisitActivity extends BaseActivity implements View.OnClickListener {
+public class ResearchEndVisitActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener {
 
 
     private TextView mTvSelectResearchCenter;
@@ -111,16 +113,13 @@ public class ResearchEndVisitActivity extends BaseActivity implements View.OnCli
      */
     public void setEditor(boolean isChecked) {
         if (isChecked) {
-            mReason = mEtOtherReason.getText().toString().trim();
             mEtOtherReason.setFocusableInTouchMode(true);
             mEtOtherReason.setFocusable(true);
             mEtOtherReason.requestFocus();
-            mEtOtherReason.setText(mReason);
         } else {
             mEtOtherReason.setFocusable(false);
             mEtOtherReason.setFocusableInTouchMode(false);
             mEtOtherReason.setText("");
-            mReason = "";
         }
     }
 
@@ -199,6 +198,27 @@ public class ResearchEndVisitActivity extends BaseActivity implements View.OnCli
                 }
             }
         });
+
+        mEtOtherReason.setOnTouchListener(this);
+        mEtRemark.setOnTouchListener(this);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+    //解决EditText和ScrollView的滚动冲突
+        if (v.getId()== R.id.et_other_reason&& CommonUtils.canVerticalScroll(mEtOtherReason)) {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        if (v.getId()== R.id.et_remark&& CommonUtils.canVerticalScroll(mEtRemark)) {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+        }
+        return false;
     }
 
     @Override
@@ -237,17 +257,16 @@ public class ResearchEndVisitActivity extends BaseActivity implements View.OnCli
             }
         }
         if (end_reason == 7) {
-            if (TextUtils.isEmpty(mReason)) {
+            String end_reason_description = mEtOtherReason.getText().toString().trim();
+            if (TextUtils.isEmpty(end_reason_description)) {
                 Toast.makeText(this, "请输入原因", Toast.LENGTH_SHORT).show();
                 return;
+            }else {
+                map.put("end_reason_description", mReason);
             }
         }
         map.put("end_date", end_date);
         map.put("end_reason", String.valueOf(end_reason));
-
-        if (!TextUtils.isEmpty(mReason)) {
-            map.put("end_reason_description", mReason);
-        }
         map.put("remark", remark);
 
         LoadingDialog.getInstance(this).show();
@@ -267,5 +286,4 @@ public class ResearchEndVisitActivity extends BaseActivity implements View.OnCli
             }
         });
     }
-
 }

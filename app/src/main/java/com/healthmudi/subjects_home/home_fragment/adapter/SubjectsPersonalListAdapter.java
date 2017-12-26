@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.base.BasicAdapter;
 import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.utils.DateUtils;
 
 import java.util.List;
 
@@ -48,6 +49,8 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
                 mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_f04844));
             }
         }
+
+        mTvItemValue.setText(DateUtils.getFormatTime(subjectsPersonalListBean.getActual_visit_time()));
 
     }
 

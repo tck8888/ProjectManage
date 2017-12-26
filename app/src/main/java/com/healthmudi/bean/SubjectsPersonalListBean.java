@@ -16,7 +16,7 @@ public class SubjectsPersonalListBean {
     private int target_visit_time;
     private int window_neg;
     private int window_pos;
-    private Object actual_visit_time;
+    private String actual_visit_time;
     private Object not_finish_flag;
     private int visit_type;
     private String remark;
@@ -71,11 +71,11 @@ public class SubjectsPersonalListBean {
         this.window_pos = window_pos;
     }
 
-    public Object getActual_visit_time() {
+    public String getActual_visit_time() {
         return actual_visit_time;
     }
 
-    public void setActual_visit_time(Object actual_visit_time) {
+    public void setActual_visit_time(String actual_visit_time) {
         this.actual_visit_time = actual_visit_time;
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 public class SubjectsListBean {
 
+
     private String site_name;
     private List<SubjectsBean> subjects;
 
@@ -40,9 +41,10 @@ public class SubjectsListBean {
         private int baseline_type;
         private String baseline_date;
         private String arm_code;
-        private Object end_date;
-        private Object remark;
-        private Object end_reason_description;
+        private String end_date;
+        private String remark;
+        private String end_reason;
+        private String end_reason_description;
         private String site_name;
 
         public int getSubject_id() {
@@ -125,27 +127,35 @@ public class SubjectsListBean {
             this.arm_code = arm_code;
         }
 
-        public Object getEnd_date() {
+        public String getEnd_date() {
             return end_date;
         }
 
-        public void setEnd_date(Object end_date) {
+        public void setEnd_date(String end_date) {
             this.end_date = end_date;
         }
 
-        public Object getRemark() {
+        public String getRemark() {
             return remark;
         }
 
-        public void setRemark(Object remark) {
+        public void setRemark(String remark) {
             this.remark = remark;
         }
 
-        public Object getEnd_reason_description() {
+        public String getEnd_reason() {
+            return end_reason;
+        }
+
+        public void setEnd_reason(String end_reason) {
+            this.end_reason = end_reason;
+        }
+
+        public String getEnd_reason_description() {
             return end_reason_description;
         }
 
-        public void setEnd_reason_description(Object end_reason_description) {
+        public void setEnd_reason_description(String end_reason_description) {
             this.end_reason_description = end_reason_description;
         }
 
