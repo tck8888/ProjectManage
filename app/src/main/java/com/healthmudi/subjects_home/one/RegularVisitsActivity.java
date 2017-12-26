@@ -1,24 +1,40 @@
 package com.healthmudi.subjects_home.one;
 
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.google.gson.Gson;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
+import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.bean.SubmitCategoryBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
+import com.healthmudi.net.HttpRequest;
+import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.one.adapter.VisitContentAdapter;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.ListUtil;
+import com.healthmudi.view.IosDialog;
+import com.healthmudi.view.LoadingDialog;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * decription:常规访视
@@ -43,9 +59,15 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
     private AutoListView mAutoListView;
 
     private TimePickerView mTimePickerView;
+    private IosDialog mIosDialog;
 
     private SubjectsListBean.SubjectsBean mSubjectsBean;
     private SubjectsPersonalListBean mSubjectsPersonalListBean;
+
+    private Map<String, String> map = new HashMap<>();
+
+    private String tag = "RegularVisitsActivity";
+
 
     @Override
     public int getLayoutId() {
@@ -58,6 +80,9 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
         try {
             mSubjectsBean = (SubjectsListBean.SubjectsBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_BEAN);
             mSubjectsPersonalListBean = (SubjectsPersonalListBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN);
+            map.put("project_id", String.valueOf(mSubjectsBean.getProject_id()));
+            map.put("subject_id", String.valueOf(mSubjectsBean.getSubject_id()));
+            map.put("subject_visit_id", String.valueOf(mSubjectsPersonalListBean.getSubject_visit_id()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +109,25 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
         initCheckBox();
 
         initTimePick();
+        initDialog();
+    }
+
+    public void initDialog() {
+        mIosDialog = new IosDialog.Builder(this)
+                .setTitle("提示")
+                .setTitleColor(getResources().getColor(R.color.color_464c5b))
+                .setMessage("访试成功")
+                .setPositiveButton("确认", new IosDialog.OnClickListener() {
+                    @Override
+                    public void onClick(IosDialog dialog, View v) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_REGULAR_VISITS_SUCCESS));
+                        finish();
+                        mIosDialog.dismiss();
+                    }
+                })
+                .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
+                .setDialogCanceledOnTouchOutside(true)
+                .build();
     }
 
     private void initCheckBox() {
@@ -154,11 +198,75 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
             case R.id.iv_circular_exclamation_mark:
                 break;
             case R.id.iv_check_mark:
+                submitData();
                 break;
             case R.id.iv_visit_date_black:
                 mTimePickerView.show();
                 break;
         }
+    }
+
+    private void submitData() {
+        String actual_visit_time = mTvActualVisitDate.getText().toString().trim();
+        String remark = mEtRemark.getText().toString().trim();
+        String not_finish_flag = "0";
+        if (mCbIsSame.isChecked()) {
+            not_finish_flag = "1";
+        }
+
+        if (TextUtils.isEmpty(actual_visit_time)) {
+            Toast.makeText(this, "请选择实际访试日期", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        getVisitContent();
+
+        map.put("actual_visit_time", actual_visit_time);
+        map.put("not_finish_flag", not_finish_flag);
+        map.put("visit_content", getVisitContent());
+        map.put("remark", remark);
+        LoadingDialog.getInstance(this).show();
+        HttpRequest.getInstance().post(HttpUrlList.PROJECT_VISIT_SUBMIT_URL, map, tag, new OnServerCallBack() {
+            @Override
+            public void onSuccess(Object result) {
+                LoadingDialog.getInstance(RegularVisitsActivity.this).hidden();
+                mIosDialog.show();
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+                LoadingDialog.getInstance(RegularVisitsActivity.this).hidden();
+                if (!TextUtils.isEmpty(mesage)) {
+                    Toast.makeText(RegularVisitsActivity.this, mesage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private String getVisitContent() {
+        if (mSubjectsPersonalListBean != null
+                && !ListUtil.isEmpty(mSubjectsPersonalListBean.getVisit_content())) {
+            List<SubmitCategoryBean> list = new ArrayList<>();
+            for (int i = 0; i < mSubjectsPersonalListBean.getVisit_content().size(); i++) {
+                SubjectsPersonalListBean.VisitContentBean visitContentBean = mSubjectsPersonalListBean.getVisit_content().get(i);
+                List<String> mStringList = new ArrayList<>();
+                for (int j = 0; j < visitContentBean.getItems().size(); j++) {
+                    SubjectsPersonalListBean.VisitContentBean.ItemsBean itemsBean = visitContentBean.getItems().get(j);
+                    if (itemsBean.isSelected()) {
+                        if (TextUtils.isEmpty(itemsBean.getItem_cn())) {
+                            mStringList.add(itemsBean.getItem_en());
+                        } else {
+                            mStringList.add(itemsBean.getItem_en() + "(" + itemsBean.getItem_cn() + ")");
+                        }
+                    }
+                }
+                if (!mStringList.isEmpty()) {
+                    SubmitCategoryBean submitCategoryBean = new SubmitCategoryBean(visitContentBean.getCategory(), mStringList);
+                    list.add(submitCategoryBean);
+                }
+            }
+            return new Gson().toJson(list);
+        }
+        return "";
     }
 
 }

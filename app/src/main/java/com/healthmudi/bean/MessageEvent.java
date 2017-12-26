@@ -10,6 +10,7 @@ public class MessageEvent<T> {
     public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS = "EntryGroupBasicInformationActivity_SUCCESS";
     public static final String KEY_PLANNED_INTERVIEW_SUCCESS = "PlannedInterviewActivity_SUCCESS";
     public static final String KEY_RESEARCH_END_VISIT_SUCCESS = "ResearchEndVisitActivity_SUCCESS";
+    public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";
     private String tag;
     private T data ;
 

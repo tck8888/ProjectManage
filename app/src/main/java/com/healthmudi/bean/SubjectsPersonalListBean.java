@@ -18,10 +18,10 @@ public class SubjectsPersonalListBean implements Serializable {
     private int window_neg;
     private int window_pos;
     private String actual_visit_time;
-    private Object not_finish_flag;
+    private int not_finish_flag;
     private int visit_type;
     private String remark;
-    private Object actual_visit_content;
+    private String actual_visit_content;
     private List<VisitContentBean> visit_content;
 
     public int getSubject_visit_id() {
@@ -80,11 +80,11 @@ public class SubjectsPersonalListBean implements Serializable {
         this.actual_visit_time = actual_visit_time;
     }
 
-    public Object getNot_finish_flag() {
+    public int getNot_finish_flag() {
         return not_finish_flag;
     }
 
-    public void setNot_finish_flag(Object not_finish_flag) {
+    public void setNot_finish_flag(int not_finish_flag) {
         this.not_finish_flag = not_finish_flag;
     }
 
@@ -104,11 +104,11 @@ public class SubjectsPersonalListBean implements Serializable {
         this.remark = remark;
     }
 
-    public Object getActual_visit_content() {
+    public String getActual_visit_content() {
         return actual_visit_content;
     }
 
-    public void setActual_visit_content(Object actual_visit_content) {
+    public void setActual_visit_content(String actual_visit_content) {
         this.actual_visit_content = actual_visit_content;
     }
 

@@ -18,5 +18,6 @@ public interface HttpUrlList {
     String PROJECT_VISIT_LIST_URL = "project/subject/visit/list";//受试者入组列表
     String PROJECT_VISIT_OUTPLAN_URL = "project/subject/visit/outplan";//受试者计划外访
     String PROJECT_VISIT_END_URL = "project/subject/visit/end";//研究结束信息
+    String PROJECT_VISIT_SUBMIT_URL = "project/subject/visit/submit";//受试者访视提交
 
 }
