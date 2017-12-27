@@ -56,7 +56,7 @@ public class SubjectsPersonalListAdapter extends BasicAdapter<SubjectsPersonalLi
             } else if (!TextUtils.isEmpty(subjectsPersonalListBean.getActual_visit_time()) && subjectsPersonalListBean.getNot_finish_flag() == 0) {
                 mTvItemStatus.setText("已完成");
                 mTvItemStatus.setVisibility(View.VISIBLE);
-                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
+                mTvItemStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
             } else {
                 mTvItemStatus.setVisibility(View.INVISIBLE);
             }

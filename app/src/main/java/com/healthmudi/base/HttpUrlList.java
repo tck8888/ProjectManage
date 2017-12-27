@@ -25,5 +25,6 @@ public interface HttpUrlList {
 
 
     String PROJECT_JOB_SITE_APPROVE_URL = "project/job/site_approve";//项目-工时-机构立项
+    String PROJECT_JOB_LIST_URL = "project/job/list";//项目-工时列表
 
 }

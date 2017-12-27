@@ -37,7 +37,7 @@ public class ReportFormListAdapter extends BasicAdapter<ReportFormListBean> {
         switch (reportFormListBean.getType()) {
             case "0":
                 mTvWorkSatus.setText("已提交");
-                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_2bc8a0));
+                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
                 break;
             case "1":
                 mTvWorkSatus.setText("未提交");

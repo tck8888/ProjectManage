@@ -8,41 +8,49 @@ import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
+import com.healthmudi.base.Constant;
+import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.WorkingHoursListBean;
-import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
+import com.healthmudi.entity.HttpResult;
+import com.healthmudi.net.HttpRequest;
+import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
+import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
+import com.healthmudi.utils.ListUtil;
+import com.healthmudi.view.EmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * decription:工时
  * Created by tck on 2017/12/9.
  */
 
-public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickListener {
+public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickListener, OnRefreshListener {
 
-    private SmartRefreshLayout mSmartRefresh;
+    private String mProject_id;
+    private SmartRefreshLayout mRefreshLayout;
+    private EmptyView mEmptyLayout;
     private ListView mListView;
 
     private List<WorkingHoursListBean> mWorkingHoursListBeanList = new ArrayList<>();
     private WorkingHoursListAdapter mAdapter;
 
-    public static WorkingHoursFragment newInstance() {
+    private Map<String, String> map = new HashMap<>();
+    private String tag = "WorkingHoursFragment";
+
+    public static WorkingHoursFragment newInstance(String project_id) {
         WorkingHoursFragment workingHoursFragment = new WorkingHoursFragment();
-
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.KEY_PROJECT_ID, project_id);
+        workingHoursFragment.setArguments(bundle);
         return workingHoursFragment;
-    }
-
-    {
-        for (int i = 0; i < 5; i++) {
-            if (i % 2 == 0) {
-                mWorkingHoursListBeanList.add(new WorkingHoursListBean("", "", "", 0));
-            } else {
-                mWorkingHoursListBeanList.add(new WorkingHoursListBean("", "", "", 1));
-            }
-        }
     }
 
     @Override
@@ -52,13 +60,18 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-
+        mProject_id = arguments.getString(Constant.KEY_PROJECT_ID);
+        map.put("project_id", mProject_id);
     }
 
     @Override
     protected void initView(@Nullable View view) {
-        mSmartRefresh = (SmartRefreshLayout) view.findViewById(R.id.smart_refresh);
+
+
+        mRefreshLayout = (SmartRefreshLayout) view.findViewById(R.id.refreshLayout);
+        mEmptyLayout = (EmptyView) view.findViewById(R.id.empty_layout);
         mListView = (ListView) view.findViewById(R.id.list_view);
+
         mAdapter = new WorkingHoursListAdapter(getContext(), mWorkingHoursListBeanList);
         mListView.setAdapter(mAdapter);
     }
@@ -68,6 +81,42 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
         super.setListener(view);
         view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
         view.findViewById(R.id.iv_add_subjects).setOnClickListener(this);
+        mRefreshLayout.autoRefresh();
+        mRefreshLayout.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onRefresh(RefreshLayout refreshlayout) {
+        getData();
+    }
+
+    private void getData() {
+        HttpRequest.getInstance().get(HttpUrlList.PROJECT_JOB_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkingHoursListBean>>, List<WorkingHoursListBean>>() {
+            @Override
+            public void onSuccess(List<WorkingHoursListBean> result) {
+                if (!ListUtil.isEmpty(mWorkingHoursListBeanList)) {
+                    mWorkingHoursListBeanList.clear();
+                }
+                mWorkingHoursListBeanList.addAll(result);
+                if (ListUtil.isEmpty(mWorkingHoursListBeanList)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mAdapter.notifyDataSetChanged();
+                mRefreshLayout.finishRefresh();
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+                if (ListUtil.isEmpty(mWorkingHoursListBeanList)) {
+                    mEmptyLayout.showEmptyView();
+                } else {
+                    mEmptyLayout.showContentView();
+                }
+                mRefreshLayout.finishRefresh();
+            }
+        });
     }
 
     @Override
@@ -75,10 +124,12 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
                 getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
                 break;
             case R.id.iv_add_subjects:
                 Intent intent = new Intent(getContext(), WorkTimeSubmissionActivtiy.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
         }
     }

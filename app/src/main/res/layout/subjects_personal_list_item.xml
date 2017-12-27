@@ -47,7 +47,7 @@
             android:layout_height="22dp"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="50dp"
-            android:background="@drawable/shape_corner_11dp_solid_2bc8a0"
+            android:background="@drawable/shape_corner_11dp_solid_1abc9c"
             android:gravity="center"
             android:paddingLeft="11dp"
             android:paddingRight="11dp"

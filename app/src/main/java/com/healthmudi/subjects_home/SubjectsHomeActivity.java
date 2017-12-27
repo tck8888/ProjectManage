@@ -55,7 +55,7 @@ public class SubjectsHomeActivity extends BaseActivity {
         mFragments.add(SubjectsFragment.newInstance(mProjectListBean));
         mFragments.add(FileFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
         mFragments.add(SignFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
-        mFragments.add(WorkingHoursFragment.newInstance());
+        mFragments.add(WorkingHoursFragment.newInstance(String.valueOf(mProjectListBean.getProject_id())));
 
         mTitles = getResources().getStringArray(R.array.subject_home_titles);
         for (int i = 0; i < mTitles.length; i++) {
