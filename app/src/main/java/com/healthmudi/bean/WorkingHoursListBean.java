@@ -17,7 +17,7 @@ public class WorkingHoursListBean {
     private Object doc_receive_date;
     private Object pi_submit_date;
     private Object pi_sign_date;
-    private int site_submit_date;
+    private long site_submit_date;
     private Object site_approve_date;
     private Object ec_submit_date;
     private Object ec_approve_date;
@@ -117,11 +117,11 @@ public class WorkingHoursListBean {
         this.pi_sign_date = pi_sign_date;
     }
 
-    public int getSite_submit_date() {
+    public long getSite_submit_date() {
         return site_submit_date;
     }
 
-    public void setSite_submit_date(int site_submit_date) {
+    public void setSite_submit_date(long site_submit_date) {
         this.site_submit_date = site_submit_date;
     }
 

@@ -76,4 +76,13 @@
         <item>材料已递交，待审批</item>
         <item>机构立项审批已完成</item>
     </string-array>
+    <string-array name="ec_submit_array">
+        <item>已递交至PI,等待PI签字中</item>
+        <item>PI已完成签字，待递交至EC</item>
+        <item>已递交至EC，待审批</item>
+        <item>EC已审批</item>
+    </string-array> <string-array name="documents_name_array">
+        <item>药检报告</item>
+        <item>研究者手册</item>
+    </string-array>
 </resources>

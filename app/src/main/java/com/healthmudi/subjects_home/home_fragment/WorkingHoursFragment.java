@@ -67,7 +67,6 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
     @Override
     protected void initView(@Nullable View view) {
 
-
         mRefreshLayout = (SmartRefreshLayout) view.findViewById(R.id.refreshLayout);
         mEmptyLayout = (EmptyView) view.findViewById(R.id.empty_layout);
         mListView = (ListView) view.findViewById(R.id.list_view);

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.base.BasicAdapter;
 import com.healthmudi.bean.WorkingHoursListBean;
+import com.healthmudi.utils.DateUtils;
+import com.healthmudi.utils.StringConvertCodeEachUtils;
 
 import java.util.List;
 
@@ -30,11 +32,17 @@ public class WorkingHoursListAdapter extends BasicAdapter<WorkingHoursListBean> 
         TextView mTvSubjectsCause = get(convertView, R.id.tv_subjects_cause);
         TextView mTvUesedTime = get(convertView, R.id.tv_uesed_time);
         TextView mTvWorkSatus = get(convertView, R.id.tv_work_satus);
+
         WorkingHoursListBean workingHoursListBean = mDataList.get(position);
-        if (workingHoursListBean.getIs_finish()==0){
+
+        mTvWorkTime.setText(DateUtils.getFormatTime1(workingHoursListBean.getSite_submit_date()));
+        mTvWorkContent.setText(StringConvertCodeEachUtils.getWorkContent(workingHoursListBean.getJob_type_id()));
+        mTvSubjectsCause.setText(workingHoursListBean.getStatus());
+        mTvUesedTime.setText("用时:" + workingHoursListBean.getJob_time());
+        if (workingHoursListBean.getIs_finish() == 0) {
             mTvWorkSatus.setText("未完成");
             mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
-        }else {
+        } else {
             mTvWorkSatus.setText("已完成");
             mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
         }

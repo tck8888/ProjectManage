@@ -13,10 +13,10 @@
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/arrow_left_black"
             />
 
@@ -31,10 +31,10 @@
 
         <ImageView
             android:id="@+id/iv_check_mark"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_vertical|right"
-            android:padding="10dp"
+            android:padding="15dp"
             android:src="@mipmap/icon_check_mark"/>
 
         <View
@@ -65,8 +65,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -79,11 +80,11 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_project_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:ellipsize="end"
                         android:gravity="right"
                         android:maxLines="1"
@@ -99,9 +100,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -114,14 +117,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_center_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择中心名称"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -141,9 +145,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_doc_receive_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -156,15 +162,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tv_doc_receive_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择接受文件日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -184,9 +190,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_pi_submit_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -199,14 +207,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_pi_submit_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择递交PI日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -227,9 +236,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_pi_sign_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -242,14 +253,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_pi_sign_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择PI签字日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -270,9 +282,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_ec_submit_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -285,14 +299,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_ec_submit_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择递交EC日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -313,9 +328,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_ec_approve_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -328,14 +345,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_ec_approve_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择获取批件日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -355,9 +373,11 @@
                     android:layout_height="10dp"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_documents_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -370,36 +390,55 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_documents_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择中心名称"
+                        android:hint="请选择递交材料名称"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center_vertical"
-                        android:padding="10dp"
+                        android:padding="15dp"
                         android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_e4e4e4"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
                     android:gravity="center_vertical"
+                    android:minHeight="50dp"
                     android:paddingLeft="10dp"
                     android:text="伦理递交当前进度"
-                    android:textColor="@color/color_657180"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_e4e4e4"/>
+
+                <com.healthmudi.commonlibrary.widget.AutoListView
+                    android:id="@+id/auto_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_f8f8f8"
+                    android:divider="@color/color_e4e4e4"
+                    android:dividerHeight="0.5dp"
+                    android:paddingLeft="28dp"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -407,11 +446,12 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_job_time"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -422,17 +462,26 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_job_time"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
+                        android:hint="请选择用时"
                         android:maxLines="1"
-                        android:text="2.5"
                         android:textColor="@color/color_464c5b"
+                        android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <View
@@ -441,11 +490,12 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_job_time2"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -456,17 +506,26 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_job_time2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
+                        android:hint="请选择用时"
                         android:maxLines="1"
-                        android:text="2.5"
                         android:textColor="@color/color_464c5b"
+                        android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
@@ -474,11 +533,13 @@
                     android:layout_height="10dp"/>
 
                 <EditText
+                    android:id="@+id/et_remark"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
                     android:gravity="top"
                     android:hint="请输入备注信息"
+                    android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"
                     android:textColorHint="@color/color_cccccc"
