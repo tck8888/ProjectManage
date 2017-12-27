@@ -51,7 +51,9 @@ public abstract class BaseFragment1 extends Fragment {
     public void setListener(@Nullable View view) {
 
     }
+
     public void setViewData() {
 
     }
+
 }

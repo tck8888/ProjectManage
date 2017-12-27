@@ -26,6 +26,7 @@ import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.utils.CommonUtils;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.ListUtil;
+import com.healthmudi.utils.StringConvertCodeEachUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
 import com.lzy.okgo.OkGo;
@@ -230,7 +231,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                 submitData();
                 break;
             case R.id.ll_select_research_center:
-                if (mArmBeanList.isEmpty()) {
+                if (mSiteBeanList.isEmpty()) {
                     Toast.makeText(this, "暂无研究中心", Toast.LENGTH_SHORT).show();
                 } else {
                     mOptionsPickerView.setPicker(mSiteBeanList);
@@ -320,7 +321,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         map.put("subject_code", subject_code);
         map.put("name_py", name_py);
         map.put("mobile", mobile);
-        map.put("baseline_type", getString(baseline_type));
+        map.put("baseline_type", StringConvertCodeEachUtils.getString(baseline_type));
         map.put("baseline_date", baseline_date);
         map.put("arm_code", mArm_code);
         map.put("remark", remark);
@@ -342,24 +343,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         });
     }
 
-    public String getString(String type) {
-        String str = "";
-        switch (type) {
-            case "上次实际访视日期":
-                str = "1";
-                break;
-            case "知情同意书签署日期":
-                str = "2";
-                break;
-            case "随机分组日期":
-                str = "3";
-                break;
-            case "首次服药日期":
-                str = "4";
-                break;
-        }
-        return str;
-    }
 
     public void initTimePick() {
         mTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {

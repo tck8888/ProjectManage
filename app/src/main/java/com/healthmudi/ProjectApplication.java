@@ -7,6 +7,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -22,12 +23,15 @@ public class ProjectApplication extends Application {
 
     public static Context mContext;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         okgoInit();
         mContext = this;
+
+        Hawk.init(this).build();
     }
 
     private void okgoInit() {
@@ -46,4 +50,5 @@ public class ProjectApplication extends Application {
                 .setCacheMode(CacheMode.NO_CACHE)
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE);
     }
+
 }

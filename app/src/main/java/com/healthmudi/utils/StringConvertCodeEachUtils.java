@@ -27,4 +27,25 @@ public class StringConvertCodeEachUtils {
         }
         return str;
     }
+
+
+    public static String getString(@Nullable String type) {
+        String str = "";
+        switch (type) {
+            case "上次实际访视日期":
+                str = "1";
+                break;
+            case "知情同意书签署日期":
+                str = "2";
+                break;
+            case "随机分组日期":
+                str = "3";
+                break;
+            case "首次服药日期":
+                str = "4";
+                break;
+        }
+        return str;
+    }
+
 }

@@ -101,6 +101,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
@@ -125,7 +126,7 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择中心名称"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -248,13 +249,27 @@
                     android:layout_height="0.5dp"
                     android:background="@color/color_e4e4e4"/>
 
+                <com.healthmudi.commonlibrary.widget.AutoListView
+                    android:id="@+id/auto_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_f8f8f8"
+                    android:divider="@color/color_e4e4e4"
+                    android:dividerHeight="0.5dp"
+                    android:paddingLeft="28dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/color_e4e4e4"/>
+
                 <LinearLayout
+                    android:id="@+id/ll_work_hour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:minHeight="50dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -265,17 +280,26 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_work_hour"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
+                        android:hint="请选择完成任务用时"
                         android:maxLines="1"
-                        android:text="2.5"
                         android:textColor="@color/color_464c5b"
+                        android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space

@@ -42,4 +42,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.1.1'
 
     compile 'com.hyman:flowlayout-lib:1.1.2'
+    compile 'com.orhanobut:hawk:2.0.1'
 }

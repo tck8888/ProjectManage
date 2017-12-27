@@ -52,4 +52,28 @@
         <item>严重违反试验方案</item>
         <item>其它原因</item>
     </string-array>
+
+    <string-array name="work_hour_array">
+        <item>0.5</item>
+        <item>1</item>
+        <item>1.5</item>
+        <item>2</item>
+        <item>2.5</item>
+        <item>3</item>
+        <item>3.5</item>
+        <item>4</item>
+        <item>4.5</item>
+        <item>5</item>
+        <item>5.5</item>
+        <item>6</item>
+        <item>6.5</item>
+        <item>7</item>
+        <item>7.5</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="site_approve_array">
+        <item>材料已递交，待审批</item>
+        <item>机构立项审批已完成</item>
+    </string-array>
 </resources>

@@ -21,6 +21,7 @@ import com.healthmudi.subjects_home.SubjectsHomeActivity;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.lzy.okgo.OkGo;
+import com.orhanobut.hawk.Hawk;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -85,9 +86,10 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), SubjectsHomeActivity.class);
-                intent.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBeen.get(position - 1));
-                startActivity(intent);
+                ProjectListBean projectListBean = mProjectListBeen.get(position - 1);
+                //保存数据
+                Hawk.put(Constant.KEY_PROJECT_LIST_BEAN, projectListBean);
+                openActivity(SubjectsHomeActivity.class, projectListBean);
             }
         });
         mRefreshLayout.setOnRefreshListener(this);
@@ -98,10 +100,22 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_my_project_center:
-                startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
+                openActivity(ExitProjectManagerActivity.class, null);
                 break;
         }
     }
+
+    public void openActivity(Class clazz, ProjectListBean projectListBean) {
+        if (clazz != null) {
+            Intent intent = new Intent(getContext(), clazz);
+            if (projectListBean != null) {
+                intent.putExtra(Constant.KEY_PROJECT_LIST_BEAN, projectListBean);
+            }
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        }
+    }
+
 
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
