@@ -24,8 +24,9 @@ public interface HttpUrlList {
     String PROJECT_SUBJECT_SEARCH_URL = "project/subject/search";//项目-受试者搜索
 
 
+    String PROJECT_JOB_LIST_URL = "project/job/list";//项目-工时列表
     String PROJECT_JOB_SITE_APPROVE_URL = "project/job/site_approve";//项目-工时-机构立项
     String PROJECT_JOB_EC_SUBMIT_URL = "project/job/ec_submit";//项目-工时-伦理递交
-    String PROJECT_JOB_LIST_URL = "project/job/list";//项目-工时列表
+    String PROJECT_JOB_CONT_FOLLOW_URL = "project/job/cont_follow";//项目-工时-合同跟进
 
 }

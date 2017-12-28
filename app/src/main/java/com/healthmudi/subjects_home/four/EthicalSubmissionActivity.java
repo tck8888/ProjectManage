@@ -305,6 +305,11 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         if (checkData(doc_receive_date, pi_submit_date, pi_sign_date, ec_submit_date, ec_approve_date, documents_name, job_time, job_time2))
             return;
 
+        if (TextUtils.isEmpty(getStatus())) {
+            Toast.makeText(this, "请选择伦理递交进度", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         map.put("site_id", site_id);
         map.put("doc_receive_date", doc_receive_date);
         map.put("pi_submit_date", pi_submit_date);

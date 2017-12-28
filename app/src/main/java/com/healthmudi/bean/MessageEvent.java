@@ -13,6 +13,7 @@ public class MessageEvent<T> {
     public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";
     public static final String KEY_INSTITUTION_ESTABLISHMENT_SUCCESS = "InstitutionEstablishmentActivity_SUCCESS";
     public static final String KEY_ETHICAL_SUBMISSION_SUCCESS = "EthicalSubmissionActivity_SUCCESS";
+    public static final String KEY_CONTRACT_FOLLOW_UP_SUCCESS = "ContractFollowUpActivity_SUCCESS";
     private String tag;
     private T data ;
 

@@ -82,8 +82,23 @@ public class StringConvertCodeEachUtils {
                 str = "其它工作";
                 break;
         }
-
         return str;
+    }
+
+
+    public static String getWorkConetntStatus(@Nullable String workConetnt) {
+        switch (workConetnt) {
+            case "材料已递交，待审批":
+            case "已递交至PI,等待PI签字中":
+            case "PI已完成签字，待递交至EC":
+            case "已递交至EC，待审批":
+                return "未完成";
+            case "机构立项审批已完成":
+            case "EC已审批":
+                return "已完成";
+            default:
+                return "未完成";
+        }
     }
 
 }

@@ -35,15 +35,15 @@ public class WorkingHoursListAdapter extends BasicAdapter<WorkingHoursListBean> 
 
         WorkingHoursListBean workingHoursListBean = mDataList.get(position);
 
-        mTvWorkTime.setText(DateUtils.getFormatTime1(workingHoursListBean.getSite_submit_date()));
+        mTvWorkTime.setText(DateUtils.getFormatTime1(workingHoursListBean.getCreate_time()));
         mTvWorkContent.setText(StringConvertCodeEachUtils.getWorkContent(workingHoursListBean.getJob_type_id()));
         mTvSubjectsCause.setText(workingHoursListBean.getStatus());
         mTvUesedTime.setText("用时:" + workingHoursListBean.getJob_time());
-        if (workingHoursListBean.getIs_finish() == 0) {
-            mTvWorkSatus.setText("未完成");
+        String status = StringConvertCodeEachUtils.getWorkConetntStatus(workingHoursListBean.getStatus());
+        mTvWorkSatus.setText(status);
+        if (status.equals("未完成")) {
             mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
         } else {
-            mTvWorkSatus.setText("已完成");
             mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
         }
 

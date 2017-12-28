@@ -24,7 +24,7 @@ public class WorkingHoursListBean {
     private Object sponsor_sign_date;
     private Object site_sign_date;
     private Object kick_off_date;
-    private String status;
+    private String status="";
     private Object prescreen_count;
     private Object meet_count;
     private Object crf_pages;
@@ -33,7 +33,7 @@ public class WorkingHoursListBean {
     private Object job_time2;
     private String remark;
     private int isdeleted;
-    private int create_time;
+    private long create_time;
     private Object documents_name;
     private int is_finish;
 
@@ -245,11 +245,11 @@ public class WorkingHoursListBean {
         this.isdeleted = isdeleted;
     }
 
-    public int getCreate_time() {
+    public long getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(int create_time) {
+    public void setCreate_time(long create_time) {
         this.create_time = create_time;
     }
 

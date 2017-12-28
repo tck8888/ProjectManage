@@ -2,6 +2,7 @@ package com.healthmudi.net;
 
 import com.google.gson.Gson;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.utils.GsonUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -43,7 +44,7 @@ public class HttpRequest {
             return;
         }
         if (mGson == null) {
-            mGson = new Gson();
+            mGson = GsonUtils.buildGson();
         }
 
         TreeMap<String, String> map = operateParameter(parameter);
@@ -103,7 +104,7 @@ public class HttpRequest {
             return;
         }
         if (mGson == null) {
-            mGson = new Gson();
+            mGson = GsonUtils.buildGson();
         }
 
         TreeMap<String, String> map = operateParameter(parameter);
