@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.Constant;
 import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkTimeSubmissionItemListAdapter;
 
@@ -110,6 +111,7 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
         }
         if (clazz != null) {
             Intent intent = new Intent(this, clazz);
+            intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN,workTimeSubmissionItemListBean);
             startActivity(intent);
         }
     }

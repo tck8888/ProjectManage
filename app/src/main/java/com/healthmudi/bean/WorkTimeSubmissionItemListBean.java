@@ -1,11 +1,13 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
+
 /**
  * decription:
  * Created by tck on 2017/12/11.
  */
 
-public class WorkTimeSubmissionItemListBean {
+public class WorkTimeSubmissionItemListBean implements Serializable {
 
     private int id;
     private String name;

@@ -15,6 +15,7 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -43,7 +44,7 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
     private TextView mTvProjectName;
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
-    private EditText mEtJobTypeName;
+
     private EditText mEtJobCount;
     private TextView mTvJobTime;
     private EditText mEtRemark;
@@ -62,6 +63,7 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
     private String site_id = "";
 
     private String tag = "ServerConfActivity";
+    private WorkTimeSubmissionItemListBean mWorkTimeSubmissionItemListBean;
 
     @Override
     public int getLayoutId() {
@@ -71,13 +73,13 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
     @Override
     public void initData() {
         super.initData();
-
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
             map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
             mSiteBeanList.addAll(mProjectListBean.getSite());
+            mWorkTimeSubmissionItemListBean = (WorkTimeSubmissionItemListBean) getIntent().getSerializableExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN);
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -91,7 +93,6 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
         mTvProjectName = (TextView) findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) findViewById(R.id.tv_operation_date);
-        mEtJobTypeName = (EditText) findViewById(R.id.et_job_type_name);
         mEtJobCount = (EditText) findViewById(R.id.et_job_count);
         mTvJobTime = (TextView) findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) findViewById(R.id.et_remark);
@@ -224,6 +225,7 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
         if (checkData(operation_date, job_count, job_time)) return;
         map.put("site_id", site_id);
         map.put("job_count", job_count);
+        map.put("job_type_name", mWorkTimeSubmissionItemListBean.getName());
         map.put("operation_date", operation_date);
         map.put("job_time", job_time);
         map.put("remark", remark);
