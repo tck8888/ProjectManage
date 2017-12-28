@@ -42,10 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.healthmudi.view.EmptyView
-            android:id="@+id/empty_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -55,6 +52,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_head_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dimen_15dp"
+                        android:text="选择工作项目(单选)"
+                        android:textColor="@color/color_657180"
+                        android:textSize="15sp"/>
 
                     <com.healthmudi.commonlibrary.widget.AutoListView
                         android:id="@+id/normal_work_list_view"
@@ -90,7 +97,6 @@
                         android:layout_height="40dp"/>
                 </LinearLayout>
             </ScrollView>
-        </com.healthmudi.view.EmptyView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

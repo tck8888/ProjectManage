@@ -203,7 +203,6 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                 } else {
                     mEmptyLayout.showContentView();
                 }
-                mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();
             }
         });

@@ -225,7 +225,7 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
         if (checkData(operation_date, job_count, job_time)) return;
         map.put("site_id", site_id);
         map.put("job_count", job_count);
-        map.put("job_type_name", mWorkTimeSubmissionItemListBean.getName());
+        map.put("job_type_name", mWorkTimeSubmissionItemListBean.getJob_type_name());
         map.put("operation_date", operation_date);
         map.put("job_time", job_time);
         map.put("remark", remark);

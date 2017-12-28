@@ -29,20 +29,8 @@ public class WorkTimeSubmissionItemListAdapter extends BasicAdapter<WorkTimeSubm
         View space = get(convertView, R.id.space);
 
         WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean = mDataList.get(position);
-        if (workTimeSubmissionItemListBean.isCheck()) {
-            mIvIsChecked.setVisibility(View.VISIBLE);
-        } else {
-            mIvIsChecked.setVisibility(View.INVISIBLE);
-        }
 
-
-        if (workTimeSubmissionItemListBean.getType().equals("other")||workTimeSubmissionItemListBean.getType().equals("special")) {
-            space.setVisibility(View.VISIBLE);
-        } else {
-            space.setVisibility(View.GONE);
-        }
-
-        mTvJobContent.setText(workTimeSubmissionItemListBean.getName());
+        mTvJobContent.setText(workTimeSubmissionItemListBean.getJob_type_name());
     }
 
     @Override

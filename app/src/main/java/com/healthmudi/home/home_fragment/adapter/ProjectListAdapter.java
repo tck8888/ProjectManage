@@ -30,11 +30,6 @@ public class ProjectListAdapter extends BasicAdapter<ProjectListBean> {
             String project_name = projectListBean.getProject_name();
             mTvItemValue.setText(project_name);
         }
-        if (position % 2 == 0) {
-            mItemDivider.setVisibility(View.VISIBLE);
-        } else {
-            mItemDivider.setVisibility(View.GONE);
-        }
     }
 
     @Override
