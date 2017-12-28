@@ -37,6 +37,60 @@
     </FrameLayout>
 
 
-    <include layout="@layout/common_refresh_layout"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.healthmudi.view.EmptyView
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.healthmudi.commonlibrary.widget.AutoListView
+                        android:id="@+id/normal_work_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/color_e4e4e4"
+                        android:dividerHeight="0.5dp"/>
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+
+                    <com.healthmudi.commonlibrary.widget.AutoListView
+                        android:id="@+id/special_work_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/color_e4e4e4"
+                        android:dividerHeight="0.5dp"/>
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+
+                    <com.healthmudi.commonlibrary.widget.AutoListView
+                        android:id="@+id/other_work_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@color/color_e4e4e4"
+                        android:dividerHeight="0.5dp"/>
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"/>
+                </LinearLayout>
+            </ScrollView>
+        </com.healthmudi.view.EmptyView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

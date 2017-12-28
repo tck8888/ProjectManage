@@ -2,14 +2,15 @@ package com.healthmudi.subjects_home.four;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
+import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkTimeSubmissionItemListAdapter;
+import com.healthmudi.view.EmptyView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,11 @@ import java.util.List;
 
 public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnClickListener {
 
-    private ListView mListView;
+    private SmartRefreshLayout mRefreshLayout;
+    private EmptyView mEmptyLayout;
+    private AutoListView mNormalWorkListView;
+    private AutoListView mSpecialWorkListView;
+    private AutoListView mOtherWorkListView;
 
     private List<WorkTimeSubmissionItemListBean> mWorkTimeSubmissionItemListBeen = new ArrayList<>();
     private WorkTimeSubmissionItemListAdapter mWorkTimeSubmissionItemListAdapter;
@@ -36,27 +41,24 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
     @Override
     public void initData() {
         super.initData();
-        String[] stringArray = getResources().getStringArray(R.array.worktime_submission_list);
 
-        for (int i = 0; i < stringArray.length; i++) {
-            if (stringArray[i].contains("后台配置特殊工作")) {
-                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "special"));
-            } else if (stringArray[i].contains("其它工作")) {
-                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "other"));
-            } else {
-                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "normal"));
-            }
-        }
+
     }
 
     @Override
     public void initView() {
         super.initView();
-        mListView = (ListView) findViewById(R.id.list_view);
+
+        mRefreshLayout = (SmartRefreshLayout) findViewById(R.id.refreshLayout);
+        mEmptyLayout = (EmptyView) findViewById(R.id.empty_layout);
+        mNormalWorkListView = (AutoListView) findViewById(R.id.normal_work_list_view);
+        mSpecialWorkListView = (AutoListView) findViewById(R.id.special_work_list_view);
+        mOtherWorkListView = (AutoListView) findViewById(R.id.other_work_list_view);
+
         View headView = View.inflate(this, R.layout.head_view_layout2, null);
-        mListView.addHeaderView(headView);
+
         mWorkTimeSubmissionItemListAdapter = new WorkTimeSubmissionItemListAdapter(this, mWorkTimeSubmissionItemListBeen);
-        mListView.setAdapter(mWorkTimeSubmissionItemListAdapter);
+
 
     }
 
@@ -66,18 +68,11 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
         findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
 
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean = mWorkTimeSubmissionItemListBeen.get(position - 1);
-                openActivity(workTimeSubmissionItemListBean);
-            }
-        });
     }
 
     private void openActivity(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
         Class clazz = null;
-        switch (workTimeSubmissionItemListBean.getId()) {
+        switch (workTimeSubmissionItemListBean.getJob_type_id()) {
             case 1:
                 clazz = InstitutionEstablishmentActivity.class;
                 break;
@@ -103,15 +98,15 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
                 clazz = EDCFillInActivity.class;
                 break;
             case 9:
-                clazz = OtherWorkActivity.class;
+                clazz = ServerConfActivity.class;
                 break;
             case 10:
-                clazz = ServerConfActivity.class;
+                clazz = OtherWorkActivity.class;
                 break;
         }
         if (clazz != null) {
             Intent intent = new Intent(this, clazz);
-            intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN,workTimeSubmissionItemListBean);
+            intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
             startActivity(intent);
         }
     }

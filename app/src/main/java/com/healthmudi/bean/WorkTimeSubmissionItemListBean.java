@@ -9,49 +9,22 @@ import java.io.Serializable;
 
 public class WorkTimeSubmissionItemListBean implements Serializable {
 
-    private int id;
-    private String name;
-    private String type;
-    private boolean isCheck = false;
+    private int job_type_id;
+    private String job_type_name;
 
-    public WorkTimeSubmissionItemListBean() {
+    public int getJob_type_id() {
+        return job_type_id;
     }
 
-    public WorkTimeSubmissionItemListBean(int id, String name, String type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
+    public void setJob_type_id(int job_type_id) {
+        this.job_type_id = job_type_id;
     }
 
-    public int getId() {
-        return id;
+    public String getJob_type_name() {
+        return job_type_name;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public boolean isCheck() {
-        return isCheck;
-    }
-
-    public void setCheck(boolean check) {
-        isCheck = check;
+    public void setJob_type_name(String job_type_name) {
+        this.job_type_name = job_type_name;
     }
 }

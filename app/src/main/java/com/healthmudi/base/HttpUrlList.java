@@ -35,5 +35,6 @@ public interface HttpUrlList {
     String PROJECT_JOB_EDC_FILL_URL = "project/job/edc_fill";//项目-工时-EDC填写
     String PROJECT_JOB_SERVER_CONF_URL = "project/job/server_conf";//项目-工时-后台配置特殊工作
     String PROJECT_JOB_OTHER_WORK_URL = "project/job/other_work";//项目-工时-其它工作
+    String PROJECT_JOB_ITEMS_URL = "project/job/items";//项目-工时工作项目
 
 }
