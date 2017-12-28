@@ -19,6 +19,7 @@ import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.subjects_home.four.dialog.SelectSubjectDilaog;
 import com.healthmudi.subjects_home.one.EntryGroupBasicInformationActivity;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
@@ -52,6 +53,7 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
     private TimePickerView mTimePickerView;
     private OptionsPickerView mOptionsPickerView;
     private IosDialog mIosDialog;
+    private SelectSubjectDilaog mSelectSubjectDilaog;
 
     private Map<String, String> map = new HashMap<>();
 
@@ -63,7 +65,6 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
     private String site_id = "";
     private String subjects_id = "";
     private String tag = "SaeReportActivity";
-    private SelectSubjectDilaog mSelectSubjectDilaog;
 
     @Override
     public int getLayoutId() {

@@ -30,5 +30,6 @@ public interface HttpUrlList {
     String PROJECT_JOB_CONT_FOLLOW_URL = "project/job/cont_follow";//项目-工时-合同跟进
     String PROJECT_JOB_KICK_OFF_URL = "project/job/kick_off";//项目-工时-项目启动会
     String PROJECT_JOB_SAE_REP_URL = "project/job/sae_rep";//项目-工时-SAE上报
+    String PROJECT_JOB_SUBJECT_FILTER_URL = "project/job/subject_filter";//项目-工时-受试者预筛
 
 }

@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.four;
+package com.healthmudi.subjects_home.four.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -7,15 +7,7 @@ package com.healthmudi.bean;
 
 public class MessageEvent<T> {
 
-    public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS = "EntryGroupBasicInformationActivity_SUCCESS";
-    public static final String KEY_PLANNED_INTERVIEW_SUCCESS = "PlannedInterviewActivity_SUCCESS";
-    public static final String KEY_RESEARCH_END_VISIT_SUCCESS = "ResearchEndVisitActivity_SUCCESS";
-    public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";
-    public static final String KEY_INSTITUTION_ESTABLISHMENT_SUCCESS = "InstitutionEstablishmentActivity_SUCCESS";
-    public static final String KEY_ETHICAL_SUBMISSION_SUCCESS = "EthicalSubmissionActivity_SUCCESS";
-    public static final String KEY_CONTRACT_FOLLOW_UP_SUCCESS = "ContractFollowUpActivity_SUCCESS";
-    public static final String KEY_PROJECT_START_MEETING_SUCCESS = "ProjectStartMeetingActivity_SUCCESS";
-    public static final String KEY_SAE_REPORT_SUCCESS = "SaeReportActivity_SUCCESS";
+
     private String tag;
     private T data ;
 
@@ -46,4 +38,15 @@ public class MessageEvent<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS = "EntryGroupBasicInformationActivity_SUCCESS";
+    public static final String KEY_PLANNED_INTERVIEW_SUCCESS = "PlannedInterviewActivity_SUCCESS";
+    public static final String KEY_RESEARCH_END_VISIT_SUCCESS = "ResearchEndVisitActivity_SUCCESS";
+    public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";
+    public static final String KEY_INSTITUTION_ESTABLISHMENT_SUCCESS = "InstitutionEstablishmentActivity_SUCCESS";
+    public static final String KEY_ETHICAL_SUBMISSION_SUCCESS = "EthicalSubmissionActivity_SUCCESS";
+    public static final String KEY_CONTRACT_FOLLOW_UP_SUCCESS = "ContractFollowUpActivity_SUCCESS";
+    public static final String KEY_PROJECT_START_MEETING_SUCCESS = "ProjectStartMeetingActivity_SUCCESS";
+    public static final String KEY_SAE_REPORT_SUCCESS = "SaeReportActivity_SUCCESS";
+    public static final String KEY_PRESIFTING_SUCCESS = "PresiftingActivity_SUCCESS";
 }

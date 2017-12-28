@@ -1,4 +1,4 @@
-package com.healthmudi.subjects_home.four;
+package com.healthmudi.subjects_home.four.adapter;
 
 import android.content.Context;
 import android.view.View;
