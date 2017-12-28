@@ -35,28 +35,39 @@
             android:background="@color/color_e4e4e4"/>
     </FrameLayout>
 
-    <ScrollView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <com.healthmudi.view.EmptyView
+            android:id="@+id/empty_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <android.support.v4.widget.Space
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_planned_interview_matters_needing_attention"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:padding="15dp"
-                android:text="注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容注意事项的内容"
-                android:textColor="@color/color_464c5b"
-                android:textSize="15sp"/>
-        </LinearLayout>
-    </ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v4.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_planned_interview_matters_needing_attention"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_ffffff"
+                        android:padding="15dp"
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+            </ScrollView>
+        </com.healthmudi.view.EmptyView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -30,11 +30,13 @@ public interface HttpUrlList {
     String PROJECT_JOB_CONT_FOLLOW_URL = "project/job/cont_follow";//项目-工时-合同跟进
     String PROJECT_JOB_KICK_OFF_URL = "project/job/kick_off";//项目-工时-项目启动会
     String PROJECT_JOB_SAE_REP_URL = "project/job/sae_rep";//项目-工时-SAE上报
+    String PROJECT_JOB_SAE_TIP_URL="project/job/sae_tip";//项目-工时-SAE上报注意事项
     String PROJECT_JOB_SUBJECT_FILTER_URL = "project/job/subject_filter";//项目-工时-受试者预筛
     String PROJECT_JOB_SUBJECT_VISIT_URL = "project/job/subject_visit";//项目-工时-受试者访规
     String PROJECT_JOB_EDC_FILL_URL = "project/job/edc_fill";//项目-工时-EDC填写
     String PROJECT_JOB_SERVER_CONF_URL = "project/job/server_conf";//项目-工时-后台配置特殊工作
     String PROJECT_JOB_OTHER_WORK_URL = "project/job/other_work";//项目-工时-其它工作
     String PROJECT_JOB_ITEMS_URL = "project/job/items";//项目-工时工作项目
+
 
 }

@@ -20,7 +20,7 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.dialog.SelectSubjectDilaog;
-import com.healthmudi.subjects_home.one.EntryGroupBasicInformationActivity;
+import com.healthmudi.subjects_home.one.PlannedInterviewMattersNeedingAttentionActivity;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
@@ -159,7 +159,7 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(IosDialog dialog, View v) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_SAE_REPORT_SUCCESS));
-                        finish();
+                        activityFinish();
                         mIosDialog.dismiss();
                     }
                 })
@@ -193,11 +193,11 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+              activityFinish();
                 break;
             case R.id.iv_circular_exclamation_mark:
-                Intent intent = new Intent(this, EntryGroupBasicInformationActivity.class);
+                Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
+                intent.putExtra(Constant.KEY_INFOMATION,MessageEvent.KEY_SAE_REPORT_SUCCESS);
                 startActivity(intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
