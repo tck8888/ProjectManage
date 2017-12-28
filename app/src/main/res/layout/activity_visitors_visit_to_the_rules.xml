@@ -3,9 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/color_f3f3f3"
-              tools:context="com.healthmudi.subjects_home.five.VisitorsVisitToTheRulesActivity"
               android:orientation="vertical">
 
     <FrameLayout
@@ -23,7 +21,6 @@
             />
 
         <TextView
-            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -47,7 +44,6 @@
     </FrameLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlEnablePureScrollMode="true">
@@ -67,8 +63,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -81,11 +78,11 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_project_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:ellipsize="end"
                         android:gravity="right"
                         android:maxLines="1"
@@ -101,9 +98,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -116,10 +115,11 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_center_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
@@ -137,19 +137,17 @@
                         android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/color_e4e4e4"/>
 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_operation_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -162,14 +160,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_operation_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请选择访视日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -189,11 +188,13 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_job_time"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,17 +205,26 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_job_time"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
+                        android:hint="请选择任务用时"
                         android:maxLines="1"
-                        android:text="2.5"
                         android:textColor="@color/color_464c5b"
+                        android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
@@ -222,16 +232,19 @@
                     android:layout_height="10dp"/>
 
                 <EditText
+                    android:id="@+id/et_remark"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
                     android:gravity="top"
                     android:hint="请输入备注信息"
+                    android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"
                     android:textColorHint="@color/color_cccccc"
                     android:textSize="15sp"
                     />
+
 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"

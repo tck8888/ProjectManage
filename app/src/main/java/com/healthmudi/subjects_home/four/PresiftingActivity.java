@@ -161,7 +161,7 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void onClick(IosDialog dialog, View v) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PRESIFTING_SUCCESS));
-                        finish();
+                        activityFinish();
                         mIosDialog.dismiss();
                     }
                 })
@@ -193,8 +193,7 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+                activityFinish();
                 break;
             case R.id.iv_check_mark:
                 submitData();

@@ -49,4 +49,6 @@ public class MessageEvent<T> {
     public static final String KEY_PROJECT_START_MEETING_SUCCESS = "ProjectStartMeetingActivity_SUCCESS";
     public static final String KEY_SAE_REPORT_SUCCESS = "SaeReportActivity_SUCCESS";
     public static final String KEY_PRESIFTING_SUCCESS = "PresiftingActivity_SUCCESS";
+    public static final String KEY_VISITORS_VISIT_TO_THE_RULES_SUCCESS = "VisitorsVisitToTheRulesActivity_SUCCESS";
+    public static final String KEY_EDC_FILL_IN_SUCCESS = "EDCFillInActivity_SUCCESS";
 }

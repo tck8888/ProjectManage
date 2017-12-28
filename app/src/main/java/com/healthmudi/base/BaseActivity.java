@@ -6,6 +6,8 @@ import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
+import com.healthmudi.R;
+
 /**
  * Created by tck
  * Date: 2017/12/05 14：05
@@ -52,5 +54,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (Constant.IS_DEBUG) {
             System.out.println("=======" + getClass().getSimpleName());
         }
+    }
+
+    public void activityFinish() {
+        finish();
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
 }

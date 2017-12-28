@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff">
+        android:background="@color/color_ffffff">
 
         <ImageView
             android:id="@+id/iv_arrow_left_black"
@@ -21,7 +21,6 @@
             />
 
         <TextView
-            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -63,10 +62,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp"/>
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -79,11 +80,11 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_project_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:ellipsize="end"
                         android:gravity="right"
                         android:maxLines="1"
@@ -99,9 +100,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -114,10 +117,11 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_center_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
@@ -141,9 +145,11 @@
                     android:layout_height="10dp"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_operation_date"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:background="@color/color_ffffff"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -156,14 +162,15 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:id="@+id/tv_operation_date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择日期"
+                        android:hint="请填写日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
@@ -183,14 +190,14 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:background="@color/color_ffffff"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
                     <TextView
-                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -199,10 +206,11 @@
                         android:textSize="15sp"/>
 
                     <EditText
+                        android:id="@+id/et_crf_pages"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@null"
                         android:gravity="right"
@@ -220,11 +228,13 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_job_time"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
+                    android:minHeight="50dp"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -235,17 +245,26 @@
                         android:textSize="15sp"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_job_time"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
+                        android:hint="请选择任务用时"
                         android:maxLines="1"
-                        android:text="2.5"
                         android:textColor="@color/color_464c5b"
+                        android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
@@ -253,11 +272,13 @@
                     android:layout_height="10dp"/>
 
                 <EditText
+                    android:id="@+id/et_remark"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff"
                     android:gravity="top"
                     android:hint="请输入备注信息"
+                    android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"
                     android:textColorHint="@color/color_cccccc"
