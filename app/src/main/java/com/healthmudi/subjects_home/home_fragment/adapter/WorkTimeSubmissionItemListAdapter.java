@@ -26,15 +26,23 @@ public class WorkTimeSubmissionItemListAdapter extends BasicAdapter<WorkTimeSubm
     protected void onInitView(View convertView, int position) {
         TextView mTvJobContent = get(convertView, R.id.tv_job_content);
         ImageView mIvIsChecked = get(convertView, R.id.iv_is_checked);
+        View space = get(convertView, R.id.space);
 
         WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean = mDataList.get(position);
-        if (workTimeSubmissionItemListBean.isChecked) {
+        if (workTimeSubmissionItemListBean.isCheck()) {
             mIvIsChecked.setVisibility(View.VISIBLE);
         } else {
             mIvIsChecked.setVisibility(View.INVISIBLE);
         }
 
-        mTvJobContent.setText(workTimeSubmissionItemListBean.name);
+
+        if (workTimeSubmissionItemListBean.getType().equals("other")||workTimeSubmissionItemListBean.getType().equals("special")) {
+            space.setVisibility(View.VISIBLE);
+        } else {
+            space.setVisibility(View.GONE);
+        }
+
+        mTvJobContent.setText(workTimeSubmissionItemListBean.getName());
     }
 
     @Override

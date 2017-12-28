@@ -62,6 +62,13 @@
         <activity
             android:name=".subjects_home.four.EDCFillInActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.ServerConfActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.OtherWorkActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
         <activity android:name=".subjects_home.three.SignHistoryActivity"/>
         <activity android:name=".subjects_home.three.PunchClockSelectLocationActivity"/>
         <activity android:name=".home.InformationListActivity"/>
@@ -73,6 +80,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ExitProjectManagerActivity"/>
         <activity android:name=".ProjectWebViewActivity"/>
+
     </application>
 
 </manifest>

@@ -33,17 +33,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * decription:受试者筛选
- * Created by tck on 2017/12/11.
+ * Created by tck
+ * description:后台配置特殊工作
+ * Date: 2017/12/28 17：03
  */
 
-public class PresiftingActivity extends BaseActivity implements View.OnClickListener {
+public class ServerConfActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
-    private EditText mEtPrescreenCount;
-    private EditText mEtMeetCount;
+    private EditText mEtJobTypeName;
+    private EditText mEtJobCount;
     private TextView mTvJobTime;
     private EditText mEtRemark;
 
@@ -60,13 +61,12 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
 
     private String site_id = "";
 
-    private String tag = "PresiftingActivity";
+    private String tag = "ServerConfActivity";
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_presifting;
+        return R.layout.activity_server_conf;
     }
-
 
     @Override
     public void initData() {
@@ -75,13 +75,13 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
-
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
             map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
             mSiteBeanList.addAll(mProjectListBean.getSite());
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -91,8 +91,8 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
         mTvProjectName = (TextView) findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) findViewById(R.id.tv_operation_date);
-        mEtPrescreenCount = (EditText) findViewById(R.id.et_prescreen_count);
-        mEtMeetCount = (EditText) findViewById(R.id.et_meet_count);
+        mEtJobTypeName = (EditText) findViewById(R.id.et_job_type_name);
+        mEtJobCount = (EditText) findViewById(R.id.et_job_count);
         mTvJobTime = (TextView) findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) findViewById(R.id.et_remark);
 
@@ -158,7 +158,7 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PRESIFTING_SUCCESS));
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_SERVER_CONF_SUCCESS));
                         activityFinish();
                         mIosDialog.dismiss();
                     }
@@ -216,55 +216,49 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
 
     private void submitData() {
 
-
         String operation_date = mTvOperationDate.getText().toString().trim();
-        String prescreen_count = mEtPrescreenCount.getText().toString().trim();
-        String meet_count = mEtMeetCount.getText().toString().trim();
+        String job_count = mEtJobCount.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 
-        if (checkData(operation_date, prescreen_count, meet_count, job_time)) return;
+        if (checkData(operation_date, job_count, job_time)) return;
         map.put("site_id", site_id);
+        map.put("job_count", job_count);
         map.put("operation_date", operation_date);
-        map.put("prescreen_count", prescreen_count);
-        map.put("meet_count", meet_count);
         map.put("job_time", job_time);
         map.put("remark", remark);
 
         LoadingDialog.getInstance(this).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SUBJECT_FILTER_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SERVER_CONF_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
-                LoadingDialog.getInstance(PresiftingActivity.this).hidden();
+                LoadingDialog.getInstance(ServerConfActivity.this).hidden();
                 mIosDialog.show();
             }
 
             @Override
             public void onFailure(int code, String mesage) {
-                LoadingDialog.getInstance(PresiftingActivity.this).hidden();
+                LoadingDialog.getInstance(ServerConfActivity.this).hidden();
                 if (!TextUtils.isEmpty(mesage)) {
-                    Toast.makeText(PresiftingActivity.this, mesage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServerConfActivity.this, mesage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private boolean checkData(String operation_date, String prescreen_count, String meet_count, String job_time) {
+    private boolean checkData(String operation_date, String job_count, String job_time) {
         if (TextUtils.isEmpty(site_id)) {
             Toast.makeText(this, "请选择中心名称", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         if (TextUtils.isEmpty(operation_date)) {
-            Toast.makeText(this, "请选择预筛日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请选择任务日期", Toast.LENGTH_SHORT).show();
             return true;
         }
-        if (TextUtils.isEmpty(prescreen_count)) {
-            Toast.makeText(this, "请输入患者数", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        if (TextUtils.isEmpty(meet_count)) {
-            Toast.makeText(this, "请输入初步符合患者数", Toast.LENGTH_SHORT).show();
+
+        if (TextUtils.isEmpty(job_count)) {
+            Toast.makeText(this, "请输入工作量计数", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(job_time)) {
@@ -273,4 +267,10 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
         }
         return false;
     }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
+

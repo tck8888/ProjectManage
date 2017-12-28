@@ -23,6 +23,8 @@
         <item>受试者预筛</item>
         <item>受试者访规</item>
         <item>EDC填写</item>
+        <item>后台配置特殊工作1</item>
+        <item>其它工作</item>
     </string-array>
 
     <string-array name="worktime_submission_type">

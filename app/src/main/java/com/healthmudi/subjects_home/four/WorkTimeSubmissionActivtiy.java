@@ -36,9 +36,15 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
     public void initData() {
         super.initData();
         String[] stringArray = getResources().getStringArray(R.array.worktime_submission_list);
-        String[] stringArray1 = getResources().getStringArray(R.array.worktime_submission_type);
+
         for (int i = 0; i < stringArray.length; i++) {
-            mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(false, stringArray[i], stringArray1[i]));
+            if (stringArray[i].contains("后台配置特殊工作")) {
+                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "special"));
+            } else if (stringArray[i].contains("其它工作")) {
+                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "other"));
+            } else {
+                mWorkTimeSubmissionItemListBeen.add(new WorkTimeSubmissionItemListBean(i + 1, stringArray[i], "normal"));
+            }
         }
     }
 
@@ -57,7 +63,7 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
     public void setListener() {
         super.setListener();
         findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        findViewById(R.id.iv_check_mark).setOnClickListener(this);
+
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,30 +76,36 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
 
     private void openActivity(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
         Class clazz = null;
-        switch (workTimeSubmissionItemListBean.type) {
-            case "institution_establishment":
+        switch (workTimeSubmissionItemListBean.getId()) {
+            case 1:
                 clazz = InstitutionEstablishmentActivity.class;
                 break;
-            case "ethical_submission":
+            case 2:
                 clazz = EthicalSubmissionActivity.class;
                 break;
-            case "contract_follow_up":
+            case 3:
                 clazz = ContractFollowUpActivity.class;
                 break;
-            case "Project_start_meeting":
+            case 4:
                 clazz = ProjectStartMeetingActivity.class;
                 break;
-            case "sae_report":
+            case 5:
                 clazz = SaeReportActivity.class;
                 break;
-            case "presifting":
+            case 6:
                 clazz = PresiftingActivity.class;
                 break;
-            case "visitors_visit_to_the_rules":
+            case 7:
                 clazz = VisitorsVisitToTheRulesActivity.class;
                 break;
-            case "edc_fill_in":
+            case 8:
                 clazz = EDCFillInActivity.class;
+                break;
+            case 9:
+                clazz = OtherWorkActivity.class;
+                break;
+            case 10:
+                clazz = ServerConfActivity.class;
                 break;
         }
         if (clazz != null) {
@@ -106,9 +118,7 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
-                break;
-            case R.id.iv_check_mark:
+                activityFinish();
                 break;
         }
     }

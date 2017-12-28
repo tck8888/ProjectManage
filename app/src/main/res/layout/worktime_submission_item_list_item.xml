@@ -4,10 +4,16 @@
               android:layout_height="wrap_content"
               android:orientation="vertical">
 
+    <android.support.v4.widget.Space
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff"
+        android:background="@color/color_ffffff"
         android:paddingLeft="15dp">
 
         <TextView
