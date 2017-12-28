@@ -35,15 +35,33 @@
         <activity
             android:name=".subjects_home.one.RegularVisitsActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity android:name=".subjects_home.four.WorkTimeSubmissionActivtiy"/>
-        <activity android:name=".subjects_home.four.InstitutionEstablishmentActivity"/>
-        <activity android:name=".subjects_home.four.EthicalSubmissionActivity"/>
-        <activity android:name=".subjects_home.four.ContractFollowUpActivity"/>
-        <activity android:name=".subjects_home.four.ProjectStartMeetingActivity"/>
-        <activity android:name=".subjects_home.four.PresiftingActivity"/>
-        <activity android:name=".subjects_home.four.SaeReportActivity"/>
-        <activity android:name=".subjects_home.four.VisitorsVisitToTheRulesActivity"/>
-        <activity android:name=".subjects_home.four.EDCFillInActivity"/>
+        <activity
+            android:name=".subjects_home.four.WorkTimeSubmissionActivtiy"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.InstitutionEstablishmentActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.EthicalSubmissionActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.ContractFollowUpActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.ProjectStartMeetingActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.PresiftingActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.SaeReportActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.VisitorsVisitToTheRulesActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".subjects_home.four.EDCFillInActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".subjects_home.three.SignHistoryActivity"/>
         <activity android:name=".subjects_home.three.PunchClockSelectLocationActivity"/>
         <activity android:name=".home.InformationListActivity"/>

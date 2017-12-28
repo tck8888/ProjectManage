@@ -7,8 +7,8 @@ package com.healthmudi.base;
 
 public interface HttpUrlList {
 
-    // String BASE_URL = "http://192.168.1.113:3000/";
-   String BASE_URL = "http://140.207.75.158:3000/";
+    String BASE_URL = "http://192.168.1.113:3000/";
+    //String BASE_URL = "http://140.207.75.158:3000/";
 
     String PROJECT_LIST_URL = "project/list";//我的项目
     String PROJECT_SUBJECT_LIST_URL = "project/subject/list";//项目受试者
@@ -28,5 +28,6 @@ public interface HttpUrlList {
     String PROJECT_JOB_SITE_APPROVE_URL = "project/job/site_approve";//项目-工时-机构立项
     String PROJECT_JOB_EC_SUBMIT_URL = "project/job/ec_submit";//项目-工时-伦理递交
     String PROJECT_JOB_CONT_FOLLOW_URL = "project/job/cont_follow";//项目-工时-合同跟进
+    String PROJECT_JOB_KICK_OFF_URL = "project/job/kick_off";//项目-工时-项目启动会
 
 }
