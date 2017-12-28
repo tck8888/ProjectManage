@@ -142,10 +142,6 @@
                     android:layout_height="0.5dp"
                     android:background="@color/color_e4e4e4"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
                     android:id="@+id/ll_kick_off_date"

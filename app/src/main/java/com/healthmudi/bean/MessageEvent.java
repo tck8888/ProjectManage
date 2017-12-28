@@ -15,6 +15,7 @@ public class MessageEvent<T> {
     public static final String KEY_ETHICAL_SUBMISSION_SUCCESS = "EthicalSubmissionActivity_SUCCESS";
     public static final String KEY_CONTRACT_FOLLOW_UP_SUCCESS = "ContractFollowUpActivity_SUCCESS";
     public static final String KEY_PROJECT_START_MEETING_SUCCESS = "ProjectStartMeetingActivity_SUCCESS";
+    public static final String KEY_SAE_REPORT_SUCCESS = "SaeReportActivity_SUCCESS";
     private String tag;
     private T data ;
 
