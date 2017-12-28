@@ -17,4 +17,5 @@ public interface Constant {
     String KEY_SUBJECT_ID = "subject_id";
     String KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN = "WorkTimeSubmissionItemListBean";
     String KEY_INFOMATION = "infomation";
+    String KEY_SELECT_DOC = "select_doc";
 }

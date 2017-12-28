@@ -31,10 +31,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            initData(arguments);
-        }
+        initData(getArguments());
     }
 
     @Override

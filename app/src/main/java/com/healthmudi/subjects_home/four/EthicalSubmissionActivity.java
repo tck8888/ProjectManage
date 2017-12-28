@@ -23,12 +23,15 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.adapter.SiteApproveListAdapter;
+import com.healthmudi.subjects_home.four.dialog.SelectDocDialog;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
 import com.orhanobut.hawk.Hawk;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,8 +67,9 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     private OptionsPickerView mOptionsPickerView;
     private IosDialog mIosDialog;
 
+    private SelectDocDialog mSelectDocDialog;
+
     private Map<String, String> map = new HashMap<>();
-    private List<String> mDocumentsNameList = new ArrayList<>();
     private List<String> mStringList = new ArrayList<>();
     private List<SiteApproveListBean> mSiteApproveListBeen = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
@@ -74,6 +78,8 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
 
     private String site_id = "";
     private String tag = "EthicalSubmissionActivity";
+    private String mDocumentsName = "";
+
 
     @Override
     public int getLayoutId() {
@@ -87,8 +93,6 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
-            String[] documentsNameArray = getResources().getStringArray(R.array.documents_name_array);
-            mDocumentsNameList.addAll(Arrays.asList(documentsNameArray));
 
             String[] strings2 = getResources().getStringArray(R.array.ec_submit_array);
             for (int i = 0; i < strings2.length; i++) {
@@ -180,9 +184,6 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
-                } else if (v.getId() == R.id.tv_documents_name) {
-                    String s = mDocumentsNameList.get(options1);
-                    mTvDocumentsName.setText(s);
                 }
 
             }
@@ -206,13 +207,14 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                     @Override
                     public void onClick(IosDialog dialog, View v) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ETHICAL_SUBMISSION_SUCCESS));
-                        finish();
+                        activityFinish();
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+
     }
 
     @Override
@@ -248,8 +250,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+                activityFinish();
                 break;
             case R.id.iv_check_mark:
                 submitData();
@@ -278,8 +279,10 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                 mTimePickerView.show(mTvEcApproveDate);
                 break;
             case R.id.ll_documents_name:
-                mOptionsPickerView.setPicker(mDocumentsNameList);
-                mOptionsPickerView.show(mTvDocumentsName);
+                if (mSelectDocDialog == null) {
+                    mSelectDocDialog = new SelectDocDialog();
+                }
+                mSelectDocDialog.show(getSupportFragmentManager(), "SelectDocDialog");
                 break;
             case R.id.ll_job_time:
                 mOptionsPickerView.setPicker(mStringList);
@@ -292,18 +295,28 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackInfo(MessageEvent event) {
+        if (event != null) {
+            if (event.getTag().equals(MessageEvent.KEY_SELECT_DOC_SUCCESS)) {
+                mDocumentsName = (String) event.getData();
+                String all = mDocumentsName.replaceAll(",", "\\\n");
+                mTvDocumentsName.setText(all);
+            }
+        }
+    }
+
     private void submitData() {
         String doc_receive_date = mTvDocReceiveDate.getText().toString().trim();
         String pi_submit_date = mTvPiSubmitDate.getText().toString().trim();
         String pi_sign_date = mTvPiSignDate.getText().toString().trim();
         String ec_submit_date = mTvEcSubmitDate.getText().toString().trim();
         String ec_approve_date = mTvEcApproveDate.getText().toString().trim();
-        String documents_name = mTvDocumentsName.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String job_time2 = mTvJobTime2.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 
-        if (checkData(doc_receive_date, pi_submit_date, pi_sign_date, ec_submit_date, ec_approve_date, documents_name, job_time, job_time2))
+        if (checkData(doc_receive_date, pi_submit_date, pi_sign_date, ec_submit_date, ec_approve_date, mDocumentsName, job_time, job_time2))
             return;
 
         if (TextUtils.isEmpty(getStatus())) {
@@ -317,7 +330,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         map.put("pi_sign_date", pi_sign_date);
         map.put("ec_submit_date", ec_submit_date);
         map.put("ec_approve_date", ec_approve_date);
-        map.put("documents_name", documents_name);
+        map.put("documents_name", mDocumentsName);
         map.put("job_time", job_time);
         map.put("job_time2", job_time2);
         map.put("remark", remark);
@@ -393,4 +406,19 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         return status;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
 }

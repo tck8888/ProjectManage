@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_f3f3f3"
+              android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.healthmudi.view.EmptyView
+            android:id="@+id/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dimen_15dp"
+                        android:text="请选择递交材料名称(可多选)"
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="15sp"/>
+
+                    <com.healthmudi.commonlibrary.widget.AutoListView
+                        android:id="@+id/auto_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:choiceMode="multipleChoice"
+                        android:divider="@color/color_e4e4e4"
+                        android:dividerHeight="0.5dp"/>
+                </LinearLayout>
+            </ScrollView>
+        </com.healthmudi.view.EmptyView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>

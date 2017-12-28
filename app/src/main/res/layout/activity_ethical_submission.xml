@@ -399,7 +399,7 @@
                         android:ellipsize="end"
                         android:gravity="right"
                         android:hint="请选择递交材料名称"
-                        android:maxLines="1"
+                        android:lineSpacingExtra="4dp"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
@@ -411,10 +411,12 @@
                         android:padding="15dp"
                         android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@color/color_e4e4e4"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
