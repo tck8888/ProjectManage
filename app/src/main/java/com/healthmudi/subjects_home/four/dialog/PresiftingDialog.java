@@ -52,14 +52,13 @@ public class PresiftingDialog extends BaseDialogFragment {
         mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mTvRemark = (TextView) view.findViewById(R.id.tv_remark);
 
-
-        tvTitle.setText(R.string.title_presifting);
     }
 
     @Override
     public void setViewData(View view) {
         super.setViewData(view);
         if (mWorkingHoursListBean != null) {
+            tvTitle.setText(mWorkingHoursListBean.getJob_type_name());
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
             if (mWorkingHoursListBean.getOperation_date() != 0) {

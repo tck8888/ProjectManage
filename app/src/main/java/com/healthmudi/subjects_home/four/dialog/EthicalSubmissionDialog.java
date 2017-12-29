@@ -89,9 +89,9 @@ public class EthicalSubmissionDialog extends BaseDialogFragment {
     @Override
     public void setViewData(View view) {
         super.setViewData(view);
-        tvTitle.setText("伦理递交");
 
         if (mWorkingHoursListBean != null) {
+            tvTitle.setText(mWorkingHoursListBean.getJob_type_name());
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
 

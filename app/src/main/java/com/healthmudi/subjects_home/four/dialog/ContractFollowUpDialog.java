@@ -87,9 +87,9 @@ public class ContractFollowUpDialog extends BaseDialogFragment {
     @Override
     public void setViewData(View view) {
         super.setViewData(view);
-        tvTitle.setText(R.string.title_cont_follow);
 
         if (mWorkingHoursListBean != null) {
+        tvTitle.setText(mWorkingHoursListBean.getJob_type_name());
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
 
