@@ -16,6 +16,8 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
+import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
+import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
@@ -95,17 +97,24 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
     }
 
     private void openDialog(WorkingHoursListBean workingHoursListBean) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN,workingHoursListBean);
+
         switch (workingHoursListBean.getJob_type_id()) {
             case 1:
                 InstitutionEstablishmentDialog institutionEstablishmentDialog = new InstitutionEstablishmentDialog();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN,workingHoursListBean);
                 institutionEstablishmentDialog.setArguments(bundle);
                 institutionEstablishmentDialog.show(getFragmentManager(),"InstitutionEstablishmentDialog");
                 break;
             case 2:
+                EthicalSubmissionDialog ethicalSubmissionDialog = new EthicalSubmissionDialog();
+                ethicalSubmissionDialog.setArguments(bundle);
+                ethicalSubmissionDialog.show(getFragmentManager(),"EthicalSubmissionDialog");
                 break;
             case 3:
+                ContractFollowUpDialog contractFollowUpDialog = new ContractFollowUpDialog();
+                contractFollowUpDialog.setArguments(bundle);
+                contractFollowUpDialog.show(getFragmentManager(),"ContractFollowUpDialog");
                 break;
             case 4:
                 break;

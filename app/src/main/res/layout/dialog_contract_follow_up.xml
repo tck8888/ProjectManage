@@ -1,48 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/color_f3f3f3"
-              android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/color_ffffff">
-
-        <ImageView
-            android:id="@+id/iv_arrow_left_black"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:padding="15dp"
-            android:src="@mipmap/arrow_left_black"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/title_cont_follow"
-            android:textColor="@color/color_464c5b"
-            android:textSize="18sp"/>
-
-        <ImageView
-            android:id="@+id/iv_check_mark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="15dp"
-            android:src="@mipmap/icon_check_mark"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_gravity="bottom"
-            android:background="@color/color_e4e4e4"/>
-    </FrameLayout>
-
+              android:layout_height="match_parent">
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -98,11 +59,11 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:minHeight="50dp"
+                    android:paddingRight="15dp"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp">
 
@@ -123,18 +84,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择中心名称"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <View
@@ -143,7 +97,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_doc_receive_date"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -168,18 +122,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择合同收到日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <View
@@ -188,7 +135,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_site_submit_date"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -213,18 +160,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择合同审核递交日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <View
@@ -233,7 +173,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_site_approve_date"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -258,18 +198,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择合同审核完成日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <View
@@ -278,7 +211,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_site_sign_date"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -304,18 +237,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择机构签署日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <View
@@ -324,7 +250,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_sponsor_sign_date"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -349,18 +275,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择获取批件日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
@@ -397,7 +316,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_job_time"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -421,18 +340,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择任务用时"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <View
@@ -441,7 +353,7 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_job_time2"
+                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
@@ -466,31 +378,23 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择任务用时"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"/>
 
-                <EditText
-                    android:id="@+id/et_remark"
+                <TextView
+                    android:id="@+id/tv_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:gravity="top"
-                    android:hint="请输入备注信息"
                     android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"

@@ -21,23 +21,25 @@ import java.util.List;
 
 /**
  * Created by tck
- * Date: 2017/12/29 13：10
+ * Date: 2017/12/29 15：11
  */
-
-public class InstitutionEstablishmentDialog extends BaseDialogFragment {
+public class ContractFollowUpDialog extends BaseDialogFragment {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
-    private TextView mTvSubmitDate;
-    private TextView mTvApprovedDate;
+    private TextView mTvDocReceiveDate;
+    private TextView mTvSiteSubmitDate;
+    private TextView mTvSiteApproveDate;
+    private TextView mTvSiteSignDate;
+    private TextView mTvSponsorSignDate;
     private AutoListView mAutoListView;
-    private TextView mTvWorkHour;
+    private TextView mTvJobTime;
+    private TextView mTvJobTime2;
     private TextView mTvRemark;
 
     private List<SiteApproveListBean> mSiteApproveListBeen = new ArrayList<>();
     private ProgressListAdapter mAdapter;
     private WorkingHoursListBean mWorkingHoursListBean;
-
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
@@ -46,7 +48,7 @@ public class InstitutionEstablishmentDialog extends BaseDialogFragment {
             if (!ListUtil.isEmpty(mSiteApproveListBeen)) {
                 mSiteApproveListBeen.clear();
             }
-            String[] strings2 = getResources().getStringArray(R.array.site_approve_array);
+            String[] strings2 = getResources().getStringArray(R.array.cont_follow_array);
             for (int i = 0; i < strings2.length; i++) {
                 if (strings2[i].equals(mWorkingHoursListBean.getStatus())) {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
@@ -59,34 +61,56 @@ public class InstitutionEstablishmentDialog extends BaseDialogFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.dialog_institution_establishment_detail;
+        return R.layout.dialog_contract_follow_up;
     }
 
     @Override
     protected void initView(View view) {
+
         mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
-        mTvSubmitDate = (TextView) view.findViewById(R.id.tv_submit_date);
-        mTvApprovedDate = (TextView) view.findViewById(R.id.tv_approved_date);
+        mTvDocReceiveDate = (TextView) view.findViewById(R.id.tv_doc_receive_date);
+        mTvSiteSubmitDate = (TextView) view.findViewById(R.id.tv_site_submit_date);
+        mTvSiteApproveDate = (TextView) view.findViewById(R.id.tv_site_approve_date);
+        mTvSiteSignDate = (TextView) view.findViewById(R.id.tv_site_sign_date);
+        mTvSponsorSignDate = (TextView) view.findViewById(R.id.tv_sponsor_sign_date);
+        mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
+        mTvJobTime2 = (TextView) view.findViewById(R.id.tv_job_time2);
+        mTvRemark = (TextView) view.findViewById(R.id.tv_remark);
+
         mAutoListView = (AutoListView) view.findViewById(R.id.auto_list_view);
         mAdapter = new ProgressListAdapter(getContext(), mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
-        mTvWorkHour = (TextView) view.findViewById(R.id.tv_work_hour);
-        mTvRemark = (TextView) view.findViewById(R.id.tv_remark);
-        tvTitle.setText("机构立项");
+
     }
 
     @Override
     public void setViewData(View view) {
         super.setViewData(view);
+        tvTitle.setText(R.string.title_cont_follow);
+
         if (mWorkingHoursListBean != null) {
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
-            mTvSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_submit_date()));
-            if (mWorkingHoursListBean.getSite_approve_date() != 0) {
-                mTvApprovedDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_approve_date()));
+
+            if (mWorkingHoursListBean.getDoc_receive_date() != 0) {
+                mTvDocReceiveDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getDoc_receive_date()));
             }
-            mTvWorkHour.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            if (mWorkingHoursListBean.getSite_submit_date() != 0) {
+                mTvSiteSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_submit_date()));
+            }
+            if (mWorkingHoursListBean.getSite_approve_date() != 0) {
+                mTvSiteApproveDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_approve_date()));
+            }
+            if (mWorkingHoursListBean.getSite_sign_date() != 0) {
+                mTvSiteSignDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_sign_date()));
+            }
+            if (mWorkingHoursListBean.getSponsor_sign_date() != 0) {
+                mTvSponsorSignDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSponsor_sign_date()));
+            }
+
+            mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            mTvJobTime2.setText(String.valueOf(mWorkingHoursListBean.getJob_time2()));
             if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
                 mTvRemark.setText(mWorkingHoursListBean.getRemark());
             } else {
