@@ -117,10 +117,14 @@ public class EthicalSubmissionDialog extends BaseDialogFragment {
                 } else {
                     mTvDocumentsName.setText(mWorkingHoursListBean.getDocuments_name());
                 }
-
             }
-            mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
-            mTvJobTime2.setText(String.valueOf(mWorkingHoursListBean.getJob_time2()));
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            }
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime2.setText(String.valueOf(mWorkingHoursListBean.getJob_time2()));
+            }
+
             if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
                 mTvRemark.setText(mWorkingHoursListBean.getRemark());
             } else {

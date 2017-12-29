@@ -19,6 +19,7 @@ import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
 import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
 import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
+import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -117,6 +118,9 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 contractFollowUpDialog.show(getFragmentManager(),"ContractFollowUpDialog");
                 break;
             case 4:
+                ProjectStartMeetingDialog projectStartMeetingDialog = new ProjectStartMeetingDialog();
+                projectStartMeetingDialog.setArguments(bundle);
+                projectStartMeetingDialog.show(getFragmentManager(),"ProjectStartMeetingDialog");
                 break;
             case 5:
                 break;

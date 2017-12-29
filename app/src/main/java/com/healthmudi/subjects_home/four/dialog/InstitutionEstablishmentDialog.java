@@ -31,7 +31,7 @@ public class InstitutionEstablishmentDialog extends BaseDialogFragment {
     private TextView mTvSubmitDate;
     private TextView mTvApprovedDate;
     private AutoListView mAutoListView;
-    private TextView mTvWorkHour;
+    private TextView mTvJobTime;
     private TextView mTvRemark;
 
     private List<SiteApproveListBean> mSiteApproveListBeen = new ArrayList<>();
@@ -71,9 +71,9 @@ public class InstitutionEstablishmentDialog extends BaseDialogFragment {
         mAutoListView = (AutoListView) view.findViewById(R.id.auto_list_view);
         mAdapter = new ProgressListAdapter(getContext(), mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
-        mTvWorkHour = (TextView) view.findViewById(R.id.tv_work_hour);
+        mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mTvRemark = (TextView) view.findViewById(R.id.tv_remark);
-        tvTitle.setText("机构立项");
+        tvTitle.setText(R.string.title_institutionestablishment);
     }
 
     @Override
@@ -82,11 +82,18 @@ public class InstitutionEstablishmentDialog extends BaseDialogFragment {
         if (mWorkingHoursListBean != null) {
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
-            mTvSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_submit_date()));
+            if (mWorkingHoursListBean.getSite_submit_date() != 0) {
+                mTvSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_submit_date()));
+            }
+
             if (mWorkingHoursListBean.getSite_approve_date() != 0) {
                 mTvApprovedDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_approve_date()));
             }
-            mTvWorkHour.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            }
+
             if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
                 mTvRemark.setText(mWorkingHoursListBean.getRemark());
             } else {

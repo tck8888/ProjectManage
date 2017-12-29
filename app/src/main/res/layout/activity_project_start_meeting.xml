@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="项目启动会"
+            android:text="@string/title_projectstartmeeting"
             android:textColor="@color/color_464c5b"
             android:textSize="18sp"/>
 
