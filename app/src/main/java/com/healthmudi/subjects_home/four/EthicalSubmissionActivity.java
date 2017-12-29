@@ -22,7 +22,7 @@ import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
-import com.healthmudi.subjects_home.four.adapter.SiteApproveListAdapter;
+import com.healthmudi.subjects_home.four.adapter.ProgressListAdapter;
 import com.healthmudi.subjects_home.four.dialog.SelectDocDialog;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
@@ -61,7 +61,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     private EditText mEtRemark;
 
     private AutoListView mAutoListView;
-    private SiteApproveListAdapter mAdapter;
+    private ProgressListAdapter mAdapter;
 
     private TimePickerView mTimePickerView;
     private OptionsPickerView mOptionsPickerView;
@@ -122,7 +122,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         mEtRemark = (EditText) findViewById(R.id.et_remark);
 
         mAutoListView = (AutoListView) findViewById(R.id.auto_list_view);
-        mAdapter = new SiteApproveListAdapter(this, mSiteApproveListBeen);
+        mAdapter = new ProgressListAdapter(this, mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
 
         initTimePick();

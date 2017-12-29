@@ -2,7 +2,7 @@ package com.healthmudi.net;
 
 import com.google.gson.Gson;
 import com.healthmudi.base.HttpUrlList;
-import com.healthmudi.utils.GsonUtils;
+import com.healthmudi.utils.gson.GsonUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;

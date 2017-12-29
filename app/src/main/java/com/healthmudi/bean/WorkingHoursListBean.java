@@ -1,40 +1,42 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
+
 /**
  * decription:
  * Created by tck on 2017/12/10.
  */
 
-public class WorkingHoursListBean {
+public class WorkingHoursListBean implements Serializable{
 
     private String project_name;
     private String site_name;
     private int job_id;
-    private Object subjects_id;
+    private String subjects_id;
     private int job_type_id;
     private String job_type_name;
-    private Object operation_date;
-    private Object doc_receive_date;
-    private Object pi_submit_date;
-    private Object pi_sign_date;
+    private long operation_date;
+    private long doc_receive_date;
+    private long pi_submit_date;
+    private long pi_sign_date;
     private long site_submit_date;
-    private Object site_approve_date;
-    private Object ec_submit_date;
-    private Object ec_approve_date;
-    private Object sponsor_sign_date;
-    private Object site_sign_date;
-    private Object kick_off_date;
+    private long site_approve_date;
+    private long ec_submit_date;
+    private long ec_approve_date;
+    private long sponsor_sign_date;
+    private long site_sign_date;
+    private long kick_off_date;
     private String status="";
-    private Object prescreen_count;
-    private Object meet_count;
-    private Object crf_pages;
-    private Object job_count;
+    private int prescreen_count;
+    private int meet_count;
+    private int crf_pages;
+    private int job_count;
     private double job_time;
-    private Object job_time2;
+    private double job_time2;
     private String remark;
     private int isdeleted;
     private long create_time;
-    private Object documents_name;
+    private String documents_name;
     private int is_finish;
 
     public String getProject_name() {
@@ -61,11 +63,11 @@ public class WorkingHoursListBean {
         this.job_id = job_id;
     }
 
-    public Object getSubjects_id() {
+    public String getSubjects_id() {
         return subjects_id;
     }
 
-    public void setSubjects_id(Object subjects_id) {
+    public void setSubjects_id(String subjects_id) {
         this.subjects_id = subjects_id;
     }
 
@@ -85,35 +87,35 @@ public class WorkingHoursListBean {
         this.job_type_name = job_type_name;
     }
 
-    public Object getOperation_date() {
+    public long getOperation_date() {
         return operation_date;
     }
 
-    public void setOperation_date(Object operation_date) {
+    public void setOperation_date(long operation_date) {
         this.operation_date = operation_date;
     }
 
-    public Object getDoc_receive_date() {
+    public long getDoc_receive_date() {
         return doc_receive_date;
     }
 
-    public void setDoc_receive_date(Object doc_receive_date) {
+    public void setDoc_receive_date(long doc_receive_date) {
         this.doc_receive_date = doc_receive_date;
     }
 
-    public Object getPi_submit_date() {
+    public long getPi_submit_date() {
         return pi_submit_date;
     }
 
-    public void setPi_submit_date(Object pi_submit_date) {
+    public void setPi_submit_date(long pi_submit_date) {
         this.pi_submit_date = pi_submit_date;
     }
 
-    public Object getPi_sign_date() {
+    public long getPi_sign_date() {
         return pi_sign_date;
     }
 
-    public void setPi_sign_date(Object pi_sign_date) {
+    public void setPi_sign_date(long pi_sign_date) {
         this.pi_sign_date = pi_sign_date;
     }
 
@@ -125,51 +127,51 @@ public class WorkingHoursListBean {
         this.site_submit_date = site_submit_date;
     }
 
-    public Object getSite_approve_date() {
+    public long getSite_approve_date() {
         return site_approve_date;
     }
 
-    public void setSite_approve_date(Object site_approve_date) {
+    public void setSite_approve_date(long site_approve_date) {
         this.site_approve_date = site_approve_date;
     }
 
-    public Object getEc_submit_date() {
+    public long getEc_submit_date() {
         return ec_submit_date;
     }
 
-    public void setEc_submit_date(Object ec_submit_date) {
+    public void setEc_submit_date(long ec_submit_date) {
         this.ec_submit_date = ec_submit_date;
     }
 
-    public Object getEc_approve_date() {
+    public long getEc_approve_date() {
         return ec_approve_date;
     }
 
-    public void setEc_approve_date(Object ec_approve_date) {
+    public void setEc_approve_date(long ec_approve_date) {
         this.ec_approve_date = ec_approve_date;
     }
 
-    public Object getSponsor_sign_date() {
+    public long getSponsor_sign_date() {
         return sponsor_sign_date;
     }
 
-    public void setSponsor_sign_date(Object sponsor_sign_date) {
+    public void setSponsor_sign_date(long sponsor_sign_date) {
         this.sponsor_sign_date = sponsor_sign_date;
     }
 
-    public Object getSite_sign_date() {
+    public long getSite_sign_date() {
         return site_sign_date;
     }
 
-    public void setSite_sign_date(Object site_sign_date) {
+    public void setSite_sign_date(long site_sign_date) {
         this.site_sign_date = site_sign_date;
     }
 
-    public Object getKick_off_date() {
+    public long getKick_off_date() {
         return kick_off_date;
     }
 
-    public void setKick_off_date(Object kick_off_date) {
+    public void setKick_off_date(long kick_off_date) {
         this.kick_off_date = kick_off_date;
     }
 
@@ -181,35 +183,35 @@ public class WorkingHoursListBean {
         this.status = status;
     }
 
-    public Object getPrescreen_count() {
+    public int getPrescreen_count() {
         return prescreen_count;
     }
 
-    public void setPrescreen_count(Object prescreen_count) {
+    public void setPrescreen_count(int prescreen_count) {
         this.prescreen_count = prescreen_count;
     }
 
-    public Object getMeet_count() {
+    public int getMeet_count() {
         return meet_count;
     }
 
-    public void setMeet_count(Object meet_count) {
+    public void setMeet_count(int meet_count) {
         this.meet_count = meet_count;
     }
 
-    public Object getCrf_pages() {
+    public int getCrf_pages() {
         return crf_pages;
     }
 
-    public void setCrf_pages(Object crf_pages) {
+    public void setCrf_pages(int crf_pages) {
         this.crf_pages = crf_pages;
     }
 
-    public Object getJob_count() {
+    public int getJob_count() {
         return job_count;
     }
 
-    public void setJob_count(Object job_count) {
+    public void setJob_count(int job_count) {
         this.job_count = job_count;
     }
 
@@ -221,11 +223,11 @@ public class WorkingHoursListBean {
         this.job_time = job_time;
     }
 
-    public Object getJob_time2() {
+    public double getJob_time2() {
         return job_time2;
     }
 
-    public void setJob_time2(Object job_time2) {
+    public void setJob_time2(double job_time2) {
         this.job_time2 = job_time2;
     }
 
@@ -253,11 +255,11 @@ public class WorkingHoursListBean {
         this.create_time = create_time;
     }
 
-    public Object getDocuments_name() {
+    public String getDocuments_name() {
         return documents_name;
     }
 
-    public void setDocuments_name(Object documents_name) {
+    public void setDocuments_name(String documents_name) {
         this.documents_name = documents_name;
     }
 

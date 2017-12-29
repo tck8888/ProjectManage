@@ -1,4 +1,4 @@
-package com.healthmudi.utils;
+package com.healthmudi.utils.gson;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -12,10 +12,10 @@ import java.io.IOException;
  * Date: 2017/12/28 11：15
  */
 
-public class StringTypeAdapter extends TypeAdapter<String> {
+public class DoubleTypeAdapter extends TypeAdapter<Double> {
 
     @Override
-    public void write(JsonWriter out, String value) throws IOException {
+    public void write(JsonWriter out, Double value) throws IOException {
         if (value == null) {
             out.nullValue();
             return;
@@ -24,11 +24,11 @@ public class StringTypeAdapter extends TypeAdapter<String> {
     }
 
     @Override
-    public String read(JsonReader in) throws IOException {
+    public Double read(JsonReader in) throws IOException {
         if (in.peek() == JsonToken.NULL) {
             in.nextNull();
-            return "";
+            return 0D;
         }
-        return in.nextString();
+        return in.nextDouble();
     }
 }

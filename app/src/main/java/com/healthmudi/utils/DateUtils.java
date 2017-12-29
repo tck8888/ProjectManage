@@ -42,6 +42,19 @@ public class DateUtils {
     /**
      * 返回年-月-日 hh:mm
      */
+    public static String getFormatTime2(@Nullable long time) {
+        if (String.valueOf(time).length() <= 10) {
+            time = time * 1000;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        String formatTime = format.format(date);
+        return formatTime;
+    }
+
+    /**
+     * 返回年-月-日 hh:mm
+     */
     public static String getFormatTime(@Nullable String time) {
         long actualTime;
         if (TextUtils.isEmpty(time)) {

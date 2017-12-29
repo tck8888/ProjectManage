@@ -16,9 +16,9 @@ import java.util.List;
  * Date: 2017/12/27 09：46
  */
 
-public class SiteApproveListAdapter extends BasicAdapter<SiteApproveListBean> {
+public class ProgressListAdapter extends BasicAdapter<SiteApproveListBean> {
 
-    public SiteApproveListAdapter(Context context, List<SiteApproveListBean> dataList) {
+    public ProgressListAdapter(Context context, List<SiteApproveListBean> dataList) {
         super(context, dataList);
     }
 
@@ -38,6 +38,6 @@ public class SiteApproveListAdapter extends BasicAdapter<SiteApproveListBean> {
 
     @Override
     protected int getContentView() {
-        return R.layout.site_approve_list_item;
+        return R.layout.progress_list_item;
     }
 }

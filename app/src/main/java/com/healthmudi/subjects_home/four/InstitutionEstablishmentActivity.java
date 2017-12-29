@@ -23,7 +23,7 @@ import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
-import com.healthmudi.subjects_home.four.adapter.SiteApproveListAdapter;
+import com.healthmudi.subjects_home.four.adapter.ProgressListAdapter;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
@@ -59,7 +59,7 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     private OptionsPickerView mOptionsPickerView;
     private IosDialog mIosDialog;
 
-    private SiteApproveListAdapter mAdapter;
+    private ProgressListAdapter mAdapter;
 
     private Map<String, String> map = new HashMap<>();
     private List<String> mStringList = new ArrayList<>();
@@ -107,7 +107,7 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
         mAutoListView = (AutoListView) findViewById(R.id.auto_list_view);
         mTvWorkHour = (TextView) findViewById(R.id.tv_work_hour);
         mEtRemark = (EditText) findViewById(R.id.et_remark);
-        mAdapter = new SiteApproveListAdapter(this, mSiteApproveListBeen);
+        mAdapter = new ProgressListAdapter(this, mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
         initTimePick();
         initWorkHourPick();

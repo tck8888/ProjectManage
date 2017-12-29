@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.healthmudi.R;
@@ -15,6 +16,7 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
+import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -82,6 +84,44 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
         view.findViewById(R.id.iv_add_subjects).setOnClickListener(this);
         mRefreshLayout.autoRefresh();
         mRefreshLayout.setOnRefreshListener(this);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                WorkingHoursListBean workingHoursListBean = mWorkingHoursListBeanList.get(position);
+                openDialog(workingHoursListBean);
+            }
+        });
+    }
+
+    private void openDialog(WorkingHoursListBean workingHoursListBean) {
+        switch (workingHoursListBean.getJob_type_id()) {
+            case 1:
+                InstitutionEstablishmentDialog institutionEstablishmentDialog = new InstitutionEstablishmentDialog();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN,workingHoursListBean);
+                institutionEstablishmentDialog.setArguments(bundle);
+                institutionEstablishmentDialog.show(getFragmentManager(),"InstitutionEstablishmentDialog");
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 99:
+                break;
+        }
     }
 
     @Override
