@@ -19,6 +19,7 @@ import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
 import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
 import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
+import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
 import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
 import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
@@ -129,6 +130,9 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 saeReportDialog.show(getFragmentManager(),"SaeReportDialog");
                 break;
             case 6:
+                PresiftingDialog presiftingDialog = new PresiftingDialog();
+                presiftingDialog.setArguments(bundle);
+                presiftingDialog.show(getFragmentManager(),"PresiftingDialog");
                 break;
             case 7:
                 break;
