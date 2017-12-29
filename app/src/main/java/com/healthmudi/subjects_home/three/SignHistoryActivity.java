@@ -97,6 +97,8 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
                 mSignHistoryListBeen.addAll(result);
                 if (ListUtil.isEmpty(mSignHistoryListBeen)) {
                     mEmptyLayout.showEmptyView();
+                    mEmptyLayout.setEmptyIcon(R.mipmap.icon_sign_history_empty);
+                    mEmptyLayout.setEmptyText("暂无签到历史");
                 } else {
                     mEmptyLayout.showContentView();
                 }
@@ -109,6 +111,8 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
             public void onFailure(int code, String mesage) {
                 if (ListUtil.isEmpty(mSignHistoryListBeen)) {
                     mEmptyLayout.showEmptyView();
+                    mEmptyLayout.setEmptyIcon(R.mipmap.icon_sign_history_empty);
+                    mEmptyLayout.setEmptyText("暂无签到历史");
                 } else {
                     mEmptyLayout.showContentView();
                 }

@@ -67,6 +67,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
             Intent intent = new Intent(getContext(), clzz);
             intent.putExtra(Constant.KEY_PROJECT_ID,mProject_id);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
     }
 }
