@@ -3,6 +3,7 @@
     <string name="title_cont_follow">合同跟进</string>
     <string name="title_institutionestablishment">机构立项</string>
     <string name="title_projectstartmeeting">项目启动会</string>
+    <string name="title_saereport">SAE上报</string>
 
     <string-array name="project_manage_home_titles">
         <item>项目</item>

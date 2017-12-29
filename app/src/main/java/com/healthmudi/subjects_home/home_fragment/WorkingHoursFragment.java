@@ -20,6 +20,7 @@ import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
 import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
 import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
+import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -122,7 +123,10 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 projectStartMeetingDialog.setArguments(bundle);
                 projectStartMeetingDialog.show(getFragmentManager(),"ProjectStartMeetingDialog");
                 break;
-            case 5:
+            case 5://
+                SaeReportDialog saeReportDialog = new SaeReportDialog();
+                saeReportDialog.setArguments(bundle);
+                saeReportDialog.show(getFragmentManager(),"SaeReportDialog");
                 break;
             case 6:
                 break;
