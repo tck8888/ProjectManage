@@ -55,4 +55,5 @@ public class MessageEvent<T> {
     public static final String KEY_SERVER_CONF_SUCCESS = "ServerConfActivity_SUCCESS";
 
     public static final String KEY_SELECT_DOC_SUCCESS = "select_doc_SUCCESS";
+    public static final String KEY_SELECT_SUBJECT_SUCCESS = "select_subject_SUCCESS";
 }

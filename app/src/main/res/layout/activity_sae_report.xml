@@ -171,16 +171,16 @@
                         android:textSize="15sp"/>
 
                     <TextView
+
                         android:id="@+id/tv_subjects_people"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:gravity="right"
+                        android:gravity="right|center_vertical"
                         android:hint="请选择受试者"
-                        android:maxLines="1"
+                        android:lineSpacingExtra="4dp"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>

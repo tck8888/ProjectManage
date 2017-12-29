@@ -16,6 +16,7 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.SubjectCodeBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -27,6 +28,8 @@ import com.healthmudi.view.LoadingDialog;
 import com.orhanobut.hawk.Hawk;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +37,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * decription:sae上报
@@ -59,6 +63,7 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
 
     private List<String> mStringList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
+    private TreeMap<Integer, SubjectCodeBean> selectString = new TreeMap<>();
 
     private ProjectListBean mProjectListBean;
 
@@ -193,11 +198,11 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-              activityFinish();
+                activityFinish();
                 break;
             case R.id.iv_circular_exclamation_mark:
                 Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
-                intent.putExtra(Constant.KEY_INFOMATION,MessageEvent.KEY_SAE_REPORT_SUCCESS);
+                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_SAE_REPORT_SUCCESS);
                 startActivity(intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
@@ -226,6 +231,33 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
                 mOptionsPickerView.show(mTvJobTime);
                 break;
 
+        }
+    }
+
+    private StringBuffer sb = new StringBuffer();
+    private StringBuffer sb1 = new StringBuffer();
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackInfo(MessageEvent<TreeMap<Integer, SubjectCodeBean>> event) {
+        if (event != null) {
+            if (event.getTag().equals(MessageEvent.KEY_SELECT_SUBJECT_SUCCESS)) {
+                if (!selectString.isEmpty()) {
+                    selectString.clear();
+                }
+                selectString.putAll(event.getData());
+                for (SubjectCodeBean subjectCodeBean : selectString.values()) {
+                    sb.append(subjectCodeBean.getSubject_id()).append(",");
+                    sb1.append(subjectCodeBean.getSubject_code())
+                            .append(" (")
+                            .append(subjectCodeBean.getName_py())
+                            .append(") ")
+                            .append("\n");
+                }
+                subjects_id = sb.delete(sb.length() - 1, sb.length()).toString();
+                mTvSubjectsPeople.setText(sb1.toString());
+                sb.delete(0,sb.length());
+                sb1.delete(0,sb.length());
+            }
         }
     }
 
@@ -279,5 +311,21 @@ public class SaeReportActivity extends BaseActivity implements View.OnClickListe
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }

@@ -18,8 +18,8 @@
         tools:text="测试数据"/>
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="16dp"
+        android:layout_height="12dp"
         android:layout_gravity="center_vertical|right"
         android:duplicateParentState="true"
         android:src="@drawable/selector_check_mark_green"/>
