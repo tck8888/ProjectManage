@@ -3,45 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_f3f3f3"
               android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff">
-
-        <ImageView
-            android:id="@+id/iv_arrow_left_black"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:padding="15dp"
-            android:src="@mipmap/arrow_left_black"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/title_visitorsvisittotherules"
-            android:textColor="@color/color_464c5b"
-            android:textSize="18sp"/>
-
-        <ImageView
-            android:id="@+id/iv_check_mark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="15dp"
-            android:src="@mipmap/icon_check_mark"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_gravity="bottom"
-            android:background="@color/color_e4e4e4"/>
-    </FrameLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
@@ -86,7 +48,6 @@
                         android:ellipsize="end"
                         android:gravity="right"
                         android:maxLines="1"
-                        android:text="复旦大学附属肿瘤医院"
                         android:textColor="@color/color_464c5b"
                         android:textSize="15sp"/>
 
@@ -98,13 +59,13 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_center_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:minHeight="50dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="15dp">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="@dimen/dimen_15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,18 +84,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择中心名称"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
 
@@ -143,13 +97,13 @@
                     android:layout_height="10dp"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_operation_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:minHeight="50dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="15dp">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="@dimen/dimen_15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,18 +122,11 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择访视日期"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_visit_date_black"/>
                 </LinearLayout>
 
                 <View
@@ -188,12 +135,12 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_job_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:minHeight="50dp"
                     android:paddingLeft="15dp"
+                    android:paddingRight="@dimen/dimen_15dp"
                     >
 
                     <TextView
@@ -213,31 +160,23 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-                        android:hint="请选择任务用时"
                         android:maxLines="1"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="15dp"
-                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"/>
 
-                <EditText
-                    android:id="@+id/et_remark"
+                <TextView
+                    android:id="@+id/tv_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/color_ffffff"
                     android:gravity="top"
-                    android:hint="请输入备注信息"
                     android:minHeight="80dp"
                     android:padding="15dp"
                     android:textColor="@color/color_464c5b"

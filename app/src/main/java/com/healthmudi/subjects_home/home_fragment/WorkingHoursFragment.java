@@ -22,6 +22,7 @@ import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
 import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
 import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
 import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
+import com.healthmudi.subjects_home.four.dialog.VisitorsVisitToTheRulesDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -135,6 +136,9 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 presiftingDialog.show(getFragmentManager(),"PresiftingDialog");
                 break;
             case 7:
+                VisitorsVisitToTheRulesDialog visitorsVisitToTheRulesDialog = new VisitorsVisitToTheRulesDialog();
+                visitorsVisitToTheRulesDialog.setArguments(bundle);
+                visitorsVisitToTheRulesDialog.show(getFragmentManager(),"VisitorsVisitToTheRulesDialog");
                 break;
             case 8:
                 break;
