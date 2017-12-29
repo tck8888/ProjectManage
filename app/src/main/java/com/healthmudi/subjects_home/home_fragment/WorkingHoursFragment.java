@@ -24,6 +24,7 @@ import com.healthmudi.subjects_home.four.dialog.OtherWorkDialog;
 import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
 import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
 import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
+import com.healthmudi.subjects_home.four.dialog.ServerConfDialog;
 import com.healthmudi.subjects_home.four.dialog.VisitorsVisitToTheRulesDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
@@ -148,6 +149,9 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 edcFillInDialog.show(getFragmentManager(), "EDCFillInDialog");
                 break;
             case 9:
+                ServerConfDialog serverConfDialog = new ServerConfDialog();
+                serverConfDialog.setArguments(bundle);
+                serverConfDialog.show(getFragmentManager(), "ServerConfDialog");
                 break;
             case 99:
                 OtherWorkDialog otherWorkDialog = new OtherWorkDialog();
