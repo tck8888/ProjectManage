@@ -20,6 +20,7 @@ import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
 import com.healthmudi.subjects_home.four.dialog.EDCFillInDialog;
 import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
+import com.healthmudi.subjects_home.four.dialog.OtherWorkDialog;
 import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
 import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
 import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
@@ -103,52 +104,55 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
 
     private void openDialog(WorkingHoursListBean workingHoursListBean) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN,workingHoursListBean);
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
 
         switch (workingHoursListBean.getJob_type_id()) {
             case 1:
                 InstitutionEstablishmentDialog institutionEstablishmentDialog = new InstitutionEstablishmentDialog();
                 institutionEstablishmentDialog.setArguments(bundle);
-                institutionEstablishmentDialog.show(getFragmentManager(),"InstitutionEstablishmentDialog");
+                institutionEstablishmentDialog.show(getFragmentManager(), "InstitutionEstablishmentDialog");
                 break;
             case 2:
                 EthicalSubmissionDialog ethicalSubmissionDialog = new EthicalSubmissionDialog();
                 ethicalSubmissionDialog.setArguments(bundle);
-                ethicalSubmissionDialog.show(getFragmentManager(),"EthicalSubmissionDialog");
+                ethicalSubmissionDialog.show(getFragmentManager(), "EthicalSubmissionDialog");
                 break;
             case 3:
                 ContractFollowUpDialog contractFollowUpDialog = new ContractFollowUpDialog();
                 contractFollowUpDialog.setArguments(bundle);
-                contractFollowUpDialog.show(getFragmentManager(),"ContractFollowUpDialog");
+                contractFollowUpDialog.show(getFragmentManager(), "ContractFollowUpDialog");
                 break;
             case 4:
                 ProjectStartMeetingDialog projectStartMeetingDialog = new ProjectStartMeetingDialog();
                 projectStartMeetingDialog.setArguments(bundle);
-                projectStartMeetingDialog.show(getFragmentManager(),"ProjectStartMeetingDialog");
+                projectStartMeetingDialog.show(getFragmentManager(), "ProjectStartMeetingDialog");
                 break;
             case 5://
                 SaeReportDialog saeReportDialog = new SaeReportDialog();
                 saeReportDialog.setArguments(bundle);
-                saeReportDialog.show(getFragmentManager(),"SaeReportDialog");
+                saeReportDialog.show(getFragmentManager(), "SaeReportDialog");
                 break;
             case 6:
                 PresiftingDialog presiftingDialog = new PresiftingDialog();
                 presiftingDialog.setArguments(bundle);
-                presiftingDialog.show(getFragmentManager(),"PresiftingDialog");
+                presiftingDialog.show(getFragmentManager(), "PresiftingDialog");
                 break;
             case 7:
                 VisitorsVisitToTheRulesDialog visitorsVisitToTheRulesDialog = new VisitorsVisitToTheRulesDialog();
                 visitorsVisitToTheRulesDialog.setArguments(bundle);
-                visitorsVisitToTheRulesDialog.show(getFragmentManager(),"VisitorsVisitToTheRulesDialog");
+                visitorsVisitToTheRulesDialog.show(getFragmentManager(), "VisitorsVisitToTheRulesDialog");
                 break;
-            case 8://EDCFillInDialog
+            case 8:
                 EDCFillInDialog edcFillInDialog = new EDCFillInDialog();
                 edcFillInDialog.setArguments(bundle);
-                edcFillInDialog.show(getFragmentManager(),"EDCFillInDialog");
+                edcFillInDialog.show(getFragmentManager(), "EDCFillInDialog");
                 break;
             case 9:
                 break;
             case 99:
+                OtherWorkDialog otherWorkDialog = new OtherWorkDialog();
+                otherWorkDialog.setArguments(bundle);
+                otherWorkDialog.show(getFragmentManager(), "OtherWorkDialog");
                 break;
         }
     }
