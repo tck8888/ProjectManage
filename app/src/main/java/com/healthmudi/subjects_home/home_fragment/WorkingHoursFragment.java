@@ -17,6 +17,7 @@ import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
 import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
+import com.healthmudi.subjects_home.four.dialog.EDCFillInDialog;
 import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
 import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
 import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
@@ -140,7 +141,10 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 visitorsVisitToTheRulesDialog.setArguments(bundle);
                 visitorsVisitToTheRulesDialog.show(getFragmentManager(),"VisitorsVisitToTheRulesDialog");
                 break;
-            case 8:
+            case 8://EDCFillInDialog
+                EDCFillInDialog edcFillInDialog = new EDCFillInDialog();
+                edcFillInDialog.setArguments(bundle);
+                edcFillInDialog.show(getFragmentManager(),"EDCFillInDialog");
                 break;
             case 9:
                 break;
