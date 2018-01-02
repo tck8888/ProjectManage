@@ -9,7 +9,7 @@ public class MessageEvent<T> {
 
 
     private String tag;
-    private T data ;
+    private T data;
 
     public MessageEvent() {
     }
@@ -53,6 +53,8 @@ public class MessageEvent<T> {
     public static final String KEY_EDC_FILL_IN_SUCCESS = "EDCFillInActivity_SUCCESS";
     public static final String KEY_OTHER_WORK_SUCCESS = "OtherWorkActivity_SUCCESS";
     public static final String KEY_SERVER_CONF_SUCCESS = "ServerConfActivity_SUCCESS";
+    public static final String KEY_MEMORANDUM_ADD_SUCCESS = "MemorandumAddActivity_SUCCESS";//备忘录添加
+    public static final String KEY_MEMORANDUM_SEE_SUCCESS = "MemorandumSeeActivity_SUCCESS";//备忘录查看
 
     public static final String KEY_SELECT_DOC_SUCCESS = "select_doc_SUCCESS";
     public static final String KEY_SELECT_SUBJECT_SUCCESS = "select_subject_SUCCESS";
