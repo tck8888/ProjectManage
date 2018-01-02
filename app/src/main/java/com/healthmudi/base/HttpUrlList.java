@@ -43,6 +43,7 @@ public interface HttpUrlList {
     String SCHEDULE_ADD_URL = "schedule/add"; //日程-添加
     String SCHEDULE_UPDATE_URL = "schedule/update"; //日程-状态更新
     String SCHEDULE_DEL_URL = "schedule/del"; //日程-删除
+    String SCHEDULE_LIST_URL = "schedule/list"; //日程-列表
 
 
 }

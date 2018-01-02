@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ListView;
 
 import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
+import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.net.HttpRequest;
+import com.healthmudi.net.OnServerCallBack;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 日程
@@ -16,7 +21,8 @@ import com.healthmudi.base.BaseFragment1;
  */
 public class ScheduleFragment extends BaseFragment1 implements View.OnClickListener {
 
-    private ListView mListView;
+    private String tag = "ScheduleFragment";
+    private Map<String, String> map = new HashMap<>();
 
     public static ScheduleFragment newInstance() {
         ScheduleFragment scheduleFragment = new ScheduleFragment();
@@ -36,7 +42,8 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
 
     @Override
     protected void initView(@Nullable View view) {
-        mListView = (ListView) view.findViewById(R.id.list_view);
+        map.put("month", "201712");
+        getData();
     }
 
     @Override
@@ -53,5 +60,19 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
                 startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
                 break;
         }
+    }
+
+    public void getData() {
+        HttpRequest.getInstance().get(HttpUrlList.SCHEDULE_LIST_URL, map, tag, new OnServerCallBack() {
+            @Override
+            public void onSuccess(Object result) {
+
+            }
+
+            @Override
+            public void onFailure(int code, String mesage) {
+
+            }
+        });
     }
 }

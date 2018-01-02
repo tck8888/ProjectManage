@@ -36,9 +36,8 @@ public abstract class BaseFragment1 extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         Bundle arguments = getArguments();
-        if (arguments != null) {
-            initData(arguments);
-        }
+        initData(arguments);
+
     }
 
     protected abstract void initData(@Nullable Bundle arguments);
