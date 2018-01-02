@@ -12,13 +12,13 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <com.haibin.calendarview.MonthViewPager
+        <com.healthmudi.commonlibrary.widget.calendarview.MonthViewPager
             android:id="@+id/vp_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="41dp" />
 
-        <com.haibin.calendarview.WeekViewPager
+        <com.healthmudi.commonlibrary.widget.calendarview.WeekViewPager
             android:id="@+id/vp_week"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -36,7 +36,7 @@
 
     </FrameLayout>
 
-    <com.haibin.calendarview.YearSelectLayout
+    <com.healthmudi.commonlibrary.widget.calendarview.YearSelectLayout
         android:id="@+id/selectLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

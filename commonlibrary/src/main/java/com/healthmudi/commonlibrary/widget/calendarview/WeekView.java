@@ -378,8 +378,8 @@ public abstract class WeekView extends View implements View.OnClickListener {
 
         Calendar currentCalendar = mItems.get(week);
 
-        if (!Util.isCalendarInRange(currentCalendar,mDelegate.getMinYear(),
-                mDelegate.getMinYearMonth(),mDelegate.getMaxYear(),mDelegate.getMaxYearMonth())) {
+        if (!Util.isCalendarInRange(currentCalendar, mDelegate.getMinYear(),
+                mDelegate.getMinYearMonth(), mDelegate.getMaxYear(), mDelegate.getMaxYearMonth())) {
             mCurrentItem = getEdgeIndex(isLeftEdge(currentCalendar));
             currentCalendar = mItems.get(mCurrentItem);
         }
@@ -399,11 +399,11 @@ public abstract class WeekView extends View implements View.OnClickListener {
         invalidate();
     }
 
-    private boolean isLeftEdge(Calendar calendar){
+    private boolean isLeftEdge(Calendar calendar) {
         java.util.Calendar c = java.util.Calendar.getInstance();
-        c.set(mDelegate.getMinYear(),mDelegate.getMinYearMonth()-1,1);
+        c.set(mDelegate.getMinYear(), mDelegate.getMinYearMonth() - 1, 1);
         long minTime = c.getTimeInMillis();
-        c.set(calendar.getYear(),calendar.getMonth()-1,calendar.getDay());
+        c.set(calendar.getYear(), calendar.getMonth() - 1, calendar.getDay());
         long curTime = c.getTimeInMillis();
         return curTime < minTime;
     }
@@ -411,11 +411,11 @@ public abstract class WeekView extends View implements View.OnClickListener {
     private int getEdgeIndex(boolean isMinEdge) {
         for (int i = 0; i < mItems.size(); i++) {
             Calendar item = mItems.get(i);
-            if (isMinEdge && Util.isCalendarInRange(item,mDelegate.getMinYear(),mDelegate.getMinYearMonth(),
-                    mDelegate.getMaxYear(),mDelegate.getMaxYearMonth())) {
+            if (isMinEdge && Util.isCalendarInRange(item, mDelegate.getMinYear(), mDelegate.getMinYearMonth(),
+                    mDelegate.getMaxYear(), mDelegate.getMaxYearMonth())) {
                 return i;
-            } else if (!isMinEdge && !Util.isCalendarInRange(item,mDelegate.getMinYear(),mDelegate.getMinYearMonth(),
-                    mDelegate.getMaxYear(),mDelegate.getMaxYearMonth())) {
+            } else if (!isMinEdge && !Util.isCalendarInRange(item, mDelegate.getMinYear(), mDelegate.getMinYearMonth(),
+                    mDelegate.getMaxYear(), mDelegate.getMaxYearMonth())) {
                 return i - 1;
             }
         }
@@ -510,6 +510,7 @@ public abstract class WeekView extends View implements View.OnClickListener {
             } else {
                 calendarDate.setYear(calendar.getYear());
                 calendarDate.setMonth(calendar.getMonth());
+                calendarDate.setCurrentMonth(true);
                 calendarDate.setDay(day);
                 day += 1;
             }

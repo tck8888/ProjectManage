@@ -124,8 +124,8 @@ public class Calendar implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o != null && o instanceof com.haibin.calendarview.Calendar) {
-            if (((com.haibin.calendarview.Calendar) o).getYear() == year && ((com.haibin.calendarview.Calendar) o).getMonth() == month && ((com.haibin.calendarview.Calendar) o).getDay() == day)
+        if (o != null && o instanceof Calendar) {
+            if (((Calendar) o).getYear() == year && ((Calendar) o).getMonth() == month && ((Calendar) o).getDay() == day)
                 return true;
         }
         return super.equals(o);
