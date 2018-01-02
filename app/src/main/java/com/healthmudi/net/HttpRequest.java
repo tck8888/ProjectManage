@@ -92,6 +92,7 @@ public class HttpRequest {
         treeMap.put("token", "3");
         treeMap.put("lng", "121");
         treeMap.put("lat", "31");
+        treeMap.put("version_code", "1.0");
         if (parameter != null) {
             treeMap.putAll(parameter);
         }
