@@ -51,11 +51,12 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
     private SmartRefreshLayout mRefreshLayout;
     private EmptyView mEmptyLayout;
 
+    private SubjectsListAdapter mAdapter;
+
     private List<SubjectsListBean> mSubjectsListBeanList = new ArrayList<>();
     private Map<String, String> map = new HashMap<>();
     private Map<String, String> mapDelete = new HashMap<>();
 
-    private SubjectsListAdapter mAdapter;
     private String tag = "SubjectsFragment";
     private String mProject_id;
     private ProjectListBean mProjectListBean;
@@ -190,6 +191,8 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                     mEmptyLayout.showEmptyView();
                 } else {
                     mEmptyLayout.showContentView();
+                    //默认展开第一个
+                    mExpandableListView.expandGroup(0);
                 }
 
                 mAdapter.notifyDataSetChanged();

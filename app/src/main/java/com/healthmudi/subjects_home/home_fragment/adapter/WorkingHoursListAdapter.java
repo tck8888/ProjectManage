@@ -51,6 +51,6 @@ public class WorkingHoursListAdapter extends BasicAdapter<WorkingHoursListBean> 
 
     @Override
     protected int getContentView() {
-        return R.layout.working_hours_list_item;
+        return R.layout.item_working_hours_list;
     }
 }

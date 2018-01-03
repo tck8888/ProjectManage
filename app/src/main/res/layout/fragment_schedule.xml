@@ -20,6 +20,15 @@
             android:textSize="@dimen/dimen_16sp"/>
 
         <ImageView
+            android:id="@+id/iv_add_memorandum"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="50dp"
+            android:padding="15dp"
+            android:src="@mipmap/icon_add_black"/>
+
+        <ImageView
             android:id="@+id/iv_my_project_center"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -38,30 +47,33 @@
     <com.healthmudi.commonlibrary.widget.calendarview.CalendarLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
         android:orientation="vertical"
+
         app:calendar_content_view_id="@+id/recyclerView">
 
         <com.healthmudi.commonlibrary.widget.calendarview.CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="@mipmap/icon_schedule_bg"
             app:calendar_card_view="com.healthmudi.view.ScheduleCalendarView"
             app:calendar_height="50dp"
+            app:current_day_text_color="@color/color_1abc9c"
             app:current_month_text_color="@color/color_ffffff"
-            app:other_month_text_color="#e1e1e1"
-            app:scheme_text_color="#333"
-            app:scheme_theme_color="#128c4b"
+            app:other_month_text_color="@color/color_00000000"
+            app:scheme_text_color="@color/color_1abc9c"
+            app:scheme_theme_color="@color/color_1abc9c"
             app:selected_text_color="@color/color_1abc9c"
-            app:selected_theme_color="#108cd4"
+            app:selected_theme_color="@color/color_ffffff"
             app:week_background="#fff"
             app:week_text_color="@color/color_ffffff"
             app:week_view="com.healthmudi.view.ScheduleCalendarWeekView"/>
 
-        <android.support.v7.widget.RecyclerView
+        <ExpandableListView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@color/color_f3f3f3"
+            android:divider="@null"/>
     </com.healthmudi.commonlibrary.widget.calendarview.CalendarLayout>
 </LinearLayout>

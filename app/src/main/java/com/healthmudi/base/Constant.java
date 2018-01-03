@@ -19,4 +19,5 @@ public interface Constant {
     String KEY_INFOMATION = "infomation";
     String KEY_SELECT_DOC = "select_doc";
     String KEY_WORKING_HOURS_LIST_BEAN = "WorkingHoursListBean";
+    String KEY_SUBJECT_KEYWORD = "subject_keyword";
 }

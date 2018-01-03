@@ -124,6 +124,8 @@ public class FileFragment extends BaseFragment1 implements View.OnClickListener,
                     mEmptyLayout.showEmptyView();
                 } else {
                     mEmptyLayout.showContentView();
+                    //默认展开第一个
+                    mExpandableListView.expandGroup(0);
                 }
                 mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();

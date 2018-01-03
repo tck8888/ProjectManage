@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.3"
@@ -9,7 +10,6 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -19,6 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -43,4 +44,6 @@ dependencies {
 
     compile 'com.hyman:flowlayout-lib:1.1.2'
     compile 'com.orhanobut:hawk:2.0.1'
+
+
 }
