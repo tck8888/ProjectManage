@@ -20,8 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 
-import com.haibin.calendarview.MonthViewPager;
-import com.haibin.calendarview.WeekViewPager;
+import com.healthmudi.commonlibrary.R;
 
 
 /**
@@ -79,9 +78,9 @@ public class CalendarLayout extends LinearLayout {
     public CalendarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
-        TypedArray array = context.obtainStyledAttributes(attrs, com.haibin.calendarview.R.styleable.CalendarLayout);
-        mContentViewId = array.getResourceId(com.haibin.calendarview.R.styleable.CalendarLayout_calendar_content_view_id, 0);
-        mDefaultStatus = array.getInt(com.haibin.calendarview.R.styleable.CalendarLayout_default_status,STATUS_EXPAND);
+        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.CalendarLayout);
+        mContentViewId = array.getResourceId(R.styleable.CalendarLayout_calendar_content_view_id, 0);
+        mDefaultStatus = array.getInt(R.styleable.CalendarLayout_default_status,STATUS_EXPAND);
         array.recycle();
         //setSelectPosition(6);
         mVelocityTracker = VelocityTracker.obtain();
@@ -143,8 +142,8 @@ public class CalendarLayout extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mMonthView = (MonthViewPager) findViewById(com.haibin.calendarview.R.id.vp_calendar).findViewById(com.haibin.calendarview.R.id.vp_calendar);
-        mWeekPager = (WeekViewPager) findViewById(com.haibin.calendarview.R.id.vp_week).findViewById(com.haibin.calendarview.R.id.vp_week);
+        mMonthView = (MonthViewPager) findViewById(R.id.vp_calendar).findViewById(R.id.vp_calendar);
+        mWeekPager = (WeekViewPager) findViewById(R.id.vp_week).findViewById(R.id.vp_week);
         mContentView = (ViewGroup) findViewById(mContentViewId);
         if (mContentView != null) {
             mContentView.setOverScrollMode(View.OVER_SCROLL_NEVER);
