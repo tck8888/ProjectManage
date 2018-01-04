@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.healthmudi.R;
-import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.bean.ItemsBean;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 
@@ -19,21 +19,21 @@ import java.util.List;
  * Date: 2017/12/26 16：38
  */
 
-public class CategoryListAdapter extends TagAdapter<SubjectsPersonalListBean.VisitContentBean.ItemsBean> {
+public class CategoryListAdapter extends TagAdapter<ItemsBean> {
 
     private Context mContext;
 
-    public CategoryListAdapter(List<SubjectsPersonalListBean.VisitContentBean.ItemsBean> datas) {
+    public CategoryListAdapter(List<ItemsBean> datas) {
         super(datas);
     }
 
-    public CategoryListAdapter(Context context, List<SubjectsPersonalListBean.VisitContentBean.ItemsBean> datas) {
+    public CategoryListAdapter(Context context, List<ItemsBean> datas) {
         super(datas);
         mContext = context;
     }
 
     @Override
-    public View getView(FlowLayout parent, int position, SubjectsPersonalListBean.VisitContentBean.ItemsBean itemsBean) {
+    public View getView(FlowLayout parent, int position, ItemsBean itemsBean) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.visit_category_list_item, parent, false);
 
         ImageView mIvCategoryName = (ImageView) view.findViewById(R.id.iv_category_name);

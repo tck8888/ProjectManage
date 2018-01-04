@@ -20,7 +20,7 @@ import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsListAdapter;
 import com.healthmudi.subjects_home.one.EntryGroupBasicInformationActivity;
-import com.healthmudi.subjects_home.one.SubjectsPersonalActivity;
+import com.healthmudi.subjects_home.one.SubjectsPersonalListActivity;
 import com.healthmudi.subjects_home.one.SubjectsPersonalSerachActivity;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -135,7 +135,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                 if ("delete".equals(type)) {
                     showDialog(subjectsBean);
                 } else {
-                    openActivity(SubjectsPersonalActivity.class, null, subjectsBean);
+                    openActivity(SubjectsPersonalListActivity.class, null, subjectsBean);
                 }
 
             }

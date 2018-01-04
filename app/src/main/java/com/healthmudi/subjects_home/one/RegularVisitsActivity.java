@@ -16,10 +16,12 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.ItemsBean;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
 import com.healthmudi.bean.SubmitCategoryBean;
+import com.healthmudi.bean.VisitContentBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -44,10 +46,7 @@ import java.util.Map;
 
 public class RegularVisitsActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView mIvArrowLeftBlack;
     private TextView mTvTitle;
-    private ImageView mIvCircularExclamationMark;
-    private ImageView mIvCheckMark;
     private TextView mTvSubjectsNumber;
     private TextView mTvPlannedDate;
     private TextView mTvSelectResearchCenter;
@@ -93,8 +92,8 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
     public void initView() {
         super.initView();
 
-        mIvCircularExclamationMark = (ImageView) findViewById(R.id.iv_circular_exclamation_mark);
-        mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
+        mTvTitle = (TextView) findViewById(R.id.tv_title);
+
         mTvSelectResearchCenter = (TextView) findViewById(R.id.tv_select_research_center);
         mTvInitials = (TextView) findViewById(R.id.tv_initials);
         mTvWindowDate = (TextView) findViewById(R.id.tv_window_date);
@@ -166,6 +165,7 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
     public void setViewData() {
         super.setViewData();
         if (mSubjectsBean != null && mSubjectsPersonalListBean != null) {
+            mTvTitle.setText(mSubjectsPersonalListBean.getVisit_name());
             mTvSelectResearchCenter.setText(mSubjectsBean.getSite_name());
             mTvInitials.setText(mSubjectsBean.getName_py());
             mTvSubjectsNumber.setText(mSubjectsBean.getSubject_code());
@@ -251,10 +251,10 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
                 && !ListUtil.isEmpty(mSubjectsPersonalListBean.getVisit_content())) {
             List<SubmitCategoryBean> list = new ArrayList<>();
             for (int i = 0; i < mSubjectsPersonalListBean.getVisit_content().size(); i++) {
-                SubjectsPersonalListBean.VisitContentBean visitContentBean = mSubjectsPersonalListBean.getVisit_content().get(i);
+                VisitContentBean visitContentBean = mSubjectsPersonalListBean.getVisit_content().get(i);
                 List<String> mStringList = new ArrayList<>();
                 for (int j = 0; j < visitContentBean.getItems().size(); j++) {
-                    SubjectsPersonalListBean.VisitContentBean.ItemsBean itemsBean = visitContentBean.getItems().get(j);
+                    ItemsBean itemsBean = visitContentBean.getItems().get(j);
                     if (itemsBean.isSelected()) {
                         if (TextUtils.isEmpty(itemsBean.getItem_cn())) {
                             mStringList.add(itemsBean.getItem_en());

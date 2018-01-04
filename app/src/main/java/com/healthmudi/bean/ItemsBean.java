@@ -1,15 +1,27 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by tck
  * Date: 2018/01/03 09：47
  */
 
-public class ItemsBean {
+public class ItemsBean implements Serializable {
 
     private String category;
     private String item_en;
     private String item_cn;
+
+    private boolean isSelected = false;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getCategory() {
         return category;

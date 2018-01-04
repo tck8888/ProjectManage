@@ -1,5 +1,6 @@
 package com.healthmudi.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,8 @@ import java.util.List;
  * Date: 2018/01/03 09：48
  */
 
-public class VisitContentBean {
+public class VisitContentBean implements Serializable {
+    private boolean isSelected = false;
     private String category;
     private List<ItemsBean> items;
 
@@ -25,5 +27,13 @@ public class VisitContentBean {
 
     public void setItems(List<ItemsBean> items) {
         this.items = items;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

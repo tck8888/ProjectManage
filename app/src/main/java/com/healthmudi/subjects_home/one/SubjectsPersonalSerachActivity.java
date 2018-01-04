@@ -147,7 +147,7 @@ public class SubjectsPersonalSerachActivity extends BaseActivity implements View
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().get(childPosition);
-                Intent intent = new Intent(SubjectsPersonalSerachActivity.this, SubjectsPersonalActivity.class);
+                Intent intent = new Intent(SubjectsPersonalSerachActivity.this, SubjectsPersonalListActivity.class);
                 intent.putExtra(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
                 startActivity(intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);

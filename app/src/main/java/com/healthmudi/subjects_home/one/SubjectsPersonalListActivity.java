@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
@@ -45,20 +46,22 @@ import java.util.Map;
  * Created by tck on 2017/12/9.
  */
 
-public class SubjectsPersonalActivity extends BaseActivity implements View.OnClickListener, OnRefreshListener {
+public class SubjectsPersonalListActivity extends BaseActivity implements View.OnClickListener, OnRefreshListener {
 
-    private EasyPopup mPopup;
+    private TextView mTvTitle;
     private ImageView mIvaddSubjects;
     private SmartRefreshLayout mRefreshLayout;
     private ListView mListView;
     private EmptyView mEmptyLayout;
+
+    private EasyPopup mPopup;
 
     private List<SubjectsPersonalListBean> mSubjectsPersonalListBeanList = new ArrayList<>();
     private SubjectsPersonalListAdapter mAdapter;
     private SubjectsListBean.SubjectsBean mSubjectsBean;
     private Map<String, String> map = new HashMap<>();
 
-    private String tag = "SubjectsPersonalActivity";
+    private String tag = "SubjectsPersonalListActivity";
 
 
     @Override
@@ -90,6 +93,10 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
     public void initView() {
         super.initView();
         initPop();
+
+
+        mTvTitle = (TextView) findViewById(R.id.tv_title);
+
         mIvaddSubjects = (ImageView) findViewById(R.id.iv_add_subjects);
         mRefreshLayout = (SmartRefreshLayout) findViewById(R.id.refreshLayout);
         mEmptyLayout = (EmptyView) findViewById(R.id.empty_layout);
@@ -130,6 +137,7 @@ public class SubjectsPersonalActivity extends BaseActivity implements View.OnCli
             } else {
                 mIvaddSubjects.setVisibility(View.VISIBLE);
                 mIvaddSubjects.setOnClickListener(this);
+                mTvTitle.setText(mSubjectsBean.getSubject_code() + "  (" + mSubjectsBean.getName_py() + ")");
             }
         }
     }

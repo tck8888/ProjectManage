@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".subjects_home.SubjectsHomeActivity"/>
-        <activity android:name=".subjects_home.one.SubjectsPersonalActivity"/>
+        <activity android:name=".subjects_home.one.SubjectsPersonalListActivity"/>
         <activity
             android:name=".subjects_home.one.SubjectsPersonalSerachActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>

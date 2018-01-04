@@ -17,7 +17,7 @@ public class SubjectsPersonalListBean implements Serializable {
     private long target_visit_time;
     private int window_neg;
     private int window_pos;
-    private String actual_visit_time;
+    private long actual_visit_time;
     private int not_finish_flag;
     private int visit_type;
     private String remark;
@@ -72,11 +72,11 @@ public class SubjectsPersonalListBean implements Serializable {
         this.window_pos = window_pos;
     }
 
-    public String getActual_visit_time() {
+    public long getActual_visit_time() {
         return actual_visit_time;
     }
 
-    public void setActual_visit_time(String actual_visit_time) {
+    public void setActual_visit_time(long actual_visit_time) {
         this.actual_visit_time = actual_visit_time;
     }
 
@@ -120,73 +120,5 @@ public class SubjectsPersonalListBean implements Serializable {
         this.visit_content = visit_content;
     }
 
-    public static class VisitContentBean implements Serializable {
-        private boolean isSelected = false;
-        private String category;
-        private List<ItemsBean> items;
 
-        public String getCategory() {
-            return category;
-        }
-
-        public void setCategory(String category) {
-            this.category = category;
-        }
-
-        public List<ItemsBean> getItems() {
-            return items;
-        }
-
-        public void setItems(List<ItemsBean> items) {
-            this.items = items;
-        }
-
-        public boolean isSelected() {
-            return isSelected;
-        }
-
-        public void setSelected(boolean selected) {
-            isSelected = selected;
-        }
-
-        public static class ItemsBean implements Serializable {
-            private String category;
-            private String item_en;
-            private String item_cn;
-
-            private boolean isSelected = false;
-
-            public boolean isSelected() {
-                return isSelected;
-            }
-
-            public void setSelected(boolean selected) {
-                isSelected = selected;
-            }
-
-            public String getCategory() {
-                return category;
-            }
-
-            public void setCategory(String category) {
-                this.category = category;
-            }
-
-            public String getItem_en() {
-                return item_en;
-            }
-
-            public void setItem_en(String item_en) {
-                this.item_en = item_en;
-            }
-
-            public String getItem_cn() {
-                return item_cn;
-            }
-
-            public void setItem_cn(String item_cn) {
-                this.item_cn = item_cn;
-            }
-        }
-    }
 }

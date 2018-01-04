@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BasicAdapter;
-import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.bean.ItemsBean;
+import com.healthmudi.bean.VisitContentBean;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
@@ -18,9 +19,9 @@ import java.util.List;
  * Date: 2017/12/26 16：25
  */
 
-public class VisitContentAdapter extends BasicAdapter<SubjectsPersonalListBean.VisitContentBean> {
+public class VisitContentAdapter extends BasicAdapter<VisitContentBean> {
 
-    public VisitContentAdapter(Context context, List<SubjectsPersonalListBean.VisitContentBean> dataList) {
+    public VisitContentAdapter(Context context, List<VisitContentBean> dataList) {
         super(context, dataList);
     }
 
@@ -31,7 +32,7 @@ public class VisitContentAdapter extends BasicAdapter<SubjectsPersonalListBean.V
         View llSelectAll = get(convertView, R.id.ll_select_all);
         TagFlowLayout mTagFlowlayout = get(convertView, R.id.tag_flowlayout);
 
-        final SubjectsPersonalListBean.VisitContentBean visitContentBean = mDataList.get(position);
+        final VisitContentBean visitContentBean = mDataList.get(position);
 
         mTvParentName.setText(visitContentBean.getCategory());
         llSelectAll.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +71,8 @@ public class VisitContentAdapter extends BasicAdapter<SubjectsPersonalListBean.V
         });
     }
 
-    private boolean checkState(SubjectsPersonalListBean.VisitContentBean visitContentBean) {
-        for (SubjectsPersonalListBean.VisitContentBean.ItemsBean itemsBean : visitContentBean.getItems()) {
+    private boolean checkState(VisitContentBean visitContentBean) {
+        for (ItemsBean itemsBean : visitContentBean.getItems()) {
             if (!itemsBean.isSelected()) {
                 return false;
             }
@@ -79,8 +80,8 @@ public class VisitContentAdapter extends BasicAdapter<SubjectsPersonalListBean.V
         return true;
     }
 
-    private void setSubState(SubjectsPersonalListBean.VisitContentBean visitContentBean) {
-        for (SubjectsPersonalListBean.VisitContentBean.ItemsBean itemsBean : visitContentBean.getItems()) {
+    private void setSubState(VisitContentBean visitContentBean) {
+        for (ItemsBean itemsBean : visitContentBean.getItems()) {
             itemsBean.setSelected(visitContentBean.isSelected());
         }
     }
