@@ -12,9 +12,9 @@ public class SubjectsBean {
     private String arm_code;
     private int baseline_date;
     private int baseline_type;
-    private Object end_date;
-    private Object end_reason;
-    private Object end_reason_description;
+    private long end_date;
+    private String end_reason;
+    private String end_reason_description;
     private String mobile;
     private String name_py;
     private int project_id;
@@ -50,27 +50,27 @@ public class SubjectsBean {
         this.baseline_type = baseline_type;
     }
 
-    public Object getEnd_date() {
+    public long getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Object end_date) {
+    public void setEnd_date(long end_date) {
         this.end_date = end_date;
     }
 
-    public Object getEnd_reason() {
+    public String getEnd_reason() {
         return end_reason;
     }
 
-    public void setEnd_reason(Object end_reason) {
+    public void setEnd_reason(String end_reason) {
         this.end_reason = end_reason;
     }
 
-    public Object getEnd_reason_description() {
+    public String getEnd_reason_description() {
         return end_reason_description;
     }
 
-    public void setEnd_reason_description(Object end_reason_description) {
+    public void setEnd_reason_description(String end_reason_description) {
         this.end_reason_description = end_reason_description;
     }
 

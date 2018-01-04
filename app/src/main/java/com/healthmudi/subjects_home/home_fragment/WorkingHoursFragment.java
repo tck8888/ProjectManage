@@ -11,6 +11,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -32,6 +33,10 @@ import com.healthmudi.view.EmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +78,14 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
     protected void initData(@Nullable Bundle arguments) {
         mProject_id = arguments.getString(Constant.KEY_PROJECT_ID);
         map.put("project_id", mProject_id);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -161,6 +174,25 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackInfo(MessageEvent event) {
+        if (event != null) {
+            if (event.getTag().equals(MessageEvent.KEY_INSTITUTION_ESTABLISHMENT_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_ETHICAL_SUBMISSION_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_CONTRACT_FOLLOW_UP_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_PROJECT_START_MEETING_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_SAE_REPORT_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_PRESIFTING_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_VISITORS_VISIT_TO_THE_RULES_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_EDC_FILL_IN_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_OTHER_WORK_SUCCESS) ||
+                    event.getTag().equals(MessageEvent.KEY_SERVER_CONF_SUCCESS)) {
+                mRefreshLayout.autoRefresh();
+            }
+        }
+
+    }
+
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
         getData();
@@ -207,6 +239,15 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
         }
     }
 }

@@ -50,8 +50,6 @@ public class ProjectManageHomeActivity extends BaseActivity {
         super.initView();
         mCommonTablayout = (CommonTabLayout) findViewById(R.id.common_tablayout);
         mCommonTablayout.setTabData(mTabEntities, this, R.id.container_fl, mFragments);
-        //设置消息数量
-        mCommonTablayout.showMsg(1, 100);
     }
 
 }

@@ -43,6 +43,7 @@ public class MessageEvent<T> {
     public static final String KEY_PLANNED_INTERVIEW_SUCCESS = "PlannedInterviewActivity_SUCCESS";
     public static final String KEY_RESEARCH_END_VISIT_SUCCESS = "ResearchEndVisitActivity_SUCCESS";
     public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";
+
     public static final String KEY_INSTITUTION_ESTABLISHMENT_SUCCESS = "InstitutionEstablishmentActivity_SUCCESS";
     public static final String KEY_ETHICAL_SUBMISSION_SUCCESS = "EthicalSubmissionActivity_SUCCESS";
     public static final String KEY_CONTRACT_FOLLOW_UP_SUCCESS = "ContractFollowUpActivity_SUCCESS";
@@ -53,6 +54,7 @@ public class MessageEvent<T> {
     public static final String KEY_EDC_FILL_IN_SUCCESS = "EDCFillInActivity_SUCCESS";
     public static final String KEY_OTHER_WORK_SUCCESS = "OtherWorkActivity_SUCCESS";
     public static final String KEY_SERVER_CONF_SUCCESS = "ServerConfActivity_SUCCESS";
+
     public static final String KEY_MEMORANDUM_ADD_SUCCESS = "MemorandumAddActivity_SUCCESS";//备忘录添加
     public static final String KEY_MEMORANDUM_SEE_SUCCESS = "MemorandumSeeActivity_SUCCESS";//备忘录查看
 

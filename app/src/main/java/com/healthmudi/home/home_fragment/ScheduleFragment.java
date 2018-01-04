@@ -18,7 +18,9 @@ import com.healthmudi.bean.ItemType;
 import com.healthmudi.bean.MemoBean;
 import com.healthmudi.bean.ScheduleListBean;
 import com.healthmudi.bean.ScheduleListFootBean;
+import com.healthmudi.bean.ScheduleListVisitBean;
 import com.healthmudi.bean.SubjectsBean;
+import com.healthmudi.bean.VisitsBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.home.MemorandumAddActivity;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 日程
@@ -164,13 +167,25 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
         });
     }
 
+    private TreeMap<Long, ScheduleListVisitBean> scheduleMap = new TreeMap<>();
+
     private void operatingData(List<ScheduleListBean.VisitBean> visit) {
         for (int i = 0; i < visit.size(); i++) {
-            List<SubjectsBean> subjects = visit.get(i).getSubjects();
+            ScheduleListBean.VisitBean visitBean = visit.get(i);
+            List<SubjectsBean> subjects = visitBean.getSubjects();
+
+            ScheduleListVisitBean scheduleListVisitBean = new ScheduleListVisitBean();
+            scheduleListVisitBean.setProject_name(visitBean.getProject_name());
+
+            List<ScheduleListVisitBean.ScheduleSubject> mScheduleSubjectList = new ArrayList<>();
             for (int j = 0; j < subjects.size(); j++) {
                 SubjectsBean subjectsBean = subjects.get(j);
                 for (int k = 0; k < subjectsBean.getVisits().size(); k++) {
+                    VisitsBean visitsBean = subjectsBean.getVisits().get(k);
+                    ScheduleListVisitBean.ScheduleSubject scheduleSubject = new ScheduleListVisitBean.ScheduleSubject();
+                    if (visitsBean.getTarget_visit_time() != 0 || visitsBean.getNot_finish_flag() == 1) {
 
+                    }
                 }
             }
         }

@@ -143,6 +143,7 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
             Intent intent = new Intent(this, clazz);
             intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
             startActivity(intent);
+            activityFinish();
         }
     }
 

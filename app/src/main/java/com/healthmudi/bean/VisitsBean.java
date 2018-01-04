@@ -8,11 +8,11 @@ import java.util.List;
  */
 
 public class VisitsBean {
-    private Object actual_visit_time;
-    private Object not_finish_flag;
+    private long actual_visit_time;
+    private int not_finish_flag;
     private String remark;
     private int subject_visit_id;
-    private int target_visit_time;
+    private long target_visit_time;
     private int visit_id;
     private String visit_name;
     private int visit_type;
@@ -20,19 +20,19 @@ public class VisitsBean {
     private int window_pos;
     private List<VisitContentBean> visit_content;
 
-    public Object getActual_visit_time() {
+    public long getActual_visit_time() {
         return actual_visit_time;
     }
 
-    public void setActual_visit_time(Object actual_visit_time) {
+    public void setActual_visit_time(long actual_visit_time) {
         this.actual_visit_time = actual_visit_time;
     }
 
-    public Object getNot_finish_flag() {
+    public int getNot_finish_flag() {
         return not_finish_flag;
     }
 
-    public void setNot_finish_flag(Object not_finish_flag) {
+    public void setNot_finish_flag(int not_finish_flag) {
         this.not_finish_flag = not_finish_flag;
     }
 
@@ -52,11 +52,11 @@ public class VisitsBean {
         this.subject_visit_id = subject_visit_id;
     }
 
-    public int getTarget_visit_time() {
+    public long getTarget_visit_time() {
         return target_visit_time;
     }
 
-    public void setTarget_visit_time(int target_visit_time) {
+    public void setTarget_visit_time(long target_visit_time) {
         this.target_visit_time = target_visit_time;
     }
 
