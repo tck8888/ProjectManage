@@ -42,9 +42,9 @@ public class SubjectsListBean {
         private String baseline_date;
         private String arm_code;
         private String arm_name;
-        private String end_date;
+        private long end_date;
         private String remark;
-        private String end_reason;
+        private int end_reason;
         private String end_reason_description;
         private String site_name;
 
@@ -136,11 +136,11 @@ public class SubjectsListBean {
             return arm_name;
         }
 
-        public String getEnd_date() {
+        public long getEnd_date() {
             return end_date;
         }
 
-        public void setEnd_date(String end_date) {
+        public void setEnd_date(long end_date) {
             this.end_date = end_date;
         }
 
@@ -152,11 +152,11 @@ public class SubjectsListBean {
             this.remark = remark;
         }
 
-        public String getEnd_reason() {
+        public int getEnd_reason() {
             return end_reason;
         }
 
-        public void setEnd_reason(String end_reason) {
+        public void setEnd_reason(int end_reason) {
             this.end_reason = end_reason;
         }
 

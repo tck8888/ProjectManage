@@ -1,7 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -129,10 +128,8 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
         super.setViewData();
         if (mSubjectsBean != null) {
             //结束时间与结束理由不为空，代表研究结束
-            if (mSubjectsBean.getEnd_date() != null
-                    && !TextUtils.isEmpty(mSubjectsBean.getEnd_date())
-                    && mSubjectsBean.getEnd_reason() != null
-                    && !TextUtils.isEmpty(mSubjectsBean.getEnd_reason())) {
+            if (mSubjectsBean.getEnd_date() != 0
+                    && mSubjectsBean.getEnd_reason() != 0) {
                 mIvaddSubjects.setVisibility(View.GONE);
             } else {
                 mIvaddSubjects.setVisibility(View.VISIBLE);

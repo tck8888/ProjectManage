@@ -45,12 +45,12 @@ public class PlannedInterviewUpdateFragment extends BaseFragment1 implements Vie
     private TimePickerView mTimePickerView;
     private IosDialog mIosDialog;
 
-    private SubjectsListBean.SubjectsBean mSubjectsBean;
 
     private Map<String, String> map = new HashMap<>();
 
     private String tag = "PlannedInterviewUpdateFragment";
 
+    private SubjectsListBean.SubjectsBean mSubjectsBean;
     public static PlannedInterviewUpdateFragment newInstance(SubjectsListBean.SubjectsBean subjectsBean) {
         PlannedInterviewUpdateFragment plannedInterviewUpdateFragment = new PlannedInterviewUpdateFragment();
         Bundle bundle = new Bundle();
@@ -61,6 +61,7 @@ public class PlannedInterviewUpdateFragment extends BaseFragment1 implements Vie
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
+
         try {
             mSubjectsBean = (SubjectsListBean.SubjectsBean) arguments.getSerializable(Constant.KEY_SUBJECTS_BEAN);
         } catch (Exception e) {
