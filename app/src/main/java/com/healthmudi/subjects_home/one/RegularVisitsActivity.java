@@ -51,7 +51,6 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
         super.initView();
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
-
     }
 
     @Override
@@ -87,8 +86,6 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
         super.setListener();
         findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
         findViewById(R.id.iv_circular_exclamation_mark).setOnClickListener(this);
-
-
     }
 
     @Override

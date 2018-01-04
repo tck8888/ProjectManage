@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/tv_item_name"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="50dp"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="156dp"
+        android:layout_marginLeft="130dp"
         android:text=" 2017-12-10"
         android:textColor="@color/color_657180"
         android:textSize="15sp"/>

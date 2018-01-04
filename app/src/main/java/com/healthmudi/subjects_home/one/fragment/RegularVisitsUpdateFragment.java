@@ -47,7 +47,6 @@ import java.util.Map;
 
 public class RegularVisitsUpdateFragment extends BaseFragment1 implements View.OnClickListener {
 
-    private TextView mTvTitle;
     private TextView mTvSubjectsNumber;
     private TextView mTvPlannedDate;
     private TextView mTvSelectResearchCenter;
@@ -97,7 +96,6 @@ public class RegularVisitsUpdateFragment extends BaseFragment1 implements View.O
 
     @Override
     protected void initView(@Nullable View view) {
-        mTvTitle = (TextView) view.findViewById(R.id.tv_title);
         mTvSelectResearchCenter = (TextView) view.findViewById(R.id.tv_select_research_center);
         mTvInitials = (TextView) view.findViewById(R.id.tv_initials);
         mTvWindowDate = (TextView) view.findViewById(R.id.tv_window_date);
@@ -123,7 +121,7 @@ public class RegularVisitsUpdateFragment extends BaseFragment1 implements View.O
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-
+                        mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
@@ -133,7 +131,7 @@ public class RegularVisitsUpdateFragment extends BaseFragment1 implements View.O
             @Override
             public void onDismiss(DialogInterface dialog) {
                 EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_REGULAR_VISITS_SUCCESS));
-                mIosDialog.dismiss();
+               activityFinish();
             }
         });
     }

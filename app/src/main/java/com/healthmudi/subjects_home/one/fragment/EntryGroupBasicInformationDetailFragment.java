@@ -1,23 +1,24 @@
-package com.healthmudi.subjects_home.one.dialog;
+package com.healthmudi.subjects_home.one.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.healthmudi.R;
-import com.healthmudi.base.BaseDialogFragment;
+import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
+import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.StringConvertCodeEachUtils;
 
 /**
- * Created by tck
- * Date: 2017/12/26 10：56
+ * decription:
+ * Created by tck on 2018/1/4.
  */
-
-public class GroupBasicInformationDialog extends BaseDialogFragment {
+public class EntryGroupBasicInformationDetailFragment extends BaseFragment1 {
 
     private TextView mTvInputNumber;
     private TextView mTvSelectResearchCenter;
@@ -31,28 +32,28 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
     private SubjectsPersonalListBean mSubjectsPersonalListBean;
     private SubjectsListBean.SubjectsBean mSubjectsBean;
 
-    public static GroupBasicInformationDialog newInstance(SubjectsPersonalListBean subjectsPersonalListBean, SubjectsListBean.SubjectsBean subjectsBean) {
-        GroupBasicInformationDialog groupBasicInformationDialog = new GroupBasicInformationDialog();
+    public static EntryGroupBasicInformationDetailFragment newInstance(SubjectsListBean.SubjectsBean subjectsBean, SubjectsPersonalListBean subjectsPersonalListBean) {
+        EntryGroupBasicInformationDetailFragment entryGroupBasicInformationDetailFragment = new EntryGroupBasicInformationDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN, subjectsPersonalListBean);
         bundle.putSerializable(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
-        groupBasicInformationDialog.setArguments(bundle);
-        return groupBasicInformationDialog;
+        bundle.putSerializable(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN, subjectsPersonalListBean);
+        entryGroupBasicInformationDetailFragment.setArguments(bundle);
+        return entryGroupBasicInformationDetailFragment;
     }
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-        mSubjectsPersonalListBean = (SubjectsPersonalListBean) arguments.get(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN);
-        mSubjectsBean = (SubjectsListBean.SubjectsBean) arguments.get(Constant.KEY_SUBJECTS_BEAN);
+        mSubjectsBean = (SubjectsListBean.SubjectsBean) arguments.getSerializable(Constant.KEY_SUBJECTS_BEAN);
+        mSubjectsPersonalListBean = (SubjectsPersonalListBean) arguments.getSerializable(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN);
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.dialog_group_basic_information;
+        return R.layout.fragment_entry_group_basic_information_detail;
     }
 
     @Override
-    protected void initView(View view) {
+    protected void initView(@Nullable View view) {
         mTvInputNumber = (TextView) view.findViewById(R.id.tv_input_number);
         mTvSelectResearchCenter = (TextView) view.findViewById(R.id.tv_select_research_center);
         mTvSubjectsNumber = (TextView) view.findViewById(R.id.tv_subjects_number);
@@ -65,8 +66,8 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
     }
 
     @Override
-    public void setViewData(View view) {
-        super.setViewData(view);
+    public void setViewData() {
+        super.setViewData();
         if (mSubjectsPersonalListBean != null && mSubjectsBean != null) {
             mTvInputNumber.setText(mSubjectsBean.getSubject_filter_id());
             mTvSelectResearchCenter.setText(mSubjectsBean.getSite_name());
@@ -74,20 +75,14 @@ public class GroupBasicInformationDialog extends BaseDialogFragment {
             mTvInitials.setText(mSubjectsBean.getName_py());
             mTvMobile.setText(mSubjectsBean.getMobile());
             mTvBaselineType.setText(StringConvertCodeEachUtils.getString(mSubjectsBean.getBaseline_type()));
-            //mTvBaselineDate.setText(mSubjectsBean.getBaseline_date());
+            mTvBaselineDate.setText(DateUtils.getFormatTime(String.valueOf(mSubjectsBean.getBaseline_date())));
             mTvTestGroup.setText(mSubjectsBean.getArm_name());
-            mTvRemark.setText(mSubjectsPersonalListBean.getRemark());
-
-            if (mSubjectsPersonalListBean.getVisit_type() == 1) {
-                tvTitle.setText("入组基本信息");
-                ivCircularExclamationMark.setVisibility(View.VISIBLE);
-                ivCircularExclamationMark.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
+            if (TextUtils.isEmpty(mSubjectsBean.getRemark())) {
+                mTvRemark.setVisibility(View.GONE);
+            } else {
+                mTvRemark.setText(mSubjectsBean.getRemark());
             }
+
         }
     }
 }

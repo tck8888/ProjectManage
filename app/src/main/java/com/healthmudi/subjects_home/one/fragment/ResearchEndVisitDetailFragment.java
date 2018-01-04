@@ -93,8 +93,6 @@ public class ResearchEndVisitDetailFragment extends BaseFragment1 {
             updateEndReason(mSubjectsBean);
         }
 
-
-
         if (mSubjectsPersonalListBean != null) {
             if (TextUtils.isEmpty(mSubjectsPersonalListBean.getRemark())) {
                 mTvRemark.setVisibility(View.GONE);

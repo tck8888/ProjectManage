@@ -147,9 +147,14 @@
                     android:background="@drawable/shape_corner_2dp_solid_fff_border_dedfe0"
                     android:gravity="top"
                     android:minHeight="40dp"
-                    android:paddingLeft="10dp"
+                    android:padding="8dp"
                     />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_f3f3f3"/>
 
             <LinearLayout
                 android:id="@+id/ll_end_time"

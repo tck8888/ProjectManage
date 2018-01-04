@@ -39,7 +39,7 @@ public class SubjectsListBean {
         private String name_py;
         private String mobile;
         private int baseline_type;
-        private String baseline_date;
+        private long baseline_date;
         private String arm_code;
         private String arm_name;
         private long end_date;
@@ -112,11 +112,11 @@ public class SubjectsListBean {
             this.baseline_type = baseline_type;
         }
 
-        public String getBaseline_date() {
+        public long getBaseline_date() {
             return baseline_date;
         }
 
-        public void setBaseline_date(String baseline_date) {
+        public void setBaseline_date(long baseline_date) {
             this.baseline_date = baseline_date;
         }
 

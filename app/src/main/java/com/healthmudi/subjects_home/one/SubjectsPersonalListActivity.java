@@ -19,7 +19,6 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.home_fragment.adapter.SubjectsPersonalListAdapter;
-import com.healthmudi.subjects_home.one.dialog.GroupBasicInformationDialog;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.healthmudi.view.custom_popupwindow.EasyPopup;
@@ -160,8 +159,7 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
         //访视类型 1.入组访视、2.常规访视、3.退出访视、4.计划外访视
         switch (subjectsPersonalListBean.getVisit_type()) {
             case 1:
-                GroupBasicInformationDialog.newInstance(subjectsPersonalListBean, mSubjectsBean)
-                        .show(getSupportFragmentManager(), "GroupBasicInformationDialog");
+                openActivity(EntryGroupBasicInformationActivity.class, mSubjectsBean, subjectsPersonalListBean);
                 break;
             case 2:
                 openActivity(RegularVisitsActivity.class, mSubjectsBean, subjectsPersonalListBean);

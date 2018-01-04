@@ -37,6 +37,6 @@ public class ResearchEndReasonListAdapter extends BasicAdapter<ResearchEndReason
 
     @Override
     protected int getContentView() {
-        return R.layout.research_end_reason_item;
+        return R.layout.item_research_end_reason;
     }
 }
