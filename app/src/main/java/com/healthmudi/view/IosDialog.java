@@ -250,6 +250,10 @@ public class IosDialog extends Dialog {
             return this;
         }
 
+        public Builder setDismissListener(){
+            return this;
+        }
+
         public Builder setNegativeButtonColor(int color) {
             negativeButtonColor = color;
             return this;
@@ -303,5 +307,6 @@ public class IosDialog extends Dialog {
             this.mContentView = v;
             return this;
         }
+
     }
 }

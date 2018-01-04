@@ -93,10 +93,9 @@ public class SubjectsListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(R.layout.subjects_child_item, parent, false);
-
-
         Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
+
         SubjectsListBean.SubjectsBean subjectsBean = mDataList.get(groupPosition).getSubjects().get(childPosition);
         mTvSubjectsPeopleName.setText(subjectsBean.getSubject_code() + "  (" + subjectsBean.getName_py() + ")");
         btnDelete.setOnClickListener(new View.OnClickListener() {

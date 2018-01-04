@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
@@ -191,11 +192,14 @@ public class RegularVisitsActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
-                // 退出动画
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+                activityFinish();
                 break;
-            case R.id.iv_circular_exclamation_mark:
+            case R.id.iv_circular_exclamation_mark://注意事项
+                Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
+                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS);
+                intent.putExtra(Constant.KEY_SUBJECT_ID, map.get("subject_id"));
+                startActivity(intent);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             case R.id.iv_check_mark:
                 submitData();

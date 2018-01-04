@@ -94,9 +94,11 @@ public class FileListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(R.layout.file_child_item, parent, false);
-
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
+
+
         FileListBean.FilesBean filesBean = mDataList.get(groupPosition).getFiles().get(childPosition);
+
         mTvSubjectsPeopleName.setText(filesBean.getFile_name());
         return convertView;
     }

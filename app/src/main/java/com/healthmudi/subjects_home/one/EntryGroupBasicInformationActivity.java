@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -189,7 +190,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         hideSoftKeyBord();
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
+                activityFinish();
                 break;
             //注意事项
             case R.id.iv_circular_exclamation_mark:
@@ -308,7 +309,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             @Override
             public void onFailure(int code, String mesage) {
                 LoadingDialog.getInstance(EntryGroupBasicInformationActivity.this).hidden();
-                Toast.makeText(EntryGroupBasicInformationActivity.this,"入组失败请稍后再试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EntryGroupBasicInformationActivity.this, "入组失败,请稍后再试", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -376,16 +377,20 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS));
-                        finish();
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS));
+                activityFinish();
+            }
+        });
     }
-
 
     @Override
     protected void onDestroy() {

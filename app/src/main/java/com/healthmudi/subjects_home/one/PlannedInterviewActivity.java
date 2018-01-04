@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.one;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -118,15 +119,21 @@ public class PlannedInterviewActivity extends BaseActivity implements View.OnCli
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        //TODO:
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS));
-                        finish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS));
+                activityFinish();
+            }
+        });
     }
 
     @Override
@@ -147,7 +154,10 @@ public class PlannedInterviewActivity extends BaseActivity implements View.OnCli
             //注意事项
             case R.id.iv_circular_exclamation_mark:
                 Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
+                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS);
+                intent.putExtra(Constant.KEY_SUBJECT_ID, map.get("subject_id"));
                 startActivity(intent);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             case R.id.iv_check_mark:
                 submitData();

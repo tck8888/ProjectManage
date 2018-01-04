@@ -48,6 +48,7 @@ public class PlannedInterviewMattersNeedingAttentionActivity extends BaseActivit
         super.initData();
         try {
             String type = getIntent().getStringExtra(Constant.KEY_INFOMATION);
+            String subject_id = getIntent().getStringExtra(Constant.KEY_SUBJECT_ID);
             ProjectListBean projectListBean = Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
             map.put("project_id", String.valueOf(projectListBean.getProject_id()));
             switch (type) {
@@ -58,6 +59,21 @@ public class PlannedInterviewMattersNeedingAttentionActivity extends BaseActivit
                     url = HttpUrlList.PROJECT_SUBJECT_VISIT_TIP_URL;
                     //map.put("subject_id","");
                     map.put("visit_type", "1");//访视类型 1.入组访视、2.常规访视、3.退出访视、4.计划外访视
+                    break;
+                case MessageEvent.KEY_PLANNED_INTERVIEW_SUCCESS://计划外访视
+                    url = HttpUrlList.PROJECT_SUBJECT_VISIT_TIP_URL;
+                    map.put("subject_id",subject_id);
+                    map.put("visit_type", "4");
+                    break;
+                case MessageEvent.KEY_RESEARCH_END_VISIT_SUCCESS://退出访视
+                    url = HttpUrlList.PROJECT_SUBJECT_VISIT_TIP_URL;
+                    map.put("subject_id",subject_id);
+                    map.put("visit_type", "3");
+                    break;
+                case MessageEvent.KEY_REGULAR_VISITS_SUCCESS://常规访视
+                    url = HttpUrlList.PROJECT_SUBJECT_VISIT_TIP_URL;
+                    map.put("subject_id",subject_id);
+                    map.put("visit_type", "2");
                     break;
             }
         } catch (Exception e) {

@@ -96,7 +96,10 @@ public class SubjectsPersonalSerachListAdapter extends BaseExpandableListAdapter
 
         Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
+        View view = convertView.findViewById(R.id.line1);
+
         SubjectsListBean.SubjectsBean subjectsBean = mDataList.get(groupPosition).getSubjects().get(childPosition);
+
         mTvSubjectsPeopleName.setText(subjectsBean.getSubject_code() + "  (" + subjectsBean.getName_py() + ")");
 
         return convertView;
@@ -107,7 +110,6 @@ public class SubjectsPersonalSerachListAdapter extends BaseExpandableListAdapter
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
 
 
 }
