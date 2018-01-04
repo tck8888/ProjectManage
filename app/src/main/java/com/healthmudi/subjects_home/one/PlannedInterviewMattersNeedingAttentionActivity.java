@@ -54,6 +54,11 @@ public class PlannedInterviewMattersNeedingAttentionActivity extends BaseActivit
                 case MessageEvent.KEY_SAE_REPORT_SUCCESS://项目-工时-SAE上报注意事项
                     url = HttpUrlList.PROJECT_JOB_SAE_TIP_URL;
                     break;
+                case MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS://入组的注意事项
+                    url = HttpUrlList.PROJECT_SUBJECT_VISIT_TIP_URL;
+                    //map.put("subject_id","");
+                    map.put("visit_type", "1");//访视类型 1.入组访视、2.常规访视、3.退出访视、4.计划外访视
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

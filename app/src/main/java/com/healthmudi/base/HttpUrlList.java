@@ -23,6 +23,7 @@ public interface HttpUrlList {
     String PROJECT_SUBJECT_DEL_URL = "project/subject/del";//项目-受试者删除
     String PROJECT_SUBJECT_SEARCH_URL = "project/subject/search";//项目-受试者搜索
     String PROJECT_SUBJECT_CODES_URL = "project/subject/codes";//项目-受试者编号列表
+    String PROJECT_SUBJECT_VISIT_TIP_URL = "project/subject/visit/tip";//项目-受试者访视注意事项
 
 
     String PROJECT_JOB_LIST_URL = "project/job/list";//项目-工时列表

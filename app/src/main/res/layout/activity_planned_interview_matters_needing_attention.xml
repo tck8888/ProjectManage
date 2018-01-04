@@ -38,7 +38,7 @@
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.healthmudi.view.EmptyView
             android:id="@+id/empty_layout"
@@ -61,7 +61,7 @@
                     <TextView
                         android:id="@+id/tv_planned_interview_matters_needing_attention"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:background="@color/color_ffffff"
                         android:padding="15dp"
                         android:textColor="@color/color_464c5b"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProjectManage</string>
+    <string name="app_name">项目管理</string>
     <string name="title_cont_follow">合同跟进</string>
     <string name="title_institutionestablishment">机构立项</string>
     <string name="title_projectstartmeeting">项目启动会</string>

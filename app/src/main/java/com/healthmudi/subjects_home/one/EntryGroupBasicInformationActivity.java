@@ -71,36 +71,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
     private String site_id = "";
     private String tag = "EntryGroupBasicInformationActivity";
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            mIosDialog = null;
-
-            OkGo.getInstance().cancelTag(tag);
-            map.clear();
-            mArmBeanList.clear();
-            mSiteBeanList.clear();
-            mBaselinTypes.clear();
-            mProjectListBean = null;
-            mTimePickerView = null;
-            mOptionsPickerView = null;
-            mEtInputNumber = null;
-            mTvSelectResearchCenter = null;
-            mEtSubjectsNumber = null;
-            mCbIsSame = null;
-            mEtInitials = null;
-            mEtMobile = null;
-            mTvBaselineType = null;
-            mTvBaselineDate = null;
-            mTvTestGroup = null;
-            mEtRemark = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public int getLayoutId() {
         return R.layout.entry_group_basic_information;
@@ -224,7 +194,9 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             //注意事项
             case R.id.iv_circular_exclamation_mark:
                 Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
+                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS);
                 startActivity(intent);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             //提交数据
             case R.id.iv_check_mark:
@@ -336,9 +308,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             @Override
             public void onFailure(int code, String mesage) {
                 LoadingDialog.getInstance(EntryGroupBasicInformationActivity.this).hidden();
-                if (!TextUtils.isEmpty(mesage)) {
-                    Toast.makeText(EntryGroupBasicInformationActivity.this, mesage, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(EntryGroupBasicInformationActivity.this,"入组失败请稍后再试", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -416,5 +386,33 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
                 .build();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            mIosDialog = null;
+            OkGo.getInstance().cancelTag(tag);
+            map.clear();
+            mArmBeanList.clear();
+            mSiteBeanList.clear();
+            mBaselinTypes.clear();
+            mProjectListBean = null;
+            mTimePickerView = null;
+            mOptionsPickerView = null;
+            mEtInputNumber = null;
+            mTvSelectResearchCenter = null;
+            mEtSubjectsNumber = null;
+            mCbIsSame = null;
+            mEtInitials = null;
+            mEtMobile = null;
+            mTvBaselineType = null;
+            mTvBaselineDate = null;
+            mTvTestGroup = null;
+            mEtRemark = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
