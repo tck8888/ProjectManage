@@ -66,7 +66,7 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_subjects_personal;
+        return R.layout.activity_subjects_personal_list;
     }
 
     @Override
@@ -160,18 +160,20 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
     }
 
     public void openDialog(SubjectsPersonalListBean subjectsPersonalListBean) {
-
+        //访视类型 1.入组访视、2.常规访视、3.退出访视、4.计划外访视
         switch (subjectsPersonalListBean.getVisit_type()) {
             case 1:
                 GroupBasicInformationDialog.newInstance(subjectsPersonalListBean, mSubjectsBean)
                         .show(getSupportFragmentManager(), "GroupBasicInformationDialog");
                 break;
             case 2:
-                openActivity(RegularVisitsActivity.class,mSubjectsBean,subjectsPersonalListBean);
+                openActivity(RegularVisitsActivity.class, mSubjectsBean, subjectsPersonalListBean);
                 break;
             case 3:
+                openActivity(ResearchEndVisitActivity.class, mSubjectsBean, subjectsPersonalListBean);
                 break;
             case 4:
+                openActivity(PlannedInterviewActivity.class, mSubjectsBean, subjectsPersonalListBean);
                 break;
         }
 
@@ -234,11 +236,11 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
                 break;
             //计划外访式
             case R.id.fl_unplanned_interview:
-                openActivity(PlannedInterviewActivity.class,mSubjectsBean,null);
+                openActivity(PlannedInterviewActivity.class, mSubjectsBean, null);
                 break;
             //研究结束访视
             case R.id.fl_research_end_visit:
-                openActivity(ResearchEndVisitActivity.class,mSubjectsBean,null);
+                openActivity(ResearchEndVisitActivity.class, mSubjectsBean, null);
                 break;
         }
     }

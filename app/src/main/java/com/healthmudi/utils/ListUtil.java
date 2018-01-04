@@ -5,6 +5,9 @@ import java.util.List;
 
 public class ListUtil {
 
+    private String category;
+    private List<String> items;
+
     private ListUtil() {
         throw new AssertionError();
     }
@@ -38,5 +41,6 @@ public class ListUtil {
             sourceList = null;
         }
     }
+
 
 }

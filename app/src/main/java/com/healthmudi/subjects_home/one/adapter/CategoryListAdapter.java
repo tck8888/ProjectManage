@@ -1,6 +1,7 @@
 package com.healthmudi.subjects_home.one.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,11 +48,11 @@ public class CategoryListAdapter extends TagAdapter<ItemsBean> {
         }
         if (itemsBean.isSelected()) {
             mIvCategoryName.setImageResource(R.drawable.icon_rectangle_selected);
+            mTvCategoryName.setTextColor(ContextCompat.getColor(mContext,R.color.color_1abc9c));
         } else {
             mIvCategoryName.setImageResource(R.drawable.icon_rectangle_unselected);
+            mTvCategoryName.setTextColor(ContextCompat.getColor(mContext,R.color.color_464c5b));
         }
-
-
         return view;
     }
 }

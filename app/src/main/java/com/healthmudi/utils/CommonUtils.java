@@ -1,6 +1,9 @@
 package com.healthmudi.utils;
 
 import android.support.annotation.Nullable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
 
 import java.util.regex.Matcher;
@@ -51,5 +54,25 @@ public class CommonUtils {
         }
 
         return (scrollY > 0) || (scrollY < scrollDifference - 1);
+    }
+
+    /**
+     * decription:
+     * what：对SpannableString进行润色的各种Span；
+     * int：需要润色文字段开始的下标；
+     * end：需要润色文字段结束的下标；
+     * flags：决定开始和结束下标是否包含的标志位，有四个参数可选
+     * <p>
+     * SPAN_INCLUSIVE_EXCLUSIVE：包括开始下标，但不包括结束下标
+     * SPAN_EXCLUSIVE_INCLUSIVE：不包括开始下标，但包括结束下标
+     * SPAN_INCLUSIVE_INCLUSIVE：既包括开始下标，又包括结束下标
+     * SPAN_EXCLUSIVE_EXCLUSIVE：不包括开始下标，也不包括结束下标
+     */
+    public static SpannableString getSpannableString(String str, int color) {
+        SpannableString spannableString = new SpannableString(str);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(color);
+        spannableString.setSpan(foregroundColorSpan, str.indexOf("("), str.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        return spannableString;
     }
 }

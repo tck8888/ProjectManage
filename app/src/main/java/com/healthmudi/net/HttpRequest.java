@@ -44,7 +44,7 @@ public class HttpRequest {
             return;
         }
         if (mGson == null) {
-            mGson = GsonUtils.buildGson();
+            mGson = GsonUtils.getGson();
         }
 
         TreeMap<String, String> map = operateParameter(parameter);
@@ -105,7 +105,7 @@ public class HttpRequest {
             return;
         }
         if (mGson == null) {
-            mGson = GsonUtils.buildGson();
+            mGson = GsonUtils.getGson();
         }
 
         TreeMap<String, String> map = operateParameter(parameter);

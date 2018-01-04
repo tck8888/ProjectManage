@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class ItemsBean implements Serializable {
 
+
     private String category;
     private String item_en;
     private String item_cn;

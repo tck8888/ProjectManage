@@ -1,58 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
               android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff">
-
-        <ImageView
-            android:id="@+id/iv_arrow_left_black"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:padding="15dp"
-            android:src="@mipmap/icon_fork_black"
-            />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="研究结束信息"
-            android:textColor="@color/color_464c5b"
-            android:textSize="18sp"/>
-
-
-        <ImageView
-            android:id="@+id/iv_circular_exclamation_mark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="50dp"
-            android:padding="15dp"
-            android:src="@mipmap/icon_circular_exclamation_mark"/>
-
-        <ImageView
-            android:id="@+id/iv_check_mark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="15dp"
-            android:src="@mipmap/icon_check_mark"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_gravity="bottom"
-            android:background="@color/color_e4e4e4"/>
-    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -68,16 +19,16 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="受试者基本信息"
-                android:textColor="@color/color_464c5b"
-                android:textSize="15sp"/>
+                android:text="访视的基本信息"
+                android:textColor="@color/color_657180"
+                android:textSize="14sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:minHeight="50dp"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:paddingRight="15dp">
 
                 <TextView
@@ -86,7 +37,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="研究中心"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"/>
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:id="@+id/tv_select_research_center"
@@ -95,11 +46,12 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="end"
-                    android:gravity="end"
+                    android:gravity="right"
+                    android:hint="复旦大学附属肿瘤医院"
                     android:maxLines="1"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"
-                    tools:text="研究中心"/>
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -109,29 +61,30 @@
                 android:layout_marginTop="1dp"
                 android:background="#fff"
                 android:minHeight="50dp"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:paddingRight="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="案例编号"
+                    android:text="受试者编号"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/tv_input_number"
+                    android:id="@+id/tv_subjects_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="end"
-                    android:gravity="end"
+                    android:gravity="right"
+                    android:hint="请输入受试者编号"
                     android:maxLines="1"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"
-                    tools:text="案例编号"/>
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -141,7 +94,7 @@
                 android:layout_marginTop="1dp"
                 android:background="#fff"
                 android:minHeight="50dp"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:paddingRight="15dp">
 
                 <TextView
@@ -150,7 +103,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="姓名缩写"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/tv_initials"
@@ -159,12 +112,129 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="end"
-                    android:gravity="end"
+                    android:gravity="right"
+                    android:hint="请输入姓名缩写"
                     android:maxLines="1"
                     android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"
-                    tools:text="姓名缩写"/>
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="计划访视日期"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_planned_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:hint="请输入计划访视日期"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="时间窗"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_window_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:hint="请输入时间窗"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="实际访视日期"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_actual_visit_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:hint="请选择日期"
+                    android:maxLines="1"
+                    android:textColor="@color/color_464c5b"
+                    android:textColorHint="@color/color_cccccc"
+                    android:textSize="15sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_visit_date_black"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="15dp"
+                    android:src="@mipmap/icon_visit_date_black"/>
+
+                <CheckBox
+                    android:id="@+id/cb_is_same"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:button="@null"
+                    android:drawablePadding="6dp"
+                    android:text="未完成"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="15sp"/>
             </LinearLayout>
 
             <TextView
@@ -172,71 +242,16 @@
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
-                android:text="受试者研究结束原因"
+                android:text="访视任务"
                 android:textColor="@color/color_464c5b"
-                android:textSize="15sp"/>
+                android:textSize="16sp"/>
 
-            <LinearLayout
+            <com.healthmudi.commonlibrary.widget.AutoListView
+                android:id="@+id/auto_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_ffffff"
-                android:orientation="vertical">
-
-                <com.healthmudi.commonlibrary.widget.AutoListView
-                    android:id="@+id/auto_list_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@null"/>
-
-                <EditText
-                    android:id="@+id/et_other_reason"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/shape_corner_2dp_solid_fff_border_dedfe0"
-                    android:gravity="top"
-                    android:paddingLeft="10dp"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_end_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:minHeight="50dp"
-                android:paddingLeft="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="受试者研究结束日期"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:id="@+id/tv_end_time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="end"
-                    android:hint="请选择研究结束日期"
-                    android:maxLines="1"
-                    android:textColor="@color/color_464c5b"
-                    android:textColorHint="@color/color_cccccc"
-                    android:textSize="15sp"/>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="15dp"
-                    android:src="@mipmap/icon_visit_date_black"/>
-            </LinearLayout>
+                android:divider="@color/color_e4e4e4"
+                android:dividerHeight="0.5dp"/>
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
@@ -258,7 +273,7 @@
 
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+                android:layout_height="40dp"/>
         </LinearLayout>
     </ScrollView>
 

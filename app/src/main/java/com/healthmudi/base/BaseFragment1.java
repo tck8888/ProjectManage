@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.healthmudi.R;
+
 /**
  * Created by tck
  * Date: 2017/12/04 17：26
@@ -55,4 +57,9 @@ public abstract class BaseFragment1 extends Fragment {
 
     }
 
+
+    public void activityFinish() {
+        getActivity().finish();
+        getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+    }
 }

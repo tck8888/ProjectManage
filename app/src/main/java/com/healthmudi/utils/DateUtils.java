@@ -72,6 +72,9 @@ public class DateUtils {
         return formatTime;
     }
 
+    /**
+     * decription:获取当前系统时间
+     */
     public static long getCurrentTime() {
         return System.currentTimeMillis();
     }
@@ -83,6 +86,24 @@ public class DateUtils {
     public static String getTime(Date date) {//可根据需要自行截取数据显示
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
+    }
+
+    /**
+     * 计算两个时间的日期差
+     *
+     * @param beginTime
+     * @param endTime
+     * @return
+     */
+    public static int getDifferenceDay(long beginTime, long endTime) {
+        if (String.valueOf(beginTime).length() <= 10) {
+            beginTime = beginTime * 1000;
+        }
+
+        if (String.valueOf(endTime).length() <= 10) {
+            endTime = endTime * 1000;
+        }
+        return (int) ((endTime - beginTime) / (1000 * 24 * 60 * 60));
     }
 
 }
