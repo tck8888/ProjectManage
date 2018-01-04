@@ -131,7 +131,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
         mAdapter.setOnItemClick(new SubjectsListAdapter.OnItemClick() {
             @Override
             public void click(int groupPosition, int childPosition, String type) {
-                SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().remove(childPosition);
+                SubjectsListBean.SubjectsBean subjectsBean = mSubjectsListBeanList.get(groupPosition).getSubjects().get(childPosition);
                 if ("delete".equals(type)) {
                     showDialog(subjectsBean);
                 } else {
