@@ -133,6 +133,7 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setLabel("年", "月", "日", "时", "分", "秒")//默认设置为年月日时分秒
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .build();
     }
 
@@ -210,6 +211,7 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
 
     @Override
     public void onClick(View v) {
+        hideSoftKeyBord();
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
                 activityFinish();

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.healthmudi.R;
 
@@ -60,6 +61,14 @@ public abstract class BaseFragment1 extends Fragment {
 
     public void activityFinish() {
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);;
+        getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+        ;
+    }
+
+    public void hideSoftKeyBord() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
+        }
     }
 }
