@@ -129,6 +129,7 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setLabel("年", "月", "日", "时", "分", "秒")//默认设置为年月日时分秒
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .build();
     }
 
@@ -159,6 +160,7 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setSubmitColor(getResources().getColor(R.color.color_1abc9c))
                 .setCancelColor(getResources().getColor(R.color.color_464c5b))
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .setContentTextSize(16)
                 .build();
     }
@@ -208,6 +210,7 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
 
     @Override
     public void onClick(View v) {
+        hideSoftKeyBord();
         switch (v.getId()) {
             case R.id.ll_center_name:
                 if (mSiteBeanList.isEmpty()) {
@@ -222,14 +225,26 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                 break;
             case R.id.ll_job_time:
                 mOptionsPickerView.setPicker(mStringList);
+                if (!TextUtils.isEmpty(mTvJobTime.getText().toString().trim())) {
+                    int i = mStringList.indexOf(mTvJobTime.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvJobTime);
                 break;
             case R.id.ll_meet_count:
                 mOptionsPickerView.setPicker(mDataList);
+                if (!TextUtils.isEmpty(mTvMeetCount.getText().toString().trim())) {
+                    int i = mDataList.indexOf(mTvMeetCount.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvMeetCount);
                 break;
             case R.id.ll_prescreen_count:
                 mOptionsPickerView.setPicker(mDataList);
+                if (!TextUtils.isEmpty(mTvPrescreenCount.getText().toString().trim())) {
+                    int i = mDataList.indexOf(mTvPrescreenCount.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvPrescreenCount);
                 break;
         }

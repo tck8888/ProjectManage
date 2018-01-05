@@ -28,7 +28,7 @@ public class SaeReportDetailFragment extends BaseFragment1 {
 
     private WorkingHoursListBean mWorkingHoursListBean;
 
-    public static SaeReportDetailFragment newInstance(WorkingHoursListBean workingHoursListBean){
+    public static SaeReportDetailFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         SaeReportDetailFragment saeReportDetailFragment = new SaeReportDetailFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
@@ -64,6 +64,13 @@ public class SaeReportDetailFragment extends BaseFragment1 {
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
             if (mWorkingHoursListBean.getOperation_date() != 0) {
                 mTvOperationDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getOperation_date()));
+            }
+            if (!TextUtils.isEmpty(mWorkingHoursListBean.getSubjects_name())) {
+                if (mWorkingHoursListBean.getSubjects_name().contains(",")) {
+                    mTvSubjectsPeople.setText(mWorkingHoursListBean.getSubjects_name().replaceAll(",", "\\\n"));
+                } else {
+                    mTvSubjectsPeople.setText(mWorkingHoursListBean.getSubjects_name());
+                }
             }
             if (mWorkingHoursListBean.getJob_time() != 0) {
                 mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));

@@ -67,7 +67,7 @@ public class EDCFillInDetailFragment extends BaseFragment1 {
                 mTvOperationDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getOperation_date()));
             }
             if (mWorkingHoursListBean.getCrf_pages() != 0) {
-                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getCrf_pages()));
+                mTvCrfPages.setText(String.valueOf(mWorkingHoursListBean.getCrf_pages()));
             }
             if (mWorkingHoursListBean.getJob_time() != 0) {
                 mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));

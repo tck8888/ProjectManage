@@ -38,6 +38,15 @@ public class WorkingHoursListBean implements Serializable {
     private long create_time;
     private String documents_name;
     private int is_finish;
+    private String subjects_name;
+
+    public String getSubjects_name() {
+        return subjects_name;
+    }
+
+    public void setSubjects_name(String subjects_name) {
+        this.subjects_name = subjects_name;
+    }
 
     public String getProject_name() {
         return project_name;

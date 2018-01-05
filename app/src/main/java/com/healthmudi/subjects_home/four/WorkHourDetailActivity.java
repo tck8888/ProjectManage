@@ -146,6 +146,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 break;
             case 5://sae上报
                 mIvCircularExclamationMark.setVisibility(View.VISIBLE);
+                mIvCircularExclamationMark.setOnClickListener(this);
                 mSaeReportDetailFragment = SaeReportDetailFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mSaeReportDetailFragment);
                 break;
