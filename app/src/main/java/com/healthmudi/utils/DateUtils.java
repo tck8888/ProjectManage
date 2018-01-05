@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import java.util.Calendar;
+
 /**
  * Created by tck
  * Date: 2017/12/21 09：22
@@ -114,6 +116,87 @@ public class DateUtils {
             endTime = endTime * 1000;
         }
         return (int) ((endTime - beginTime) / (1000 * 24 * 60 * 60));
+    }
+
+
+    public static int getYear() {
+        Date date = new Date();
+        String year = new SimpleDateFormat("yyyy").format(date);
+        return Integer.parseInt(year);
+    }
+
+    public static int getMonth() {
+        Date date = new Date();
+        String month = new SimpleDateFormat("MM").format(date);
+        return Integer.parseInt(month);
+    }
+
+    public static int getDay() {
+        Date date = new Date();
+        String day = new SimpleDateFormat("dd").format(date);
+        return Integer.parseInt(day);
+    }
+
+    //返回当前年月日
+    public static String getNowDate() {
+        Date date = new Date();
+        String nowDate = new SimpleDateFormat("yyyy年MM月dd日").format(date);
+        return nowDate;
+    }
+
+    //返回当月天数
+    public static int getDays(int year, int month) {
+        int days;
+        int FebDay = 28;
+        if (isLeap(year))
+            FebDay = 29;
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                days = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                days = 30;
+                break;
+            case 2:
+                days = FebDay;
+                break;
+            default:
+                days = 0;
+                break;
+        }
+        return days;
+    }
+
+    //判断闰年
+    public static boolean isLeap(int year) {
+        if (((year % 100 == 0) && year % 400 == 0) || ((year % 100 != 0) && year % 4 == 0))
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * 返回当前月份1号位于周几
+     * @param year
+     * 		年份
+     * @param month
+     * 		月份，传入系统获取的，不需要正常的
+     * @return
+     * 	日：1		一：2		二：3		三：4		四：5		五：6		六：7
+     */
+    public static int getFirstDayWeek(int year, int month){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, 1);
+        return calendar.get(Calendar.DAY_OF_WEEK);
     }
 
 }

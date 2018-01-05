@@ -8,7 +8,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.entity.TabEntity;
 import com.healthmudi.home.home_fragment.ProjectFragment;
-import com.healthmudi.home.home_fragment.ScheduleFragment;
+import com.healthmudi.home.home_fragment.ScheduleFragment1;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class ProjectManageHomeActivity extends BaseActivity {
     public void initData() {
         super.initData();
         mFragments.add(ProjectFragment.newInstance());
-        mFragments.add(ScheduleFragment.newInstance());
+        mFragments.add(ScheduleFragment1.newInstance());
 
         mTitles = getResources().getStringArray(R.array.project_manage_home_titles);
         for (int i = 0; i < mTitles.length; i++) {
