@@ -352,6 +352,9 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:lineSpacingExtra="6dp"
                         android:id="@+id/tv_documents_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -361,7 +364,6 @@
                         android:ellipsize="end"
                         android:gravity="right"
                         android:hint="请选择递交材料名称"
-                        android:lineSpacingExtra="4dp"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>

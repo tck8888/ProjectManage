@@ -61,7 +61,7 @@ public class EthicalSubmissionDetailFragment extends BaseFragment1 {
             }
             String[] strings2 = getResources().getStringArray(R.array.ec_submit_array);
             for (int i = 0; i < strings2.length; i++) {
-                if (strings2[i].equals(mWorkingHoursListBean.getStatus())) {
+                if (mWorkingHoursListBean.getStatus() == (i + 1)) {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
                 } else {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));
@@ -118,9 +118,9 @@ public class EthicalSubmissionDetailFragment extends BaseFragment1 {
                 mTvEcApproveDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getEc_approve_date()));
             }
             if (!TextUtils.isEmpty(mWorkingHoursListBean.getDocuments_name())) {
-                if (mWorkingHoursListBean.getDocuments_name().contains("、")) {
+                if (mWorkingHoursListBean.getDocuments_name().contains(",")) {
                     String documents_name = mWorkingHoursListBean.getDocuments_name();
-                    mTvDocumentsName.setText(documents_name.replaceAll("、", "\\\n"));
+                    mTvDocumentsName.setText(documents_name.replaceAll(",", "\\\n"));
                 } else {
                     mTvDocumentsName.setText(mWorkingHoursListBean.getDocuments_name());
                 }

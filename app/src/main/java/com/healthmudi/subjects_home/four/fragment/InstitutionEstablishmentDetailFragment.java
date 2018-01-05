@@ -56,7 +56,7 @@ public class InstitutionEstablishmentDetailFragment extends BaseFragment1 {
             }
             String[] strings2 = getResources().getStringArray(R.array.site_approve_array);
             for (int i = 0; i < strings2.length; i++) {
-                if (strings2[i].equals(mWorkingHoursListBean.getStatus())) {
+                if (mWorkingHoursListBean.getStatus() == (i + 1)) {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
                 } else {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));

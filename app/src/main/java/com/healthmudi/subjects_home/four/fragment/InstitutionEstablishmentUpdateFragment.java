@@ -137,6 +137,7 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
                 .setLabel("年", "月", "日", "时", "分", "秒")//默认设置为年月日时分秒
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .build();
     }
 
@@ -162,6 +163,7 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
                 .setCancelColor(getResources().getColor(R.color.color_464c5b))
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
                 .setContentTextSize(16)
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .build();
     }
 
@@ -222,6 +224,7 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
 
     @Override
     public void onClick(View v) {
+        hideSoftKeyBord();
         switch (v.getId()) {
             case R.id.ll_center_name:
                 if (mSiteBeanList.isEmpty()) {
@@ -239,6 +242,10 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
                 break;
             case R.id.ll_work_hour:
                 mOptionsPickerView.setPicker(mStringList);
+                if (!TextUtils.isEmpty(mTvWorkHour.getText().toString().trim())) {
+                    int i = mStringList.indexOf(mTvWorkHour.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvWorkHour);
                 break;
         }

@@ -304,6 +304,9 @@
                         android:textSize="15sp"/>
 
                     <TextView
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:lineSpacingExtra="6dp"
                         android:id="@+id/tv_documents_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -312,13 +315,9 @@
                         android:layout_weight="1"
                         android:ellipsize="end"
                         android:gravity="right"
-
-                        android:lineSpacingExtra="4dp"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
-
-
                 </LinearLayout>
 
                 <View

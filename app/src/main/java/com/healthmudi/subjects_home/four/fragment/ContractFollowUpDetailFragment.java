@@ -43,7 +43,7 @@ public class ContractFollowUpDetailFragment extends BaseFragment1 {
 
     private WorkingHoursListBean mWorkingHoursListBean;
 
-    public static ContractFollowUpDetailFragment newInstance(WorkingHoursListBean workingHoursListBean){
+    public static ContractFollowUpDetailFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         ContractFollowUpDetailFragment contractFollowUpDetailFragment = new ContractFollowUpDetailFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
@@ -60,7 +60,7 @@ public class ContractFollowUpDetailFragment extends BaseFragment1 {
             }
             String[] strings2 = getResources().getStringArray(R.array.cont_follow_array);
             for (int i = 0; i < strings2.length; i++) {
-                if (strings2[i].equals(mWorkingHoursListBean.getStatus())) {
+                if (mWorkingHoursListBean.getStatus() == (i + 1)) {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
                 } else {
                     mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));

@@ -246,9 +246,9 @@ public class SaeReportUpdateFragment extends BaseFragment1 implements View.OnCli
                 for (SubjectCodeBean subjectCodeBean : selectString.values()) {
                     sb.append(subjectCodeBean.getSubject_id()).append(",");
                     sb1.append(subjectCodeBean.getSubject_code())
-                            .append(" (")
+                            .append(" ( ")
                             .append(subjectCodeBean.getName_py())
-                            .append(") ")
+                            .append(" ) ")
                             .append("\n");
                 }
                 subjects_id = sb.delete(sb.length() - 1, sb.length()).toString();

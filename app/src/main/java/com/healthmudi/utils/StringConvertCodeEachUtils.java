@@ -86,13 +86,19 @@ public class StringConvertCodeEachUtils {
     }
 
 
+
+
+
     public static String getWorkConetntStatus(@Nullable String workConetnt) {
 
         if (workConetnt.contains("材料已递交，待审批")
                 || workConetnt.contains("已递交至PI,等待PI签字中")
                 || workConetnt.contains("PI已完成签字，待递交至EC")
                 || workConetnt.contains("已递交至EC，待审批")
-                || workConetnt.contains("材料已递交，待审批")) {
+                || workConetnt.contains("合同已递交机构，待审核")
+                || workConetnt.contains("合同已审核通过，待双方签署")
+                || workConetnt.contains("申办方已签署，待机构签署")
+                || workConetnt.contains(" 机构已签署，待申办方签署")) {
             return "未完成";
         } else {
             return "已完成";
