@@ -160,6 +160,7 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setSubmitColor(getResources().getColor(R.color.color_1abc9c))
                 .setCancelColor(getResources().getColor(R.color.color_464c5b))
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .setContentTextSize(16)
                 .build();
     }
@@ -229,10 +230,18 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                 break;
             case R.id.ll_job_time:
                 mOptionsPickerView.setPicker(mStringList);
+                if (!TextUtils.isEmpty(mTvJobTime.getText().toString().trim())) {
+                    int i = mStringList.indexOf(mTvJobTime.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvJobTime);
                 break;
             case R.id.ll_job_count:
                 mOptionsPickerView.setPicker(mDataList);
+                if (!TextUtils.isEmpty(mTvJobCount.getText().toString().trim())) {
+                    int i = mDataList.indexOf(mTvJobCount.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvJobCount);
                 break;
         }

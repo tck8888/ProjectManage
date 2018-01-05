@@ -67,7 +67,7 @@ public class OtherWorkDetailFragment extends BaseFragment1 {
             mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
             mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
             if (mWorkingHoursListBean.getOperation_date() != 0) {
-                mTvOperationDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getKick_off_date()));
+                mTvOperationDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getOperation_date()));
             }
             if (mWorkingHoursListBean.getCrf_pages() != 0) {
                 mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getCrf_pages()));

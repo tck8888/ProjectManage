@@ -66,7 +66,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
 
     private String tag = "OtherWorkActivity";
 
-    public static OtherWorkUpdateFragment newInstance(){
+    public static OtherWorkUpdateFragment newInstance() {
         OtherWorkUpdateFragment contractFollowUpUpdateFragment = new OtherWorkUpdateFragment();
         return contractFollowUpUpdateFragment;
     }
@@ -142,7 +142,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
-                }else if (v.getId() == R.id.tv_job_count) {
+                } else if (v.getId() == R.id.tv_job_count) {
                     String s = mDataList.get(options1);
                     mTvJobCount.setText(s);
                 }
@@ -156,6 +156,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                 .setCancelColor(getResources().getColor(R.color.color_464c5b))
                 .setDividerColor(getResources().getColor(R.color.color_e4e4e4))
                 .setContentTextSize(16)
+                .setTextColorCenter(getResources().getColor(R.color.color_1abc9c))
                 .build();
     }
 
@@ -217,10 +218,18 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                 break;
             case R.id.ll_job_time:
                 mOptionsPickerView.setPicker(mStringList);
+                if (!TextUtils.isEmpty(mTvJobTime.getText().toString().trim())) {
+                    int i = mStringList.indexOf(mTvJobTime.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvJobTime);
                 break;
             case R.id.ll_job_count:
                 mOptionsPickerView.setPicker(mDataList);
+                if (!TextUtils.isEmpty(mTvJobCount.getText().toString().trim())) {
+                    int i = mDataList.indexOf(mTvJobCount.getText().toString().trim());
+                    mOptionsPickerView.setSelectOptions(i);
+                }
                 mOptionsPickerView.show(mTvJobCount);
                 break;
         }
