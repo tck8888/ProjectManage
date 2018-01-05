@@ -32,15 +32,44 @@ public class WorkingHoursListAdapter extends BasicAdapter<WorkingHoursListBean> 
         TextView mTvSubjectsCause = get(convertView, R.id.tv_subjects_cause);
         TextView mTvUesedTime = get(convertView, R.id.tv_uesed_time);
         TextView mTvWorkSatus = get(convertView, R.id.tv_work_satus);
+        TextView mTvCount = get(convertView, R.id.tv_count);
 
         WorkingHoursListBean workingHoursListBean = mDataList.get(position);
 
-        mTvWorkTime.setText(DateUtils.getFormatTime1(workingHoursListBean.getCreate_time()));
-        mTvWorkContent.setText(StringConvertCodeEachUtils.getWorkContent(workingHoursListBean.getJob_type_id()));
-        mTvSubjectsCause.setText(workingHoursListBean.getStatus());
-        mTvUesedTime.setText("用时:" + workingHoursListBean.getJob_time());
-        String status = StringConvertCodeEachUtils.getWorkConetntStatus(workingHoursListBean.getStatus());
+        mTvWorkTime.setText(DateUtils.getFormatTime2(workingHoursListBean.getCreate_time()));
+        mTvWorkContent.setText(workingHoursListBean.getJob_type_name());
+
+        String progress = "";
+        if (workingHoursListBean.getJob_type_id() == 1) {
+            progress = StringConvertCodeEachUtils.getInstitutionEstablishmentStr(workingHoursListBean.getStatus());
+        } else if (workingHoursListBean.getJob_type_id() == 2) {
+            progress = StringConvertCodeEachUtils.getEthicalSubmission(workingHoursListBean.getStatus());
+        } else if (workingHoursListBean.getJob_type_id() == 3) {
+            progress = StringConvertCodeEachUtils.getContractFollowUp(workingHoursListBean.getStatus());
+        } else {
+            progress = workingHoursListBean.getJob_type_name();
+        }
+        if (workingHoursListBean.getJob_type_id() == 6) {
+            mTvCount.setVisibility(View.VISIBLE);
+            mTvCount.setText("数量:  " + workingHoursListBean.getPrescreen_count());
+        } else if (workingHoursListBean.getJob_type_id() == 8) {
+            mTvCount.setVisibility(View.VISIBLE);
+            mTvCount.setText("数量:  " + workingHoursListBean.getCrf_pages());
+        } else if (workingHoursListBean.getJob_type_id() == 99) {
+            mTvCount.setVisibility(View.VISIBLE);
+            mTvCount.setText("数量:  " + workingHoursListBean.getJob_count());
+        }else if (workingHoursListBean.getJob_type_id() == 9) {
+            mTvCount.setVisibility(View.VISIBLE);
+            mTvCount.setText("数量:  " + workingHoursListBean.getJob_count());
+        }else {
+            mTvCount.setVisibility(View.INVISIBLE);
+        }
+        String status = StringConvertCodeEachUtils.getWorkConetntStatus(progress);
+        mTvUesedTime.setText("用时:  " + (workingHoursListBean.getJob_time() + workingHoursListBean.getJob_time2()) + "小时");
+        mTvSubjectsCause.setText(progress);
+
         mTvWorkSatus.setText(status);
+
         if (status.equals("未完成")) {
             mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
         } else {

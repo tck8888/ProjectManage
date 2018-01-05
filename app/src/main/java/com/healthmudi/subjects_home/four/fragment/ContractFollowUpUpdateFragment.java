@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by tck
+ * Created by tck 合同跟进
  * Date: 2018/01/05 11：06
  */
 
@@ -223,6 +223,7 @@ public class ContractFollowUpUpdateFragment extends BaseFragment1 implements Vie
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
+        view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_doc_receive_date).setOnClickListener(this);
         view.findViewById(R.id.ll_site_submit_date).setOnClickListener(this);
         view.findViewById(R.id.ll_site_approve_date).setOnClickListener(this);

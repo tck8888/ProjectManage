@@ -60,6 +60,6 @@ public abstract class BaseFragment1 extends Fragment {
 
     public void activityFinish() {
         getActivity().finish();
-        getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+        getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);;
     }
 }

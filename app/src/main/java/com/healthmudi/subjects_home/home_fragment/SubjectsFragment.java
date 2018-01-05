@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.healthmudi.R;
@@ -94,6 +95,11 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
         mExpandableListView.setAdapter(mAdapter);
 
         initDialog();
+
+        if (mProjectListBean != null) {
+            TextView title = (TextView) view.findViewById(R.id.tv_title);
+            title.setText(mProjectListBean.getProject_name());
+        }
     }
 
     public void initDialog() {

@@ -230,8 +230,6 @@ public class EthicalSubmissionUpdateFragment extends BaseFragment1 implements Vi
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_doc_receive_date).setOnClickListener(this);
         view.findViewById(R.id.ll_pi_submit_date).setOnClickListener(this);

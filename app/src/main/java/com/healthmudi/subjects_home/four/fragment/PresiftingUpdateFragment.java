@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -44,10 +45,10 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
     private TextView mTvProjectName;
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
-    private EditText mEtPrescreenCount;
-    private EditText mEtMeetCount;
     private TextView mTvJobTime;
     private EditText mEtRemark;
+    private TextView mTvPrescreenCount;
+    private TextView mTvMeetCount;
 
     private TimePickerView mTimePickerView;
     private OptionsPickerView mOptionsPickerView;
@@ -56,6 +57,7 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
     private Map<String, String> map = new HashMap<>();
 
     private List<String> mStringList = new ArrayList<>();
+    private List<String> mDataList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
     private ProjectListBean mProjectListBean;
@@ -64,7 +66,7 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
 
     private String tag = "PresiftingUpdateFragment";
 
-    public static PresiftingUpdateFragment newInstance(){
+    public static PresiftingUpdateFragment newInstance() {
         PresiftingUpdateFragment contractFollowUpUpdateFragment = new PresiftingUpdateFragment();
         return contractFollowUpUpdateFragment;
     }
@@ -72,6 +74,9 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            for (int i = 1; i <= 10; i++) {
+                mDataList.add(String.valueOf(i));
+            }
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
 
@@ -93,10 +98,10 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
         mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) view.findViewById(R.id.tv_operation_date);
-        mEtPrescreenCount = (EditText) view.findViewById(R.id.et_prescreen_count);
-        mEtMeetCount = (EditText) view.findViewById(R.id.et_meet_count);
         mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) view.findViewById(R.id.et_remark);
+        mTvPrescreenCount = (TextView) view.findViewById(R.id.tv_prescreen_count);
+        mTvMeetCount = (TextView) view.findViewById(R.id.tv_meet_count);
 
         initTimePick();
         initWorkHourPick();
@@ -138,6 +143,12 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
+                } else if (v.getId() == R.id.tv_meet_count) {
+                    String s = mDataList.get(options1);
+                    mTvMeetCount.setText(s);
+                } else if (v.getId() == R.id.tv_prescreen_count) {
+                    String s = mDataList.get(options1);
+                    mTvPrescreenCount.setText(s);
                 }
 
             }
@@ -160,14 +171,20 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PRESIFTING_SUCCESS));
-                        activityFinish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PRESIFTING_SUCCESS));
+                activityFinish();
+            }
+        });
     }
 
     @Override
@@ -181,10 +198,11 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
+
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_operation_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_prescreen_count).setOnClickListener(this);
+        view.findViewById(R.id.ll_meet_count).setOnClickListener(this);
         view.findViewById(R.id.ll_job_time).setOnClickListener(this);
     }
 
@@ -206,15 +224,22 @@ public class PresiftingUpdateFragment extends BaseFragment1 implements View.OnCl
                 mOptionsPickerView.setPicker(mStringList);
                 mOptionsPickerView.show(mTvJobTime);
                 break;
+            case R.id.ll_meet_count:
+                mOptionsPickerView.setPicker(mDataList);
+                mOptionsPickerView.show(mTvMeetCount);
+                break;
+            case R.id.ll_prescreen_count:
+                mOptionsPickerView.setPicker(mDataList);
+                mOptionsPickerView.show(mTvPrescreenCount);
+                break;
         }
     }
 
     public void submitData() {
 
-
         String operation_date = mTvOperationDate.getText().toString().trim();
-        String prescreen_count = mEtPrescreenCount.getText().toString().trim();
-        String meet_count = mEtMeetCount.getText().toString().trim();
+        String prescreen_count = mTvPrescreenCount.getText().toString().trim();
+        String meet_count = mTvMeetCount.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 

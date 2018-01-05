@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -45,7 +46,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
     private EditText mEtJobTypeName;
-    private EditText mEtJobCount;
+    private TextView mTvJobCount;
     private TextView mTvJobTime;
     private EditText mEtRemark;
 
@@ -55,6 +56,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
 
     private Map<String, String> map = new HashMap<>();
 
+    private List<String> mDataList = new ArrayList<>();
     private List<String> mStringList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
@@ -72,6 +74,9 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            for (int i = 1; i <= 10; i++) {
+                mDataList.add(String.valueOf(i));
+            }
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
@@ -93,7 +98,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
         mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) view.findViewById(R.id.tv_operation_date);
         mEtJobTypeName = (EditText) view.findViewById(R.id.et_job_type_name);
-        mEtJobCount = (EditText) view.findViewById(R.id.et_job_count);
+        mTvJobCount = (TextView) view.findViewById(R.id.tv_job_count);
         mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) view.findViewById(R.id.et_remark);
 
@@ -137,6 +142,9 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
+                }else if (v.getId() == R.id.tv_job_count) {
+                    String s = mDataList.get(options1);
+                    mTvJobCount.setText(s);
                 }
 
             }
@@ -159,14 +167,20 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_OTHER_WORK_SUCCESS));
-                        activityFinish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_OTHER_WORK_SUCCESS));
+                activityFinish();
+            }
+        });
     }
 
     @Override
@@ -180,11 +194,10 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_operation_date).setOnClickListener(this);
         view.findViewById(R.id.ll_job_time).setOnClickListener(this);
+        view.findViewById(R.id.ll_job_count).setOnClickListener(this);
     }
 
 
@@ -206,6 +219,10 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
                 mOptionsPickerView.setPicker(mStringList);
                 mOptionsPickerView.show(mTvJobTime);
                 break;
+            case R.id.ll_job_count:
+                mOptionsPickerView.setPicker(mDataList);
+                mOptionsPickerView.show(mTvJobCount);
+                break;
         }
     }
 
@@ -213,7 +230,7 @@ public class OtherWorkUpdateFragment extends BaseFragment1 implements View.OnCli
 
         String operation_date = mTvOperationDate.getText().toString().trim();
         String job_type_name = mEtJobTypeName.getText().toString().trim();
-        String job_count = mEtJobCount.getText().toString().trim();
+        String job_count = mTvJobCount.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 

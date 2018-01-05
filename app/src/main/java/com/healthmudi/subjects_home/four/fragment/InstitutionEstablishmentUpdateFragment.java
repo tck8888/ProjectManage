@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by tck
+ * Created by tck 机构立项
  * Date: 2018/01/05 11：06
  */
 
@@ -193,8 +193,6 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_submit_date).setOnClickListener(this);
         view.findViewById(R.id.ll_approved_date).setOnClickListener(this);

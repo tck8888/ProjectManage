@@ -43,6 +43,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
 
     private TextView mTvTitle;
     private ImageView mIvCheckMark;
+    private ImageView mIvArrowLeftBlack;
     private ImageView mIvCircularExclamationMark;
 
     private WorkingHoursListBean mWorkingHoursListBean;
@@ -55,6 +56,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
     private ContractFollowUpUpdateFragment mContractFollowUpUpdateFragment;
 
     private VisitorsVisitToTheRulesDetailFragment mVisitorsVisitToTheRulesDetailFragment;
+    private VisitorsVisitToTheRulesUpdateFragment mVisitorsVisitToTheRulesUpdateFragment;
 
     private ServerConfDetailFragment mServerConfDetailFragment;
     private ServerConfUpdateFragment mServerConfUpdateFragment;
@@ -76,8 +78,6 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
 
     private EDCFillInDetailFragment mEdcFillInDetailFragment;
     private EDCFillInUpdateFragment mEdcFillInUpdateFragment;
-    private VisitorsVisitToTheRulesUpdateFragment mVisitorsVisitToTheRulesUpdateFragment;
-
 
     @Override
     public int getLayoutId() {
@@ -98,23 +98,25 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
     @Override
     public void initView() {
         super.initView();
+
+        mIvArrowLeftBlack = (ImageView) findViewById(R.id.iv_arrow_left_black);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
         mIvCircularExclamationMark = (ImageView) findViewById(R.id.iv_circular_exclamation_mark);
+
     }
 
     @Override
     public void setViewData() {
         super.setViewData();
+        mIvArrowLeftBlack.setImageResource(R.mipmap.arrow_left_black);
+        mIvCircularExclamationMark.setVisibility(View.GONE);
         if (mWorkingHoursListBean != null) {
             mIvCheckMark.setVisibility(View.GONE);
             mTvTitle.setText(mWorkingHoursListBean.getJob_type_name());
-
             openDetailFragment(mWorkingHoursListBean);
-
         } else {
             if (mWorkTimeSubmissionItemListBean != null) {
-
                 mTvTitle.setText(mWorkTimeSubmissionItemListBean.getJob_type_name());
                 mIvCheckMark.setVisibility(View.VISIBLE);
                 mIvCheckMark.setOnClickListener(this);
@@ -157,7 +159,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 break;
             case 8:
                 mEdcFillInDetailFragment = EDCFillInDetailFragment.newInstance(mWorkingHoursListBean);
-                openFragment(mEthicalSubmissionDetailFragment);
+                openFragment(mEdcFillInDetailFragment);
                 break;
             case 9:
                 mServerConfDetailFragment = ServerConfDetailFragment.newInstance(mWorkingHoursListBean);
@@ -182,7 +184,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 mInstitutionEstablishmentUpdateFragment = InstitutionEstablishmentUpdateFragment.newInstance();
                 openFragment(mInstitutionEstablishmentUpdateFragment);
                 break;
-            case 2:
+            case 2://伦理递交
                 mEthicalSubmissionUpdateFragment = EthicalSubmissionUpdateFragment.newInstance();
                 openFragment(mEthicalSubmissionUpdateFragment);
                 break;
@@ -261,10 +263,45 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                     mEdcFillInUpdateFragment.submitData();
                 } else if (mOtherWorkUpdateFragment != null) {
                     mOtherWorkUpdateFragment.submitData();
-                }else if (mServerConfUpdateFragment != null) {
+                } else if (mServerConfUpdateFragment != null) {
                     mServerConfUpdateFragment.submitData();
                 }
                 break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            mTvTitle = null;
+            mIvCheckMark = null;
+            mIvArrowLeftBlack = null;
+            mIvCircularExclamationMark = null;
+            mWorkingHoursListBean = null;
+            mWorkTimeSubmissionItemListBean = null;
+            mSaeReportDetailFragment = null;
+            mSaeReportUpdateFragment = null;
+            mContractFollowUpDetailFragment = null;
+            mContractFollowUpUpdateFragment = null;
+            mVisitorsVisitToTheRulesDetailFragment = null;
+            mVisitorsVisitToTheRulesUpdateFragment = null;
+            mServerConfDetailFragment = null;
+            mServerConfUpdateFragment = null;
+            mProjectStartMeetingDetailFragment = null;
+            mProjectStartMeetingUpdateFragment = null;
+            mPresiftingDetailFragment = null;
+            mPresiftingUpdateFragment = null;
+            mOtherWorkDetailFragment = null;
+            mOtherWorkUpdateFragment = null;
+            mInstitutionEstablishmentDetailFragment = null;
+            mInstitutionEstablishmentUpdateFragment = null;
+            mEthicalSubmissionDetailFragment = null;
+            mEthicalSubmissionUpdateFragment = null;
+            mEdcFillInDetailFragment = null;
+            mEdcFillInUpdateFragment = null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

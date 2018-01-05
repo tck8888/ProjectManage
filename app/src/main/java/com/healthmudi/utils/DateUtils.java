@@ -80,6 +80,16 @@ public class DateUtils {
     }
 
     /**
+     * decription:获取当前系统时间
+     */
+    public static String getCurrentTimeStr() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        Date date = new Date(System.currentTimeMillis());
+        String formatTime = format.format(date);
+        return formatTime;
+    }
+
+    /**
      * @param date
      * @return yyyy-MM-dd
      */

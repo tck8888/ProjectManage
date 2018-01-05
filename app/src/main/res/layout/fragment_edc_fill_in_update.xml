@@ -6,42 +6,7 @@
               android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/color_ffffff">
 
-        <ImageView
-            android:id="@+id/iv_arrow_left_black"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:padding="15dp"
-            android:src="@mipmap/arrow_left_black"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/title_edc_fill_in"
-            android:textColor="@color/color_464c5b"
-            android:textSize="18sp"/>
-
-        <ImageView
-            android:id="@+id/iv_check_mark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical|right"
-            android:padding="15dp"
-            android:src="@mipmap/icon_check_mark"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_gravity="bottom"
-            android:background="@color/color_e4e4e4"/>
-    </FrameLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
@@ -189,12 +154,13 @@
                     android:background="@color/color_e4e4e4"/>
 
                 <LinearLayout
+                    android:id="@+id/ll_crf_pages"
+                    android:orientation="horizontal"
                     android:background="@color/color_ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="50dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,21 +170,25 @@
                         android:textColor="@color/color_464c5b"
                         android:textSize="15sp"/>
 
-                    <EditText
-                        android:id="@+id/et_crf_pages"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_crf_pages"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:background="@null"
                         android:gravity="right"
-                        android:hint="请输入CRF页数"
-                        android:inputType="number"
+                        android:hint="请选择CRF页数"
                         android:textColor="@color/color_464c5b"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="15sp"/>
-
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="15dp"
+                        android:src="@mipmap/icon_arrow_right"/>
                 </LinearLayout>
 
                 <View

@@ -2,6 +2,7 @@ package com.healthmudi.net;
 
 import com.google.gson.Gson;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.gson.GsonUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -93,6 +94,11 @@ public class HttpRequest {
         treeMap.put("lng", "121");
         treeMap.put("lat", "31");
         treeMap.put("version_code", "1.0");
+        treeMap.put("timestamp", DateUtils.getCurrentTimeStr());
+        treeMap.put("sign", "sign");
+        treeMap.put("uuid", "uuid");
+        treeMap.put("system", "android");
+
         if (parameter != null) {
             treeMap.putAll(parameter);
         }

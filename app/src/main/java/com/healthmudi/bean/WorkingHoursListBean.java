@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by tck on 2017/12/10.
  */
 
-public class WorkingHoursListBean implements Serializable{
+public class WorkingHoursListBean implements Serializable {
 
     private String project_name;
     private String site_name;
@@ -26,7 +26,7 @@ public class WorkingHoursListBean implements Serializable{
     private long sponsor_sign_date;
     private long site_sign_date;
     private long kick_off_date;
-    private String status="";
+    private int status  ;
     private int prescreen_count;
     private int meet_count;
     private int crf_pages;
@@ -175,11 +175,11 @@ public class WorkingHoursListBean implements Serializable{
         this.kick_off_date = kick_off_date;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

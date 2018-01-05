@@ -38,37 +38,7 @@
             android:name=".subjects_home.one.RegularVisitsActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name=".subjects_home.four.WorkTimeSubmissionActivtiy"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.InstitutionEstablishmentActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.EthicalSubmissionActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.ContractFollowUpActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.ProjectStartMeetingActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.PresiftingActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.SaeReportActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.VisitorsVisitToTheRulesActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.EDCFillInActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.ServerConfActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name=".subjects_home.four.OtherWorkActivity"
+            android:name=".subjects_home.four.WorkTimeSubmissionListActivtiy"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity android:name=".subjects_home.three.SignHistoryActivity"/>

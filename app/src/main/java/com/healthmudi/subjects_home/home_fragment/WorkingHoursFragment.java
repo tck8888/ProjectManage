@@ -17,12 +17,13 @@ import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.subjects_home.four.WorkHourDetailActivity;
-import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
+import com.healthmudi.subjects_home.four.WorkTimeSubmissionListActivtiy;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
@@ -39,7 +40,9 @@ import java.util.Map;
  * Created by tck on 2017/12/9.
  */
 
-public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickListener, OnRefreshListener {
+public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickListener,
+        OnRefreshListener,
+        OnLoadmoreListener {
 
     private String mProject_id;
     private SmartRefreshLayout mRefreshLayout;
@@ -50,6 +53,7 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
     private WorkingHoursListAdapter mAdapter;
 
     private Map<String, String> map = new HashMap<>();
+    private int page = 0;
     private String tag = "WorkingHoursFragment";
 
     public static WorkingHoursFragment newInstance(String project_id) {
@@ -69,6 +73,7 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
     protected void initData(@Nullable Bundle arguments) {
         mProject_id = arguments.getString(Constant.KEY_PROJECT_ID);
         map.put("project_id", mProject_id);
+
     }
 
     @Override
@@ -81,8 +86,8 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
 
     @Override
     protected void initView(@Nullable View view) {
-
         mRefreshLayout = (SmartRefreshLayout) view.findViewById(R.id.refreshLayout);
+
         mEmptyLayout = (EmptyView) view.findViewById(R.id.empty_layout);
         mListView = (ListView) view.findViewById(R.id.list_view);
 
@@ -97,6 +102,7 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
         view.findViewById(R.id.iv_add_subjects).setOnClickListener(this);
         mRefreshLayout.autoRefresh();
         mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.setOnLoadmoreListener(this);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,26 +139,45 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
 
     }
 
+    private boolean isRefresh = true;
+
     @Override
     public void onRefresh(RefreshLayout refreshlayout) {
+        isRefresh = true;
+        page = 0;
+        getData();
+    }
+
+    @Override
+    public void onLoadmore(RefreshLayout refreshlayout) {
+        isRefresh = false;
+        page++;
         getData();
     }
 
     private void getData() {
+        map.put("page", String.valueOf(page));
         HttpRequest.getInstance().get(HttpUrlList.PROJECT_JOB_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkingHoursListBean>>, List<WorkingHoursListBean>>() {
             @Override
             public void onSuccess(List<WorkingHoursListBean> result) {
-                if (!ListUtil.isEmpty(mWorkingHoursListBeanList)) {
+
+                if (!ListUtil.isEmpty(mWorkingHoursListBeanList) && isRefresh) {
                     mWorkingHoursListBeanList.clear();
                 }
-                mWorkingHoursListBeanList.addAll(result);
+                if (!ListUtil.isEmpty(result)) {
+                    mWorkingHoursListBeanList.addAll(result);
+                }
                 if (ListUtil.isEmpty(mWorkingHoursListBeanList)) {
                     mEmptyLayout.showEmptyView();
                 } else {
                     mEmptyLayout.showContentView();
                 }
                 mAdapter.notifyDataSetChanged();
-                mRefreshLayout.finishRefresh();
+                if (isRefresh) {
+                    mRefreshLayout.finishRefresh();
+                } else {
+                    mRefreshLayout.finishLoadmore();
+                }
             }
 
             @Override
@@ -162,7 +187,11 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 } else {
                     mEmptyLayout.showContentView();
                 }
-                mRefreshLayout.finishRefresh();
+                if (isRefresh) {
+                    mRefreshLayout.finishRefresh();
+                } else {
+                    mRefreshLayout.finishLoadmore();
+                }
             }
         });
     }
@@ -175,7 +204,7 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
                 getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
                 break;
             case R.id.iv_add_subjects:
-                Intent intent = new Intent(getContext(), WorkTimeSubmissionActivtiy.class);
+                Intent intent = new Intent(getContext(), WorkTimeSubmissionListActivtiy.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
@@ -190,4 +219,5 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
             EventBus.getDefault().unregister(this);
         }
     }
+
 }

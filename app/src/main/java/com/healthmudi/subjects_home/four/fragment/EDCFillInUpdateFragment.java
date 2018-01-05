@@ -44,7 +44,7 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
     private TextView mTvProjectName;
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
-    private EditText mEtCrfPages;
+    private TextView mTvCrfPages;
     private TextView mTvJobTime;
     private EditText mEtRemark;
 
@@ -56,15 +56,16 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
     private Map<String, String> map = new HashMap<>();
 
     private List<String> mStringList = new ArrayList<>();
-    private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
+    private List<String> mDataList = new ArrayList<>();
 
+    private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
     private ProjectListBean mProjectListBean;
 
     private String site_id = "";
 
-    private String tag = "EDCFillInActivity";
+    private String tag = "EDCFillInUpdateFragment";
 
-    public static EDCFillInUpdateFragment newInstance(){
+    public static EDCFillInUpdateFragment newInstance() {
         EDCFillInUpdateFragment contractFollowUpUpdateFragment = new EDCFillInUpdateFragment();
         return contractFollowUpUpdateFragment;
     }
@@ -72,6 +73,10 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            for (int i = 1; i <= 10; i++) {
+                mDataList.add(String.valueOf(i));
+            }
+
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
 
@@ -94,9 +99,10 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
         mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) view.findViewById(R.id.tv_operation_date);
-        mEtCrfPages = (EditText) view.findViewById(R.id.et_crf_pages);
+        mTvCrfPages = (TextView) view.findViewById(R.id.tv_crf_pages);
         mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) view.findViewById(R.id.et_remark);
+
 
         initTimePick();
         initWorkHourPick();
@@ -138,6 +144,9 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
+                } else if (v.getId() == R.id.tv_crf_pages) {
+                    String s = mDataList.get(options1);
+                    mTvCrfPages.setText(s);
                 }
 
             }
@@ -184,6 +193,7 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_operation_date).setOnClickListener(this);
         view.findViewById(R.id.ll_job_time).setOnClickListener(this);
+        view.findViewById(R.id.ll_crf_pages).setOnClickListener(this);
     }
 
     @Override
@@ -210,12 +220,17 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
                 mOptionsPickerView.setPicker(mStringList);
                 mOptionsPickerView.show(mTvJobTime);
                 break;
+            case R.id.ll_crf_pages:
+                mOptionsPickerView.setPicker(mDataList);
+                mOptionsPickerView.show(mTvCrfPages);
+                break;
+
         }
     }
 
     public void submitData() {
         String operation_date = mTvOperationDate.getText().toString().trim();
-        String crf_pages = mEtCrfPages.getText().toString().trim();
+        String crf_pages = mTvCrfPages.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 

@@ -87,17 +87,59 @@ public class StringConvertCodeEachUtils {
 
 
     public static String getWorkConetntStatus(@Nullable String workConetnt) {
-        switch (workConetnt) {
-            case "材料已递交，待审批":
-            case "已递交至PI,等待PI签字中":
-            case "PI已完成签字，待递交至EC":
-            case "已递交至EC，待审批":
-                return "未完成";
-            case "机构立项审批已完成":
-            case "EC已审批":
-                return "已完成";
+
+        if (workConetnt.contains("材料已递交，待审批")
+                || workConetnt.contains("已递交至PI,等待PI签字中")
+                || workConetnt.contains("PI已完成签字，待递交至EC")
+                || workConetnt.contains("已递交至EC，待审批")
+                || workConetnt.contains("材料已递交，待审批")) {
+            return "未完成";
+        } else {
+            return "已完成";
+        }
+    }
+
+    public static String getInstitutionEstablishmentStr(@Nullable int code) {
+        switch (code) {
+            case 1:
+                return "材料已递交，待审批";
+            case 2:
+                return "机构立项审批已完成";
             default:
-                return "未完成";
+                return "";
+        }
+    }
+
+    public static String getEthicalSubmission(@Nullable int code) {
+        switch (code) {
+            case 1:
+                return "已递交至PI,等待PI签字中";
+            case 2:
+                return "PI已完成签字，待递交至EC";
+            case 3:
+                return "已递交至EC，待审批";
+            case 4:
+                return "EC已审批";
+            default:
+                return "";
+        }
+    }
+
+
+    public static String getContractFollowUp(@Nullable int code) {
+        switch (code) {
+            case 1:
+                return "合同已递交机构，待审核";
+            case 2:
+                return "合同已审核通过，待双方签署";
+            case 3:
+                return "申办方已签署，待机构签署";
+            case 4:
+                return "机构已签署，待申办方签署";
+            case 5:
+                return "双方已签署，合同已完成";
+            default:
+                return "";
         }
     }
 

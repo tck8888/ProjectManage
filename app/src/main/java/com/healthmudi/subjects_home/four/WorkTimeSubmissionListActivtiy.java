@@ -31,7 +31,7 @@ import java.util.Map;
  * Created by tck on 2017/12/11.
  */
 
-public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnClickListener, OnRefreshListener {
+public class WorkTimeSubmissionListActivtiy extends BaseActivity implements View.OnClickListener, OnRefreshListener {
 
     private SmartRefreshLayout mRefreshLayout;
     private AutoListView mNormalWorkListView;
@@ -48,11 +48,11 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
 
     private Map<String, String> map = new HashMap<>();
 
-    private String tag = "WorkTimeSubmissionActivtiy";
+    private String tag = "WorkTimeSubmissionListActivtiy";
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_worktime_submission;
+        return R.layout.activity_worktime_submission_list;
     }
 
     @Override
@@ -109,7 +109,8 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
         Intent intent = new Intent(this, WorkHourDetailActivity.class);
         intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
         startActivity(intent);
-        activityFinish();
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        finish();
     }
 
     @Override

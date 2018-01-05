@@ -1,5 +1,6 @@
 package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,13 +41,13 @@ import java.util.Map;
  * Date: 2018/01/05 11：06
  */
 
-public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnClickListener{
+public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnClickListener {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
     private TextView mTvOperationDate;
 
-    private EditText mEtJobCount;
+    private TextView mTvJobCount;
     private TextView mTvJobTime;
     private EditText mEtRemark;
 
@@ -57,16 +58,17 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     private Map<String, String> map = new HashMap<>();
 
     private List<String> mStringList = new ArrayList<>();
+    private List<String> mDataList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
     private ProjectListBean mProjectListBean;
 
     private String site_id = "";
 
-    private String tag = "ServerConfActivity";
+    private String tag = "ServerConfUpdateFragment";
     private WorkTimeSubmissionItemListBean mWorkTimeSubmissionItemListBean;
 
-    public static ServerConfUpdateFragment newInstance(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean){
+    public static ServerConfUpdateFragment newInstance(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
         ServerConfUpdateFragment serverConfUpdateFragment = new ServerConfUpdateFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
@@ -77,6 +79,9 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            for (int i = 1; i <= 10; i++) {
+                mDataList.add(String.valueOf(i));
+            }
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
@@ -98,7 +103,7 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
         mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
         mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
         mTvOperationDate = (TextView) view.findViewById(R.id.tv_operation_date);
-        mEtJobCount = (EditText) view.findViewById(R.id.et_job_count);
+        mTvJobCount = (TextView) view.findViewById(R.id.tv_job_count);
         mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
         mEtRemark = (EditText) view.findViewById(R.id.et_remark);
 
@@ -142,6 +147,9 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
                     site_id = String.valueOf(siteBean.getSite_id());
                     mTvCenterName.setText(siteBean.getSite_name());
+                } else if (v.getId() == R.id.tv_job_count) {
+                    String s = mDataList.get(options1);
+                    mTvJobCount.setText(s);
                 }
 
             }
@@ -164,14 +172,20 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_SERVER_CONF_SUCCESS));
-                        activityFinish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_PRESIFTING_SUCCESS));
+                activityFinish();
+            }
+        });
     }
 
 
@@ -186,11 +200,11 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
+
         view.findViewById(R.id.ll_center_name).setOnClickListener(this);
         view.findViewById(R.id.ll_operation_date).setOnClickListener(this);
         view.findViewById(R.id.ll_job_time).setOnClickListener(this);
+        view.findViewById(R.id.ll_job_count).setOnClickListener(this);
     }
 
     @Override
@@ -217,13 +231,17 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
                 mOptionsPickerView.setPicker(mStringList);
                 mOptionsPickerView.show(mTvJobTime);
                 break;
+            case R.id.ll_job_count:
+                mOptionsPickerView.setPicker(mDataList);
+                mOptionsPickerView.show(mTvJobCount);
+                break;
         }
     }
 
     public void submitData() {
 
         String operation_date = mTvOperationDate.getText().toString().trim();
-        String job_count = mEtJobCount.getText().toString().trim();
+        String job_count = mTvJobCount.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 
