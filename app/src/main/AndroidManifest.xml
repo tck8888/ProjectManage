@@ -82,7 +82,9 @@
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ExitProjectManagerActivity"/>
         <activity android:name=".ProjectWebViewActivity"/>
-        <activity android:name=".subjects_home.four.WorkHourDetailActivity"/>
+        <activity
+            android:name=".subjects_home.four.WorkHourDetailActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
             android:name=".home.MemorandumSeeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"/>

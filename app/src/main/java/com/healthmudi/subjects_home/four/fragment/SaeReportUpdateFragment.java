@@ -1,6 +1,9 @@
-package com.healthmudi.subjects_home.four;
+package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -10,20 +13,24 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
-import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.SubjectCodeBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.subjects_home.four.dialog.SelectSubjectDilaog;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
 import com.orhanobut.hawk.Hawk;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,46 +38,47 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * decription:EDC填写
- * Created by tck on 2017/12/11.
+ * Created by tck
+ * Date: 2018/01/05 10：08
  */
 
-public class EDCFillInActivity extends BaseActivity implements View.OnClickListener{
+public class SaeReportUpdateFragment extends BaseFragment1 implements View.OnClickListener {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
+    private TextView mTvSubjectsPeople;
     private TextView mTvOperationDate;
-    private EditText mEtCrfPages;
     private TextView mTvJobTime;
     private EditText mEtRemark;
+
 
     private TimePickerView mTimePickerView;
     private OptionsPickerView mOptionsPickerView;
     private IosDialog mIosDialog;
-
+    private SelectSubjectDilaog mSelectSubjectDilaog;
 
     private Map<String, String> map = new HashMap<>();
 
     private List<String> mStringList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
+    private TreeMap<Integer, SubjectCodeBean> selectString = new TreeMap<>();
 
     private ProjectListBean mProjectListBean;
 
     private String site_id = "";
+    private String subjects_id = "";
+    private String tag = "SaeReportUpdateFragment";
 
-    private String tag = "EDCFillInActivity";
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_edc_fill_in_update;
+    public static SaeReportUpdateFragment newInstance() {
+        SaeReportUpdateFragment saeReportUpdateFragment = new SaeReportUpdateFragment();
+        return saeReportUpdateFragment;
     }
 
     @Override
-    public void initData() {
-        super.initData();
-
+    protected void initData(@Nullable Bundle arguments) {
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
@@ -81,18 +89,21 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void initView() {
-        super.initView();
-        mTvProjectName = (TextView) findViewById(R.id.tv_project_name);
-        mTvCenterName = (TextView) findViewById(R.id.tv_center_name);
-        mTvOperationDate = (TextView) findViewById(R.id.tv_operation_date);
-        mEtCrfPages = (EditText) findViewById(R.id.et_crf_pages);
-        mTvJobTime = (TextView) findViewById(R.id.tv_job_time);
-        mEtRemark = (EditText) findViewById(R.id.et_remark);
+    protected int getLayoutId() {
+        return R.layout.fragment_sae_report_update;
+    }
+
+    @Override
+    protected void initView(@Nullable View view) {
+        mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
+        mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
+        mTvSubjectsPeople = (TextView) view.findViewById(R.id.tv_subjects_people);
+        mTvOperationDate = (TextView) view.findViewById(R.id.tv_operation_date);
+        mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
+        mEtRemark = (EditText) view.findViewById(R.id.et_remark);
 
         initTimePick();
         initWorkHourPick();
@@ -100,7 +111,7 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void initTimePick() {
-        mTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        mTimePickerView = new TimePickerView.Builder(getContext(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 if (v.getId() == R.id.tv_operation_date) {
@@ -124,7 +135,7 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void initWorkHourPick() {
-        mOptionsPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        mOptionsPickerView = new OptionsPickerView.Builder(getContext(), new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 if (v.getId() == R.id.tv_job_time) {
@@ -149,23 +160,27 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void initDialog() {
-        mIosDialog = new IosDialog.Builder(this)
+        mIosDialog = new IosDialog.Builder(getContext())
                 .setTitle("提示")
                 .setTitleColor(getResources().getColor(R.color.color_464c5b))
                 .setMessage("工时提交工时成功")
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_EDC_FILL_IN_SUCCESS));
-                        activityFinish();
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_SAE_REPORT_SUCCESS));
+                activityFinish();
+            }
+        });
     }
-
 
     @Override
     public void setViewData() {
@@ -176,29 +191,30 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public void setListener() {
-        super.setListener();
-        findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        findViewById(R.id.iv_check_mark).setOnClickListener(this);
-
+    public void setListener(@Nullable View view) {
+        super.setListener(view);
+        view.findViewById(R.id.ll_center_name).setOnClickListener(this);
+        view.findViewById(R.id.ll_subjects_people).setOnClickListener(this);
+        view.findViewById(R.id.ll_operation_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_job_time).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_arrow_left_black:
-                activityFinish();
-                break;
-            case R.id.iv_check_mark:
-                submitData();
-                break;
             case R.id.ll_center_name:
                 if (mSiteBeanList.isEmpty()) {
-                    Toast.makeText(this, "暂无研究中心", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "暂无研究中心", Toast.LENGTH_SHORT).show();
                 } else {
                     mOptionsPickerView.setPicker(mSiteBeanList);
                     mOptionsPickerView.show(mTvCenterName);
                 }
+                break;
+            case R.id.ll_subjects_people:
+                if (mSelectSubjectDilaog == null) {
+                    mSelectSubjectDilaog = new SelectSubjectDilaog();
+                }
+                mSelectSubjectDilaog.show(getFragmentManager(), "SelectSubjectDilaog");
                 break;
             case R.id.ll_operation_date:
                 mTimePickerView.show(mTvOperationDate);
@@ -210,57 +226,98 @@ public class EDCFillInActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private void submitData() {
+    private StringBuffer sb = new StringBuffer();
+    private StringBuffer sb1 = new StringBuffer();
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackInfo(MessageEvent<TreeMap<Integer, SubjectCodeBean>> event) {
+        if (event != null) {
+            if (event.getTag().equals(MessageEvent.KEY_SELECT_SUBJECT_SUCCESS)) {
+                if (!selectString.isEmpty()) {
+                    selectString.clear();
+                }
+                selectString.putAll(event.getData());
+                for (SubjectCodeBean subjectCodeBean : selectString.values()) {
+                    sb.append(subjectCodeBean.getSubject_id()).append(",");
+                    sb1.append(subjectCodeBean.getSubject_code())
+                            .append(" (")
+                            .append(subjectCodeBean.getName_py())
+                            .append(") ")
+                            .append("\n");
+                }
+                subjects_id = sb.delete(sb.length() - 1, sb.length()).toString();
+                mTvSubjectsPeople.setText(sb1.toString());
+                sb.delete(0, sb.length());
+                sb1.delete(0, sb.length());
+            }
+        }
+    }
+
+    public void submitData() {
         String operation_date = mTvOperationDate.getText().toString().trim();
-        String crf_pages = mEtCrfPages.getText().toString().trim();
         String job_time = mTvJobTime.getText().toString().trim();
         String remark = mEtRemark.getText().toString().trim();
 
-        if (checkData(operation_date, crf_pages, job_time)) return;
+        if (checkData(operation_date, job_time)) return;
+
         map.put("site_id", site_id);
+        map.put("subjects_id", subjects_id);
         map.put("operation_date", operation_date);
-        map.put("crf_pages", crf_pages);
         map.put("job_time", job_time);
         map.put("remark", remark);
 
-        LoadingDialog.getInstance(this).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_EDC_FILL_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        LoadingDialog.getInstance(getContext()).show();
+        HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SAE_REP_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
-                LoadingDialog.getInstance(EDCFillInActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 mIosDialog.show();
             }
 
             @Override
             public void onFailure(int code, String mesage) {
-                LoadingDialog.getInstance(EDCFillInActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 if (!TextUtils.isEmpty(mesage)) {
-                    Toast.makeText(EDCFillInActivity.this, mesage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), mesage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-
-    private boolean checkData(String operation_date, String crf_pages, String job_time) {
+    private boolean checkData(String operation_date, String job_time) {
         if (TextUtils.isEmpty(site_id)) {
-            Toast.makeText(this, "请选择中心名称", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择中心名称", Toast.LENGTH_SHORT).show();
             return true;
         }
 
+        if (TextUtils.isEmpty(subjects_id)) {
+            Toast.makeText(getContext(), "请选择受试者", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         if (TextUtils.isEmpty(operation_date)) {
-            Toast.makeText(this, "请选择预筛日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择SAE上报日期", Toast.LENGTH_SHORT).show();
             return true;
         }
-        if (TextUtils.isEmpty(crf_pages)) {
-            Toast.makeText(this, "请输入CRF页数", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
         if (TextUtils.isEmpty(job_time)) {
-            Toast.makeText(this, "请选择用时", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择用时", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }

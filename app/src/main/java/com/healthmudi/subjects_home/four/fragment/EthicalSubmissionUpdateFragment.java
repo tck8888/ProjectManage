@@ -1,7 +1,10 @@
-package com.healthmudi.subjects_home.four;
+package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,7 +15,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
-import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
@@ -41,11 +44,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * decription:伦理递交
- * Created by tck on 2017/12/11.
+ * Created by tck
+ * Date: 2018/01/05 11：06
  */
 
-public class EthicalSubmissionActivity extends BaseActivity implements View.OnClickListener {
+public class EthicalSubmissionUpdateFragment extends BaseFragment1 implements View.OnClickListener {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
@@ -77,19 +80,16 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     private ProjectListBean mProjectListBean;
 
     private String site_id = "";
-    private String tag = "EthicalSubmissionActivity";
+    private String tag = "EthicalSubmissionUpdateFragment";
     private String mDocumentsName = "";
 
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_ethical_submission_update;
+    public static EthicalSubmissionUpdateFragment newInstance() {
+        EthicalSubmissionUpdateFragment contractFollowUpUpdateFragment = new EthicalSubmissionUpdateFragment();
+        return contractFollowUpUpdateFragment;
     }
 
     @Override
-    public void initData() {
-        super.initData();
-
+    protected void initData(@Nullable Bundle arguments) {
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
@@ -107,22 +107,26 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    public void initView() {
-        super.initView();
-        mTvProjectName = (TextView) findViewById(R.id.tv_project_name);
-        mTvCenterName = (TextView) findViewById(R.id.tv_center_name);
-        mTvDocReceiveDate = (TextView) findViewById(R.id.tv_doc_receive_date);
-        mTvPiSubmitDate = (TextView) findViewById(R.id.tv_pi_submit_date);
-        mTvPiSignDate = (TextView) findViewById(R.id.tv_pi_sign_date);
-        mTvEcSubmitDate = (TextView) findViewById(R.id.tv_ec_submit_date);
-        mTvEcApproveDate = (TextView) findViewById(R.id.tv_ec_approve_date);
-        mTvDocumentsName = (TextView) findViewById(R.id.tv_documents_name);
-        mTvJobTime = (TextView) findViewById(R.id.tv_job_time);
-        mTvJobTime2 = (TextView) findViewById(R.id.tv_job_time2);
-        mEtRemark = (EditText) findViewById(R.id.et_remark);
+    protected int getLayoutId() {
+        return R.layout.fragment_ethical_submission_update;
+    }
 
-        mAutoListView = (AutoListView) findViewById(R.id.auto_list_view);
-        mAdapter = new ProgressListAdapter(this, mSiteApproveListBeen);
+    @Override
+    protected void initView(@Nullable View view) {
+        mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
+        mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
+        mTvDocReceiveDate = (TextView) view.findViewById(R.id.tv_doc_receive_date);
+        mTvPiSubmitDate = (TextView) view.findViewById(R.id.tv_pi_submit_date);
+        mTvPiSignDate = (TextView) view.findViewById(R.id.tv_pi_sign_date);
+        mTvEcSubmitDate = (TextView) view.findViewById(R.id.tv_ec_submit_date);
+        mTvEcApproveDate = (TextView) view.findViewById(R.id.tv_ec_approve_date);
+        mTvDocumentsName = (TextView) view.findViewById(R.id.tv_documents_name);
+        mTvJobTime = (TextView) view.findViewById(R.id.tv_job_time);
+        mTvJobTime2 = (TextView) view.findViewById(R.id.tv_job_time2);
+        mEtRemark = (EditText) view.findViewById(R.id.et_remark);
+
+        mAutoListView = (AutoListView) view.findViewById(R.id.auto_list_view);
+        mAdapter = new ProgressListAdapter(getContext(), mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
 
         initTimePick();
@@ -139,7 +143,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     public void initTimePick() {
-        mTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        mTimePickerView = new TimePickerView.Builder(getContext(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 if (v.getId() == R.id.tv_doc_receive_date) {
@@ -171,7 +175,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     public void initWorkHourPick() {
-        mOptionsPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        mOptionsPickerView = new OptionsPickerView.Builder(getContext(), new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 if (v.getId() == R.id.tv_job_time) {
@@ -199,38 +203,44 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     public void initDialog() {
-        mIosDialog = new IosDialog.Builder(this)
+        mIosDialog = new IosDialog.Builder(getContext())
                 .setTitle("提示")
                 .setTitleColor(getResources().getColor(R.color.color_464c5b))
                 .setMessage("工时提交工时成功")
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ETHICAL_SUBMISSION_SUCCESS));
-                        activityFinish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ETHICAL_SUBMISSION_SUCCESS));
+                activityFinish();
+            }
+        });
 
     }
 
     @Override
-    public void setListener() {
-        super.setListener();
-        findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        findViewById(R.id.iv_check_mark).setOnClickListener(this);
-        findViewById(R.id.ll_center_name).setOnClickListener(this);
-        findViewById(R.id.ll_doc_receive_date).setOnClickListener(this);
-        findViewById(R.id.ll_pi_submit_date).setOnClickListener(this);
-        findViewById(R.id.ll_pi_sign_date).setOnClickListener(this);
-        findViewById(R.id.ll_ec_submit_date).setOnClickListener(this);
-        findViewById(R.id.ll_ec_approve_date).setOnClickListener(this);
-        findViewById(R.id.ll_documents_name).setOnClickListener(this);
-        findViewById(R.id.ll_job_time).setOnClickListener(this);
-        findViewById(R.id.ll_job_time2).setOnClickListener(this);
+    public void setListener(@Nullable View view) {
+        super.setListener(view);
+        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
+        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
+        view.findViewById(R.id.ll_center_name).setOnClickListener(this);
+        view.findViewById(R.id.ll_doc_receive_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_pi_submit_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_pi_sign_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_ec_submit_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_ec_approve_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_documents_name).setOnClickListener(this);
+        view.findViewById(R.id.ll_job_time).setOnClickListener(this);
+        view.findViewById(R.id.ll_job_time2).setOnClickListener(this);
 
         mAutoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -257,7 +267,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                 break;
             case R.id.ll_center_name:
                 if (mSiteBeanList.isEmpty()) {
-                    Toast.makeText(this, "暂无研究中心", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "暂无研究中心", Toast.LENGTH_SHORT).show();
                 } else {
                     mOptionsPickerView.setPicker(mSiteBeanList);
                     mOptionsPickerView.show(mTvCenterName);
@@ -282,7 +292,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
                 if (mSelectDocDialog == null) {
                     mSelectDocDialog = new SelectDocDialog();
                 }
-                mSelectDocDialog.show(getSupportFragmentManager(), "SelectDocDialog");
+                mSelectDocDialog.show(getFragmentManager(), "SelectDocDialog");
                 break;
             case R.id.ll_job_time:
                 mOptionsPickerView.setPicker(mStringList);
@@ -306,7 +316,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    private void submitData() {
+    public void submitData() {
         String doc_receive_date = mTvDocReceiveDate.getText().toString().trim();
         String pi_submit_date = mTvPiSubmitDate.getText().toString().trim();
         String pi_sign_date = mTvPiSignDate.getText().toString().trim();
@@ -320,7 +330,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
             return;
 
         if (TextUtils.isEmpty(getStatus())) {
-            Toast.makeText(this, "请选择伦理递交进度", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择伦理递交进度", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -336,19 +346,19 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
         map.put("remark", remark);
         map.put("status", getStatus());
 
-        LoadingDialog.getInstance(this).show();
+        LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_EC_SUBMIT_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
-                LoadingDialog.getInstance(EthicalSubmissionActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 mIosDialog.show();
             }
 
             @Override
             public void onFailure(int code, String mesage) {
-                LoadingDialog.getInstance(EthicalSubmissionActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 if (!TextUtils.isEmpty(mesage)) {
-                    Toast.makeText(EthicalSubmissionActivity.this, mesage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), mesage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -356,39 +366,39 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
 
     private boolean checkData(String doc_receive_date, String pi_submit_date, String pi_sign_date, String ec_submit_date, String ec_approve_date, String documents_name, String job_time, String job_time2) {
         if (TextUtils.isEmpty(site_id)) {
-            Toast.makeText(this, "请选择中心名称", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择中心名称", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(doc_receive_date)) {
-            Toast.makeText(this, "请选择接受文件日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择接受文件日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(pi_submit_date)) {
-            Toast.makeText(this, "请选择递交PI日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择递交PI日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(pi_sign_date)) {
-            Toast.makeText(this, "请选择PI签字日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择PI签字日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(ec_submit_date)) {
-            Toast.makeText(this, "请选择递交EC日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择递交EC日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(ec_approve_date)) {
-            Toast.makeText(this, "请选择获取批件日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择获取批件日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(documents_name)) {
-            Toast.makeText(this, "请选择递交材料名称", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择递交材料名称", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(job_time)) {
-            Toast.makeText(this, "请选择用时", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择用时", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(job_time2)) {
-            Toast.makeText(this, "请选择用时", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择用时", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
@@ -407,7 +417,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
@@ -415,7 +425,7 @@ public class EthicalSubmissionActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);

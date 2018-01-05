@@ -63,7 +63,7 @@ public class VisitorsVisitToTheRulesActivity extends BaseActivity implements Vie
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_visitors_visit_to_the_rules;
+        return R.layout.fragment_visitors_visit_to_the_rules_update;
     }
 
     @Override

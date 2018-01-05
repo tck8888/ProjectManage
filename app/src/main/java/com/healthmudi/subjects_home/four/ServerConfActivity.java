@@ -67,7 +67,7 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_server_conf;
+        return R.layout.fragment_server_conf_update;
     }
 
     @Override
@@ -270,9 +270,6 @@ public class ServerConfActivity extends BaseActivity implements View.OnClickList
         return false;
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
 }
 

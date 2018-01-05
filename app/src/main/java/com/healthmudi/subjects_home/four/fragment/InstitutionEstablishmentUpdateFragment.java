@@ -1,19 +1,21 @@
-package com.healthmudi.subjects_home.four;
+package com.healthmudi.subjects_home.four.fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
-import com.healthmudi.base.BaseActivity;
+import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
@@ -39,17 +41,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * decription:机构立项
- * Created by tck on 2017/12/11.
+ * Created by tck
+ * Date: 2018/01/05 11：06
  */
 
-public class InstitutionEstablishmentActivity extends BaseActivity implements View.OnClickListener {
+public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implements View.OnClickListener {
 
     private TextView mTvProjectName;
     private TextView mTvCenterName;
-    private LinearLayout mLlSubmitDate;
     private TextView mTvSubmitDate;
-    private LinearLayout mLlApprovedDate;
     private TextView mTvApprovedDate;
     private AutoListView mAutoListView;
     private EditText mEtRemark;
@@ -69,16 +69,15 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     private ProjectListBean mProjectListBean;
 
     private String site_id = "";
-    private String tag = "InstitutionEstablishmentActivity";
+    private String tag = "InstitutionEstablishmentUpdateFragment";
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_institution_establishment_update;
+    public static InstitutionEstablishmentUpdateFragment newInstance(){
+        InstitutionEstablishmentUpdateFragment contractFollowUpUpdateFragment = new InstitutionEstablishmentUpdateFragment();
+        return contractFollowUpUpdateFragment;
     }
 
     @Override
-    public void initData() {
-        super.initData();
+    protected void initData(@Nullable Bundle arguments) {
         try {
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
@@ -92,22 +91,23 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_institution_establishment_update;
+    }
 
     @Override
-    public void initView() {
-        super.initView();
-
-        mTvProjectName = (TextView) findViewById(R.id.tv_project_name);
-        mTvCenterName = (TextView) findViewById(R.id.tv_center_name);
-        mTvSubmitDate = (TextView) findViewById(R.id.tv_submit_date);
-        mTvApprovedDate = (TextView) findViewById(R.id.tv_approved_date);
-        mAutoListView = (AutoListView) findViewById(R.id.auto_list_view);
-        mTvWorkHour = (TextView) findViewById(R.id.tv_work_hour);
-        mEtRemark = (EditText) findViewById(R.id.et_remark);
-        mAdapter = new ProgressListAdapter(this, mSiteApproveListBeen);
+    protected void initView(@Nullable View view) {
+        mTvProjectName = (TextView) view.findViewById(R.id.tv_project_name);
+        mTvCenterName = (TextView) view.findViewById(R.id.tv_center_name);
+        mTvSubmitDate = (TextView) view.findViewById(R.id.tv_submit_date);
+        mTvApprovedDate = (TextView) view.findViewById(R.id.tv_approved_date);
+        mAutoListView = (AutoListView) view.findViewById(R.id.auto_list_view);
+        mTvWorkHour = (TextView) view.findViewById(R.id.tv_work_hour);
+        mEtRemark = (EditText) view.findViewById(R.id.et_remark);
+        mAdapter = new ProgressListAdapter(getContext(), mSiteApproveListBeen);
         mAutoListView.setAdapter(mAdapter);
         initTimePick();
         initWorkHourPick();
@@ -115,7 +115,7 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     }
 
     public void initTimePick() {
-        mTimePickerView = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        mTimePickerView = new TimePickerView.Builder(getContext(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 if (v.getId() == R.id.tv_submit_date) {
@@ -141,7 +141,7 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     }
 
     public void initWorkHourPick() {
-        mOptionsPickerView = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+        mOptionsPickerView = new OptionsPickerView.Builder(getContext(), new OptionsPickerView.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 if (v.getId() == R.id.tv_work_hour) {
@@ -166,32 +166,39 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     }
 
     public void initDialog() {
-        mIosDialog = new IosDialog.Builder(this)
+        mIosDialog = new IosDialog.Builder(getContext())
                 .setTitle("提示")
                 .setTitleColor(getResources().getColor(R.color.color_464c5b))
                 .setMessage("工时提交工时成功")
                 .setPositiveButton("确认", new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_INSTITUTION_ESTABLISHMENT_SUCCESS));
-                        finish();
+
                         mIosDialog.dismiss();
                     }
                 })
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+
+        mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_INSTITUTION_ESTABLISHMENT_SUCCESS));
+                activityFinish();
+            }
+        });
     }
 
     @Override
-    public void setListener() {
-        super.setListener();
-        findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
-        findViewById(R.id.iv_check_mark).setOnClickListener(this);
-        findViewById(R.id.ll_center_name).setOnClickListener(this);
-        findViewById(R.id.ll_submit_date).setOnClickListener(this);
-        findViewById(R.id.ll_approved_date).setOnClickListener(this);
-        findViewById(R.id.ll_work_hour).setOnClickListener(this);
+    public void setListener(@Nullable View view) {
+        super.setListener(view);
+        view.findViewById(R.id.iv_arrow_left_black).setOnClickListener(this);
+        view.findViewById(R.id.iv_check_mark).setOnClickListener(this);
+        view.findViewById(R.id.ll_center_name).setOnClickListener(this);
+        view.findViewById(R.id.ll_submit_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_approved_date).setOnClickListener(this);
+        view.findViewById(R.id.ll_work_hour).setOnClickListener(this);
 
         mAutoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -208,18 +215,19 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
     }
 
     @Override
+    public void setViewData() {
+        super.setViewData();
+        if (mProjectListBean != null) {
+            mTvProjectName.setText(mProjectListBean.getProject_name());
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_arrow_left_black:
-                finish();
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
-                break;
-            case R.id.iv_check_mark:
-                submitData();
-                break;
             case R.id.ll_center_name:
                 if (mSiteBeanList.isEmpty()) {
-                    Toast.makeText(this, "暂无研究中心", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "暂无研究中心", Toast.LENGTH_SHORT).show();
                 } else {
                     mOptionsPickerView.setPicker(mSiteBeanList);
                     mOptionsPickerView.show(mTvCenterName);
@@ -238,7 +246,7 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
         }
     }
 
-    private void submitData() {
+    public void submitData() {
         String site_submit_date = mTvSubmitDate.getText().toString().trim();
         String site_approve_date = mTvApprovedDate.getText().toString().trim();
         String job_time = mTvWorkHour.getText().toString().trim();
@@ -253,19 +261,19 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
         map.put("job_time", job_time);
         map.put("remark", remark);
 
-        LoadingDialog.getInstance(this).show();
+        LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SITE_APPROVE_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
-                LoadingDialog.getInstance(InstitutionEstablishmentActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 mIosDialog.show();
             }
 
             @Override
             public void onFailure(int code, String mesage) {
-                LoadingDialog.getInstance(InstitutionEstablishmentActivity.this).hidden();
+                LoadingDialog.getInstance(getContext()).hidden();
                 if (!TextUtils.isEmpty(mesage)) {
-                    Toast.makeText(InstitutionEstablishmentActivity.this, mesage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), mesage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -273,23 +281,23 @@ public class InstitutionEstablishmentActivity extends BaseActivity implements Vi
 
     private boolean checkData(String site_submit_date, String site_approve_date, String job_time) {
         if (TextUtils.isEmpty(site_id)) {
-            Toast.makeText(this, "请选择中心名称", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择中心名称", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(site_submit_date)) {
-            Toast.makeText(this, "请选择完成递交日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择完成递交日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(site_approve_date)) {
-            Toast.makeText(this, "请选择审批通过日期", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择审批通过日期", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(job_time)) {
-            Toast.makeText(this, "请选择任务用时", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择任务用时", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (TextUtils.isEmpty(getStatus())) {
-            Toast.makeText(this, "请选择机构立项当前进度", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请选择机构立项当前进度", Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

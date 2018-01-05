@@ -1,131 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
               android:orientation="vertical">
 
+    <include layout="@layout/common_title_layout"/>
+
     <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/color_ffffff">
+        android:layout_height="match_parent"/>
 
-        <ImageView
-            android:id="@+id/iv_arrow_left_black"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:padding="15dp"
-            android:src="@mipmap/arrow_left_black"
-            />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/color_464c5b"
-            android:textSize="18sp"
-            tools:text="伦理递交"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_gravity="bottom"
-            android:background="@color/color_e4e4e4"/>
-    </FrameLayout>
-
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srlEnablePureScrollMode="true">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/color_ffffff"
-                    android:minHeight="50dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="项目名称"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_project_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="1"
-                        android:text="复旦大学附属肿瘤医院"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/color_e4e4e4"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/color_ffffff"
-                    android:minHeight="50dp"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="中心名称"
-                        android:textColor="@color/color_464c5b"
-                        android:textSize="15sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_center_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:hint="请选择中心名称"
-                        android:maxLines="1"
-                        android:textColor="@color/color_464c5b"
-                        android:textColorHint="@color/color_cccccc"
-                        android:textSize="15sp"/>
-
-                </LinearLayout>
-
-                <ViewStub
-                    android:id="@+id/view_stub"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-        </ScrollView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -61,7 +61,7 @@ public class ProjectStartMeetingActivity extends BaseActivity implements View.On
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_project_start_meeting;
+        return R.layout.fragment_project_start_meeting_update;
     }
 
     @Override

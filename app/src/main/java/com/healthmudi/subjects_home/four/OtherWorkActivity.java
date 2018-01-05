@@ -65,7 +65,7 @@ public class OtherWorkActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_other_work;
+        return R.layout.fragment_other_work_update;
     }
 
     @Override

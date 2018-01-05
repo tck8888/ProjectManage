@@ -16,17 +16,8 @@ import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.subjects_home.four.WorkHourDetailActivity;
 import com.healthmudi.subjects_home.four.WorkTimeSubmissionActivtiy;
-import com.healthmudi.subjects_home.four.dialog.ContractFollowUpDialog;
-import com.healthmudi.subjects_home.four.dialog.EDCFillInDialog;
-import com.healthmudi.subjects_home.four.dialog.EthicalSubmissionDialog;
-import com.healthmudi.subjects_home.four.dialog.InstitutionEstablishmentDialog;
-import com.healthmudi.subjects_home.four.dialog.OtherWorkDialog;
-import com.healthmudi.subjects_home.four.dialog.PresiftingDialog;
-import com.healthmudi.subjects_home.four.dialog.ProjectStartMeetingDialog;
-import com.healthmudi.subjects_home.four.dialog.SaeReportDialog;
-import com.healthmudi.subjects_home.four.dialog.ServerConfDialog;
-import com.healthmudi.subjects_home.four.dialog.VisitorsVisitToTheRulesDialog;
 import com.healthmudi.subjects_home.home_fragment.adapter.WorkingHoursListAdapter;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.EmptyView;
@@ -111,67 +102,16 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 WorkingHoursListBean workingHoursListBean = mWorkingHoursListBeanList.get(position);
-                openDialog(workingHoursListBean);
+                openActivity(workingHoursListBean);
             }
         });
     }
 
-    private void openDialog(WorkingHoursListBean workingHoursListBean) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
-
-        switch (workingHoursListBean.getJob_type_id()) {
-            case 1:
-                InstitutionEstablishmentDialog institutionEstablishmentDialog = new InstitutionEstablishmentDialog();
-                institutionEstablishmentDialog.setArguments(bundle);
-                institutionEstablishmentDialog.show(getFragmentManager(), "InstitutionEstablishmentDialog");
-                break;
-            case 2:
-                EthicalSubmissionDialog ethicalSubmissionDialog = new EthicalSubmissionDialog();
-                ethicalSubmissionDialog.setArguments(bundle);
-                ethicalSubmissionDialog.show(getFragmentManager(), "EthicalSubmissionDialog");
-                break;
-            case 3:
-                ContractFollowUpDialog contractFollowUpDialog = new ContractFollowUpDialog();
-                contractFollowUpDialog.setArguments(bundle);
-                contractFollowUpDialog.show(getFragmentManager(), "ContractFollowUpDialog");
-                break;
-            case 4:
-                ProjectStartMeetingDialog projectStartMeetingDialog = new ProjectStartMeetingDialog();
-                projectStartMeetingDialog.setArguments(bundle);
-                projectStartMeetingDialog.show(getFragmentManager(), "ProjectStartMeetingDialog");
-                break;
-            case 5://
-                SaeReportDialog saeReportDialog = new SaeReportDialog();
-                saeReportDialog.setArguments(bundle);
-                saeReportDialog.show(getFragmentManager(), "SaeReportDialog");
-                break;
-            case 6:
-                PresiftingDialog presiftingDialog = new PresiftingDialog();
-                presiftingDialog.setArguments(bundle);
-                presiftingDialog.show(getFragmentManager(), "PresiftingDialog");
-                break;
-            case 7:
-                VisitorsVisitToTheRulesDialog visitorsVisitToTheRulesDialog = new VisitorsVisitToTheRulesDialog();
-                visitorsVisitToTheRulesDialog.setArguments(bundle);
-                visitorsVisitToTheRulesDialog.show(getFragmentManager(), "VisitorsVisitToTheRulesDialog");
-                break;
-            case 8:
-                EDCFillInDialog edcFillInDialog = new EDCFillInDialog();
-                edcFillInDialog.setArguments(bundle);
-                edcFillInDialog.show(getFragmentManager(), "EDCFillInDialog");
-                break;
-            case 9:
-                ServerConfDialog serverConfDialog = new ServerConfDialog();
-                serverConfDialog.setArguments(bundle);
-                serverConfDialog.show(getFragmentManager(), "ServerConfDialog");
-                break;
-            case 99:
-                OtherWorkDialog otherWorkDialog = new OtherWorkDialog();
-                otherWorkDialog.setArguments(bundle);
-                otherWorkDialog.show(getFragmentManager(), "OtherWorkDialog");
-                break;
-        }
+    private void openActivity(WorkingHoursListBean workingHoursListBean) {
+        Intent intent = new Intent(getContext(), WorkHourDetailActivity.class);
+        intent.putExtra(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

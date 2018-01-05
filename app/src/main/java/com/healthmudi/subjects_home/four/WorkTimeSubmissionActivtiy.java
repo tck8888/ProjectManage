@@ -106,45 +106,10 @@ public class WorkTimeSubmissionActivtiy extends BaseActivity implements View.OnC
     }
 
     private void openActivity(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
-        Class clazz = null;
-        switch (workTimeSubmissionItemListBean.getJob_type_id()) {
-            case 1:
-                clazz = InstitutionEstablishmentActivity.class;
-                break;
-            case 2:
-                clazz = EthicalSubmissionActivity.class;
-                break;
-            case 3:
-                clazz = ContractFollowUpActivity.class;
-                break;
-            case 4:
-                clazz = ProjectStartMeetingActivity.class;
-                break;
-            case 5:
-                clazz = SaeReportActivity.class;
-                break;
-            case 6:
-                clazz = PresiftingActivity.class;
-                break;
-            case 7:
-                clazz = VisitorsVisitToTheRulesActivity.class;
-                break;
-            case 8:
-                clazz = EDCFillInActivity.class;
-                break;
-            case 9:
-                clazz = ServerConfActivity.class;
-                break;
-            case 99:
-                clazz = OtherWorkActivity.class;
-                break;
-        }
-        if (clazz != null) {
-            Intent intent = new Intent(this, clazz);
-            intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
-            startActivity(intent);
-            activityFinish();
-        }
+        Intent intent = new Intent(this, WorkHourDetailActivity.class);
+        intent.putExtra(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
+        startActivity(intent);
+        activityFinish();
     }
 
     @Override

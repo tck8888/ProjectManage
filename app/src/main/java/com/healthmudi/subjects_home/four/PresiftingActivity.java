@@ -64,7 +64,7 @@ public class PresiftingActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_presifting;
+        return R.layout.fargment_presifting_fragment;
     }
 
 
