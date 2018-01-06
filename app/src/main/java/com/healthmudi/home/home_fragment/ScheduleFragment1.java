@@ -163,6 +163,9 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
             }
 
+
+
+
             @Override
             public void onFailure(int code, String mesage) {
 
