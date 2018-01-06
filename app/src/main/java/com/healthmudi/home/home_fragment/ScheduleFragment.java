@@ -77,7 +77,6 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
         map.put("month", "201712");
         getData();
 
-
         View headView = View.inflate(getContext(), R.layout.head_view_layout5, null);
         mTvDate = (TextView) headView.findViewById(R.id.tv_date);
         mCbIsSame = (CheckBox) headView.findViewById(R.id.cb_is_same);

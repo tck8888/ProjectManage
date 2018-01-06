@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:minHeight="40dp"
-              android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:minHeight="40dp"
+             android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_red_dot"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:visibility="gone"
+        android:background="@drawable/shape_circular_solid_f04844"/>
 
     <TextView
         android:id="@+id/tv_day"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/color_ffffff"
         android:textSize="@dimen/dimen_15sp"
         tools:text="1"/>
-</LinearLayout>
+</FrameLayout>

@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,18 +20,14 @@ import com.healthmudi.bean.MemoBean;
 import com.healthmudi.bean.ScheduleListBean;
 import com.healthmudi.bean.ScheduleListFootBean;
 import com.healthmudi.bean.ScheduleListVisitBean;
-import com.healthmudi.bean.SubjectsBean;
-import com.healthmudi.bean.VisitsBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.home.MemorandumAddActivity;
-import com.healthmudi.home.home_fragment.adapter.CalendarAdapter;
 import com.healthmudi.home.home_fragment.adapter.CalendarBean;
 import com.healthmudi.home.home_fragment.adapter.MemoListAdapter;
 import com.healthmudi.home.home_fragment.adapter.ScheduleListAdapter;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
-import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.ListUtil;
 
 import java.util.ArrayList;
@@ -48,12 +43,13 @@ import java.util.TreeMap;
 public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickListener {
 
     private RecyclerView mCalendarRecyclerView;
+    private TextView mTvCurrentDay;
 
     private ExpandableListView mExpandableListView;
     private TextView mTvDate;
     private CheckBox mCbIsSame;
     private TabLayout mTabLayout;
-    private AutoListView mListView;
+    private AutoListView mListView;//
 
     private ScheduleListAdapter mAdapter;
     private MemoListAdapter mMemoListAdapter;
@@ -78,22 +74,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-        int year = DateUtils.getYear();
-        int day = DateUtils.getDay();
-        int month = DateUtils.getMonth();
-        int firstDayWeek = DateUtils.getFirstDayWeek(year,month );
-        int days = DateUtils.getDays(year, month);
-        for (int i = 1; i < firstDayWeek; i++) {
-            mCalendarBeanList.add(new CalendarBean(0, false, true));
-        }
-        for (int i = 1; i <= days; i++) {
-            if (i == day) {
-                mCalendarBeanList.add(new CalendarBean(i, true, false));
-            } else {
-                mCalendarBeanList.add(new CalendarBean(i, false, false));
-            }
 
-        }
     }
 
     @Override
@@ -101,9 +82,25 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         map.put("month", "201712");
         getData();
 
-        mCalendarRecyclerView = (RecyclerView) view.findViewById(R.id.calendar_recycler_view);
-        mCalendarRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 7));
-        mCalendarRecyclerView.setAdapter(new CalendarAdapter(getContext(), mCalendarBeanList));
+        View headView = View.inflate(getContext(), R.layout.head_view_layout5, null);
+        mTvDate = (TextView) headView.findViewById(R.id.tv_date);
+        mCbIsSame = (CheckBox) headView.findViewById(R.id.cb_is_same);
+        initCheckBox();
+        initTabLayouy(headView);
+
+        View footView = View.inflate(getContext(), R.layout.foot_view_layout, null);
+        mListView = (AutoListView) footView.findViewById(R.id.auto_list_view);
+
+        mMemoListAdapter = new MemoListAdapter(getContext(), mMemoBeanList);
+        mListView.setAdapter(mMemoListAdapter);
+
+        mExpandableListView = (ExpandableListView) view.findViewById(R.id.recyclerView);
+        mExpandableListView.setGroupIndicator(null);
+        ///mAdapter = new ScheduleListAdapter(getContext(), mDataList);
+        mExpandableListView.addHeaderView(headView);
+        //mExpandableListView.addFooterView(footView);
+
+        mExpandableListView.setAdapter(mAdapter);
     }
 
     private void initTabLayouy(View headView) {
@@ -156,7 +153,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 if (!ListUtil.isEmpty(result.getVisit())) {
                     mDataList.addAll(result.getVisit());
                 }
-                operatingData(result.getVisit());
+                //operatingData(result.getVisit());
                 if (!ListUtil.isEmpty(result.getMemo())) {
                     ScheduleListFootBean scheduleListFootBean = new ScheduleListFootBean("备忘录", result.getMemo());
                     mDataList.add(scheduleListFootBean);
@@ -175,7 +172,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
     private TreeMap<Long, ScheduleListVisitBean> scheduleMap = new TreeMap<>();
 
-    private void operatingData(List<ScheduleListBean.VisitBean> visit) {
+   /* private void operatingData(List<ScheduleListBean.VisitBean> visit) {
         for (int i = 0; i < visit.size(); i++) {
             ScheduleListBean.VisitBean visitBean = visit.get(i);
             List<SubjectsBean> subjects = visitBean.getSubjects();
@@ -195,7 +192,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 }
             }
         }
-    }
+    }*/
 
 
 }
