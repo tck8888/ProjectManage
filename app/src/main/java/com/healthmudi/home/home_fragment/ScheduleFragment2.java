@@ -5,6 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
@@ -18,10 +22,10 @@ import com.healthmudi.bean.ItemType;
 import com.healthmudi.bean.MemoBean;
 import com.healthmudi.bean.ScheduleListBean;
 import com.healthmudi.bean.ScheduleListFootBean;
-import com.healthmudi.bean.ScheduleListVisitBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.home.MemorandumAddActivity;
+import com.healthmudi.home.home_fragment.adapter.CalendarAdapter;
 import com.healthmudi.home.home_fragment.adapter.CalendarBean;
 import com.healthmudi.home.home_fragment.adapter.MemoListAdapter;
 import com.healthmudi.home.home_fragment.adapter.ScheduleListAdapter;
@@ -29,22 +33,34 @@ import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.ListUtil;
-import com.healthmudi.view.ScheduleCalendarView1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * 日程
  * Created by tck on 2017/12/8.
  */
-public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickListener {
+public class ScheduleFragment2 extends BaseFragment1 implements View.OnClickListener {
+
 
     private TextView mTvCurrentDay;
-    private ScheduleCalendarView1 mScheduleCalendarView;
+
+    private RecyclerView mCalendarRecyclerView;
+
+    private int currentDay;
+    private int currentMontOfDays;
+    private int currentYear;
+    private int currentMonth;
+    private int firstDayWeek;
+    private int month;
+    private int year;
+
+    private List<CalendarBean> mCalendarBeanList = new ArrayList<>();
+    private CalendarAdapter mCalendarAdapter;
+    private GridLayoutManager mGridLayoutManager;
 
     private ExpandableListView mExpandableListView;
     private TextView mTvDate;
@@ -60,25 +76,29 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
     private List<ItemType> mDataList = new ArrayList<>();
     private List<MemoBean> mMemoBeanList = new ArrayList<>();
 
-    private int currentYear;
-    private int currentMonth;
 
-
-    public static ScheduleFragment1 newInstance() {
-        ScheduleFragment1 scheduleFragment = new ScheduleFragment1();
+    public static ScheduleFragment2 newInstance() {
+        ScheduleFragment2 scheduleFragment = new ScheduleFragment2();
 
         return scheduleFragment;
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_schedule1;
+        return R.layout.fragment_schedule2;
     }
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
         currentYear = DateUtils.getYear();
+        year = DateUtils.getYear();
         currentMonth = DateUtils.getMonth();
+        month = DateUtils.getMonth();
+        currentDay = DateUtils.getDay();
+        currentMontOfDays = DateUtils.getMonthDays(currentYear, currentMonth);
+        firstDayWeek = DateUtils.getFirstDayWeekPosition(currentYear, currentMonth, 2);
+
+        setData(currentYear, currentMonth, currentMontOfDays, firstDayWeek);
     }
 
     @Override
@@ -87,27 +107,28 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         getData();
 
         mTvCurrentDay = (TextView) view.findViewById(R.id.tv_current_day);
-        mTvCurrentDay.setText(currentYear + "年" + currentMonth + "月");
+        mTvCurrentDay.setText(getDateStr(currentYear, currentMonth));
+        mCalendarRecyclerView = (RecyclerView) view.findViewById(R.id.calendar_recycler_view);
+        mGridLayoutManager = new GridLayoutManager(getContext(), 7);
+        mCalendarAdapter = new CalendarAdapter(getContext(), mCalendarBeanList);
+        mCalendarRecyclerView.setLayoutManager(mGridLayoutManager);
+        mCalendarRecyclerView.setAdapter(mCalendarAdapter);
 
-        mScheduleCalendarView = (ScheduleCalendarView1) view.findViewById(R.id.schedule_calendarview);
         View headView = View.inflate(getContext(), R.layout.head_view_layout5, null);
         mTvDate = (TextView) headView.findViewById(R.id.tv_date);
         mCbIsSame = (CheckBox) headView.findViewById(R.id.cb_is_same);
         initCheckBox();
         initTabLayouy(headView);
 
-        View footView = View.inflate(getContext(), R.layout.foot_view_layout, null);
-        mListView = (AutoListView) footView.findViewById(R.id.auto_list_view);
-
-        mMemoListAdapter = new MemoListAdapter(getContext(), mMemoBeanList);
-        mListView.setAdapter(mMemoListAdapter);
-
         mExpandableListView = (ExpandableListView) view.findViewById(R.id.recyclerView);
         mExpandableListView.setGroupIndicator(null);
         ///mAdapter = new ScheduleListAdapter(getContext(), mDataList);
         mExpandableListView.addHeaderView(headView);
+        mExpandableListView.addHeaderView(headView);
+        mExpandableListView.addHeaderView(headView);
+        mExpandableListView.addHeaderView(headView);
+        mExpandableListView.addHeaderView(headView);
         //mExpandableListView.addFooterView(footView);
-
         mExpandableListView.setAdapter(mAdapter);
     }
 
@@ -129,18 +150,35 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         mCbIsSame.setCompoundDrawables(null, null, drawable, null);
     }
 
+    private float downY;
+    private float mLastY;
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.iv_my_project_center).setOnClickListener(this);
-        view.findViewById(R.id.iv_add_memorandum).setOnClickListener(this);
         view.findViewById(R.id.iv_pre_month).setOnClickListener(this);
         view.findViewById(R.id.iv_next_month).setOnClickListener(this);
+        view.findViewById(R.id.iv_my_project_center).setOnClickListener(this);
+        view.findViewById(R.id.iv_add_memorandum).setOnClickListener(this);
 
-        mScheduleCalendarView.setOnDateClickListener(new ScheduleCalendarView1.OnDateClickListener() {
+        mExpandableListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(CalendarBean calendarBean) {
-                mTvCurrentDay.setText(calendarBean.getDateStr().substring(0, calendarBean.getDateStr().indexOf("月") + 1));
+            public boolean onTouch(View v, MotionEvent ev) {
+                int action = ev.getAction();
+                float y = ev.getY();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        mLastY = downY = y;
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        float dy = y - mLastY;
+                        Log.d("onIntercept", dy + "");
+
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                    case MotionEvent.ACTION_UP:
+                        break;
+                }
+                return false;
             }
         });
     }
@@ -149,6 +187,14 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_my_project_center:
+                startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
+                getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
+            case R.id.iv_add_memorandum:
+                startActivity(new Intent(getContext(), MemorandumAddActivity.class));
+                getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
             case R.id.iv_pre_month:
                 if (currentMonth - 1 == 0) {
                     currentYear = currentYear - 1;
@@ -156,8 +202,11 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 } else {
                     currentMonth = currentMonth - 1;
                 }
-                mTvCurrentDay.setText(currentYear + "年" + currentMonth + "月");
-                mScheduleCalendarView.changePreMonth();
+                firstDayWeek = DateUtils.getFirstDayWeekPosition(currentYear, currentMonth, 2);
+                currentMontOfDays = DateUtils.getMonthDays(currentYear, currentMonth);
+                setData(currentYear, currentMonth, currentMontOfDays, firstDayWeek);
+                mTvCurrentDay.setText(getDateStr(currentYear, currentMonth));
+                mCalendarAdapter.notifyDataSetChanged();
                 break;
             case R.id.iv_next_month:
                 if (currentMonth + 1 > 12) {
@@ -166,16 +215,11 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 } else {
                     currentMonth = currentMonth + 1;
                 }
-                mTvCurrentDay.setText(currentYear + "年" + currentMonth + "月");
-                mScheduleCalendarView.changeNextMonth();
-                break;
-            case R.id.iv_my_project_center:
-                startActivity(new Intent(getContext(), ExitProjectManagerActivity.class));
-                getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-                break;
-            case R.id.iv_add_memorandum:
-                startActivity(new Intent(getContext(), MemorandumAddActivity.class));
-                getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                firstDayWeek = DateUtils.getFirstDayWeekPosition(currentYear, currentMonth, 2);
+                currentMontOfDays = DateUtils.getMonthDays(currentYear, currentMonth);
+                setData(currentYear, currentMonth, currentMontOfDays, firstDayWeek);
+                mTvCurrentDay.setText(getDateStr(currentYear, currentMonth));
+                mCalendarAdapter.notifyDataSetChanged();
                 break;
         }
     }
@@ -208,29 +252,48 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         });
     }
 
-    private TreeMap<Long, ScheduleListVisitBean> scheduleMap = new TreeMap<>();
-
-   /* private void operatingData(List<ScheduleListBean.VisitBean> visit) {
-        for (int i = 0; i < visit.size(); i++) {
-            ScheduleListBean.VisitBean visitBean = visit.get(i);
-            List<SubjectsBean> subjects = visitBean.getSubjects();
-
-            ScheduleListVisitBean scheduleListVisitBean = new ScheduleListVisitBean();
-            scheduleListVisitBean.setProject_name(visitBean.getProject_name());
-
-            List<ScheduleListVisitBean.ScheduleSubject> mScheduleSubjectList = new ArrayList<>();
-            for (int j = 0; j < subjects.size(); j++) {
-                SubjectsBean subjectsBean = subjects.get(j);
-                for (int k = 0; k < subjectsBean.getVisits().size(); k++) {
-                    VisitsBean visitsBean = subjectsBean.getVisits().get(k);
-                    ScheduleListVisitBean.ScheduleSubject scheduleSubject = new ScheduleListVisitBean.ScheduleSubject();
-                    if (visitsBean.getTarget_visit_time() != 0 || visitsBean.getNot_finish_flag() == 1) {
-
-                    }
-                }
+    private void setData(int currentYear, int currentMonth, int currentMontOfDays, int firstDayWeek) {
+        if (!mCalendarBeanList.isEmpty()) {
+            mCalendarBeanList.clear();
+        }
+        if (firstDayWeek != 6) {
+            for (int i = 0; i <= firstDayWeek; i++) {
+                mCalendarBeanList.add(new CalendarBean(0, false, true, ""));
             }
         }
-    }*/
+        for (int i = 1; i <= currentMontOfDays; i++) {
+            if (i == currentDay && currentMonth == month && year == currentYear) {
+                mCalendarBeanList.add(new CalendarBean(i, true, false, getDateStr(currentYear, currentMonth, i)));
+            } else {
+                mCalendarBeanList.add(new CalendarBean(i, false, false, getDateStr(currentYear, currentMonth, i)));
+            }
+        }
+    }
+
+
+    public String getDateStr(int year, int month, int day) {
+        if (month < 10) {
+            if (day < 10) {
+                return year + "年" + "0" + month + "月" + "0" + day + "日";
+            } else {
+                return year + "年" + "0" + month + "月" + day + "日";
+            }
+        } else {
+            if (day < 10) {
+                return year + "年" + month + "月" + "0" + day + "日";
+            } else {
+                return year + "年" + month + "月" + day + "日";
+            }
+        }
+    }
+
+    public String getDateStr(int year, int month) {
+        if (month < 10) {
+            return year + "年" + "0" + month + "月";
+        } else {
+            return year + "年" + month + "月";
+        }
+    }
 
 
 }

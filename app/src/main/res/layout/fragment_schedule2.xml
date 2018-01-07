@@ -146,19 +146,18 @@
                 android:textColor="@color/color_ffffff"
                 android:textSize="15sp"/>
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/calendar_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <com.healthmudi.view.ScheduleCalendarView1
-        android:id="@+id/schedule_calendarview"
+    <ExpandableListView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:schedule_content_view_id="@+id/recyclerView">
+        android:background="@color/color_f3f3f3"
+        android:divider="@null"/>
 
-        <ExpandableListView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_f3f3f3"
-            android:divider="@null"/>
-    </com.healthmudi.view.ScheduleCalendarView1>
 </LinearLayout>
