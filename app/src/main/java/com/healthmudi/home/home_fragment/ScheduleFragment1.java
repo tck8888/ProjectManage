@@ -190,6 +190,18 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
      */
     private void refreshData(int position) {
 
+        int monthDays = DateUtils.getMonthDays(currentYear, currentMonth);
+        if (currentDay >= monthDays) {
+            if (monthDays == 30) {
+                currentDay = 30;
+            } else if (monthDays == 31) {
+                currentDay = 31;
+            } else if (monthDays == 28) {
+                currentDay = 28;
+            } else if (monthDays == 29) {
+                currentDay = 29;
+            }
+        }
         refreshTab(currentYear, currentMonth, currentDay);
 
         if (!ListUtil.isEmpty(mScheduleListHeadBeen1)) {
