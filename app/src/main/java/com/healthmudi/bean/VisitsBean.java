@@ -18,6 +18,8 @@ public class VisitsBean {
     private int visit_type;
     private int window_neg;
     private int window_pos;
+    private String name_py;
+    private String subject_code;
     private List<VisitContentBean> visit_content;
 
     public long getActual_visit_time() {
@@ -106,5 +108,21 @@ public class VisitsBean {
 
     public void setVisit_content(List<VisitContentBean> visit_content) {
         this.visit_content = visit_content;
+    }
+
+    public String getName_py() {
+        return name_py;
+    }
+
+    public void setName_py(String name_py) {
+        this.name_py = name_py;
+    }
+
+    public String getSubject_code() {
+        return subject_code;
+    }
+
+    public void setSubject_code(String subject_code) {
+        this.subject_code = subject_code;
     }
 }

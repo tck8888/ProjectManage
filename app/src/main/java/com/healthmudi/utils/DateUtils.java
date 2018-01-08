@@ -42,14 +42,22 @@ public class DateUtils {
         return formatTime;
     }
 
-    /**
-     * 返回年-月-日 hh:mm
-     */
+
     public static String getFormatTime2(@Nullable long time) {
         if (String.valueOf(time).length() <= 10) {
             time = time * 1000;
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        String formatTime = format.format(date);
+        return formatTime;
+    }
+
+    public static String getFormatTime3(@Nullable long time) {
+        if (String.valueOf(time).length() <= 10) {
+            time = time * 1000;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
         Date date = new Date(time);
         String formatTime = format.format(date);
         return formatTime;
@@ -210,6 +218,52 @@ public class DateUtils {
             System.out.println(e.getMessage());
         }
         return date;
+    }
+
+
+    public static String getDateStr(int year, int month, int day) {
+        if (month < 10) {
+            if (day < 10) {
+                return year + "年" + "0" + month + "月" + "0" + day + "日";
+            } else {
+                return year + "年" + "0" + month + "月" + day + "日";
+            }
+        } else {
+            if (day < 10) {
+                return year + "年" + month + "月" + "0" + day + "日";
+            } else {
+                return year + "年" + month + "月" + day + "日";
+            }
+        }
+    }
+
+    public static String getDateStr(int year, int month) {
+        if (month < 10) {
+            return year + "年" + "0" + month + "月";
+        } else {
+            return year + "年" + month + "月";
+        }
+    }
+
+    public static String getDateStr1(int year, int month) {
+        if (month < 10) {
+            return String.valueOf(year) + "0" + String.valueOf(month);
+        } else {
+            return String.valueOf(year) + String.valueOf(month);
+        }
+    }
+
+    public static long getTimestamp(String str) {
+
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd");
+            Date date = simpleDateFormat.parse(str);
+            return date.getTime() / 1000;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return getCurrentTime();
+        }
+
     }
 
 }

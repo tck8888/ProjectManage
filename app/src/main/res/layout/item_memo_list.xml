@@ -5,47 +5,58 @@
               android:layout_height="wrap_content"
               android:background="@color/color_ffffff"
               android:minHeight="50dp"
-              android:orientation="horizontal"
+              android:orientation="vertical"
     >
 
-    <ImageView
-        android:id="@+id/iv_image_type"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:padding="16dp"
-        android:src="@mipmap/icon_memo_black"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_subjects_people_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/color_464c5b"
-        android:textSize="15sp"
-        tools:text=" 伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处"/>
+        <ImageView
+            android:id="@+id/iv_image_type"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:padding="15dp"
+            android:src="@mipmap/icon_memo_black"/>
 
-    <TextView
-        android:id="@+id/tv_work_satus"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/shape_corner_11dp_solid_1abc9c"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="已完成"
-        android:textColor="#fff"
-        android:textSize="11sp"/>
+        <TextView
+            android:id="@+id/tv_subjects_people_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_464c5b"
+            android:textSize="15sp"
+            tools:text=" 伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处伦理及I期病房同一处"/>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical|right"
-        android:padding="18dp"
-        android:src="@mipmap/icon_arrow_right"/>
+        <TextView
+            android:id="@+id/tv_work_satus"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_corner_11dp_solid_1abc9c"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="已完成"
+            android:textColor="#fff"
+            android:textSize="11sp"/>
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical|right"
+            android:padding="15dp"
+            android:src="@mipmap/icon_arrow_right"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="50dp"
+        android:background="@color/color_e4e4e4"/>
 </LinearLayout>

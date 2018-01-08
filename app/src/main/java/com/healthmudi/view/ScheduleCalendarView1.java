@@ -62,6 +62,7 @@ public class ScheduleCalendarView1 extends LinearLayout {
     private VelocityTracker mVelocityTracker;
     private int mMaximumVelocity;
 
+
     public ScheduleCalendarView1(Context context) {
         this(context, null);
     }
@@ -108,6 +109,7 @@ public class ScheduleCalendarView1 extends LinearLayout {
                 if (mOnDateClickListener != null) {
                     mOnDateClickListener.onClick(mDataList.get(position));
                 }
+                setSelectPosition(position);
             }
         });
 
@@ -274,18 +276,10 @@ public class ScheduleCalendarView1 extends LinearLayout {
     private int mItemHeight = dipToPx(getContext(), 40);
     private int mViewPagerTranslateY = mItemHeight;
 
-    /**
-     * 当前第几项被选中
-     */
-    void setSelectPosition(int selectPosition) {
-        int line = (selectPosition + 7) / 7;
-        mViewPagerTranslateY = (line - 1) * mItemHeight;
-    }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-//mCalendarRecyclerView.getLayoutManager().get
+    public void setSelectPosition(int selectPosition) {
+        int line = selectPosition / 7;
+        mViewPagerTranslateY = line * mItemHeight;
     }
 
     private void translationViewPager() {
@@ -390,42 +384,20 @@ public class ScheduleCalendarView1 extends LinearLayout {
         }
         if (firstDayWeek != 6) {
             for (int i = 0; i <= firstDayWeek; i++) {
-                mDataList.add(new CalendarBean(0, false, true, ""));
+                mDataList.add(new CalendarBean(0, false, true, DateUtils.getDateStr(currentYear, currentMonth, 0)));
             }
         }
         for (int i = 1; i <= currentMontOfDays; i++) {
             if (i == currentDay && currentMonth == month && year == currentYear) {
-                mDataList.add(new CalendarBean(i, true, false, getDateStr(currentYear, currentMonth, i)));
+                mDataList.add(new CalendarBean(i, true, false, DateUtils.getDateStr(currentYear, currentMonth, i)));
+                //当前今天的选中位置
+                setSelectPosition(mDataList.size() - 1);
             } else {
-                mDataList.add(new CalendarBean(i, false, false, getDateStr(currentYear, currentMonth, i)));
+                mDataList.add(new CalendarBean(i, false, false, DateUtils.getDateStr(currentYear, currentMonth, i)));
             }
         }
     }
 
-
-    public String getDateStr(int year, int month, int day) {
-        if (month < 10) {
-            if (day < 10) {
-                return year + "年" + "0" + month + "月" + "0" + day + "日";
-            } else {
-                return year + "年" + "0" + month + "月" + day + "日";
-            }
-        } else {
-            if (day < 10) {
-                return year + "年" + month + "月" + "0" + day + "日";
-            } else {
-                return year + "年" + month + "月" + day + "日";
-            }
-        }
-    }
-
-    public String getDateStr(int year, int month) {
-        if (month < 10) {
-            return year + "年" + "0" + month + "月";
-        } else {
-            return year + "年" + month + "月";
-        }
-    }
 
 
     /**
