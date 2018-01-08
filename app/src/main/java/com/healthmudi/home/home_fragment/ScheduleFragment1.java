@@ -110,7 +110,6 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         mAdapter = new ScheduleListAdapter(getContext(), mScheduleListHeadBeen1);
         mExpandableListView.addHeaderView(headView);
 
-
         mExpandableListView.setAdapter(mAdapter);
 
     }
@@ -313,16 +312,17 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                         int window_pos = visits.getWindow_pos();//正数，上限
                         long currentTimestamp = DateUtils.getTimestamp(key);//当前时间
                         long target_visit_time = visits.getTarget_visit_time();//目标时间
-                        long invalid_time = target_visit_time + window_neg * 24 * 3600;//窗口期  过期时间
+                        long invalid_time = currentTimestamp - Math.abs(window_neg) * 24 * 3600;//窗口期  过期时间
                         long effective_time = target_visit_time + window_pos * 24 * 3600;//窗口期  有效时间
                         long one_day_time = currentTimestamp + 24 * 3600;//1天以后
-                        long three_day_time = currentTimestamp + 3 * 24 * 3600;//3天以后
-                        long seven_day_time = currentTimestamp + 7 * 24 * 3600;//7天以后
-
+                        long three_day_time = currentTimestamp + 2 * 24 * 3600;//3天以后
+                        long seven_day_time = currentTimestamp + 6 * 24 * 3600;//7天以后
+                        System.out.println(one_day_time);
                         visits.setName_py(data.getName_py());
                         visits.setSubject_code(data.getSubject_code());
 
-                        if (target_visit_time < currentTimestamp) {//逾期
+                        if ((visits.getActual_visit_time() == 0 || visits.getNot_finish_flag() == 0) && target_visit_time < currentTimestamp && target_visit_time >= invalid_time) {//逾期
+
                             if (overdue_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = overdue_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
@@ -331,7 +331,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                                 list.add(visits);
                                 overdue_day_map.put(data.getProject_name(), list);
                             }
-                        } else if (target_visit_time < one_day_time && target_visit_time >= currentTimestamp) {//当天
+                        } else if (DateUtils.getFormatTime3(visits.getTarget_visit_time()).equals(key)) {//当天
                             if (current_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = current_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
