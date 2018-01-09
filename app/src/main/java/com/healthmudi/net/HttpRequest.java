@@ -1,6 +1,7 @@
 package com.healthmudi.net;
 
 import com.google.gson.Gson;
+import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.gson.GsonUtils;
@@ -8,6 +9,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONObject;
 
@@ -90,7 +92,8 @@ public class HttpRequest {
      */
     private TreeMap<String, String> operateParameter(Map<String, String> parameter) {
         TreeMap<String, String> treeMap = new TreeMap<>();
-        treeMap.put("token", "3");
+        String token = (String) Hawk.get(Constant.KEY_TOKEN);
+        treeMap.put("token", token);
         treeMap.put("lng", "121");
         treeMap.put("lat", "31");
         treeMap.put("version_code", "1.0");

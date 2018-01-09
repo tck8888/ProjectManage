@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.bean.ScheduleListHeadBean;
 import com.healthmudi.bean.VisitsBean;
+import com.healthmudi.utils.CommonUtils;
 
 import java.util.List;
 
@@ -118,7 +119,7 @@ public class ScheduleListAdapter extends BaseExpandableListAdapter {
             mIvImageType.setImageResource(R.mipmap.icon_in_the_group);
             mTvSubjectsPeopleName.setText(visitsBean.getVisit_name());
             mTvSubjectsPeopleName.setText(visitsBean.getSubject_code() + "  (" + visitsBean.getName_py() + ")  " + visitsBean.getVisit_name());
-            if (visitsBean.getActual_visit_time() == 0 || visitsBean.getNot_finish_flag() == 0) {
+            if (!CommonUtils.isVisitComplete(visitsBean)) {
                 mTvWorkSatus.setText("未完成");
                 mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
             } else {
@@ -129,6 +130,7 @@ public class ScheduleListAdapter extends BaseExpandableListAdapter {
         }
         return convertView;
     }
+
 
     //  子项是否可选中，如果需要设置子项的点击事件，需要返回true
     @Override

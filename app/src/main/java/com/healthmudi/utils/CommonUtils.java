@@ -6,6 +6,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
 
+import com.healthmudi.bean.VisitsBean;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,5 +76,21 @@ public class CommonUtils {
         spannableString.setSpan(foregroundColorSpan, str.indexOf("("), str.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
         return spannableString;
+    }
+
+
+    /**
+     * 任务是否完成
+     *
+     * @param visitsBean
+     * @return true 完成 false 未完成
+     */
+    public static boolean isVisitComplete(VisitsBean visitsBean) {
+
+        if (visitsBean.getNot_finish_flag() == 1
+                || (visitsBean.getActual_visit_time() != 0 && visitsBean.getNot_finish_flag() == 0)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.healthmudi.home.home_fragment.adapter.CalendarBean;
 import com.healthmudi.home.home_fragment.adapter.ScheduleListAdapter;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
+import com.healthmudi.utils.CommonUtils;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.ListUtil;
 import com.healthmudi.view.ScheduleCalendarView1;
@@ -48,6 +50,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
     private TextView mTvDate;
     private CheckBox mCbIsSame;
     private TabLayout mTabLayout;
+    private View mFootView;
 
     private ScheduleListAdapter mAdapter;
 
@@ -55,7 +58,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
     private String tag = "ScheduleFragment";
     private Map<String, String> map = new HashMap<>();
 
-    private List<MemoBean> mMemoBeanList = new ArrayList<>();
+    private boolean isVisitCompleteState = true;//是否未完成状态
 
     private int currentYear;
     private int currentMonth;
@@ -65,6 +68,9 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
     private TabLayout.Tab mTab2;
     private TabLayout.Tab mTab3;
     private TabLayout.Tab mTab4;
+
+    private List<ScheduleListHeadBean> mScheduleListAllData = new ArrayList<>();
+    private int mPosition = 1;
 
 
     public static ScheduleFragment1 newInstance() {
@@ -107,10 +113,12 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
         mExpandableListView = (ExpandableListView) view.findViewById(R.id.recyclerView);
         mExpandableListView.setGroupIndicator(null);
-        mAdapter = new ScheduleListAdapter(getContext(), mScheduleListHeadBeen1);
+        mAdapter = new ScheduleListAdapter(getContext(), mScheduleListAllData);
         mExpandableListView.addHeaderView(headView);
 
         mExpandableListView.setAdapter(mAdapter);
+
+        mFootView = View.inflate(getContext(), R.layout.loading_empty1, null);
 
     }
 
@@ -137,6 +145,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         drawable.setBounds(0, 0, 40, 40);
         //设置CheckBox对象的位置，对应为左、上、右、下
         mCbIsSame.setCompoundDrawables(null, null, drawable, null);
+        mCbIsSame.setChecked(true);
     }
 
     @Override
@@ -154,7 +163,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                     //当前天数
                     currentDay = Integer.parseInt(calendarBean.getDateStr().substring(calendarBean.getDateStr().indexOf("月") + 1, calendarBean.getDateStr().indexOf("日")));
                     //刷新数据源
-                    refreshData(1);
+                    refreshData(1, isVisitCompleteState);
                     mTabLayout.getTabAt(1).select();
                     //mTvCurrentDay.setText(calendarBean.getDateStr().substring(0, calendarBean.getDateStr().indexOf("月") + 1));
                     //任务清单的时间
@@ -166,8 +175,8 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
-                refreshData(tab.getPosition());
+                mPosition = tab.getPosition();
+                refreshData(mPosition, isVisitCompleteState);
             }
 
             @Override
@@ -180,6 +189,27 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
             }
         });
+
+        mCbIsSame.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isVisitCompleteState = isChecked;
+                changeData(mPosition, isVisitCompleteState);
+            }
+        });
+    }
+
+    /**
+     * 切换数据源
+     *
+     * @param isChecked true 未完成的任务 false所有的任务
+     */
+    private void changeData(int position, boolean isChecked) {
+
+        //刷新tab数据
+        refreshTab(currentYear, currentMonth, currentDay, isChecked);
+        //切换适配器的数据源
+        refreshData(position, isChecked);
     }
 
     /**
@@ -187,7 +217,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
      *
      * @param position
      */
-    private void refreshData(int position) {
+    private void refreshData(int position, boolean isChecked) {
 
         int monthDays = DateUtils.getMonthDays(currentYear, currentMonth);
         if (currentDay >= monthDays) {
@@ -201,13 +231,22 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 currentDay = 29;
             }
         }
-        refreshTab(currentYear, currentMonth, currentDay);
-
-        if (!ListUtil.isEmpty(mScheduleListHeadBeen1)) {
-            mScheduleListHeadBeen1.clear();
+        if (!ListUtil.isEmpty(mScheduleListAllData)) {
+            mScheduleListAllData.clear();
         }
-        mScheduleListHeadBeen1.addAll(getTypeDataList(currentYear, currentMonth, currentDay, position));
+
+        mScheduleListAllData.addAll(getTypeDataList(currentYear, currentMonth, currentDay, position, isChecked));
+
+
+        //数据为空显示空界面
+        if (ListUtil.isEmpty(mScheduleListAllData)) {
+            mExpandableListView.addFooterView(mFootView);
+        } else {
+            mExpandableListView.removeFooterView(mFootView);
+        }
         mAdapter.notifyDataSetChanged();
+        mCbIsSame.setChecked(isVisitCompleteState);
+
     }
 
 
@@ -269,13 +308,12 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         });
     }
 
-    private long mTimestamp;
 
     private TreeMap<String, Map<Integer, Map<String, List<VisitsBean>>>> currentMonthData = new TreeMap<>();
 
     private void operatingData(ScheduleList1Bean result) {
 
-        mTimestamp = result.getTimestamp();
+        long mTimestamp = result.getTimestamp();
 
         if (memoToVisitsBean(result.getMemo()) != null) {
             result.getVisit().add(memoToVisitsBean(result.getMemo()));
@@ -380,9 +418,15 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
             }
         }
 
-        refreshData(1);
+        changeData(mPosition, isVisitCompleteState);
     }
 
+    /**
+     * 将备忘录数据转换为VisitBean
+     *
+     * @param data
+     * @return
+     */
     public ScheduleList1Bean.VisitBean memoToVisitsBean(List<MemoBean> data) {
         if (data != null) {
             List<VisitsBean> list = new ArrayList<>();
@@ -398,6 +442,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 visitsBean.setMemoStatus(memoBean.getStatus());
                 list.add(visitsBean);
             }
+            visitBean.setVisits(list);
             return visitBean;
         }
 
@@ -405,30 +450,24 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
     }
 
-    public int refreshTab(int year, int month, int day, int position) {
-        Map<Integer, Map<String, List<VisitsBean>>> stringMapMap = currentMonthData.get(DateUtils.getDateStr(year, month, day));
-        int count = 0;
-        if (stringMapMap != null) {
-            Map<String, List<VisitsBean>> stringListMap = stringMapMap.get(position);
-            Iterator<Map.Entry<String, List<VisitsBean>>> iterator = stringListMap.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, List<VisitsBean>> next = iterator.next();
-                count += next.getValue().size();
-            }
-        }
-        return count;
-    }
-
-    private void refreshTab(int year, int month, int day) {
+    /**
+     * 设置某个状态的的数量
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param isOver
+     */
+    private void refreshTab(int year, int month, int day, boolean isOver) {
         int i;
-        i = refreshTab(year, month, day, 0);
+        i = refreshTab(year, month, day, 0, isOver);
         if (i != 0) {
             mTab.setText("逾期(" + i + ")");
         } else {
             mTab.setText("逾期");
         }
         i = 0;
-        i = refreshTab(year, month, day, 1);
+        i = refreshTab(year, month, day, 1, isOver);
         if (i != 0) {
             mTab1.setText("当天(" + i + ")");
         } else {
@@ -437,7 +476,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
 
         i = 0;
-        i = refreshTab(year, month, day, 2);
+        i = refreshTab(year, month, day, 2, isOver);
         if (i != 0) {
             mTab2.setText("1天后(" + i + ")");
         } else {
@@ -445,7 +484,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         }
 
         i = 0;
-        i = refreshTab(year, month, day, 3);
+        i = refreshTab(year, month, day, 3, isOver);
         if (i != 0) {
             mTab3.setText("3天后(" + i + ")");
         } else {
@@ -453,7 +492,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         }
 
         i = 0;
-        i = refreshTab(year, month, day, 4);
+        i = refreshTab(year, month, day, 4, isOver);
         if (i != 0) {
             mTab4.setText("7天后(" + i + ")");
         } else {
@@ -461,8 +500,57 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         }
     }
 
-    public List<ScheduleListHeadBean> getTypeDataList(int year, int month, int day, int position) {
+    /**
+     * 计算数据量
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param position
+     * @param isOver
+     * @return
+     */
+    public int refreshTab(int year, int month, int day, int position, boolean isOver) {
+        Map<Integer, Map<String, List<VisitsBean>>> stringMapMap = currentMonthData.get(DateUtils.getDateStr(year, month, day));
+        int count = 0;
+        if (stringMapMap != null) {
+            Map<String, List<VisitsBean>> stringListMap = stringMapMap.get(position);
+            Iterator<Map.Entry<String, List<VisitsBean>>> iterator = stringListMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, List<VisitsBean>> next = iterator.next();
+                if (isOver) {//未完成的数量
+                    for (VisitsBean visitsBean : next.getValue()) {
+                        if (visitsBean.isMemo()) {
+                            if (visitsBean.getMemoStatus() == 0) {
+                                count++;
+                            }
+                        } else {
+                            if (!CommonUtils.isVisitComplete(visitsBean)) {
+                                count++;
+                            }
+                        }
+                    }
+                } else {
+                    count += next.getValue().size();
+                }
+            }
+        }
+        return count;
+    }
+
+
+    /**
+     * 获取数据源
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param position
+     * @return
+     */
+    public List<ScheduleListHeadBean> getTypeDataList(int year, int month, int day, int position, boolean isOver) {
         List<ScheduleListHeadBean> list = new ArrayList<>();
+        List<VisitsBean> visitsBeanList = new ArrayList<>();
         Map<Integer, Map<String, List<VisitsBean>>> stringMapMap = currentMonthData.get(DateUtils.getDateStr(year, month, day));
         Map<String, List<VisitsBean>> stringListMap = stringMapMap.get(position);
         Iterator<Map.Entry<String, List<VisitsBean>>> iterator = stringListMap.entrySet().iterator();
@@ -472,15 +560,36 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
             List<VisitsBean> value = next.getValue();
             ScheduleListHeadBean scheduleListHeadBean = new ScheduleListHeadBean();
             scheduleListHeadBean.setProject_name(key);
-            scheduleListHeadBean.setVisits(value);
+            if (isOver) {//未完成的数量
+                if (!ListUtil.isEmpty(visitsBeanList)) {
+                    visitsBeanList.clear();
+                }
+                for (VisitsBean visitsBean : next.getValue()) {
+                    if (visitsBean.isMemo()) {
+                        if (visitsBean.getMemoStatus() == 0) {
+                            visitsBeanList.add(visitsBean);
+                        }
+                    } else {
+                        if (!CommonUtils.isVisitComplete(visitsBean)) {
+                            visitsBeanList.add(visitsBean);
+                        }
+                    }
+                }
+
+                if (!visitsBeanList.isEmpty()) {
+                    scheduleListHeadBean.setVisits(visitsBeanList);
+                    list.add(scheduleListHeadBean);
+                } else {
+                    break;
+                }
+            } else {
+                scheduleListHeadBean.setVisits(value);
+            }
+
             list.add(scheduleListHeadBean);
         }
         return list;
     }
-
-
-    private List<ScheduleListHeadBean> mScheduleListHeadBeen1 = new ArrayList<>();
-
 
     /**
      * decription:初始化每一天的数据
