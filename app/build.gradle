@@ -17,8 +17,60 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+
+        debug {
+            storeFile file("dia.keystore")
+            storePassword "md100admin"
+            keyAlias "dia"
+            keyPassword "md100admin"
+        }
+
+
+        release {
+            storeFile file("dia.keystore")
+            storePassword "md100admin"
+            keyAlias "dia"
+            keyPassword "md100admin"
+        }
+
+    }
+
+
+    buildTypes {
+        release {
+            //混淆配置
+            minifyEnabled true
+//            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            //    shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            //混淆配置
+            minifyEnabled true
+//            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            //    shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
 }
 
 dependencies {
     compile project(':commonlibrary')
+    compile files('libs/BaiduLBS_Android.jar')
 }
