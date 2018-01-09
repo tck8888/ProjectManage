@@ -39,3 +39,8 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
+
+-keep class com.baidu.**{ *; }
+
+-keepattributes Signature
+-keep class **.R$* {*;}

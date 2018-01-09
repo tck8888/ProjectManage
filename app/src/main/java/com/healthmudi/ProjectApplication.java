@@ -1,8 +1,11 @@
 package com.healthmudi;
 
 import android.app.Application;
+import android.app.Service;
 import android.content.Context;
+import android.os.Vibrator;
 
+import com.healthmudi.service.LocationService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -23,6 +26,9 @@ public class ProjectApplication extends Application {
 
     public static Context mContext;
 
+    public LocationService locationService;
+    public Vibrator mVibrator;
+
 
     @Override
     public void onCreate() {
@@ -32,6 +38,15 @@ public class ProjectApplication extends Application {
         mContext = this;
 
         Hawk.init(this).build();
+
+        initMap();
+    }
+
+    private void initMap() {
+
+        locationService = new LocationService(getApplicationContext());
+        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+
     }
 
     private void okgoInit() {
