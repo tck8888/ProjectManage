@@ -10,7 +10,7 @@ public class MemoBean {
     private int memo_id;
     private String memo_content;
     private int status;
-    private int memo_time;
+    private long memo_time;
 
     public int getMemo_id() {
         return memo_id;
@@ -36,11 +36,11 @@ public class MemoBean {
         this.status = status;
     }
 
-    public int getMemo_time() {
+    public long getMemo_time() {
         return memo_time;
     }
 
-    public void setMemo_time(int memo_time) {
+    public void setMemo_time(long memo_time) {
         this.memo_time = memo_time;
     }
 

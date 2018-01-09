@@ -22,6 +22,43 @@ public class VisitsBean {
     private String subject_code;
     private List<VisitContentBean> visit_content;
 
+    private int memo_id;
+    private String memo_content;
+    private int memoStatus;
+    private boolean isMemo = false;
+
+    public boolean isMemo() {
+        return isMemo;
+    }
+
+    public void setMemo(boolean memo) {
+        isMemo = memo;
+    }
+    public int getMemo_id() {
+        return memo_id;
+    }
+
+    public void setMemo_id(int memo_id) {
+        this.memo_id = memo_id;
+    }
+
+    public String getMemo_content() {
+        return memo_content;
+    }
+
+    public void setMemo_content(String memo_content) {
+        this.memo_content = memo_content;
+    }
+
+
+    public int getMemoStatus() {
+        return memoStatus;
+    }
+
+    public void setMemoStatus(int memoStatus) {
+        this.memoStatus = memoStatus;
+    }
+
     public long getActual_visit_time() {
         return actual_visit_time;
     }

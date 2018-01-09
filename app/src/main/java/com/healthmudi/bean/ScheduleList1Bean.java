@@ -57,6 +57,15 @@ public class ScheduleList1Bean {
         private String subject_filter_id;
         private int subject_id;
         private List<VisitsBean> visits;
+        private boolean isMemo = false;
+
+        public boolean isMemo() {
+            return isMemo;
+        }
+
+        public void setMemo(boolean memo) {
+            isMemo = memo;
+        }
 
         public String getArm_code() {
             return arm_code;

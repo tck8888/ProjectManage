@@ -277,6 +277,10 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
         mTimestamp = result.getTimestamp();
 
+        if (memoToVisitsBean(result.getMemo()) != null) {
+            result.getVisit().add(memoToVisitsBean(result.getMemo()));
+        }
+
         Iterator<Map.Entry<String, Map<Integer, Map<String, List<VisitsBean>>>>> iterator = currentMonthData.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Map<Integer, Map<String, List<VisitsBean>>>> next = iterator.next();
@@ -315,14 +319,18 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                         long invalid_time = currentTimestamp - Math.abs(window_neg) * 24 * 3600;//窗口期  过期时间
                         long effective_time = target_visit_time + window_pos * 24 * 3600;//窗口期  有效时间
                         long one_day_time = currentTimestamp + 24 * 3600;//1天以后
-                        long three_day_time = currentTimestamp + 2 * 24 * 3600;//3天以后
-                        long seven_day_time = currentTimestamp + 6 * 24 * 3600;//7天以后
-                        System.out.println(one_day_time);
-                        visits.setName_py(data.getName_py());
-                        visits.setSubject_code(data.getSubject_code());
+                        long three_day_time = currentTimestamp + 4 * 24 * 3600;//3天以后
+                        long seven_day_time = currentTimestamp + 8 * 24 * 3600;//7天以后
 
-                        if ((visits.getActual_visit_time() == 0 || visits.getNot_finish_flag() == 0) && target_visit_time < currentTimestamp && target_visit_time >= invalid_time) {//逾期
+                        if (!data.isMemo()) {
+                            visits.setName_py(data.getName_py());
+                            visits.setSubject_code(data.getSubject_code());
+                        }
 
+                        if (!(visits.getNot_finish_flag() == 1 || (visits.getActual_visit_time() != 0 && visits.getNot_finish_flag() == 0)) && target_visit_time < currentTimestamp && target_visit_time >= invalid_time) {//逾期
+                            if (effective_time >= mTimestamp) {
+                                break;
+                            }
                             if (overdue_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = overdue_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
@@ -340,7 +348,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                                 list.add(visits);
                                 current_day_map.put(data.getProject_name(), list);
                             }
-                        } else if (target_visit_time < three_day_time && target_visit_time >= currentTimestamp) {//1天后
+                        } else if (visits.getTarget_visit_time() <= one_day_time && visits.getTarget_visit_time() > currentTimestamp) {//1天后
                             if (one_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = one_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
@@ -349,7 +357,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                                 list.add(visits);
                                 one_day_map.put(data.getProject_name(), list);
                             }
-                        } else if (target_visit_time < seven_day_time && target_visit_time >= three_day_time) {//3天后
+                        } else if (target_visit_time < three_day_time && target_visit_time >= (currentTimestamp + 3 * 24 * 3600)) {//3天后
                             if (three_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = three_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
@@ -358,7 +366,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                                 list.add(visits);
                                 three_day_map.put(data.getProject_name(), list);
                             }
-                        } else if (target_visit_time >= seven_day_time) {//7天后
+                        } else if (target_visit_time < seven_day_time && target_visit_time >= (currentTimestamp + 7 * 24 * 3600)) {//7天后
                             if (seven_day_map.containsKey(data.getProject_name())) {
                                 List<VisitsBean> visitsBeen = seven_day_map.get(data.getProject_name());
                                 visitsBeen.add(visits);
@@ -373,6 +381,28 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
         }
 
         refreshData(1);
+    }
+
+    public ScheduleList1Bean.VisitBean memoToVisitsBean(List<MemoBean> data) {
+        if (data != null) {
+            List<VisitsBean> list = new ArrayList<>();
+            ScheduleList1Bean.VisitBean visitBean = new ScheduleList1Bean.VisitBean();
+            visitBean.setMemo(true);
+            visitBean.setProject_name("自定义备忘录");
+            for (MemoBean memoBean : data) {
+                VisitsBean visitsBean = new VisitsBean();
+                visitsBean.setMemo(true);
+                visitsBean.setTarget_visit_time(memoBean.getMemo_time());
+                visitsBean.setMemo_content(memoBean.getMemo_content());
+                visitsBean.setMemo_id(memoBean.getMemo_id());
+                visitsBean.setMemoStatus(memoBean.getStatus());
+                list.add(visitsBean);
+            }
+            return visitBean;
+        }
+
+        return null;
+
     }
 
     public int refreshTab(int year, int month, int day, int position) {

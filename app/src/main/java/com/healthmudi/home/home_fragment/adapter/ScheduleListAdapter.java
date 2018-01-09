@@ -1,6 +1,7 @@
 package com.healthmudi.home.home_fragment.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,10 +103,30 @@ public class ScheduleListAdapter extends BaseExpandableListAdapter {
         TextView mTvWorkSatus = (TextView) convertView.findViewById(R.id.tv_work_satus);
         ImageView mIvImageType = (ImageView) convertView.findViewById(R.id.iv_image_type);
         TextView mTvSubjectsPeopleName = (TextView) convertView.findViewById(R.id.tv_subjects_people_name);
-        mIvImageType.setImageResource(R.mipmap.icon_in_the_group);
         VisitsBean visitsBean = mDataList.get(groupPosition).getVisits().get(childPosition);
-        mTvSubjectsPeopleName.setText(visitsBean.getVisit_name());
-        mTvSubjectsPeopleName.setText(visitsBean.getSubject_code() + "  (" + visitsBean.getName_py() + ")  " + visitsBean.getVisit_name());
+        if (visitsBean.isMemo()) {
+            mTvSubjectsPeopleName.setText(visitsBean.getMemo_content());
+            mIvImageType.setImageResource(R.mipmap.icon_memo_black);
+            if (visitsBean.getMemoStatus() == 0) {
+                mTvWorkSatus.setText("未完成");
+                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
+            } else {
+                mTvWorkSatus.setText("已完成");
+                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
+            }
+        } else {
+            mIvImageType.setImageResource(R.mipmap.icon_in_the_group);
+            mTvSubjectsPeopleName.setText(visitsBean.getVisit_name());
+            mTvSubjectsPeopleName.setText(visitsBean.getSubject_code() + "  (" + visitsBean.getName_py() + ")  " + visitsBean.getVisit_name());
+            if (visitsBean.getActual_visit_time() == 0 || visitsBean.getNot_finish_flag() == 0) {
+                mTvWorkSatus.setText("未完成");
+                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_fffda746));
+            } else {
+                mTvWorkSatus.setText("已完成");
+                mTvWorkSatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_corner_11dp_solid_1abc9c));
+            }
+
+        }
         return convertView;
     }
 
