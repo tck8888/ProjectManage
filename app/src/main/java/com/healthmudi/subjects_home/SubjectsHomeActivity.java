@@ -67,8 +67,11 @@ public class SubjectsHomeActivity extends BaseActivity {
     public void initView() {
         super.initView();
         mCommonTablayout = (CommonTabLayout) findViewById(R.id.common_tablayout);
-
         mCommonTablayout.setTabData(mTabEntities, this, R.id.container_fl, mFragments);
 
     }
+
+
+
+
 }

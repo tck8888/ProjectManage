@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.os.Vibrator;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.healthmudi.service.LocationService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -44,9 +45,9 @@ public class ProjectApplication extends Application {
 
     private void initMap() {
 
-        locationService = new LocationService(getApplicationContext());
+        locationService = new LocationService(this);
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
-
+        SDKInitializer.initialize(this);
     }
 
     private void okgoInit() {

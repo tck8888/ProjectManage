@@ -94,8 +94,8 @@ public class HttpRequest {
         TreeMap<String, String> treeMap = new TreeMap<>();
         String token = (String) Hawk.get(Constant.KEY_TOKEN);
         treeMap.put("token", token);
-        treeMap.put("lng", "121");
-        treeMap.put("lat", "31");
+        treeMap.put("lng", (String)Hawk.get(Constant.KEY_LONGITUDE));
+        treeMap.put("lat", (String)Hawk.get(Constant.KEY_LATITUDE));
         treeMap.put("version_code", "1.0");
         treeMap.put("timestamp", DateUtils.getCurrentTimeStr());
         treeMap.put("sign", "sign");

@@ -22,4 +22,10 @@ public interface Constant {
     String KEY_SUBJECT_KEYWORD = "subject_keyword";
 
     String KEY_TOKEN = "token";
+    String KEY_LATITUDE = "latitude";
+    String KEY_LONGITUDE = "longitude";
+
+
+     int PERMISSION_READ_LOCATION_STATE =101;
+
 }

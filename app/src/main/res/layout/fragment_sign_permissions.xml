@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/space"
+            android:layout_centerHorizontal="true"
+            android:text="无法获取位置信息，请允许试验田获取你的位置信息"
+            android:textColor="@color/color_657180"
+            android:textSize="@dimen/dimen_16sp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@id/text2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/icon_open_gps"/>
+
+        <Button
+            android:id="@+id/btn_open_gps"
+            android:layout_width="160dp"
+            android:layout_height="44dp"
+            android:layout_below="@id/space"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_corner_22dp_solid_1abc9c"
+            android:gravity="center"
+            android:text="去开启"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/dimen_16sp"/>
+    </RelativeLayout>
+
+</merge>

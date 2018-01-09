@@ -41,6 +41,6 @@
 }
 
 -keep class com.baidu.**{ *; }
-
+-keep class vi.com.**{*;}
 -keepattributes Signature
 -keep class **.R$* {*;}

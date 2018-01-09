@@ -64,7 +64,7 @@ public class TestActivity extends BaseActivity {
         locationService = ((ProjectApplication) getApplication()).locationService;
         //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
         locationService.registerListener(mListener);
-
+        locationService.setLocationOption(locationService.getDefaultLocationClientOption());
         locationService.start();
     }
 
@@ -73,7 +73,6 @@ public class TestActivity extends BaseActivity {
      */
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
         locationService.unregisterListener(mListener); //注销掉监听
         locationService.stop(); //停止定位服务
         super.onStop();
@@ -92,6 +91,7 @@ public class TestActivity extends BaseActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         finish();
+
     }
 
 
@@ -123,12 +123,11 @@ public class TestActivity extends BaseActivity {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            // TODO Auto-generated method stub
             if (null != location && location.getLocType() != BDLocation.TypeServerError) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
-                System.out.println("latitude====" +latitude);
-                System.out.println("longitude====" +longitude);
+                Hawk.put(Constant.KEY_LATITUDE, String.valueOf(latitude));
+                Hawk.put(Constant.KEY_LONGITUDE, String.valueOf(longitude));
 
                 if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
 
@@ -137,11 +136,11 @@ public class TestActivity extends BaseActivity {
                 } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
 
                 } else if (location.getLocType() == BDLocation.TypeServerError) {
-                    System.out.println("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
+
                 } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
-                    System.out.println("网络不同导致定位失败，请检查网络是否通畅");
+
                 } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
-                    System.out.println("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
+
                 }
 
             }
