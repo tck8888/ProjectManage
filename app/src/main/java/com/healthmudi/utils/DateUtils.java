@@ -63,6 +63,16 @@ public class DateUtils {
         return formatTime;
     }
 
+    public static String getFormatTime4(@Nullable long time) {
+        if (String.valueOf(time).length() <= 10) {
+            time = time * 1000;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date date = new Date(time);
+        String formatTime = format.format(date);
+        return formatTime;
+    }
+
     /**
      * 返回年-月-日 hh:mm
      */

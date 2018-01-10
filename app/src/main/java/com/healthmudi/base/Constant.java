@@ -27,5 +27,6 @@ public interface Constant {
 
 
      int PERMISSION_READ_LOCATION_STATE =101;
+    int RQ_ACTION_LOCATION_SETTINGS = 102;
 
 }

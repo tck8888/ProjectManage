@@ -15,12 +15,30 @@ public class ProjectListBean implements Serializable {
 
     private int project_id;
     private String project_name;
-    private String arrive_time;
+    private long arrive_time;
     private String arrive_site_name;
-    private String leave_time;
+    private long leave_time;
     private String leave_site_name;
+    private int visit_by_arm;
+    private int baseline_type;
     private List<SiteBean> site;
     private List<ArmBean> arm;
+
+    public int getVisit_by_arm() {
+        return visit_by_arm;
+    }
+
+    public int getBaseline_type() {
+        return baseline_type;
+    }
+
+    public void setBaseline_type(int baseline_type) {
+        this.baseline_type = baseline_type;
+    }
+
+    public void setVisit_by_arm(int visit_by_arm) {
+        this.visit_by_arm = visit_by_arm;
+    }
 
     public int getProject_id() {
         return project_id;
@@ -38,11 +56,11 @@ public class ProjectListBean implements Serializable {
         this.project_name = project_name;
     }
 
-    public String getArrive_time() {
+    public long getArrive_time() {
         return arrive_time;
     }
 
-    public void setArrive_time(String arrive_time) {
+    public void setArrive_time(long arrive_time) {
         this.arrive_time = arrive_time;
     }
 
@@ -54,11 +72,11 @@ public class ProjectListBean implements Serializable {
         this.arrive_site_name = arrive_site_name;
     }
 
-    public String getLeave_time() {
+    public long getLeave_time() {
         return leave_time;
     }
 
-    public void setLeave_time(String leave_time) {
+    public void setLeave_time(long leave_time) {
         this.leave_time = leave_time;
     }
 

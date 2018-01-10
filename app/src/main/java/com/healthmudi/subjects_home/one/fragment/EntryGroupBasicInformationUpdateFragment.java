@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.Space;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +39,6 @@ import com.lzy.okgo.OkGo;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,16 +60,21 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     private TextView mTvBaselineDate;
     private TextView mTvTestGroup;
     private EditText mEtRemark;
+    private ImageView mIvTestGroup;
+    private LinearLayout mLlTestGroup;
+    private Space mSpace;
+    private ImageView mIvBaselineType;
+    private Space mSpBaselineType;
 
     private TimePickerView mTimePickerView;
     private IosDialog mIosDialog;
+    private IosDialog mIosDialog1;
     private OptionsPickerView mOptionsPickerView;
 
     private ProjectListBean mProjectListBean;
     private Map<String, String> map = new HashMap<>();
     private List<ProjectListBean.ArmBean> mArmBeanList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
-    private List<String> mBaselinTypes = new ArrayList<>();
     private String mArm_code = "";
     private String site_id = "";
     private String tag = "EntryGroupBasicInformationUpdateFragment";
@@ -82,8 +89,6 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
-        String[] stringArray = getResources().getStringArray(R.array.base_line_type);
-        mBaselinTypes.addAll(Arrays.asList(stringArray));
         try {
             mProjectListBean = (ProjectListBean) arguments.getSerializable(Constant.KEY_PROJECT_LIST_BEAN);
             if (mProjectListBean != null) {
@@ -119,11 +124,33 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         mTvTestGroup = (TextView) view.findViewById(R.id.tv_test_group);
         mEtRemark = (EditText) view.findViewById(R.id.et_remark);
 
+        mIvTestGroup = (ImageView) view.findViewById(R.id.iv_test_group);
+        mLlTestGroup = (LinearLayout) view.findViewById(R.id.ll_test_group);
+        mSpace = (Space) view.findViewById(R.id.space);
+
         initCheckBox();
         initTimePick();
 
         initTestGroupPick();
         initDialog();
+    }
+
+    @Override
+    public void setViewData() {
+        super.setViewData();
+        if (mProjectListBean != null) {
+            if (mProjectListBean.getVisit_by_arm() == 0) {//默认分组
+                mSpace.setVisibility(View.VISIBLE);
+                mTvTestGroup.setText("默认分组");
+                mIvTestGroup.setVisibility(View.GONE);
+            } else {
+                mIvTestGroup.setVisibility(View.VISIBLE);
+                mSpace.setVisibility(View.GONE);
+                mLlTestGroup.setOnClickListener(this);
+            }
+            mTvBaselineType.setText(StringConvertCodeEachUtils.getString(mProjectListBean.getBaseline_type()));
+        }
+
     }
 
     public void initTimePick() {
@@ -158,10 +185,6 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                     ProjectListBean.ArmBean armBean = mArmBeanList.get(options1);
                     mArm_code = armBean.getArm_code();
                     mTvTestGroup.setText(armBean.getArm_name());
-                } else if (v.getId() == R.id.tv_baseline_type) {
-                    //基线类型
-                    String s = mBaselinTypes.get(options1);
-                    mTvBaselineType.setText(s);
                 } else if (v.getId() == R.id.tv_select_research_center) {
                     //研究中心
                     ProjectListBean.SiteBean siteBean = mSiteBeanList.get(options1);
@@ -196,6 +219,7 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                 .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
                 .setDialogCanceledOnTouchOutside(true)
                 .build();
+
         mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
@@ -203,6 +227,27 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                 activityFinish();
             }
         });
+
+        mIosDialog1 = new IosDialog.Builder(getContext())
+                .setTitle("提示")
+                .setTitleColor(getResources().getColor(R.color.color_464c5b))
+                .setMessage("是否退出编辑")
+                .setPositiveButton("是", new IosDialog.OnClickListener() {
+                    @Override
+                    public void onClick(IosDialog dialog, View v) {
+                        activityFinish();
+                    }
+                })
+                .setNegativeButton("否", new IosDialog.OnClickListener() {
+                    @Override
+                    public void onClick(IosDialog dialog, View v) {
+                        mIosDialog1.dismiss();
+                    }
+                })
+                .setNegativeButtonColor(getResources().getColor(R.color.color_464c5b))
+                .setPositiveButtonColor(getResources().getColor(R.color.color_1abc9c))
+                .setDialogCanceledOnTouchOutside(true)
+                .build();
     }
 
     private void initCheckBox() {
@@ -218,9 +263,8 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     public void setListener(@Nullable View view) {
         super.setListener(view);
         view.findViewById(R.id.ll_select_research_center).setOnClickListener(this);
-        view.findViewById(R.id.ll_baseline_type).setOnClickListener(this);
         view.findViewById(R.id.ll_baseline_date).setOnClickListener(this);
-        view.findViewById(R.id.ll_test_group).setOnClickListener(this);
+
 
         mCbIsSame.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -266,6 +310,11 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         }
     }
 
+    @Override
+    public void onKeyDownBack() {
+        super.onKeyDownBack();
+        mIosDialog1.show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -277,14 +326,6 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                 } else {
                     mOptionsPickerView.setPicker(mSiteBeanList);
                     mOptionsPickerView.show(mTvSelectResearchCenter);
-                }
-                break;
-            case R.id.ll_baseline_type:
-                if (mBaselinTypes.isEmpty()) {
-                    Toast.makeText(getContext(), "暂无基线类型", Toast.LENGTH_SHORT).show();
-                } else {
-                    mOptionsPickerView.setPicker(mBaselinTypes);
-                    mOptionsPickerView.show(mTvBaselineType);
                 }
                 break;
             //基线日期
@@ -301,6 +342,7 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                 break;
         }
     }
+
 
     private boolean isCheckDataSuccess(String subject_filter_id, String name_py, String subject_code, String mobile, String baseline_type, String baseline_date) {
         if (TextUtils.isEmpty(subject_filter_id)) {
@@ -335,9 +377,11 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
             Toast.makeText(getContext(), "请选择基线日期", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (TextUtils.isEmpty(mArm_code)) {
-            Toast.makeText(getContext(), "请选择试验分组", Toast.LENGTH_SHORT).show();
-            return false;
+        if (mProjectListBean.getVisit_by_arm() != 0) {
+            if (TextUtils.isEmpty(mArm_code)) {
+                Toast.makeText(getContext(), "请选择试验分组", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
         return true;
     }
@@ -359,11 +403,16 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         map.put("site_id", site_id);
         map.put("subject_filter_id", subject_filter_id);
         map.put("subject_code", subject_code);
+        map.put("subject_visit_id", "0");//TODO:
         map.put("name_py", name_py);
         map.put("mobile", mobile);
         map.put("baseline_type", StringConvertCodeEachUtils.getString(baseline_type));
         map.put("baseline_date", baseline_date);
-        map.put("arm_code", mArm_code);
+        if (mProjectListBean.getVisit_by_arm() == 0) {//默认分组
+            map.put("arm_code", "");
+        } else {
+            map.put("arm_code", mArm_code);
+        }
         map.put("remark", remark);
         LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_CLOCK_ENROLL_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
@@ -391,7 +440,6 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
             map.clear();
             mArmBeanList.clear();
             mSiteBeanList.clear();
-            mBaselinTypes.clear();
             mProjectListBean = null;
             mTimePickerView = null;
             mOptionsPickerView = null;

@@ -1,6 +1,7 @@
 package com.healthmudi.subjects_home.one;
 
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,7 +57,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         super.initView();
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
-
         mTvTitle.setText("入组基本信息");
     }
 
@@ -93,7 +93,11 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         hideSoftKeyBord();
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                activityFinish();
+                if (mEntryGroupBasicInformationUpdateFragment != null) {
+                    mEntryGroupBasicInformationUpdateFragment.onKeyDownBack();
+                } else {
+                    activityFinish();
+                }
                 break;
             //注意事项
             case R.id.iv_circular_exclamation_mark:
@@ -124,6 +128,17 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             mEntryGroupBasicInformationDetailFragment = null;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    // 捕获返回键的方法1
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (mEntryGroupBasicInformationUpdateFragment != null && keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            mEntryGroupBasicInformationUpdateFragment.onKeyDownBack();
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 

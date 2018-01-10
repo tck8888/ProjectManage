@@ -8,6 +8,7 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.PunchClockSelectLocationListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -18,6 +19,8 @@ import com.healthmudi.view.EmptyView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,11 +135,28 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_arrow_left_black:
-                finish();
+                activityFinish();
                 break;
             case R.id.iv_check_mark:
+                selectLocation();
                 break;
         }
     }
 
+    private void selectLocation() {
+        PunchClockSelectLocationListBean punchClockSelectLocationListBean = getPunchClockSelectLocationListBean();
+        if (punchClockSelectLocationListBean != null) {
+            EventBus.getDefault().post(new MessageEvent<PunchClockSelectLocationListBean>(MessageEvent.KEY_PUNCH_CLOCK_SELECT_LOCATION_SUCCESS, punchClockSelectLocationListBean));
+        }
+
+    }
+
+    public PunchClockSelectLocationListBean getPunchClockSelectLocationListBean() {
+        for (PunchClockSelectLocationListBean punchClockSelectLocationListBean : mPunchClockSelectLocationLiatBeen) {
+            if (punchClockSelectLocationListBean.isSelected()) {
+                return punchClockSelectLocationListBean;
+            }
+        }
+        return null;
+    }
 }

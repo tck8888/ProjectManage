@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
@@ -47,6 +48,7 @@
         android:layout_height="114dp">
 
         <ImageView
+            android:id="@+id/iv_sign_head_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
@@ -93,178 +95,277 @@
             android:textSize="13sp"/>
     </FrameLayout>
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/ll_sign_normal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/fl_select_location"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_height="65dp"
+            android:background="#fff">
 
-            <FrameLayout
-                android:id="@+id/fl_select_location"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="#fff">
-
-                <TextView
-                    android:id="@+id/tv_sign_hospital_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="14dp"
-                    android:text="上海市中山医院"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/tv_sign_hospital_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="37dp"
-                    android:text="100米范围内打卡"
-                    android:textColor="#cccccc"
-                    android:textSize="12sp"/>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical|right"
-                    android:padding="15dp"
-                    android:src="@mipmap/icon_arrow_right_sign"/>
-            </FrameLayout>
-
-            <android.support.v4.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_sign_hospital_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                android:paddingLeft="15dp"
-                android:paddingTop="18dp">
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="14dp"
+                android:text="上海市中山医院"
+                android:textColor="@color/color_464c5b"
+                android:textSize="16sp"/>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/icon_reach_black"/>
+            <TextView
+                android:id="@+id/tv_sign_hospital_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="37dp"
+                android:text="100米范围内打卡"
+                android:textColor="#cccccc"
+                android:textSize="12sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="34dp"
-                    android:text="到达打卡"
-                    android:textColor="@color/color_464c5b"
-                    android:textSize="16sp"/>
-            </FrameLayout>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical|right"
+                android:padding="15dp"
+                android:src="@mipmap/icon_arrow_right_sign"/>
+        </FrameLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#fff">
-
-
-                <TextView
-                    android:id="@+id/tv_punch_the_clock_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:text="今日您还未打卡"
-                    android:textColor="@color/color_1abc9c"
-                    android:textSize="15sp"/>
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="181dp"
-                    android:layout_gravity="bottom"
-                    android:src="@mipmap/icon_sign_bottom_bg"/>
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="30dp"
-                    >
-
-                    <ImageView
-                        android:layout_width="155dp"
-                        android:layout_height="155dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@mipmap/icon_sign_circular_bg"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="50.5dp"
-                        android:text="打卡"
-                        android:textColor="#fff"
-                        android:textSize="18sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_tv_punch_the_clock_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="81.5dp"
-                        android:text="08:56:03"
-                        android:textColor="#fff"
-                        android:textSize="16sp"/>
-                </FrameLayout>
-
-            </FrameLayout>
-        </LinearLayout>
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp">
 
-            <android.support.v4.widget.Space
-                android:id="@+id/space"
+
+            <LinearLayout
+                android:id="@+id/ll_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_centerInParent="true"/>
-
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="272dp"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/space"
-                android:layout_centerHorizontal="true"
-                android:text="无法获取位置信息，请允许试验田获取你的位置信息"
-                android:textColor="@color/color_657180"
-                android:textSize="@dimen/dimen_16sp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="34dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_arrive_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="到达打卡时间"
+                        android:textColor="@color/color_464c5b"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_arrive_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        tools:text="上海市中山医院地点"
+                        android:textColor="#999999"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_above="@id/text2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
-                android:src="@mipmap/icon_open_gps"/>
+                android:id="@+id/iv_arraive"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignTop="@id/ll_layout"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_reach_black"/>
 
-            <Button
-                android:id="@+id/btn_open_gps"
-                android:layout_width="160dp"
-                android:layout_height="44dp"
-                android:layout_below="@id/space"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/shape_corner_22dp_solid_1abc9c"
-                android:gravity="center"
-                android:text="去开启"
-                android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/dimen_16sp"/>
+            <LinearLayout
+                android:id="@+id/ll_layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_layout"
+                android:layout_marginLeft="34dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_leave_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="离开打卡时间"
+                            android:textColor="@color/color_464c5b"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="20dp"
+                            android:text="重打"
+                            android:textColor="@color/color_1abc9c"
+                            android:textSize="16sp"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_leave_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:text="上海市中山医院地点"
+                        android:textColor="#999999"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/ll_layout1"
+                android:layout_below="@id/iv_arraive"
+                android:layout_marginLeft="12dp"
+                android:background="@color/color_e4e4e4"/>
+
+            <ImageView
+                android:id="@+id/iv_leave"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignTop="@id/ll_layout1"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_sign_leave"/>
         </RelativeLayout>
-    </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/iv_sign_bottom_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                tools:src="@mipmap/icon_sign_bottom_bg"/>
+
+            <TextView
+                android:id="@+id/tv_punch_the_clock_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="234dp"
+                android:text="今日您还未打卡"
+                android:textColor="@color/color_1abc9c"
+                android:textSize="15sp"/>
+
+            <RelativeLayout
+                android:id="@+id/fl_clock_in"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="62dp"
+                android:background="@mipmap/icon_sign_circular_bg"
+                >
+
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/space1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="4dp"
+                    android:text="打卡"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="18sp"/>
+
+                <TextClock
+                    android:id="@+id/tv_tv_punch_the_clock_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/space1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:format24Hour="HH:mm:ss"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="16sp"/>
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_open_gps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v4.widget.Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/space"
+            android:layout_centerHorizontal="true"
+            android:text="无法获取位置信息，请允许试验田获取你的位置信息"
+            android:textColor="@color/color_657180"
+            android:textSize="@dimen/dimen_16sp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@id/text2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/icon_open_gps"/>
+
+        <Button
+            android:id="@+id/btn_open_gps"
+            android:layout_width="160dp"
+            android:layout_height="44dp"
+            android:layout_below="@id/space"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_corner_22dp_solid_1abc9c"
+            android:gravity="center"
+            android:text="去开启"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/dimen_16sp"/>
+    </RelativeLayout>
 
 </LinearLayout>

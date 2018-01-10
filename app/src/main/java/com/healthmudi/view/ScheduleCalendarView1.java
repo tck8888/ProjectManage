@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import com.healthmudi.R;
 import com.healthmudi.home.home_fragment.adapter.CalendarAdapter;
 import com.healthmudi.home.home_fragment.adapter.CalendarBean;
+import com.healthmudi.utils.CommonUtils;
 import com.healthmudi.utils.DateUtils;
 
 import java.util.ArrayList;
@@ -141,7 +142,7 @@ public class ScheduleCalendarView1 extends LinearLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         if (mContentView != null) {
-            int h = getHeight() - 2 * dipToPx(getContext(), 41);
+            int h = getHeight() - 2 * CommonUtils.dipToPx(getContext(), 41);
             int heightSpec = MeasureSpec.makeMeasureSpec(h,
                     MeasureSpec.EXACTLY);
             mContentView.measure(widthMeasureSpec, heightSpec);
@@ -151,7 +152,7 @@ public class ScheduleCalendarView1 extends LinearLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mContentViewTranslateY = mCalendarRecyclerView.getMeasuredHeight() - dipToPx(getContext(), 40);
+        mContentViewTranslateY = mCalendarRecyclerView.getMeasuredHeight() - CommonUtils.dipToPx(getContext(), 40);
     }
 
     private float downY;
@@ -187,12 +188,12 @@ public class ScheduleCalendarView1 extends LinearLayout {
                   * 2、非滚动控件，直接拦截事件
                 */
                 if (dy > 0 && mContentView.getTranslationY() == -mContentViewTranslateY
-                        && y >= dipToPx(getContext(), 98)) {
+                        && y >= CommonUtils.dipToPx(getContext(), 98)) {
                     if (!isScrollTop())
                         return false;
                 }
 
-                if (dy > 0 && mContentView.getTranslationY() == 0 && y >= dipToPx(getContext(), 98)) {
+                if (dy > 0 && mContentView.getTranslationY() == 0 && y >= CommonUtils.dipToPx(getContext(), 98)) {
                     return false;
                 }
 
@@ -273,7 +274,7 @@ public class ScheduleCalendarView1 extends LinearLayout {
         return super.onTouchEvent(event);
     }
 
-    private int mItemHeight = dipToPx(getContext(), 40);
+    private int mItemHeight = CommonUtils.dipToPx(getContext(), 40);
     private int mViewPagerTranslateY = mItemHeight;
 
 
@@ -418,16 +419,6 @@ public class ScheduleCalendarView1 extends LinearLayout {
         return mContentView.getScrollY() == 0;
     }
 
-    /**
-     * dp转px
-     *
-     * @param context context
-     * @param dpValue dp
-     * @return px
-     */
-    public int dipToPx(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
+
 
 }

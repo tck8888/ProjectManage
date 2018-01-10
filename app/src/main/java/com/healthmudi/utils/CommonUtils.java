@@ -1,5 +1,6 @@
 package com.healthmudi.utils;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -92,5 +93,18 @@ public class CommonUtils {
             return true;
         }
         return false;
+    }
+
+
+    /**
+     * dp转px
+     *
+     * @param context context
+     * @param dpValue dp
+     * @return px
+     */
+    public static int dipToPx(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 }

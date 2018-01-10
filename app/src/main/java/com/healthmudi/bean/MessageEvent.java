@@ -60,4 +60,9 @@ public class MessageEvent<T> {
 
     public static final String KEY_SELECT_DOC_SUCCESS = "select_doc_SUCCESS";
     public static final String KEY_SELECT_SUBJECT_SUCCESS = "select_subject_SUCCESS";
+
+    public static final String KEY_LOCATION_SETTINGS = "location_settings";
+    public static final String KEY_LOCATION_PERMISSIONS = "location_permissions";
+
+    public static final String KEY_PUNCH_CLOCK_SELECT_LOCATION_SUCCESS = "PunchClockSelectLocationActivity_SUCCESS";
 }

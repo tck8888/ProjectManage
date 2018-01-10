@@ -71,4 +71,9 @@ public abstract class BaseFragment1 extends Fragment {
             imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
         }
     }
+
+
+    public void onKeyDownBack() {
+
+    }
 }
