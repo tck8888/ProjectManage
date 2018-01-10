@@ -3,6 +3,7 @@ package com.healthmudi.subjects_home.three;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
@@ -147,6 +148,9 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
         PunchClockSelectLocationListBean punchClockSelectLocationListBean = getPunchClockSelectLocationListBean();
         if (punchClockSelectLocationListBean != null) {
             EventBus.getDefault().post(new MessageEvent<PunchClockSelectLocationListBean>(MessageEvent.KEY_PUNCH_CLOCK_SELECT_LOCATION_SUCCESS, punchClockSelectLocationListBean));
+            activityFinish();
+        } else {
+            Toast.makeText(this, "前选择打卡位置", Toast.LENGTH_SHORT).show();
         }
 
     }

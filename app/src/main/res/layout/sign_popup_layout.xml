@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/color_00000000"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_12dp_solid_fff_border_fcfcfc"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="打卡确认"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_e4e4e4"/>
+
+        <TextView
+            android:id="@+id/pop_tv_again_clock_in_ok"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="确定要重新打卡？"
+            android:textColor="@color/color_0076ff"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pop_tv_again_clock_in_cancle"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_corner_12dp_solid_fff_border_fcfcfc"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/color_0076ff"
+        android:textSize="17sp"/>
+</LinearLayout>

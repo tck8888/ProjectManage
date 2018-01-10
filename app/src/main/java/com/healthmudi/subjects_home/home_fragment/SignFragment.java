@@ -7,6 +7,8 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +29,7 @@ import com.healthmudi.subjects_home.three.SignHistoryActivity;
 import com.healthmudi.utils.CommonUtils;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.GpsUtils;
+import com.healthmudi.view.custom_popupwindow.EasyPopup;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -49,6 +52,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
     private TextView mTvSignName;
     private View mLlSignNormal;
     private View mRlOpenGps;
+    private View space;
     private TextView mTvSignHospitalName;
     private TextView mTvSignHospitalLocation;
     private TextView mTvPunchTheClockState;
@@ -63,12 +67,14 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
     private TextView mTvLeaveAddress;
     private View mLine1;
     private ImageView mIvLeave;
+    private TextView mTvAgainClock;
 
 
     private Map<String, String> map = new HashMap<>();
     private ProjectListBean mProjectListBean;
     private String tag = "SignFragment";
     private String type = "0";//0签到打卡 1离开打卡
+    private EasyPopup mPopup;
 
     public static SignFragment newInstance(ProjectListBean projectListBean) {
         SignFragment signFragment = new SignFragment();
@@ -126,10 +132,14 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
         mTvLeaveAddress = (TextView) view.findViewById(R.id.tv_leave_address);
         mLine1 = (View) view.findViewById(R.id.line1);
         mIvLeave = (ImageView) view.findViewById(R.id.iv_leave);
+        mTvAgainClock = (TextView) view.findViewById(R.id.tv_again_clock);
+        space = view.findViewById(R.id.space3);
 
 
         //判断是否要打开GPS
         showNormalView(GpsUtils.isOpenGPS(getContext()));
+
+        initPop();
 
     }
 
@@ -154,6 +164,26 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
         mFlClockIn.setOnClickListener(this);
     }
 
+    private void initPop() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.sign_popup_layout, null);
+
+        view.findViewById(R.id.pop_tv_again_clock_in_ok).setOnClickListener(this);
+        view.findViewById(R.id.pop_tv_again_clock_in_cancle).setOnClickListener(this);
+
+        mPopup = new EasyPopup(getContext())
+                .setContentView(view)
+                .setAnimationStyle(R.style.pop_bottom_in)
+                .setFocusAndOutsideEnable(true)
+                //是否允许点击PopupWindow之外的地方消失
+                .setFocusAndOutsideEnable(false)
+                //允许背景变暗
+                .setBackgroundDimEnable(true)
+                //变暗的透明度(0-1)，0为完全透明
+                .setDimValue(0.5f)
+                .createPopup();
+    }
+
+
     @Override
     public void setViewData() {
         super.setViewData();
@@ -174,12 +204,14 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
                     mLlLayout1.setVisibility(View.GONE);
                     mIvLeave.setVisibility(View.GONE);
                     mLine1.setVisibility(View.GONE);
+                    mTvAgainClock.setVisibility(View.GONE);
                 } else {
                     mLlLayout1.setVisibility(View.VISIBLE);
                     mIvLeave.setVisibility(View.VISIBLE);
                     mLine1.setVisibility(View.VISIBLE);
                     mTvLeaveTime.setText("离开打卡时间   " + DateUtils.getFormatTime4(mProjectListBean.getLeave_time()));
                     mTvLeaveAddress.setText(mProjectListBean.getLeave_site_name());
+                    mTvAgainClock.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -199,12 +231,19 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
                 break;
             //打卡
             case R.id.fl_clock_in:
-                clockIn();
+                mPopup.showAtLocation(space, Gravity.BOTTOM, 0, CommonUtils.dipToPx(getContext(),10));
+                //clockIn();
                 break;
             //打开gps
             case R.id.btn_open_gps:
                 GpsUtils.startLocationSettings(getActivity(), Constant.RQ_ACTION_LOCATION_SETTINGS);
                 break;
+            case R.id.pop_tv_again_clock_in_ok:
+                break;
+            case R.id.pop_tv_again_clock_in_cancle:
+                mPopup.dismiss();
+                break;
+
         }
     }
 

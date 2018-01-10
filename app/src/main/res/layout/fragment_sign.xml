@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/root_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_f3f3f3"
@@ -176,9 +177,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="4dp"
-                        tools:text="上海市中山医院地点"
                         android:textColor="#999999"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        tools:text="上海市中山医院地点"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -218,6 +219,7 @@
                             android:textSize="16sp"/>
 
                         <TextView
+                            android:id="@+id/tv_again_clock"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -285,7 +287,7 @@
                 android:layout_width="155dp"
                 android:layout_height="155dp"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="62dp"
+                android:layout_marginBottom="64dp"
                 android:background="@mipmap/icon_sign_circular_bg"
                 >
 
@@ -368,4 +370,8 @@
             android:textSize="@dimen/dimen_16sp"/>
     </RelativeLayout>
 
+    <android.support.v4.widget.Space
+        android:id="@+id/space3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
 </LinearLayout>
