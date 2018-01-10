@@ -240,6 +240,9 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
         //数据为空显示空界面
         if (ListUtil.isEmpty(mScheduleListAllData)) {
+            if (mExpandableListView.getFooterViewsCount() > 0) {
+                mExpandableListView.removeFooterView(mFootView);
+            }
             mExpandableListView.addFooterView(mFootView);
         } else {
             mExpandableListView.removeFooterView(mFootView);
@@ -584,9 +587,8 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
                 }
             } else {
                 scheduleListHeadBean.setVisits(value);
+                list.add(scheduleListHeadBean);
             }
-
-            list.add(scheduleListHeadBean);
         }
         return list;
     }

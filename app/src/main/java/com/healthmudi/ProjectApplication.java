@@ -1,12 +1,10 @@
 package com.healthmudi;
 
 import android.app.Application;
-import android.app.Service;
 import android.content.Context;
-import android.os.Vibrator;
 
 import com.baidu.mapapi.SDKInitializer;
-import com.healthmudi.service.LocationService;
+import com.healthmudi.utils.MapLocationManage;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -27,8 +25,6 @@ public class ProjectApplication extends Application {
 
     public static Context mContext;
 
-    public LocationService locationService;
-    public Vibrator mVibrator;
 
 
     @Override
@@ -44,10 +40,9 @@ public class ProjectApplication extends Application {
     }
 
     private void initMap() {
-
-        locationService = new LocationService(this);
-        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        //百度地图
         SDKInitializer.initialize(this);
+        MapLocationManage.getInstance(this).startLocation();
     }
 
     private void okgoInit() {

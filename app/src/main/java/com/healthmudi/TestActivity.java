@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.home.ProjectManageHomeActivity;
-import com.healthmudi.service.LocationService;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -25,7 +22,7 @@ import com.orhanobut.hawk.Hawk;
 public class TestActivity extends BaseActivity {
 
     private EditText mEtToken;
-    private LocationService locationService;
+
     private static final int BAIDU_READ_PHONE_STATE = 100;
 
     @Override
@@ -61,11 +58,7 @@ public class TestActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        locationService = ((ProjectApplication) getApplication()).locationService;
-        //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
-        locationService.registerListener(mListener);
-        locationService.setLocationOption(locationService.getDefaultLocationClientOption());
-        locationService.start();
+
     }
 
     /***
@@ -73,8 +66,7 @@ public class TestActivity extends BaseActivity {
      */
     @Override
     protected void onStop() {
-        locationService.unregisterListener(mListener); //注销掉监听
-        locationService.stop(); //停止定位服务
+
         super.onStop();
     }
 
@@ -113,38 +105,4 @@ public class TestActivity extends BaseActivity {
                 break;
         }
     }
-
-    /*****
-     *
-     * 定位结果回调，重写onReceiveLocation方法，可以直接拷贝如下代码到自己工程中修改
-     *
-     */
-    private BDAbstractLocationListener mListener = new BDAbstractLocationListener() {
-
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            if (null != location && location.getLocType() != BDLocation.TypeServerError) {
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                Hawk.put(Constant.KEY_LATITUDE, String.valueOf(latitude));
-                Hawk.put(Constant.KEY_LONGITUDE, String.valueOf(longitude));
-
-                if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
-
-                } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
-
-                } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
-
-                } else if (location.getLocType() == BDLocation.TypeServerError) {
-
-                } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
-
-                } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
-
-                }
-
-            }
-        }
-
-    };
 }
