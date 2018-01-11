@@ -193,7 +193,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 mContractFollowUpUpdateFragment = ContractFollowUpUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mContractFollowUpUpdateFragment);
                 break;
-            case 4:
+            case 4://项目启动会
                 mProjectStartMeetingUpdateFragment = ProjectStartMeetingUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mProjectStartMeetingUpdateFragment);
                 break;
