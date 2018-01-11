@@ -18,6 +18,7 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -63,8 +64,11 @@ public class VisitorsVisitToTheRulesUpdateFragment extends BaseFragment1 impleme
 
     private String tag = "VisitorsVisitToTheRulesUpdateFragment";
 
-    public static VisitorsVisitToTheRulesUpdateFragment newInstance() {
+    public static VisitorsVisitToTheRulesUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         VisitorsVisitToTheRulesUpdateFragment contractFollowUpUpdateFragment = new VisitorsVisitToTheRulesUpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        contractFollowUpUpdateFragment.setArguments(bundle);
         return contractFollowUpUpdateFragment;
     }
 

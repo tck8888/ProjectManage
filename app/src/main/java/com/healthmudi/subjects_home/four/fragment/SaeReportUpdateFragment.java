@@ -19,6 +19,7 @@ import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SubjectCodeBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -72,8 +73,11 @@ public class SaeReportUpdateFragment extends BaseFragment1 implements View.OnCli
     private String subjects_id = "";
     private String tag = "SaeReportUpdateFragment";
 
-    public static SaeReportUpdateFragment newInstance() {
+    public static SaeReportUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         SaeReportUpdateFragment saeReportUpdateFragment = new SaeReportUpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        saeReportUpdateFragment.setArguments(bundle);
         return saeReportUpdateFragment;
     }
 

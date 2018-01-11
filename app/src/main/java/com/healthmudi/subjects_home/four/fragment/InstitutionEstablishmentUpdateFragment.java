@@ -87,7 +87,7 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
             int status = -1;
             mWorkingHoursListBean = (WorkingHoursListBean) arguments.getSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN);
             if (mWorkingHoursListBean != null) {
-                status = mWorkingHoursListBean.getJob_type_id();
+                status = mWorkingHoursListBean.getStatus();
             }
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));

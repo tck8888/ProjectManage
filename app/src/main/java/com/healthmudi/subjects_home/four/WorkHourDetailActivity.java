@@ -186,7 +186,7 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 openFragment(mInstitutionEstablishmentUpdateFragment);
                 break;
             case 2://伦理递交
-                mEthicalSubmissionUpdateFragment = EthicalSubmissionUpdateFragment.newInstance();
+                mEthicalSubmissionUpdateFragment = EthicalSubmissionUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mEthicalSubmissionUpdateFragment);
                 break;
             case 3://合同跟进
@@ -194,33 +194,33 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 openFragment(mContractFollowUpUpdateFragment);
                 break;
             case 4:
-                mProjectStartMeetingUpdateFragment = ProjectStartMeetingUpdateFragment.newInstance();
+                mProjectStartMeetingUpdateFragment = ProjectStartMeetingUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mProjectStartMeetingUpdateFragment);
                 break;
             case 5://sae上报
                 mIvCircularExclamationMark.setVisibility(View.VISIBLE);
                 mIvCircularExclamationMark.setOnClickListener(this);
-                mSaeReportUpdateFragment = SaeReportUpdateFragment.newInstance();
+                mSaeReportUpdateFragment = SaeReportUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mSaeReportUpdateFragment);
                 break;
             case 6:
-                mPresiftingUpdateFragment = PresiftingUpdateFragment.newInstance();
+                mPresiftingUpdateFragment = PresiftingUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mPresiftingUpdateFragment);
                 break;
             case 7:
-                mVisitorsVisitToTheRulesUpdateFragment = VisitorsVisitToTheRulesUpdateFragment.newInstance();
+                mVisitorsVisitToTheRulesUpdateFragment = VisitorsVisitToTheRulesUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mVisitorsVisitToTheRulesUpdateFragment);
                 break;
             case 8:
-                mEdcFillInUpdateFragment = EDCFillInUpdateFragment.newInstance();
+                mEdcFillInUpdateFragment = EDCFillInUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mEdcFillInUpdateFragment);
                 break;
             case 9:
-                mServerConfUpdateFragment = ServerConfUpdateFragment.newInstance(mWorkTimeSubmissionItemListBean);
+                mServerConfUpdateFragment = ServerConfUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mServerConfUpdateFragment);
                 break;
             case 99:
-                mOtherWorkUpdateFragment = OtherWorkUpdateFragment.newInstance();
+                mOtherWorkUpdateFragment = OtherWorkUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mOtherWorkUpdateFragment);
                 break;
         }

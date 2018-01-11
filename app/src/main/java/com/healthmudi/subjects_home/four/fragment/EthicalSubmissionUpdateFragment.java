@@ -21,6 +21,7 @@ import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SiteApproveListBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -78,25 +79,40 @@ public class EthicalSubmissionUpdateFragment extends BaseFragment1 implements Vi
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
     private ProjectListBean mProjectListBean;
+    private WorkingHoursListBean mWorkingHoursListBean;
 
     private String site_id = "";
     private String tag = "EthicalSubmissionUpdateFragment";
     private String mDocumentsName = "";
 
-    public static EthicalSubmissionUpdateFragment newInstance() {
+    public static EthicalSubmissionUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         EthicalSubmissionUpdateFragment contractFollowUpUpdateFragment = new EthicalSubmissionUpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        contractFollowUpUpdateFragment.setArguments(bundle);
         return contractFollowUpUpdateFragment;
     }
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+
+            int status = -1;
+            mWorkingHoursListBean = (WorkingHoursListBean) arguments.getSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN);
+            if (mWorkingHoursListBean != null) {
+                status = mWorkingHoursListBean.getStatus();
+            }
+
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
 
             String[] strings2 = getResources().getStringArray(R.array.ec_submit_array);
             for (int i = 0; i < strings2.length; i++) {
-                mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));
+                if (status == (i + 1)) {
+                    mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
+                } else {
+                    mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));
+                }
             }
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
             map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
@@ -139,6 +155,53 @@ public class EthicalSubmissionUpdateFragment extends BaseFragment1 implements Vi
         super.setViewData();
         if (mProjectListBean != null) {
             mTvProjectName.setText(mProjectListBean.getProject_name());
+        }
+
+        if (mWorkingHoursListBean != null) {
+
+            mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
+            mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
+
+            for (ProjectListBean.SiteBean siteBean : mSiteBeanList) {
+                if (siteBean.getSite_name().equals(mWorkingHoursListBean.getSite_name())) {
+                    site_id = String.valueOf(siteBean.getSite_id());
+                    break;
+                }
+            }
+
+            if (mWorkingHoursListBean.getDoc_receive_date() != 0) {
+                mTvDocReceiveDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getDoc_receive_date()));
+            }
+            if (mWorkingHoursListBean.getPi_submit_date() != 0) {
+                mTvPiSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getPi_submit_date()));
+            }
+            if (mWorkingHoursListBean.getPi_sign_date() != 0) {
+                mTvPiSignDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getPi_sign_date()));
+            }
+            if (mWorkingHoursListBean.getEc_submit_date() != 0) {
+                mTvEcSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getEc_submit_date()));
+            }
+            if (mWorkingHoursListBean.getEc_approve_date() != 0) {
+                mTvEcApproveDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getEc_approve_date()));
+            }
+            mDocumentsName = mWorkingHoursListBean.getDocuments_name();
+            if (!TextUtils.isEmpty(mWorkingHoursListBean.getDocuments_name())) {
+                if (mWorkingHoursListBean.getDocuments_name().contains(",")) {
+                    String documents_name = mWorkingHoursListBean.getDocuments_name();
+                    mTvDocumentsName.setText(documents_name.replaceAll(",", "\\\n"));
+                } else {
+                    mTvDocumentsName.setText(mWorkingHoursListBean.getDocuments_name());
+                }
+            }
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            }
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime2.setText(String.valueOf(mWorkingHoursListBean.getJob_time2()));
+            }
+
+            if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
+                mEtRemark.setText(mWorkingHoursListBean.getRemark());}
         }
     }
 
@@ -354,7 +417,11 @@ public class EthicalSubmissionUpdateFragment extends BaseFragment1 implements Vi
         map.put("job_time2", job_time2);
         map.put("remark", remark);
         map.put("status", getStatus());
-
+        if (mWorkingHoursListBean != null) {
+            map.put("job_id", String.valueOf(mWorkingHoursListBean.getJob_id()));
+        } else {
+            map.put("job_id", "0");
+        }
         LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_EC_SUBMIT_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override

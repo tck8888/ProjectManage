@@ -19,6 +19,7 @@ import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -68,10 +69,10 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     private String tag = "ServerConfUpdateFragment";
     private WorkTimeSubmissionItemListBean mWorkTimeSubmissionItemListBean;
 
-    public static ServerConfUpdateFragment newInstance(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
+    public static ServerConfUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         ServerConfUpdateFragment serverConfUpdateFragment = new ServerConfUpdateFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
         serverConfUpdateFragment.setArguments(bundle);
         return serverConfUpdateFragment;
     }

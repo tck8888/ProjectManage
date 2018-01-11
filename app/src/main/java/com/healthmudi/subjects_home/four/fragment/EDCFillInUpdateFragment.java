@@ -18,6 +18,7 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -66,8 +67,11 @@ public class EDCFillInUpdateFragment extends BaseFragment1 implements View.OnCli
 
     private String tag = "EDCFillInUpdateFragment";
 
-    public static EDCFillInUpdateFragment newInstance() {
+    public static EDCFillInUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         EDCFillInUpdateFragment contractFollowUpUpdateFragment = new EDCFillInUpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        contractFollowUpUpdateFragment.setArguments(bundle);
         return contractFollowUpUpdateFragment;
     }
 
