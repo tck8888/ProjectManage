@@ -203,15 +203,15 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 mSaeReportUpdateFragment = SaeReportUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mSaeReportUpdateFragment);
                 break;
-            case 6:
+            case 6://受试者预筛
                 mPresiftingUpdateFragment = PresiftingUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mPresiftingUpdateFragment);
                 break;
-            case 7:
+            case 7://受试者访规
                 mVisitorsVisitToTheRulesUpdateFragment = VisitorsVisitToTheRulesUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mVisitorsVisitToTheRulesUpdateFragment);
                 break;
-            case 8:
+            case 8://EDC填写
                 mEdcFillInUpdateFragment = EDCFillInUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mEdcFillInUpdateFragment);
                 break;
