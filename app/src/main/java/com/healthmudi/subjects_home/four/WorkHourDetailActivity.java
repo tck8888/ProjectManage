@@ -215,11 +215,11 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 mEdcFillInUpdateFragment = EDCFillInUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mEdcFillInUpdateFragment);
                 break;
-            case 9:
-                mServerConfUpdateFragment = ServerConfUpdateFragment.newInstance(mWorkingHoursListBean);
+            case 9://后台配置的特殊工作
+                mServerConfUpdateFragment = ServerConfUpdateFragment.newInstance(mWorkingHoursListBean,mWorkTimeSubmissionItemListBean);
                 openFragment(mServerConfUpdateFragment);
                 break;
-            case 99:
+            case 99://其他
                 mOtherWorkUpdateFragment = OtherWorkUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mOtherWorkUpdateFragment);
                 break;

@@ -63,16 +63,18 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
     private ProjectListBean mProjectListBean;
+    private WorkingHoursListBean mWorkingHoursListBean;
 
     private String site_id = "";
 
     private String tag = "ServerConfUpdateFragment";
     private WorkTimeSubmissionItemListBean mWorkTimeSubmissionItemListBean;
 
-    public static ServerConfUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
+    public static ServerConfUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean,WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
         ServerConfUpdateFragment serverConfUpdateFragment = new ServerConfUpdateFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        bundle.putSerializable(Constant.KEY_WORKTIME_SUBMISSION_ITEM_LIST_BEAN, workTimeSubmissionItemListBean);
         serverConfUpdateFragment.setArguments(bundle);
         return serverConfUpdateFragment;
     }
@@ -80,6 +82,8 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            mWorkingHoursListBean = (WorkingHoursListBean) arguments.getSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN);
+
             for (int i = 1; i <= 10; i++) {
                 mDataList.add(String.valueOf(i));
             }
@@ -111,6 +115,40 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
         initTimePick();
         initWorkHourPick();
         initDialog();
+    }
+
+    @Override
+    public void setViewData() {
+        super.setViewData();
+        if (mProjectListBean != null) {
+            mTvProjectName.setText(mProjectListBean.getProject_name());
+        }
+        if (mWorkingHoursListBean != null) {
+            mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
+            mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
+            for (ProjectListBean.SiteBean siteBean : mSiteBeanList) {
+                if (siteBean.getSite_name().equals(mWorkingHoursListBean.getSite_name())) {
+                    site_id = String.valueOf(siteBean.getSite_id());
+                    break;
+                }
+            }
+            if (mWorkingHoursListBean.getOperation_date() != 0) {
+                mTvOperationDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getOperation_date()));
+            }
+            if (mWorkingHoursListBean.getCrf_pages() != 0) {
+                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getCrf_pages()));
+            }
+            if (mWorkingHoursListBean.getJob_count() != 0) {
+                mTvJobCount.setText(String.valueOf(mWorkingHoursListBean.getJob_count()));
+            }
+
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvJobTime.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            }
+            if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
+                mEtRemark.setText(mWorkingHoursListBean.getRemark());
+            }
+        }
     }
 
     public void initTimePick() {
@@ -193,14 +231,6 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
 
 
     @Override
-    public void setViewData() {
-        super.setViewData();
-        if (mProjectListBean != null) {
-            mTvProjectName.setText(mProjectListBean.getProject_name());
-        }
-    }
-
-    @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
 
@@ -260,10 +290,20 @@ public class ServerConfUpdateFragment extends BaseFragment1 implements View.OnCl
         if (checkData(operation_date, job_count, job_time)) return;
         map.put("site_id", site_id);
         map.put("job_count", job_count);
-        map.put("job_type_name", mWorkTimeSubmissionItemListBean.getJob_type_name());
+        if (mWorkTimeSubmissionItemListBean != null) {
+            map.put("job_type_name", mWorkTimeSubmissionItemListBean.getJob_type_name());
+        } else {
+            map.put("job_type_name", mWorkingHoursListBean.getJob_type_name());
+        }
         map.put("operation_date", operation_date);
         map.put("job_time", job_time);
         map.put("remark", remark);
+
+        if (mWorkingHoursListBean != null) {
+            map.put("job_id", String.valueOf(mWorkingHoursListBean.getJob_id()));
+        } else {
+            map.put("job_id", "0");
+        }
 
         LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SERVER_CONF_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
