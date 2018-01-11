@@ -21,6 +21,7 @@ import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SiteApproveListBean;
+import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -67,27 +68,41 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
 
     private ProjectListBean mProjectListBean;
+    private WorkingHoursListBean mWorkingHoursListBean;
 
     private String site_id = "";
     private String tag = "InstitutionEstablishmentUpdateFragment";
 
-    public static InstitutionEstablishmentUpdateFragment newInstance(){
+    public static InstitutionEstablishmentUpdateFragment newInstance(WorkingHoursListBean workingHoursListBean) {
         InstitutionEstablishmentUpdateFragment contractFollowUpUpdateFragment = new InstitutionEstablishmentUpdateFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN, workingHoursListBean);
+        contractFollowUpUpdateFragment.setArguments(bundle);
         return contractFollowUpUpdateFragment;
     }
 
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
+            int status = -1;
+            mWorkingHoursListBean = (WorkingHoursListBean) arguments.getSerializable(Constant.KEY_WORKING_HOURS_LIST_BEAN);
+            if (mWorkingHoursListBean != null) {
+                status = mWorkingHoursListBean.getJob_type_id();
+            }
             String[] strings = getResources().getStringArray(R.array.work_hour_array);
             mStringList.addAll(Arrays.asList(strings));
             String[] strings2 = getResources().getStringArray(R.array.site_approve_array);
             for (int i = 0; i < strings2.length; i++) {
-                mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));
+                if (status == (i + 1)) {
+                    mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], true));
+                } else {
+                    mSiteApproveListBeen.add(new SiteApproveListBean(i + 1, strings2[i], false));
+                }
             }
             mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
             map.put("project_id", String.valueOf(mProjectListBean.getProject_id()));
             mSiteBeanList.addAll(mProjectListBean.getSite());
+
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
         }
@@ -112,6 +127,42 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
         initTimePick();
         initWorkHourPick();
         initDialog();
+    }
+
+    @Override
+    public void setViewData() {
+        super.setViewData();
+        if (mProjectListBean != null) {
+            mTvProjectName.setText(mProjectListBean.getProject_name());
+        }
+
+        if (mWorkingHoursListBean != null) {
+            mTvCenterName.setText(mWorkingHoursListBean.getSite_name());
+            mTvProjectName.setText(mWorkingHoursListBean.getProject_name());
+            for (ProjectListBean.SiteBean siteBean : mSiteBeanList) {
+                if (siteBean.getSite_name().equals(mWorkingHoursListBean.getSite_name())) {
+                    site_id = String.valueOf(siteBean.getSite_id());
+                    break;
+                }
+            }
+
+            if (mWorkingHoursListBean.getSite_submit_date() != 0) {
+                mTvSubmitDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_submit_date()));
+            }
+
+            if (mWorkingHoursListBean.getSite_approve_date() != 0) {
+                mTvApprovedDate.setText(DateUtils.getFormatTime2(mWorkingHoursListBean.getSite_approve_date()));
+            }
+
+            if (mWorkingHoursListBean.getJob_time() != 0) {
+                mTvWorkHour.setText(String.valueOf(mWorkingHoursListBean.getJob_time()));
+            }
+
+            if (!TextUtils.isEmpty(mWorkingHoursListBean.getRemark())) {
+                mEtRemark.setText(mWorkingHoursListBean.getRemark());
+            }
+
+        }
     }
 
     public void initTimePick() {
@@ -215,14 +266,6 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
     }
 
     @Override
-    public void setViewData() {
-        super.setViewData();
-        if (mProjectListBean != null) {
-            mTvProjectName.setText(mProjectListBean.getProject_name());
-        }
-    }
-
-    @Override
     public void onClick(View v) {
         hideSoftKeyBord();
         switch (v.getId()) {
@@ -265,6 +308,11 @@ public class InstitutionEstablishmentUpdateFragment extends BaseFragment1 implem
         map.put("status", getStatus());
         map.put("job_time", job_time);
         map.put("remark", remark);
+        if (mWorkingHoursListBean != null) {
+            map.put("job_id", String.valueOf(mWorkingHoursListBean.getJob_id()));
+        } else {
+            map.put("job_id", "0");
+        }
 
         LoadingDialog.getInstance(getContext()).show();
         HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_SITE_APPROVE_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {

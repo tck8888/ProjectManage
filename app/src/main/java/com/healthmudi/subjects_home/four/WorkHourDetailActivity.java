@@ -111,19 +111,19 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
         super.setViewData();
         mIvArrowLeftBlack.setImageResource(R.mipmap.arrow_left_black);
         mIvCircularExclamationMark.setVisibility(View.GONE);
-        if (mWorkingHoursListBean != null) {
-            mIvCheckMark.setVisibility(View.GONE);
-            mTvTitle.setText(mWorkingHoursListBean.getJob_type_name());
-            openDetailFragment(mWorkingHoursListBean);
-        } else {
-            if (mWorkTimeSubmissionItemListBean != null) {
-                mTvTitle.setText(mWorkTimeSubmissionItemListBean.getJob_type_name());
-                mIvCheckMark.setVisibility(View.VISIBLE);
-                mIvCheckMark.setOnClickListener(this);
-
-                openUpdateFragment(mWorkTimeSubmissionItemListBean);
-            }
+        int job_type_id = -1;
+        if (mWorkTimeSubmissionItemListBean != null) {
+            mTvTitle.setText(mWorkTimeSubmissionItemListBean.getJob_type_name());
+            job_type_id=mWorkTimeSubmissionItemListBean.getJob_type_id();
         }
+        if (mWorkingHoursListBean != null) {
+            mTvTitle.setText(mWorkingHoursListBean.getJob_type_name());
+            job_type_id=mWorkingHoursListBean.getJob_type_id();
+        }
+        mIvCheckMark.setVisibility(View.VISIBLE);
+        mIvCheckMark.setOnClickListener(this);
+
+        openUpdateFragment(job_type_id);
     }
 
     private void openDetailFragment(WorkingHoursListBean workingHoursListBean) {
@@ -179,18 +179,18 @@ public class WorkHourDetailActivity extends BaseActivity implements View.OnClick
                 .commit();
     }
 
-    private void openUpdateFragment(WorkTimeSubmissionItemListBean workTimeSubmissionItemListBean) {
-        switch (workTimeSubmissionItemListBean.getJob_type_id()) {
-            case 1:
-                mInstitutionEstablishmentUpdateFragment = InstitutionEstablishmentUpdateFragment.newInstance();
+    private void openUpdateFragment(int job_type_id) {
+        switch (job_type_id) {
+            case 1://机构立项
+                mInstitutionEstablishmentUpdateFragment = InstitutionEstablishmentUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mInstitutionEstablishmentUpdateFragment);
                 break;
             case 2://伦理递交
                 mEthicalSubmissionUpdateFragment = EthicalSubmissionUpdateFragment.newInstance();
                 openFragment(mEthicalSubmissionUpdateFragment);
                 break;
-            case 3:
-                mContractFollowUpUpdateFragment = ContractFollowUpUpdateFragment.newInstance();
+            case 3://合同跟进
+                mContractFollowUpUpdateFragment = ContractFollowUpUpdateFragment.newInstance(mWorkingHoursListBean);
                 openFragment(mContractFollowUpUpdateFragment);
                 break;
             case 4:
