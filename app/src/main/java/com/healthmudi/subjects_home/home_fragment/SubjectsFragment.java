@@ -28,6 +28,7 @@ import com.healthmudi.view.EmptyView;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
 import com.lzy.okgo.OkGo;
+import com.orhanobut.hawk.Hawk;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -141,6 +142,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
                 if ("delete".equals(type)) {
                     showDialog(subjectsBean);
                 } else {
+                    Hawk.put(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
                     openActivity(SubjectsPersonalListActivity.class, null, subjectsBean);
                 }
 
@@ -245,9 +247,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
             if (projectListBean != null) {
                 intent.putExtra(Constant.KEY_PROJECT_LIST_BEAN, mProjectListBean);
             }
-            if (subjectsBean != null) {
-                intent.putExtra(Constant.KEY_SUBJECTS_BEAN, subjectsBean);
-            }
+
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         }
@@ -256,7 +256,9 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onBackInfo(MessageEvent event) {
         if (event != null) {
-            if (event.getTag().equals(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS)) {
+            if (event.getTag().equals(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_ADD_SUCCESS)) {
+                mRefreshLayout.autoRefresh();
+            } else if (event.getTag().equals(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_UPDATE_SUCCESS)) {
                 mRefreshLayout.autoRefresh();
             }
         }

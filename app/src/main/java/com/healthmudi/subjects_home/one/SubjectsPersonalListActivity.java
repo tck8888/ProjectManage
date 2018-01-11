@@ -25,6 +25,7 @@ import com.healthmudi.view.custom_popupwindow.EasyPopup;
 import com.healthmudi.view.custom_popupwindow.HorizontalGravity;
 import com.healthmudi.view.custom_popupwindow.VerticalGravity;
 import com.lzy.okgo.OkGo;
+import com.orhanobut.hawk.Hawk;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -71,7 +72,7 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
     public void initData() {
         super.initData();
         try {
-            mSubjectsBean = (SubjectsListBean.SubjectsBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_BEAN);
+            mSubjectsBean = (SubjectsListBean.SubjectsBean) Hawk.get(Constant.KEY_SUBJECTS_BEAN);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,7 +160,7 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
         //访视类型 1.入组访视、2.常规访视、3.退出访视、4.计划外访视
         switch (subjectsPersonalListBean.getVisit_type()) {
             case 1:
-                openActivity(EntryGroupBasicInformationActivity.class, mSubjectsBean, subjectsPersonalListBean);
+                openActivity(EntryGroupBasicInformationActivity.class ,null, subjectsPersonalListBean);
                 break;
             case 2:
                 openActivity(RegularVisitsActivity.class, mSubjectsBean, subjectsPersonalListBean);

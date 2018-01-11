@@ -39,7 +39,8 @@ public class MessageEvent<T> {
         this.data = data;
     }
 
-    public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS = "EntryGroupBasicInformationActivity_SUCCESS";
+    public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_ADD_SUCCESS = "EntryGroupBasicInformationActivity_add_SUCCESS";
+    public static final String KEY_ENTRY_GROUP_BASIC_INFORMATION_UPDATE_SUCCESS = "EntryGroupBasicInformationActivity_update_SUCCESS";
     public static final String KEY_PLANNED_INTERVIEW_SUCCESS = "PlannedInterviewActivity_SUCCESS";
     public static final String KEY_RESEARCH_END_VISIT_SUCCESS = "ResearchEndVisitActivity_SUCCESS";
     public static final String KEY_REGULAR_VISITS_SUCCESS = "RegularVisitsActivity_SUCCESS";

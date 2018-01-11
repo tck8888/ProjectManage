@@ -88,11 +88,19 @@
                         android:textSize="15sp"/>
 
                     <ImageView
+                        android:id="@+id/iv_select_research_center"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center_vertical"
                         android:padding="15dp"
                         android:src="@mipmap/icon_arrow_right"/>
+
+                    <android.support.v4.widget.Space
+                        android:id="@+id/sp_select_research_center"
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,13 +214,13 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:background="#fff"
                     android:minHeight="50dp"
-                    android:paddingLeft="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingRight="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"

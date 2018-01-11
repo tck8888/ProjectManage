@@ -51,6 +51,8 @@ public class ResearchEndVisitActivity extends BaseActivity implements View.OnCli
         super.initView();
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
+        ImageView image = (ImageView) findViewById(R.id.iv_arrow_left_black);
+        image.setImageResource(R.mipmap.arrow_left_black);
         mTvTitle.setText("研究结束信息");
     }
 

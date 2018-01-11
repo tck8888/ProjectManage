@@ -10,8 +10,6 @@ import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
 import com.healthmudi.bean.MessageEvent;
-import com.healthmudi.bean.ProjectListBean;
-import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
 import com.healthmudi.subjects_home.one.fragment.EntryGroupBasicInformationDetailFragment;
 import com.healthmudi.subjects_home.one.fragment.EntryGroupBasicInformationUpdateFragment;
@@ -26,8 +24,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
     private TextView mTvTitle;
     private ImageView mIvCheckMark;
 
-    private ProjectListBean mProjectListBean;
-    private SubjectsListBean.SubjectsBean mSubjectsBean;
+
     private SubjectsPersonalListBean mSubjectsPersonalListBean;
 
     private EntryGroupBasicInformationUpdateFragment mEntryGroupBasicInformationUpdateFragment;
@@ -43,8 +40,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
     public void initData() {
         super.initData();
         try {
-            mProjectListBean = (ProjectListBean) getIntent().getSerializableExtra(Constant.KEY_PROJECT_LIST_BEAN);
-            mSubjectsBean = (SubjectsListBean.SubjectsBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_BEAN);
             mSubjectsPersonalListBean = (SubjectsPersonalListBean) getIntent().getSerializableExtra(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,27 +52,29 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         super.initView();
         mTvTitle = (TextView) findViewById(R.id.tv_title);
         mIvCheckMark = (ImageView) findViewById(R.id.iv_check_mark);
+        ImageView image = (ImageView) findViewById(R.id.iv_arrow_left_black);
+        image.setImageResource(R.mipmap.arrow_left_black);
         mTvTitle.setText("入组基本信息");
     }
 
     @Override
     public void setViewData() {
         super.setViewData();
-        if (mProjectListBean != null) {
+       /* if (mProjectListBean != null) {*/
             mIvCheckMark.setVisibility(View.VISIBLE);
             mIvCheckMark.setOnClickListener(this);
 
-            mEntryGroupBasicInformationUpdateFragment = EntryGroupBasicInformationUpdateFragment.newInstance(mProjectListBean);
+            mEntryGroupBasicInformationUpdateFragment = EntryGroupBasicInformationUpdateFragment.newInstance(mSubjectsPersonalListBean);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fl_container, mEntryGroupBasicInformationUpdateFragment, "EntryGroupBasicInformationUpdateFragment")
                     .commit();
-        } else {
+       /* } else {
             mEntryGroupBasicInformationDetailFragment = EntryGroupBasicInformationDetailFragment.newInstance(mSubjectsBean, mSubjectsPersonalListBean);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fl_container, mEntryGroupBasicInformationDetailFragment, "EntryGroupBasicInformationDetailFragment")
                     .commit();
             mIvCheckMark.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     @Override
@@ -102,7 +99,7 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
             //注意事项
             case R.id.iv_circular_exclamation_mark:
                 Intent intent = new Intent(this, PlannedInterviewMattersNeedingAttentionActivity.class);
-                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS);
+                intent.putExtra(Constant.KEY_INFOMATION, MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_ADD_SUCCESS);
                 startActivity(intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
@@ -121,8 +118,6 @@ public class EntryGroupBasicInformationActivity extends BaseActivity implements 
         try {
             mTvTitle = null;
             mIvCheckMark = null;
-            mProjectListBean = null;
-            mSubjectsBean = null;
             mSubjectsPersonalListBean = null;
             mEntryGroupBasicInformationUpdateFragment = null;
             mEntryGroupBasicInformationDetailFragment = null;

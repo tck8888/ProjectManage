@@ -25,6 +25,8 @@ import com.healthmudi.base.Constant;
 import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
+import com.healthmudi.bean.SubjectsListBean;
+import com.healthmudi.bean.SubjectsPersonalListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
 import com.healthmudi.net.OnServerCallBack;
@@ -35,6 +37,7 @@ import com.healthmudi.utils.StringConvertCodeEachUtils;
 import com.healthmudi.view.IosDialog;
 import com.healthmudi.view.LoadingDialog;
 import com.lzy.okgo.OkGo;
+import com.orhanobut.hawk.Hawk;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -65,6 +68,9 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     private Space mSpace;
     private ImageView mIvBaselineType;
     private Space mSpBaselineType;
+    private ImageView mIvSelectResearchCenter;
+    private Space mSpSelectResearchCenter;
+    private LinearLayout mLlSelectResearchCenter;
 
     private TimePickerView mTimePickerView;
     private IosDialog mIosDialog;
@@ -72,6 +78,9 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     private OptionsPickerView mOptionsPickerView;
 
     private ProjectListBean mProjectListBean;
+    private SubjectsPersonalListBean mSubjectsPersonalListBean;
+    private SubjectsListBean.SubjectsBean mSubjectsBean;
+
     private Map<String, String> map = new HashMap<>();
     private List<ProjectListBean.ArmBean> mArmBeanList = new ArrayList<>();
     private List<ProjectListBean.SiteBean> mSiteBeanList = new ArrayList<>();
@@ -79,10 +88,10 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     private String site_id = "";
     private String tag = "EntryGroupBasicInformationUpdateFragment";
 
-    public static EntryGroupBasicInformationUpdateFragment newInstance(ProjectListBean projectListBean) {
+    public static EntryGroupBasicInformationUpdateFragment newInstance(SubjectsPersonalListBean subjectsPersonalListBean) {
         EntryGroupBasicInformationUpdateFragment entryGroupBasicInformationUpdateFragment = new EntryGroupBasicInformationUpdateFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.KEY_PROJECT_LIST_BEAN, projectListBean);
+        bundle.putSerializable(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN, subjectsPersonalListBean);
         entryGroupBasicInformationUpdateFragment.setArguments(bundle);
         return entryGroupBasicInformationUpdateFragment;
     }
@@ -90,7 +99,9 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     @Override
     protected void initData(@Nullable Bundle arguments) {
         try {
-            mProjectListBean = (ProjectListBean) arguments.getSerializable(Constant.KEY_PROJECT_LIST_BEAN);
+            mProjectListBean = (ProjectListBean) Hawk.get(Constant.KEY_PROJECT_LIST_BEAN);
+            mSubjectsBean = (SubjectsListBean.SubjectsBean) Hawk.get(Constant.KEY_SUBJECTS_BEAN);
+            mSubjectsPersonalListBean = (SubjectsPersonalListBean) arguments.getSerializable(Constant.KEY_SUBJECTS_PERSONAL_LIST_BEAN);
             if (mProjectListBean != null) {
                 if (!ListUtil.isEmpty(mProjectListBean.getArm())) {
                     mArmBeanList.addAll(mProjectListBean.getArm());
@@ -128,6 +139,12 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         mLlTestGroup = (LinearLayout) view.findViewById(R.id.ll_test_group);
         mSpace = (Space) view.findViewById(R.id.space);
 
+
+        mIvSelectResearchCenter = (ImageView) view.findViewById(R.id.iv_select_research_center);
+        mSpSelectResearchCenter = (Space) view.findViewById(R.id.sp_select_research_center);
+        mLlSelectResearchCenter = (LinearLayout) view.findViewById(R.id.ll_select_research_center);
+
+
         initCheckBox();
         initTimePick();
 
@@ -148,7 +165,24 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
                 mSpace.setVisibility(View.GONE);
                 mLlTestGroup.setOnClickListener(this);
             }
+            mLlSelectResearchCenter.setOnClickListener(this);
             mTvBaselineType.setText(StringConvertCodeEachUtils.getString(mProjectListBean.getBaseline_type()));
+        }
+
+        if (mSubjectsPersonalListBean != null && mSubjectsBean != null) {
+            mIvSelectResearchCenter.setVisibility(View.GONE);
+            site_id = String.valueOf(mSubjectsBean.getSite_id());
+            mSpSelectResearchCenter.setVisibility(View.VISIBLE);
+            mEtInputNumber.setText(mSubjectsBean.getSubject_filter_id());
+            mTvSelectResearchCenter.setText(mSubjectsBean.getSite_name());
+            mEtSubjectsNumber.setText(mSubjectsBean.getSubject_code());
+            mEtInitials.setText(mSubjectsBean.getName_py());
+            mEtMobile.setText(mSubjectsBean.getMobile());
+            mTvBaselineDate.setText(DateUtils.getFormatTime(String.valueOf(mSubjectsBean.getBaseline_date())));
+            if (!TextUtils.isEmpty(mSubjectsBean.getRemark())) {
+                mEtRemark.setText(mSubjectsBean.getRemark());
+            }
+
         }
 
     }
@@ -223,7 +257,11 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         mIosDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_SUCCESS));
+                if (mSubjectsPersonalListBean == null) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_ADD_SUCCESS));
+                } else {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.KEY_ENTRY_GROUP_BASIC_INFORMATION_UPDATE_SUCCESS));
+                }
                 activityFinish();
             }
         });
@@ -262,7 +300,6 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
     @Override
     public void setListener(@Nullable View view) {
         super.setListener(view);
-        view.findViewById(R.id.ll_select_research_center).setOnClickListener(this);
         view.findViewById(R.id.ll_baseline_date).setOnClickListener(this);
 
 
@@ -403,7 +440,15 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
         map.put("site_id", site_id);
         map.put("subject_filter_id", subject_filter_id);
         map.put("subject_code", subject_code);
-        map.put("subject_visit_id", "0");//TODO:
+
+        if (mSubjectsPersonalListBean != null && mSubjectsBean != null) {
+            map.put("subject_id", String.valueOf(mSubjectsBean.getSubject_id()));
+            map.put("subject_visit_id", String.valueOf(mSubjectsPersonalListBean.getSubject_visit_id()));//TODO:
+        } else {
+            map.put("subject_id", "0");
+            map.put("subject_visit_id", "0");
+        }
+
         map.put("name_py", name_py);
         map.put("mobile", mobile);
         map.put("baseline_type", StringConvertCodeEachUtils.getString(baseline_type));
@@ -419,6 +464,8 @@ public class EntryGroupBasicInformationUpdateFragment extends BaseFragment1 impl
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(getContext()).hidden();
+                mSubjectsBean.setRemark(mEtRemark.getText().toString().trim());
+                Hawk.put(Constant.KEY_PROJECT_LIST_BEAN, mSubjectsBean);
                 mIosDialog.show();
             }
 
