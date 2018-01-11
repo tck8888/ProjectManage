@@ -106,28 +106,34 @@
         <FrameLayout
             android:id="@+id/fl_select_location"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="#fff">
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:minHeight="50dp"
+            android:paddingLeft="15dp">
 
-            <TextView
-                android:id="@+id/tv_sign_hospital_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="14dp"
-                android:text="上海市中山医院"
-                android:textColor="@color/color_464c5b"
-                android:textSize="16sp"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_sign_hospital_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="37dp"
-                android:text="100米范围内打卡"
-                android:textColor="#cccccc"
-                android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/tv_sign_hospital_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上海市中山医院"
+                    android:textColor="@color/color_464c5b"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tv_sign_hospital_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="100米范围内打卡"
+                    android:textColor="@color/color_cccccc"
+                    android:textSize="12sp"/>
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="50dp"
@@ -167,7 +173,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="到达打卡时间"
+                        android:text="到达打卡"
                         android:textColor="@color/color_464c5b"
                         android:textSize="16sp"/>
 
@@ -214,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="离开打卡时间"
+                            android:text="离开打卡"
                             android:textColor="@color/color_464c5b"
                             android:textSize="16sp"/>
 
@@ -236,9 +242,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="4dp"
-                        android:text="上海市中山医院地点"
                         android:textColor="#999999"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        tools:text="上海市中山医院地点"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -278,9 +284,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="234dp"
-                android:text="今日您还未打卡"
                 android:textColor="@color/color_1abc9c"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                tools:text="今日您还未打卡"/>
 
             <RelativeLayout
                 android:id="@+id/fl_clock_in"

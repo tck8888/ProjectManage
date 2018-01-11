@@ -25,6 +25,8 @@ public interface Constant {
     String KEY_LATITUDE = "latitude";
     String KEY_LONGITUDE = "longitude";
 
+    String KEY_BASE_URL = "base_url";
+    String KEY_PRODUCTION_BASE_URL = "production_base_url";
 
      int PERMISSION_READ_LOCATION_STATE =101;
     int RQ_ACTION_LOCATION_SETTINGS = 102;

@@ -115,6 +115,7 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
                     mEmptyLayout.showEmptyView();
                 } else {
                     mEmptyLayout.showContentView();
+                    mPunchClockSelectLocationLiatBeen.get(0).setSelected(true);
                 }
                 mAdapter.notifyDataSetChanged();
                 mRefreshLayout.finishRefresh();

@@ -2,7 +2,6 @@ package com.healthmudi.net;
 
 import com.google.gson.Gson;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
 import com.healthmudi.utils.DateUtils;
 import com.healthmudi.utils.gson.GsonUtils;
 import com.lzy.okgo.OkGo;
@@ -52,7 +51,7 @@ public class HttpRequest {
 
         TreeMap<String, String> map = operateParameter(parameter);
 
-        OkGo.<String>get(HttpUrlList.BASE_URL + url)
+        OkGo.<String>get(Hawk.get(Constant.KEY_BASE_URL) + url)
                 .tag(tag)
                 .params(map)
                 .execute(new StringCallback() {
@@ -120,7 +119,7 @@ public class HttpRequest {
         TreeMap<String, String> map = operateParameter(parameter);
 
         JSONObject jsonObject = new JSONObject(map);
-        OkGo.<String>post(HttpUrlList.BASE_URL + url)
+        OkGo.<String>post(Hawk.get(Constant.KEY_BASE_URL) + url)
                 .tag(tag)
                 .upJson(jsonObject)
                 .execute(new StringCallback() {

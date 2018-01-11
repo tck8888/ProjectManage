@@ -20,6 +20,11 @@
         <item name="android:windowExitAnimation">@anim/pickerview_slide_out_bottom</item>
     </style>
 
+    <style name="pop_alpha_in" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/right_alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/right_alpha_out</item>
+    </style>
+
     <!-- RadioButtonStyles start -->
     <style name="RadioButtonStyles">
         <item name="android:button">@drawable/radiobutton_background</item>
