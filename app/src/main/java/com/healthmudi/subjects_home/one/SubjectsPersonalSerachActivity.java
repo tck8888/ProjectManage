@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.entity.HttpResult;
@@ -163,7 +163,7 @@ public class SubjectsPersonalSerachActivity extends BaseActivity implements View
         map.put("keyword", keyword);
 
         LoadingDialog.getInstance(this).show();
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_SUBJECT_SEARCH_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsListBean>>, List<SubjectsListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_SUBJECT_SEARCH_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsListBean>>, List<SubjectsListBean>>() {
             @Override
             public void onSuccess(List<SubjectsListBean> result) {
                 LoadingDialog.getInstance(SubjectsPersonalSerachActivity.this).hidden();

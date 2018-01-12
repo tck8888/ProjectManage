@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.home.ProjectManageHomeActivity;
 import com.orhanobut.hawk.Hawk;
 
@@ -41,15 +41,15 @@ public class TestActivity extends BaseActivity {
     public void initView() {
         super.initView();
 
-        Hawk.put(Constant.KEY_PRODUCTION_BASE_URL, HttpUrlList.BASE_URL);
+        Hawk.put(Constant.KEY_PRODUCTION_BASE_URL, ProjectManageHttpUrlList.BASE_URL);
 
         mRgEnv = (RadioGroup) findViewById(R.id.rg_env);
         mRbTest = (RadioButton) findViewById(R.id.rb_test);
         mRbTest.setChecked(true);
-        Hawk.put(Constant.KEY_BASE_URL, HttpUrlList.TEST_BASE_URL);
+        Hawk.put(Constant.KEY_BASE_URL, ProjectManageHttpUrlList.TEST_BASE_URL);
         mRbDev = (RadioButton) findViewById(R.id.rb_dev);
-        mRbTest.setText("测试环境  " + HttpUrlList.TEST_BASE_URL);
-        mRbDev.setText("正式环境  " + HttpUrlList.PRODUCTION_BASE_URL);
+        mRbTest.setText("测试环境  " + ProjectManageHttpUrlList.TEST_BASE_URL);
+        mRbDev.setText("正式环境  " + ProjectManageHttpUrlList.PRODUCTION_BASE_URL);
 
         mEtToken = (EditText) findViewById(R.id.et_token);
         findViewById(R.id.btn_login_project_system).setOnClickListener(new View.OnClickListener() {
@@ -68,9 +68,9 @@ public class TestActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 if (checkedId == R.id.rb_test) {
-                    Hawk.put(Constant.KEY_BASE_URL, HttpUrlList.TEST_BASE_URL);
+                    Hawk.put(Constant.KEY_BASE_URL, ProjectManageHttpUrlList.TEST_BASE_URL);
                 } else {
-                    Hawk.put(Constant.KEY_BASE_URL, HttpUrlList.PRODUCTION_BASE_URL);
+                    Hawk.put(Constant.KEY_BASE_URL, ProjectManageHttpUrlList.PRODUCTION_BASE_URL);
                 }
             }
         });

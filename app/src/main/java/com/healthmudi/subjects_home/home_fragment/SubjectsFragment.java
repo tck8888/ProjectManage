@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SubjectsListBean;
@@ -163,7 +163,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
      */
     private void deleteData() {
         LoadingDialog.getInstance(getContext()).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_SUBJECT_DEL_URL, mapDelete, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.PROJECT_SUBJECT_DEL_URL, mapDelete, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(getContext()).hidden();
@@ -188,7 +188,7 @@ public class SubjectsFragment extends BaseFragment1 implements View.OnClickListe
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_SUBJECT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsListBean>>, List<SubjectsListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_SUBJECT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsListBean>>, List<SubjectsListBean>>() {
             @Override
             public void onSuccess(List<SubjectsListBean> result) {
                 if (!ListUtil.isEmpty(mSubjectsListBeanList)) {

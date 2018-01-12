@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.bean.SubjectsPersonalListBean;
@@ -181,7 +181,7 @@ public class SubjectsPersonalListActivity extends BaseActivity implements View.O
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsPersonalListBean>>, List<SubjectsPersonalListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_VISIT_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectsPersonalListBean>>, List<SubjectsPersonalListBean>>() {
             @Override
             public void onSuccess(List<SubjectsPersonalListBean> result) {
                 updateUI(result);

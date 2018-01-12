@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.PunchClockSelectLocationListBean;
 import com.healthmudi.entity.HttpResult;
@@ -104,7 +104,7 @@ public class PunchClockSelectLocationActivity extends BaseActivity implements Vi
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_NEARBY_SITE_URL, map, tag, new OnServerCallBack<HttpResult<List<PunchClockSelectLocationListBean>>, List<PunchClockSelectLocationListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_CLOCK_IN_NEARBY_SITE_URL, map, tag, new OnServerCallBack<HttpResult<List<PunchClockSelectLocationListBean>>, List<PunchClockSelectLocationListBean>>() {
             @Override
             public void onSuccess(List<PunchClockSelectLocationListBean> result) {
                 if (!ListUtil.isEmpty(mPunchClockSelectLocationLiatBeen)) {

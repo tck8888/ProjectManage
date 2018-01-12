@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseDialogFragment;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.SubjectCodeBean;
@@ -110,7 +110,7 @@ public class SelectSubjectDilaog extends BaseDialogFragment implements OnRefresh
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_SUBJECT_CODES_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectCodeBean>>, List<SubjectCodeBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_SUBJECT_CODES_URL, map, tag, new OnServerCallBack<HttpResult<List<SubjectCodeBean>>, List<SubjectCodeBean>>() {
             @Override
             public void onSuccess(List<SubjectCodeBean> result) {
                 if (!ListUtil.isEmpty(mSubjectCodeBeanList)) {

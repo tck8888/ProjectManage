@@ -10,7 +10,7 @@ import com.healthmudi.ProjectWebViewActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.FileListBean;
 import com.healthmudi.bean.WebViewBean;
 import com.healthmudi.entity.HttpResult;
@@ -113,7 +113,7 @@ public class FileFragment extends BaseFragment1 implements View.OnClickListener,
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_SUBJECT_FILE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<FileListBean>>, List<FileListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_SUBJECT_FILE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<FileListBean>>, List<FileListBean>>() {
             @Override
             public void onSuccess(List<FileListBean> data) {
                 if (!ListUtil.isEmpty(mFileListBeanList)) {

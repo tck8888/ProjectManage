@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.WorkingHoursListBean;
 import com.healthmudi.entity.HttpResult;
@@ -157,7 +157,7 @@ public class WorkingHoursFragment extends BaseFragment1 implements View.OnClickL
 
     private void getData() {
         map.put("page", String.valueOf(page));
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_JOB_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkingHoursListBean>>, List<WorkingHoursListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_JOB_LIST_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkingHoursListBean>>, List<WorkingHoursListBean>>() {
             @Override
             public void onSuccess(List<WorkingHoursListBean> result) {
 

@@ -5,7 +5,7 @@ package com.healthmudi.base;
  * Date: 2017/12/20 10：21
  */
 
-public interface HttpUrlList {
+public interface ProjectManageHttpUrlList {
 
     String PRODUCTION_BASE_URL="http://140.207.75.158:3000/";
     String TEST_BASE_URL="http://192.168.1.110:3000/";

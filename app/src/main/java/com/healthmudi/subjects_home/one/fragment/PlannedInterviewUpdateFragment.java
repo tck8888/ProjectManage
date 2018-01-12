@@ -13,7 +13,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.SubjectsListBean;
 import com.healthmudi.entity.HttpResult;
@@ -175,7 +175,7 @@ public class PlannedInterviewUpdateFragment extends BaseFragment1 implements Vie
         map.put("actual_visit_time", actual_visit_time);
         map.put("remark", remark);
         LoadingDialog.getInstance(getContext()).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_VISIT_OUTPLAN_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.PROJECT_VISIT_OUTPLAN_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(getContext()).hidden();

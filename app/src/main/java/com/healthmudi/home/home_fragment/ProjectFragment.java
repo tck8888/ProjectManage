@@ -11,7 +11,7 @@ import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.home.home_fragment.adapter.ProjectListAdapter;
@@ -125,7 +125,7 @@ public class ProjectFragment extends BaseFragment1 implements View.OnClickListen
 
     public void getData() {
         HttpRequest.getInstance()
-                .get(HttpUrlList.PROJECT_LIST_URL, null, tag, new OnServerCallBack<HttpResult<List<ProjectListBean>>, List<ProjectListBean>>() {
+                .get(ProjectManageHttpUrlList.PROJECT_LIST_URL, null, tag, new OnServerCallBack<HttpResult<List<ProjectListBean>>, List<ProjectListBean>>() {
                     @Override
                     public void onSuccess(List<ProjectListBean> result) {
                         if (!ListUtil.isEmpty(mProjectListBeen)) {

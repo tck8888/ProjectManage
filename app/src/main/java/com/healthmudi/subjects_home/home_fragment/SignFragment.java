@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.PunchClockSelectLocationListBean;
@@ -325,7 +325,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
     private void clockIn() {
         map.put("type", type);
         LoadingDialog.getInstance(getContext()).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_CLOCK_IN_URL, map, tag, new OnServerCallBack<HttpResult<String>, String>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.PROJECT_CLOCK_IN_URL, map, tag, new OnServerCallBack<HttpResult<String>, String>() {
             @Override
             public void onSuccess(String result) {
                 LoadingDialog.getInstance(getContext()).hidden();
@@ -402,7 +402,7 @@ public class SignFragment extends BaseFragment1 implements View.OnClickListener 
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_NEARBY_SITE_URL, map1, tag, new OnServerCallBack<HttpResult<List<PunchClockSelectLocationListBean>>, List<PunchClockSelectLocationListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_CLOCK_IN_NEARBY_SITE_URL, map1, tag, new OnServerCallBack<HttpResult<List<PunchClockSelectLocationListBean>>, List<PunchClockSelectLocationListBean>>() {
             @Override
             public void onSuccess(List<PunchClockSelectLocationListBean> result) {
                 if (!ListUtil.isEmpty(result)) {

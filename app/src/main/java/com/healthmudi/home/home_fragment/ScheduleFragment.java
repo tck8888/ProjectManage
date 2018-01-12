@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.ItemType;
 import com.healthmudi.bean.MemoBean;
 import com.healthmudi.bean.ScheduleListBean;
@@ -140,7 +140,7 @@ public class ScheduleFragment extends BaseFragment1 implements View.OnClickListe
     }
 
     public void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.SCHEDULE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<ScheduleListBean>, ScheduleListBean>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.SCHEDULE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<ScheduleListBean>, ScheduleListBean>() {
             @Override
             public void onSuccess(ScheduleListBean result) {
                 if (!ListUtil.isEmpty(mDataList)) {

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.healthmudi.ExitProjectManagerActivity;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MemoBean;
 import com.healthmudi.bean.ScheduleList1Bean;
 import com.healthmudi.bean.ScheduleListHeadBean;
@@ -293,7 +293,7 @@ public class ScheduleFragment1 extends BaseFragment1 implements View.OnClickList
 
     public void getData() {
         map.put("month", DateUtils.getDateStr1(currentYear, currentMonth));
-        HttpRequest.getInstance().get(HttpUrlList.SCHEDULE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<ScheduleList1Bean>, ScheduleList1Bean>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.SCHEDULE_LIST_URL, map, tag, new OnServerCallBack<HttpResult<ScheduleList1Bean>, ScheduleList1Bean>() {
             @Override
             public void onSuccess(ScheduleList1Bean result) {
                 initCurrentMonthData();

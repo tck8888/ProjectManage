@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.WorkTimeSubmissionItemListBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
@@ -119,7 +119,7 @@ public class WorkTimeSubmissionListActivtiy extends BaseActivity implements View
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_JOB_ITEMS_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkTimeSubmissionItemListBean>>, List<WorkTimeSubmissionItemListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_JOB_ITEMS_URL, map, tag, new OnServerCallBack<HttpResult<List<WorkTimeSubmissionItemListBean>>, List<WorkTimeSubmissionItemListBean>>() {
             @Override
             public void onSuccess(List<WorkTimeSubmissionItemListBean> result) {
                 if (!mNormalWorkListBean.isEmpty()) {

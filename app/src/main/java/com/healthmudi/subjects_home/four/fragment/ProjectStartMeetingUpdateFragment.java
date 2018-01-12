@@ -15,7 +15,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.bean.WorkingHoursListBean;
@@ -264,7 +264,7 @@ public class ProjectStartMeetingUpdateFragment extends BaseFragment1 implements 
             map.put("job_id", "0");
         }
         LoadingDialog.getInstance(getContext()).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_JOB_KICK_OFF_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.PROJECT_JOB_KICK_OFF_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(getContext()).hidden();

@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseFragment1;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.ItemsBean;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.SubjectsListBean;
@@ -218,7 +218,7 @@ public class RegularVisitsUpdateFragment extends BaseFragment1 implements View.O
         map.put("visit_content", getVisitContent());
         map.put("remark", remark);
         LoadingDialog.getInstance(getContext()).show();
-        HttpRequest.getInstance().post(HttpUrlList.PROJECT_VISIT_SUBMIT_URL, map, tag, new OnServerCallBack() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.PROJECT_VISIT_SUBMIT_URL, map, tag, new OnServerCallBack() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(getContext()).hidden();

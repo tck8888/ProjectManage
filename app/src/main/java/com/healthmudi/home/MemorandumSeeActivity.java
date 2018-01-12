@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.TimePickerView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -135,7 +135,7 @@ public class MemorandumSeeActivity extends BaseActivity implements View.OnClickL
             map.remove("memo_content");
         }
         LoadingDialog.getInstance(this).show();
-        HttpRequest.getInstance().post(HttpUrlList.SCHEDULE_DEL_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.SCHEDULE_DEL_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(MemorandumSeeActivity.this).hidden();
@@ -177,7 +177,7 @@ public class MemorandumSeeActivity extends BaseActivity implements View.OnClickL
         map.put("status", status);
 
         LoadingDialog.getInstance(this).show();
-        HttpRequest.getInstance().post(HttpUrlList.SCHEDULE_UPDATE_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
+        HttpRequest.getInstance().post(ProjectManageHttpUrlList.SCHEDULE_UPDATE_URL, map, tag, new OnServerCallBack<HttpResult<Object>, Object>() {
             @Override
             public void onSuccess(Object result) {
                 LoadingDialog.getInstance(MemorandumSeeActivity.this).hidden();

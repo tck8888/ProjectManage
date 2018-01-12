@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseDialogFragment;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.MessageEvent;
 import com.healthmudi.bean.ProjectListBean;
 import com.healthmudi.commonlibrary.widget.AutoListView;
@@ -112,7 +112,7 @@ public class SelectDocDialog extends BaseDialogFragment implements OnRefreshList
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CONFIG_EC_DOC_URL, map, tag, new OnServerCallBack<HttpResult<List<String>>, List<String>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_CONFIG_EC_DOC_URL, map, tag, new OnServerCallBack<HttpResult<List<String>>, List<String>>() {
             @Override
             public void onSuccess(List<String> result) {
                 if (!ListUtil.isEmpty(mStringList)) {

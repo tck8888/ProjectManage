@@ -6,7 +6,7 @@ import android.widget.ListView;
 import com.healthmudi.R;
 import com.healthmudi.base.BaseActivity;
 import com.healthmudi.base.Constant;
-import com.healthmudi.base.HttpUrlList;
+import com.healthmudi.base.ProjectManageHttpUrlList;
 import com.healthmudi.bean.SignHistoryListBean;
 import com.healthmudi.entity.HttpResult;
 import com.healthmudi.net.HttpRequest;
@@ -88,7 +88,7 @@ public class SignHistoryActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getData() {
-        HttpRequest.getInstance().get(HttpUrlList.PROJECT_CLOCK_IN_HISTORY_URL, map, tag, new OnServerCallBack<HttpResult<List<SignHistoryListBean>>, List<SignHistoryListBean>>() {
+        HttpRequest.getInstance().get(ProjectManageHttpUrlList.PROJECT_CLOCK_IN_HISTORY_URL, map, tag, new OnServerCallBack<HttpResult<List<SignHistoryListBean>>, List<SignHistoryListBean>>() {
             @Override
             public void onSuccess(List<SignHistoryListBean> result) {
                 if (!ListUtil.isEmpty(mSignHistoryListBeen)) {
